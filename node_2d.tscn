@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://duenbicalrvd8"]
+
+[ext_resource type="Texture2D" uid="uid://djeiy6gr6y44b" path="res://icon.svg" id="1_hi7cu"]
+[ext_resource type="Script" path="res://character_body_2d.gd" id="1_krun6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xdiy2"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bm1gc"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_krun6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_xdiy2")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("1_hi7cu")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 200)
+shape = SubResource("WorldBoundaryShape2D_bm1gc")
