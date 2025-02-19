@@ -1,18 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://qtfciyfj33pt"]
+[gd_scene load_steps=4 format=3 uid="uid://qtfciyfj33pt"]
 
-[ext_resource type="PackedScene" uid="uid://8j1kl15f7ryq" path="res://scenes/player.tscn" id="1_qo2ml"]
+[ext_resource type="Shader" path="res://shaders/pixel_camera.gdshader" id="1_hijlh"]
+[ext_resource type="PackedScene" uid="uid://drvtf3re7q0l4" path="res://scenes/test.tscn" id="1_suv3y"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vltb7"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_47atn"]
+shader = ExtResource("1_hijlh")
+shader_parameter/cam_position = null
+shader_parameter/cam_offset = Vector2(0, 0)
 
-[node name="Main" type="Node2D"]
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Player" parent="." instance=ExtResource("1_qo2ml")]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_47atn")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = -866.0
+offset_bottom = -488.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(290, 164)
+render_target_update_mode = 4
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 48)
-shape = SubResource("WorldBoundaryShape2D_vltb7")
+[node name="Main" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("viewport") instance=ExtResource("1_suv3y")]
+viewport = NodePath("../..")

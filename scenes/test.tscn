@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://drvtf3re7q0l4"]
+
+[ext_resource type="Script" path="res://scripts/sceneScript.gd" id="1_lc7kf"]
+[ext_resource type="PackedScene" uid="uid://8j1kl15f7ryq" path="res://scenes/player.tscn" id="1_pxad3"]
+[ext_resource type="Texture2D" uid="uid://by1lbl2vbbxxo" path="res://icon.svg" id="2_5c10e"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="4_bc54e"]
+[ext_resource type="Shader" path="res://shaders/pixel_camera.gdshader" id="4_oyl6j"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_c3fxt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q66og"]
+shader = ExtResource("4_oyl6j")
+shader_parameter/cam_position = null
+shader_parameter/cam_offset = Vector2(0, 0)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_lc7kf")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(-2, -6)
+scale = Vector2(1, 0.993091)
+texture = ExtResource("2_5c10e")
+
+[node name="Player" parent="." instance=ExtResource("1_pxad3")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-1, -25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 48)
+shape = SubResource("WorldBoundaryShape2D_c3fxt")
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("followTarget")]
+material = SubResource("ShaderMaterial_q66og")
+script = ExtResource("4_bc54e")
+followTarget = NodePath("../Player")
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D"]
+visible = false
+offset_left = -633.0
+offset_top = -540.0
+offset_right = 367.0
+offset_bottom = 460.0
+scale = Vector2(1.72, 1)
