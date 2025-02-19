@@ -6,16 +6,16 @@
 [ext_resource type="Script" path="res://scripts/camera.gd" id="4_bc54e"]
 [ext_resource type="Shader" path="res://shaders/pixel_camera.gdshader" id="4_oyl6j"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_c3fxt"]
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q66og"]
 shader = ExtResource("4_oyl6j")
 shader_parameter/cam_position = null
 shader_parameter/cam_offset = Vector2(0, 0)
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_c3fxt"]
+
 [node name="Main" type="Node2D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_lc7kf")
-camera = NodePath("Camera2D")
+camera = NodePath("Player/Camera2D")
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(-2, -6)
@@ -24,22 +24,22 @@ texture = ExtResource("2_5c10e")
 
 [node name="Player" parent="." instance=ExtResource("1_pxad3")]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(-1, -25)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 48)
-shape = SubResource("WorldBoundaryShape2D_c3fxt")
-
-[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("followTarget")]
+[node name="Camera2D" type="Camera2D" parent="Player" node_paths=PackedStringArray("followTarget")]
 material = SubResource("ShaderMaterial_q66og")
 script = ExtResource("4_bc54e")
-followTarget = NodePath("../Player")
+followTarget = NodePath("..")
 
-[node name="ColorRect" type="ColorRect" parent="Camera2D"]
+[node name="ColorRect" type="ColorRect" parent="Player/Camera2D"]
 visible = false
 offset_left = -633.0
 offset_top = -540.0
 offset_right = 367.0
 offset_bottom = 460.0
 scale = Vector2(1.72, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-1, -25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 48)
+shape = SubResource("WorldBoundaryShape2D_c3fxt")

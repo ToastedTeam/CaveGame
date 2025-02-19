@@ -23,6 +23,10 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="CaveGame"
 
+[physics]
+
+common/physics_interpolation=true
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
