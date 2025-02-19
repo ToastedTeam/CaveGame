@@ -4,8 +4,10 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#print(camera)
-	#camera.viewport_shader = viewport.material;
+	if camera:
+		camera.viewport_shader = viewport.material;
+	else:
+		push_error("Camera not set in scene, pixel alignment wont happen.")
 	pass # Replace with function body.
 
 
