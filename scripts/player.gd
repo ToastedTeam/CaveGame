@@ -23,6 +23,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		
+	move_and_slide()
 		
 #	Player animations
 	if is_on_floor():
@@ -37,5 +38,3 @@ func _physics_process(delta: float) -> void:
 		player_sprite.flip_h = true
 	elif direction > 0:
 		player_sprite.flip_h = false
-
-	move_and_slide()
