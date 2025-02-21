@@ -27,18 +27,11 @@ texture = ExtResource("1_lhg5j")
 
 [node name="Camera2D" type="Camera2D" parent="Player" node_paths=PackedStringArray("followTarget")]
 material = SubResource("ShaderMaterial_qtmoe")
-zoom = Vector2(4, 4)
+zoom = Vector2(3, 3)
 position_smoothing_enabled = true
+position_smoothing_speed = 10.0
 script = ExtResource("4_jst04")
 followTarget = NodePath("..")
-
-[node name="ColorRect" type="ColorRect" parent="Player/Camera2D"]
-visible = false
-offset_left = -633.0
-offset_top = -540.0
-offset_right = 367.0
-offset_bottom = 460.0
-scale = Vector2(1.72, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-1, -25)
