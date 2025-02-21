@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://8j1kl15f7ryq"]
+[gd_scene load_steps=10 format=3 uid="uid://8j1kl15f7ryq"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_plpc0"]
 [ext_resource type="Texture2D" uid="uid://crrknnqcxgkk3" path="res://assets/sprites/knight.png" id="1_pmcpt"]
+[ext_resource type="Material" uid="uid://hkdd85186e42" path="res://shaders/SmoothPixel.tres" id="2_asdqb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s7par"]
 atlas = ExtResource("1_pmcpt")
@@ -46,11 +47,13 @@ radius = 5.0
 script = ExtResource("1_plpc0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 2
+material = ExtResource("2_asdqb")
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_w8q44")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.95751
+frame_progress = 0.826939
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)

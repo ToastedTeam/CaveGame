@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://qtfciyfj33pt"]
+[gd_scene load_steps=8 format=3 uid="uid://qtfciyfj33pt"]
 
+[ext_resource type="Material" uid="uid://hkdd85186e42" path="res://shaders/SmoothPixel.tres" id="1_gcndh"]
 [ext_resource type="Shader" path="res://shaders/pixel_camera.gdshader" id="1_hijlh"]
 [ext_resource type="Texture2D" uid="uid://b8aysoeqef1f1" path="res://icon.svg" id="1_lhg5j"]
 [ext_resource type="PackedScene" uid="uid://8j1kl15f7ryq" path="res://scenes/player.tscn" id="2_5r4ce"]
@@ -15,17 +16,19 @@ shader_parameter/cam_offset = Vector2(0, 0)
 [node name="Main" type="Node2D"]
 
 [node name="Icon" type="Sprite2D" parent="."]
+texture_filter = 2
+material = ExtResource("1_gcndh")
 position = Vector2(-2, -6)
+rotation = -0.785398
 scale = Vector2(1, 0.993091)
 texture = ExtResource("1_lhg5j")
 
 [node name="Player" parent="." instance=ExtResource("2_5r4ce")]
-position = Vector2(-2, -6)
-scale = Vector2(1, 0.993091)
 
 [node name="Camera2D" type="Camera2D" parent="Player" node_paths=PackedStringArray("followTarget")]
 material = SubResource("ShaderMaterial_qtmoe")
 zoom = Vector2(4, 4)
+position_smoothing_enabled = true
 script = ExtResource("4_jst04")
 followTarget = NodePath("..")
 
