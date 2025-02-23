@@ -2,6 +2,7 @@ class_name GameplayCamera
 extends Camera2D
 
 @export var followTarget: Node2D;
+@export var suppressPixelAlignment = false;
 #var lastPosition: Vector2 = Vector2.ZERO;
 
 var viewport_shader: ShaderMaterial
@@ -33,7 +34,7 @@ func _physics_process(delta: float) -> void:
 	#print(followTarget.position.distance_to(lastPosition))
 		
 	#lastPosition = followTarget.position;
-	if viewport_shader:
+	if viewport_shader and not suppressPixelAlignment:
 		viewport_shader.set_shader_parameter("cam_offset", sub_pixel)
 		viewport_shader.set_shader_parameter("cam_position", global_position)
 		

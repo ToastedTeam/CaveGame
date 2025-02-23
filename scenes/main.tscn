@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b8aysoeqef1f1" path="res://icon.svg" id="1_lhg5j"]
 [ext_resource type="PackedScene" uid="uid://8j1kl15f7ryq" path="res://scenes/player.tscn" id="2_5r4ce"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="4_jst04"]
-[ext_resource type="PackedScene" uid="uid://dkd3whj85qokt" path="res://scenes/interface.tscn" id="6_gt51k"]
+[ext_resource type="PackedScene" uid="uid://jxyevycakmnv" path="res://scenes/interface.tscn" id="6_gt51k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qtmoe"]
 shader = ExtResource("1_hijlh")
@@ -33,6 +33,7 @@ position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 script = ExtResource("4_jst04")
 followTarget = NodePath("..")
+suppressPixelAlignment = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-1, -25)
@@ -42,12 +43,3 @@ position = Vector2(0, 48)
 shape = SubResource("WorldBoundaryShape2D_qsprx")
 
 [node name="Interface" parent="." instance=ExtResource("6_gt51k")]
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = -213.0
-offset_top = -120.0
-offset_right = -213.0
-offset_bottom = -120.0
-grow_horizontal = 1
-grow_vertical = 1

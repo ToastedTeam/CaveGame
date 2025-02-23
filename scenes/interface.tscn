@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dkd3whj85qokt"]
+[gd_scene load_steps=2 format=3 uid="uid://jxyevycakmnv"]
 
 [ext_resource type="PackedScene" uid="uid://du07qhtteauuh" path="res://assets/interface/bar.tscn" id="1_wpx7d"]
 
-[node name="Interface" type="Control"]
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Interface2" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,9 +15,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="HP Bar" parent="." instance=ExtResource("1_wpx7d")]
+[node name="HP Bar" parent="Interface2" instance=ExtResource("1_wpx7d")]
 layout_mode = 1
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 204.0
-offset_bottom = 44.0
+offset_right = 200.0
+offset_bottom = 30.0
