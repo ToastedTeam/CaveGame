@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://qtfciyfj33pt"]
+[gd_scene load_steps=9 format=3 uid="uid://qtfciyfj33pt"]
 
 [ext_resource type="Material" uid="uid://hkdd85186e42" path="res://shaders/SmoothPixel.tres" id="1_gcndh"]
 [ext_resource type="Shader" path="res://shaders/pixel_camera.gdshader" id="1_hijlh"]
 [ext_resource type="Texture2D" uid="uid://b8aysoeqef1f1" path="res://icon.svg" id="1_lhg5j"]
 [ext_resource type="PackedScene" uid="uid://8j1kl15f7ryq" path="res://scenes/player.tscn" id="2_5r4ce"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="4_jst04"]
+[ext_resource type="PackedScene" uid="uid://dkd3whj85qokt" path="res://scenes/interface.tscn" id="6_gt51k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qtmoe"]
 shader = ExtResource("1_hijlh")
@@ -39,3 +40,14 @@ position = Vector2(-1, -25)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 48)
 shape = SubResource("WorldBoundaryShape2D_qsprx")
+
+[node name="Interface" parent="." instance=ExtResource("6_gt51k")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -213.0
+offset_top = -120.0
+offset_right = -213.0
+offset_bottom = -120.0
+grow_horizontal = 1
+grow_vertical = 1
