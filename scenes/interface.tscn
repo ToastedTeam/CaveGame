@@ -21,8 +21,8 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="HP Bar" parent="Interface2/VBoxContainer" instance=ExtResource("1_wpx7d")]
+[node name="HealthBar" parent="Interface2/VBoxContainer" instance=ExtResource("1_wpx7d")]
 layout_mode = 2
 
-[node name="Mana Bar" parent="Interface2/VBoxContainer" instance=ExtResource("2_juv2u")]
+[node name="ManaBar" parent="Interface2/VBoxContainer" instance=ExtResource("2_juv2u")]
 layout_mode = 2
