@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://jxyevycakmnv"]
+[gd_scene load_steps=3 format=3 uid="uid://jxyevycakmnv"]
 
-[ext_resource type="PackedScene" uid="uid://du07qhtteauuh" path="res://assets/interface/bar.tscn" id="1_wpx7d"]
+[ext_resource type="PackedScene" uid="uid://du07qhtteauuh" path="res://assets/interface/hp_bar.tscn" id="1_wpx7d"]
+[ext_resource type="PackedScene" uid="uid://mkc0o25ok023" path="res://assets/interface/mana_bar.tscn" id="2_juv2u"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -15,7 +16,13 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="HP Bar" parent="Interface2" instance=ExtResource("1_wpx7d")]
-layout_mode = 1
-offset_right = 200.0
-offset_bottom = 30.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Interface2"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HP Bar" parent="Interface2/VBoxContainer" instance=ExtResource("1_wpx7d")]
+layout_mode = 2
+
+[node name="Mana Bar" parent="Interface2/VBoxContainer" instance=ExtResource("2_juv2u")]
+layout_mode = 2

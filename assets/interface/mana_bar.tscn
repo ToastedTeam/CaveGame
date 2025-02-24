@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://mkc0o25ok023"]
+
+[ext_resource type="Texture2D" uid="uid://b1klfh48v5equ" path="res://assets/interface/mana_bar_under.png" id="1_8r3jc"]
+[ext_resource type="Texture2D" uid="uid://l07kjwoy4jkx" path="res://assets/interface/mana_bar_over.png" id="2_y4t28"]
+
+[node name="Bar" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ManaBar" type="TextureProgressBar" parent="."]
+layout_mode = 2
+value = 50.0
+texture_under = ExtResource("1_8r3jc")
+texture_progress = ExtResource("2_y4t28")

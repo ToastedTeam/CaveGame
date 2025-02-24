@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://du07qhtteauuh"]
+
+[ext_resource type="Texture2D" uid="uid://b8mlgmms4dkv2" path="res://assets/interface/hp_bar_under.png" id="1_7q0xc"]
+[ext_resource type="Texture2D" uid="uid://kwmc21mbudt8" path="res://assets/interface/hp_bar_over.png" id="2_7hgu3"]
+
+[node name="Bar" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+layout_mode = 2
+max_value = 20.0
+value = 5.0
+texture_under = ExtResource("1_7q0xc")
+texture_progress = ExtResource("2_7hgu3")

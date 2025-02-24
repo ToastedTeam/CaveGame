@@ -8,6 +8,8 @@ const MAX_MANA = 100
 const BASE_DAMAGE = 5
 
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var health_bar: TextureProgressBar = $"../Interface/Interface2/VBoxContainer/HP Bar/HealthBar"
+@onready var mana_bar: TextureProgressBar = $"../Interface/Interface2/VBoxContainer/Mana Bar/ManaBar"
 
 # Defining these as variables because they can change overtime
 var current_hp
@@ -19,9 +21,24 @@ func _ready() -> void:
 	current_hp = MAX_HP
 	current_mana = MAX_MANA
 	damage = BASE_DAMAGE
+	
+	health_bar.max_value = MAX_HP
+	mana_bar.max_value = MAX_MANA
+	
+	health_bar.value = current_hp
+	mana_bar.value = current_mana
+	
 	print("player hp: ", current_hp, " player mana: ", current_mana, " player damage: ", damage)
 
 func _physics_process(delta: float) -> void:
+	# DEBUG STUFF SO ITS EASY TO ACCESS
+	if Input.is_action_just_pressed("DEBUG_takeDamage"):
+		changeHealth(-5)
+		changeMana(-5)
+		print("Current hp: ", current_hp)
+	
+	
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -30,10 +47,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("player_jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		
-	if Input.is_action_just_pressed("DEBUG_takeDamage"):
-		changeHealth(-5)
-		print("Current hp: ", current_hp)
-
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("player_move_left", "player_move_right")
@@ -62,9 +75,13 @@ func _physics_process(delta: float) -> void:
 
 func changeHealth(amount):
 	current_hp += amount
+	health_bar.value = current_hp
 	if current_hp <= 0:
 		current_hp = 0
+		health_bar.value = current_hp
 		print("The player has Died")
 	
 func changeMana(amount):
-	current_mana += amount
+	if current_mana > 0:
+		current_mana += amount
+		mana_bar.value = current_mana

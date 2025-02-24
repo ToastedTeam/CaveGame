@@ -43,3 +43,7 @@ position = Vector2(0, 48)
 shape = SubResource("WorldBoundaryShape2D_qsprx")
 
 [node name="Interface" parent="." instance=ExtResource("6_gt51k")]
+
+[editable path="Interface"]
+[editable path="Interface/Interface2/VBoxContainer/HP Bar"]
+[editable path="Interface/Interface2/VBoxContainer/Mana Bar"]
