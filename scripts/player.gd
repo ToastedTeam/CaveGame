@@ -13,7 +13,7 @@ const BASE_DAMAGE = 5
 @export var mana_bar: TextureProgressBar
 
 # Variables
-var current_hp: int:
+var current_hp: int = MAX_HP:
 	get:
 		return current_hp
 	set(value):
@@ -24,29 +24,32 @@ var current_hp: int:
 		# Same thing with current_mana variable
 		# Currently moved to _physics_process() function
 		
-		#if current_hp < 0:
-			#print("The player has died")
-			#current_hp = 0
-		#else:
-			#current_hp = value
-			
-		current_hp = value
+		# Fixed, you were checking the current hp, which is not the same as value, aka the new
+		# value, which is called "value". That allowed it to reach negative values. However, 
+		# below the if statement there was a `current_hp = value` statement which simply negates
+		# the if statement
+		# - Toaster
+		if value < 0:
+			print("The player has died")
+			current_hp = 0
+		else:
+			current_hp = value
+		
 		health_bar.value = current_hp
 
-var current_mana: int:
+var current_mana: int = MAX_MANA:
 	get:
 		return current_mana
 	set(value):
-		#if current_mana < 0:
-			#print("The player has run out of Mana")
-			#current_mana = 0
-		#else:
-			#current_mana = value
+		if value < 0:
+			print("The player has run out of Mana")
+			current_mana = 0
+		else:
+			current_mana = value
 		
-		current_mana = value
 		mana_bar.value = current_mana
 
-var damage: int:
+var damage: int = BASE_DAMAGE:
 	get:
 		return damage
 	set(value):
@@ -54,9 +57,9 @@ var damage: int:
 
 # Setting current 
 func _ready() -> void:
-	current_hp = MAX_HP
-	current_mana = MAX_MANA
-	damage = BASE_DAMAGE
+	#current_hp = MAX_HP
+	#current_mana = MAX_MANA
+	#damage = BASE_DAMAGE
 	
 	health_bar.max_value = MAX_HP
 	mana_bar.max_value = MAX_MANA
@@ -73,14 +76,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("DEBUG_takeDamage"):
 		current_hp -= 5
 		current_mana -= 5
-		
-		if current_hp <= 0:
-			current_hp = 0
-			print("The player has died")
-		if current_mana <= 0:
-			current_mana = 0
-			print("The player has ran out of mana")
-	
 		print("Current hp: ", current_hp, "; Current mana: ", current_mana)
 	
 	
