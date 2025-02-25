@@ -48,7 +48,8 @@ func eval_code(code):
 	script.reload()
 	var var_root = get_tree().root
 	var var_player = var_root.find_child("Player", true, false)
-	return script._eval(var_root, var_player)
+	if script.has_method("_eval"):
+		return script._eval(var_root, var_player)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_console") and not visible:
@@ -61,7 +62,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		hide()
 		return
 	elif event.is_action_pressed("ui_accept") and visible:
-		eval_code($Command.text)
+		Log.info(eval_code($Command.text))
 		add_to_history($Command.text)
 		historyPos = -1
 		$Command.text = ""
