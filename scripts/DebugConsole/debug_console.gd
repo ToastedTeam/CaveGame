@@ -1,6 +1,8 @@
 class_name DebugConsole
 extends Control
 
+@export var LogOutput: RichTextLabel
+
 var history = [ "" ]
 var historyPos = 0:
 	get:
@@ -8,8 +10,8 @@ var historyPos = 0:
 	set(value):
 		if value > history.size()-1:
 			historyPos = history.size()-1
-		elif value < 0:
-			historyPos = 0
+		elif value < -1:
+			historyPos = -1
 		else:
 			historyPos = value
 
@@ -19,9 +21,21 @@ func add_to_history(text: String) -> void:
 		history.pop_back()
 	pass
 
+func append_text(text: String) -> void:
+	LogOutput.append_text(text + "\n");
+	$Background.custom_minimum_size.y = LogOutput.get_content_height()
+	pass
+
+func get_curr_history() -> String:
+	if historyPos < 0:
+		return ""
+	else:
+		return history[historyPos]
+	pass
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Log.LogObject = $Log
+	Log.LogObject = self
 	pass # Replace with function body.
 
 func eval_code(code):
@@ -38,20 +52,19 @@ func eval_code(code):
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_console") and not visible:
-		print("opening console")
 		get_tree().paused = true
 		show()
 		$Command.grab_focus()
 		return
 	elif event.is_action_pressed("ui_cancel") and visible:
-		print("closing console")
 		get_tree().paused = false
 		hide()
 		return
 	elif event.is_action_pressed("ui_accept") and visible:
-		print("running script")
 		eval_code($Command.text)
 		add_to_history($Command.text)
+		historyPos = -1
+		$Command.text = ""
 		get_tree().paused = false
 		hide()
 		return
@@ -60,7 +73,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if visible:
-		$Log.offset_bottom = $Command.get_line_height()
-		$Log.size.y = $Log.get_content_height()
+	#if visible:
+		#$Background/Log.offset_bottom = $Command.get_line_height()
+		#$Background/Log.size.y = $Background/Log.get_content_height()
 	pass
