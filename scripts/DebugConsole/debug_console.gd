@@ -1,5 +1,23 @@
+class_name DebugConsole
 extends Control
 
+var history = [ "" ]
+var historyPos = 0:
+	get:
+		return historyPos;
+	set(value):
+		if value > history.size()-1:
+			historyPos = history.size()-1
+		elif value < 0:
+			historyPos = 0
+		else:
+			historyPos = value
+
+func add_to_history(text: String) -> void:
+	history.push_front(text)
+	if history.size() > 20:
+		history.pop_back()
+	pass
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -33,6 +51,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("ui_accept") and visible:
 		print("running script")
 		eval_code($Command.text)
+		add_to_history($Command.text)
 		get_tree().paused = false
 		hide()
 		return
