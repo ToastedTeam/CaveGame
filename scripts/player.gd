@@ -77,9 +77,7 @@ func _physics_process(delta: float) -> void:
 		current_hp -= 5
 		current_mana -= 5
 		print("Current hp: ", current_hp, "; Current mana: ", current_mana)
-	
-	
-	
+
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
