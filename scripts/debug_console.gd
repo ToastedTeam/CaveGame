@@ -9,26 +9,31 @@ func _ready() -> void:
 func eval_code(code):
 	var script = GDScript.new()
 	script.source_code += "extends Node\n"
-	script.source_code += "static func _eval():\n\tpass"
+	script.source_code += "static func _eval(root: Node, player: Node2D):\n\tpass"
 	for line in code.split("\n"):
 		script.source_code += "\n\t" + line
 	# Reload the script since setting the source_code doesn't recompile it, according to the docs
 	script.reload()
-	return script._eval()
+	var var_root = get_tree().root
+	var var_player = var_root.find_child("Player", true, false)
+	return script._eval(var_root, var_player)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_console") and not visible:
 		print("opening console")
+		get_tree().paused = true
 		show()
 		$Command.grab_focus()
 		return
 	elif event.is_action_pressed("ui_cancel") and visible:
 		print("closing console")
+		get_tree().paused = false
 		hide()
 		return
 	elif event.is_action_pressed("ui_accept") and visible:
 		print("running script")
 		eval_code($Command.text)
+		get_tree().paused = false
 		hide()
 		return
 	if visible:
