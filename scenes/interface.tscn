@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://jxyevycakmnv"]
+[gd_scene load_steps=4 format=3 uid="uid://jxyevycakmnv"]
 
 [ext_resource type="PackedScene" uid="uid://du07qhtteauuh" path="res://assets/interface/hp_bar.tscn" id="1_wpx7d"]
 [ext_resource type="PackedScene" uid="uid://mkc0o25ok023" path="res://assets/interface/mana_bar.tscn" id="2_juv2u"]
+[ext_resource type="Script" path="res://scripts/debug_console.gd" id="3_0x6lf"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -26,3 +27,24 @@ layout_mode = 2
 
 [node name="ManaBar" parent="Interface2/VBoxContainer" instance=ExtResource("2_juv2u")]
 layout_mode = 2
+
+[node name="DebugConsole" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+script = ExtResource("3_0x6lf")
+
+[node name="Log" type="RichTextLabel" parent="DebugConsole"]
+layout_mode = 2
+bbcode_enabled = true
+text = "testa aaaaaaa"
+fit_content = true
+
+[node name="Command" type="TextEdit" parent="DebugConsole"]
+layout_mode = 2
+text = "asdasd"
+placeholder_text = "asdasd"
+scroll_fit_content_height = true
