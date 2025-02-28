@@ -108,5 +108,17 @@ func _physics_process(delta: float) -> void:
 	
 	if direction < 0:
 		player_sprite.flip_h = true
+		$FlipHandler.scale.x = -1
 	elif direction > 0:
 		player_sprite.flip_h = false
+		$FlipHandler.scale.x = 1
+		
+	if Input.is_action_just_pressed("player_attack"):
+		$FlipHandler/AnimationPlayer.play("player_attack")
+
+
+func _on_entity_hit(body: Node2D) -> void:
+	var body_parent = body.get_parent()
+	if body_parent is Entity:
+		Log.info("Hit entity, perform damage, don't forget invincibility frames")
+	pass # Replace with function body.
