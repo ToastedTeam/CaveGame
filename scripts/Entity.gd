@@ -6,9 +6,15 @@ extends Node2D
 # Replace with a property later, when implementing target dummies
 var health: float
 
+# OVERRIDE THIS IN CLASSES THAT INHERIT THIS CLASS FOR PROPER FUNCTIONALITY
+func Damage(damage: float):
+	health -= damage;
+	Log.info(name + " took " + str(damage) + " damage, health left: " + str(health))
+	pass
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	health = maxHealth;
 	pass # Replace with function body.
 
 
