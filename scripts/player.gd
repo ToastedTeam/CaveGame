@@ -11,6 +11,7 @@ const BASE_DAMAGE = 5
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @export var health_bar: TextureProgressBar
 @export var mana_bar: TextureProgressBar
+@export var attack_cooldown: float
 
 # Variables
 var current_hp: int = MAX_HP:
@@ -54,6 +55,8 @@ var damage: int = BASE_DAMAGE:
 		return damage
 	set(value):
 		damage = value
+
+var canAttack = true;
 
 # Setting current 
 func _ready() -> void:
@@ -113,13 +116,17 @@ func _physics_process(delta: float) -> void:
 		player_sprite.flip_h = false
 		$FlipHandler.scale.x = 1
 		
-	if Input.is_action_just_pressed("player_attack"):
+	if Input.is_action_just_pressed("player_attack") and canAttack:
 		$FlipHandler/AnimationPlayer.play("player_attack")
+		
 
 
 func _on_entity_hit(body: Node2D) -> void:
 	var body_parent = body.get_parent()
 	if body_parent is Entity:
 		Log.info("Hit entity, perform damage, don't forget invincibility frames, remove this later")
-		body_parent.Damage(damage)
+		body_parent.Damage(damage, self)
 	pass # Replace with function body.
+
+func _on_attack_cooldown_end() -> void:
+	canAttack = true

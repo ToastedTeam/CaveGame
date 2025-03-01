@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://qtfciyfj33pt"]
+[gd_scene load_steps=10 format=3 uid="uid://qtfciyfj33pt"]
 
 [ext_resource type="Material" uid="uid://hkdd85186e42" path="res://shaders/SmoothPixel.tres" id="1_gcndh"]
 [ext_resource type="Shader" path="res://shaders/pixel_camera.gdshader" id="1_hijlh"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://8j1kl15f7ryq" path="res://scenes/player.tscn" id="2_5r4ce"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="4_jst04"]
 [ext_resource type="PackedScene" uid="uid://jxyevycakmnv" path="res://scenes/interface.tscn" id="6_gt51k"]
-[ext_resource type="Script" path="res://scripts/Entity.gd" id="7_5g33o"]
+[ext_resource type="PackedScene" uid="uid://dywdkewy1ti6p" path="res://scenes/targetDummy.tscn" id="7_jwb4o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qtmoe"]
 shader = ExtResource("1_hijlh")
@@ -15,12 +15,10 @@ shader_parameter/cam_offset = Vector2(0, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qsprx"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yhpg8"]
-size = Vector2(61.425, 61.125)
-
 [node name="Main" type="Node2D"]
 
 [node name="Icon" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 2
 material = ExtResource("1_gcndh")
 position = Vector2(-2, -6)
@@ -29,6 +27,7 @@ scale = Vector2(1, 0.993091)
 texture = ExtResource("1_lhg5j")
 
 [node name="Player" parent="." node_paths=PackedStringArray("health_bar", "mana_bar") instance=ExtResource("2_5r4ce")]
+position = Vector2(-33, -1)
 health_bar = NodePath("../Interface/Interface2/VBoxContainer/HealthBar/HealthBar")
 mana_bar = NodePath("../Interface/Interface2/VBoxContainer/ManaBar/ManaBar")
 
@@ -50,14 +49,8 @@ shape = SubResource("WorldBoundaryShape2D_qsprx")
 
 [node name="Interface" parent="." instance=ExtResource("6_gt51k")]
 
-[node name="damagetaker" type="Node2D" parent="."]
-script = ExtResource("7_5g33o")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="damagetaker"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="damagetaker/StaticBody2D"]
-position = Vector2(85, -4)
-shape = SubResource("RectangleShape2D_yhpg8")
+[node name="TargetDummy" parent="." instance=ExtResource("7_jwb4o")]
+position = Vector2(-53, 21)
 
 [editable path="Interface"]
 [editable path="Interface/Interface2/VBoxContainer/HealthBar"]

@@ -7,7 +7,7 @@ extends Node2D
 var health: float
 
 # OVERRIDE THIS IN CLASSES THAT INHERIT THIS CLASS FOR PROPER FUNCTIONALITY
-func Damage(damage: float):
+func Damage(damage: float, source: Node2D):
 	health -= damage;
 	Log.info(name + " took " + str(damage) + " damage, health left: " + str(health))
 	pass
