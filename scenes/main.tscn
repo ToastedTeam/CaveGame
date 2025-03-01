@@ -1,4 +1,3 @@
-[gd_scene load_steps=10 format=3 uid="uid://qtfciyfj33pt"]
 [gd_scene load_steps=12 format=4 uid="uid://qtfciyfj33pt"]
 
 [ext_resource type="Material" uid="uid://hkdd85186e42" path="res://shaders/SmoothPixel.tres" id="1_gcndh"]
@@ -7,16 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://8j1kl15f7ryq" path="res://scenes/player.tscn" id="2_5r4ce"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="4_jst04"]
 [ext_resource type="PackedScene" uid="uid://jxyevycakmnv" path="res://scenes/interface.tscn" id="6_gt51k"]
-
-[ext_resource type="PackedScene" uid="uid://dywdkewy1ti6p" path="res://scenes/targetDummy.tscn" id="7_jwb4o"]
 [ext_resource type="Texture2D" uid="uid://ryvgyi4m7ywi" path="res://assets/sprites/WorldBuilding/mainlev_build.png" id="7_isrj6"]
+[ext_resource type="PackedScene" uid="uid://dywdkewy1ti6p" path="res://scenes/targetDummy.tscn" id="7_jwb4o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qtmoe"]
 shader = ExtResource("1_hijlh")
 shader_parameter/cam_position = null
 shader_parameter/cam_offset = Vector2(0, 0)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qsprx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ubapy"]
 texture = ExtResource("7_isrj6")
@@ -1129,6 +1125,7 @@ scale = Vector2(1, 0.993091)
 texture = ExtResource("1_lhg5j")
 
 [node name="Player" parent="." node_paths=PackedStringArray("health_bar", "mana_bar") instance=ExtResource("2_5r4ce")]
+position = Vector2(6, -9)
 health_bar = NodePath("../Interface/Interface2/VBoxContainer/HealthBar/HealthBar")
 mana_bar = NodePath("../Interface/Interface2/VBoxContainer/ManaBar/ManaBar")
 
@@ -1141,17 +1138,10 @@ script = ExtResource("4_jst04")
 followTarget = NodePath("..")
 suppressPixelAlignment = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(-1, -25)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 48)
-shape = SubResource("WorldBoundaryShape2D_qsprx")
-
 [node name="Interface" parent="." instance=ExtResource("6_gt51k")]
 
 [node name="TargetDummy" parent="." instance=ExtResource("7_jwb4o")]
-position = Vector2(-53, 21)
+position = Vector2(-59, -1)
 
 [node name="Layer0" type="TileMapLayer" parent="."]
 use_parent_material = true
