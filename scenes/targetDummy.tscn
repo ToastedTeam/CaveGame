@@ -83,7 +83,6 @@ node_b = NodePath("../body")
 motor_enabled = true
 script = ExtResource("1_dhaw3")
 enabled = true
-debugPrint = true
 Proportional = 2.0
 Derivative = 0.04
 
@@ -91,6 +90,7 @@ Derivative = 0.04
 position = Vector2(0, -18)
 node_a = NodePath("../body")
 node_b = NodePath("../head")
+motor_enabled = true
 script = ExtResource("1_dhaw3")
 enabled = true
 Proportional = 0.3

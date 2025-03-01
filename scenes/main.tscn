@@ -27,7 +27,7 @@ scale = Vector2(1, 0.993091)
 texture = ExtResource("1_lhg5j")
 
 [node name="Player" parent="." node_paths=PackedStringArray("health_bar", "mana_bar") instance=ExtResource("2_5r4ce")]
-position = Vector2(-33, -1)
+visible = true
 health_bar = NodePath("../Interface/Interface2/VBoxContainer/HealthBar/HealthBar")
 mana_bar = NodePath("../Interface/Interface2/VBoxContainer/ManaBar/ManaBar")
 

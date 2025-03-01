@@ -28,7 +28,7 @@ project/assembly_name="CaveGame"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/directional_hinge/plugin.cfg", "res://addons/torque_joint/plugin.cfg")
+enabled=PackedStringArray("res://addons/directional_hinge/plugin.cfg")
 
 [input]
 

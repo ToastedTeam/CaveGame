@@ -117,7 +117,7 @@ func _physics_process(delta: float) -> void:
 		$FlipHandler.scale.x = 1
 		
 	if Input.is_action_just_pressed("player_attack") and canAttack:
-		$FlipHandler/AnimationPlayer.play("player_attack")
+		$FlipHandler/Weapon/AnimationPlayer.play("player_attack")
 		canAttack = false
 		$AttackCooldown.start()
 
