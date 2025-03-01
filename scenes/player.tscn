@@ -1,9 +1,13 @@
 [gd_scene load_steps=28 format=3 uid="uid://8j1kl15f7ryq"]
+[gd_scene load_steps=31 format=3 uid="uid://8j1kl15f7ryq"]
+
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_plpc0"]
 [ext_resource type="Texture2D" uid="uid://crrknnqcxgkk3" path="res://assets/sprites/knight.png" id="1_pmcpt"]
 [ext_resource type="Material" uid="uid://hkdd85186e42" path="res://shaders/SmoothPixel.tres" id="2_asdqb"]
+
 [ext_resource type="PackedScene" uid="uid://dv1lodecs50bs" path="res://scenes/weapon.tscn" id="4_5ek75"]
+[ext_resource type="PackedScene" uid="uid://nl220u532x7o" path="res://scenes/dash.tscn" id="4_62ocg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s7par"]
 atlas = ExtResource("1_pmcpt")
@@ -173,6 +177,24 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_4kdck"]
 radius = 5.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nn8mg"]
+bg_color = Color(0.321728, 0.321728, 0.321728, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yncnl"]
+bg_color = Color(0.666569, 0.666569, 0.666569, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8hh5x"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 5.6
+angle_min = -283.9
+angle_max = 173.5
+direction = Vector3(-1, 0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 98, 0)
+color = Color(0.762404, 0.762404, 0.762404, 1)
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(6, -4)
 script = ExtResource("1_plpc0")
@@ -200,3 +222,31 @@ position = Vector2(2, -5)
 
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_end"]
 [connection signal="on_hit" from="FlipHandler/Weapon" to="." method="_on_entity_hit"]
+
+[node name="Dash" parent="." instance=ExtResource("4_62ocg")]
+
+[node name="DashCooldownBar" type="ProgressBar" parent="."]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -7.0
+offset_top = -22.0
+offset_right = 8.0
+offset_bottom = -18.0
+grow_horizontal = 2
+scale = Vector2(1, 0.5)
+theme_override_styles/background = SubResource("StyleBoxFlat_nn8mg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yncnl")
+max_value = 1.0
+value = 1.0
+show_percentage = false
+
+[node name="DashParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 120
+process_material = SubResource("ParticleProcessMaterial_8hh5x")
+lifetime = 0.4
+one_shot = true
+preprocess = 0.2
+fixed_fps = 120
