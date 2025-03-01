@@ -1,6 +1,6 @@
 extends Node2D
 
-const DASH_CD = 5
+const DASH_CD = 1
 
 @onready var timer = $DashTimer	
 @onready var cooldown = $DashCooldown

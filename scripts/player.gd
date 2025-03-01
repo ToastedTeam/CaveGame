@@ -72,17 +72,21 @@ func _physics_process(delta: float) -> void:
 	# Extra checks to prevent dashing while standing still
 	# basically you have to click 'd' and have one of the directions pressed
 	var isMoving := Input.get_axis("player_move_left", "player_move_right")
-	if Input.is_action_just_pressed("player_dash") and dash.isReady() and isMoving:
+	if Input.is_action_just_pressed("player_dash") and dash.isReady() and (isMoving or !is_on_floor()):
 		dash.startDash(DASH_LENGTH)
 		dashParticles.restart()
 		
-	var speed = DASH_SPEED if dash.isDashing() else SPEED
+		if player_sprite.flip_h:
+			velocity.x = -DASH_SPEED
+		else:
+			velocity.x = DASH_SPEED
 	
 	if dash.getCooldown() > 0:
 		dashCooldownBar.show()
 		dashCooldownBar.value = dash.DASH_CD - dash.getCooldown()
 	else:
 		dashCooldownBar.hide()
+
 
 	# Add the gravity.
 	if not is_on_floor():
@@ -96,10 +100,11 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("player_move_left", "player_move_right")
 	
-	if direction:
-		velocity.x = direction * speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
+	if !dash.isDashing():
+		if direction:
+			velocity.x = direction * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
 		
 	move_and_slide()
 		
