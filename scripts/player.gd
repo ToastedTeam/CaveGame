@@ -118,7 +118,8 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("player_attack") and canAttack:
 		$FlipHandler/AnimationPlayer.play("player_attack")
-		
+		canAttack = false
+		$AttackCooldown.start()
 
 
 func _on_entity_hit(body: Node2D) -> void:

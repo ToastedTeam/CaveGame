@@ -284,6 +284,10 @@ size = Vector2(5.355, 31.675)
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_plpc0")
 
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 2
 material = ExtResource("2_asdqb")
@@ -318,7 +322,5 @@ monitoring = false
 [node name="Collision" type="CollisionShape2D" parent="FlipHandler/Sword/DamageBox"]
 shape = SubResource("RectangleShape2D_x2tqe")
 
-[node name="AttackCooldown" type="Timer" parent="FlipHandler/Sword"]
-one_shot = true
-
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_end"]
 [connection signal="body_entered" from="FlipHandler/Sword/DamageBox" to="." method="_on_entity_hit"]

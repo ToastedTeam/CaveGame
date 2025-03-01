@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dywdkewy1ti6p"]
+[gd_scene load_steps=28 format=3 uid="uid://dywdkewy1ti6p"]
 
 [ext_resource type="Script" path="res://scripts/target_dummy.gd" id="1_0jncy"]
 [ext_resource type="Texture2D" uid="uid://bfrkld17xhc4t" path="res://assets/sprites/dummy/base.png" id="1_c6luu"]
@@ -60,6 +60,9 @@ normal_texture = ExtResource("12_bbrw3")
 radius = 2.5
 height = 6.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_58lwd"]
+font_size = 200
+
 [node name="TargetDummy" type="Node2D"]
 script = ExtResource("1_0jncy")
 maxHealth = 1e+06
@@ -81,7 +84,7 @@ motor_enabled = true
 script = ExtResource("1_dhaw3")
 enabled = true
 debugPrint = true
-Proportional = 1.0
+Proportional = 2.0
 Derivative = 0.04
 
 [node name="body-head" type="PinJoint2D" parent="."]
@@ -201,3 +204,20 @@ texture = SubResource("CanvasTexture_jrsr7")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="rear_forearm"]
 shape = SubResource("CapsuleShape2D_8xuwd")
+
+[node name="Damage" type="Label" parent="."]
+offset_left = -25.0
+offset_top = -40.85
+offset_right = 975.0
+offset_bottom = 232.15
+scale = Vector2(0.05, 0.05)
+text = "
+"
+label_settings = SubResource("LabelSettings_58lwd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="Damage"]
+one_shot = true
+
+[connection signal="timeout" from="Damage/Timer" to="." method="_timer_end"]
