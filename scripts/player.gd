@@ -125,7 +125,7 @@ func _physics_process(delta: float) -> void:
 func _on_entity_hit(body: Node2D) -> void:
 	var body_parent = body.get_parent()
 	if body_parent is Entity:
-		Log.info("Hit entity, perform damage, don't forget invincibility frames, remove this later")
+		#Log.info("Hit entity, perform damage, don't forget invincibility frames, remove this later")
 		body_parent.Damage(damage, self)
 	pass # Replace with function body.
 

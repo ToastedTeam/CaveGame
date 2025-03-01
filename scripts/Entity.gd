@@ -9,6 +9,8 @@ var health: float
 # OVERRIDE THIS IN CLASSES THAT INHERIT THIS CLASS FOR PROPER FUNCTIONALITY
 func Damage(damage: float, source: Node2D):
 	health -= damage;
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "modulate", Color.RED, 1);
 	Log.info(name + " took " + str(damage) + " damage, health left: " + str(health))
 	pass
 

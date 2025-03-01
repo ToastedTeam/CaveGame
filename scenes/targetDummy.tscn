@@ -1,9 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://dywdkewy1ti6p"]
+[gd_scene load_steps=29 format=3 uid="uid://dywdkewy1ti6p"]
 
 [ext_resource type="Script" path="res://scripts/target_dummy.gd" id="1_0jncy"]
 [ext_resource type="Texture2D" uid="uid://bfrkld17xhc4t" path="res://assets/sprites/dummy/base.png" id="1_c6luu"]
 [ext_resource type="Script" path="res://scripts/RotationTarget.gd" id="1_dhaw3"]
 [ext_resource type="Texture2D" uid="uid://b342nma5semdt" path="res://assets/sprites/dummy/stick.png" id="2_6gp1u"]
+[ext_resource type="AudioStream" uid="uid://dsknraipunkkx" path="res://assets/sounds/hurt.wav" id="2_r6gaj"]
 [ext_resource type="Texture2D" uid="uid://2jwvfmd28dqr" path="res://assets/sprites/dummy/base_normal.png" id="2_v1hfx"]
 [ext_resource type="Texture2D" uid="uid://dg42k73dn75tx" path="res://assets/sprites/dummy/body.png" id="3_6uwyd"]
 [ext_resource type="Texture2D" uid="uid://dog6ous3npwlb" path="res://assets/sprites/dummy/head.png" id="4_s1dpl"]
@@ -66,6 +67,9 @@ font_size = 200
 [node name="TargetDummy" type="Node2D"]
 script = ExtResource("1_0jncy")
 maxHealth = 1e+06
+
+[node name="Hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_r6gaj")
 
 [node name="base-stick" type="PinJoint2D" parent="."]
 node_a = NodePath("../base")
