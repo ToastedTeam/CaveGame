@@ -71,53 +71,56 @@ maxHealth = 1e+06
 [node name="Hurt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_r6gaj")
 
-[node name="base-stick" type="PinJoint2D" parent="."]
-node_a = NodePath("../base")
-node_b = NodePath("../stick")
+[node name="Joints" type="Node2D" parent="."]
+visible = false
+
+[node name="base-stick" type="PinJoint2D" parent="Joints"]
+node_a = NodePath("../../base")
+node_b = NodePath("../../stick")
 bias = 0.9
 motor_enabled = true
 script = ExtResource("1_dhaw3")
 enabled = true
 Proportional = 1.0
 
-[node name="stick-body" type="PinJoint2D" parent="."]
+[node name="stick-body" type="PinJoint2D" parent="Joints"]
 position = Vector2(0, -6)
-node_a = NodePath("../stick")
-node_b = NodePath("../body")
+node_a = NodePath("../../stick")
+node_b = NodePath("../../body")
 motor_enabled = true
 script = ExtResource("1_dhaw3")
 enabled = true
 Proportional = 2.0
 Derivative = 0.04
 
-[node name="body-head" type="PinJoint2D" parent="."]
+[node name="body-head" type="PinJoint2D" parent="Joints"]
 position = Vector2(0, -18)
-node_a = NodePath("../body")
-node_b = NodePath("../head")
+node_a = NodePath("../../body")
+node_b = NodePath("../../head")
 motor_enabled = true
 script = ExtResource("1_dhaw3")
 enabled = true
 Proportional = 0.3
 
-[node name="body-shoulderF" type="PinJoint2D" parent="."]
+[node name="body-shoulderF" type="PinJoint2D" parent="Joints"]
 position = Vector2(3.5, -16)
-node_a = NodePath("../body")
-node_b = NodePath("../front_shoulder")
+node_a = NodePath("../../body")
+node_b = NodePath("../../front_shoulder")
 
-[node name="body-shoulderR" type="PinJoint2D" parent="."]
+[node name="body-shoulderR" type="PinJoint2D" parent="Joints"]
 position = Vector2(-4.5, -16)
-node_a = NodePath("../body")
-node_b = NodePath("../rear_shoulder")
+node_a = NodePath("../../body")
+node_b = NodePath("../../rear_shoulder")
 
-[node name="shoulderF-forearmF" type="PinJoint2D" parent="."]
+[node name="shoulderF-forearmF" type="PinJoint2D" parent="Joints"]
 position = Vector2(3.5, -12)
-node_a = NodePath("../front_shoulder")
-node_b = NodePath("../front_forearm")
+node_a = NodePath("../../front_shoulder")
+node_b = NodePath("../../front_forearm")
 
-[node name="shoulderR-forearmR" type="PinJoint2D" parent="."]
+[node name="shoulderR-forearmR" type="PinJoint2D" parent="Joints"]
 position = Vector2(-4.5, -12)
-node_a = NodePath("../rear_shoulder")
-node_b = NodePath("../rear_forearm")
+node_a = NodePath("../../rear_shoulder")
+node_b = NodePath("../../rear_forearm")
 
 [node name="base" type="StaticBody2D" parent="."]
 

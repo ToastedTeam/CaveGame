@@ -10,7 +10,8 @@ var health: float
 func Damage(damage: float, source: Node2D):
 	health -= damage;
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "modulate", Color.RED, 1);
+	tween.tween_property(self, "modulate", Color.RED, 0.05);
+	tween.tween_property(self, "modulate", Color.WHITE, 0.05);
 	Log.info(name + " took " + str(damage) + " damage, health left: " + str(health))
 	pass
 
