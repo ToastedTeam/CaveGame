@@ -3,6 +3,7 @@ extends CharacterBody2D
 # Defining Player constants
 const SPEED = 120.0
 const JUMP_VELOCITY = -300.0
+const MAX_JUMP_COUNT = 2
 const MAX_HP = 20
 const MAX_MANA = 100
 const BASE_DAMAGE = 5
@@ -31,7 +32,6 @@ var current_hp: int = MAX_HP:
 			current_hp = value
 		
 		health_bar.value = current_hp
-
 var current_mana: int = MAX_MANA:
 	get:
 		return current_mana
@@ -43,14 +43,13 @@ var current_mana: int = MAX_MANA:
 			current_mana = value
 		
 		mana_bar.value = current_mana
-
 var damage: int = BASE_DAMAGE:
 	get:
 		return damage
 	set(value):
 		damage = value
-
 var canAttack = true;
+var jumpCount = 0;
 
 # Setting current 
 func _ready() -> void:	
@@ -96,8 +95,13 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("player_jump") and is_on_floor():
+	# Resetting jump count
+	if is_on_floor() and jumpCount != 0:
+		jumpCount = 0
+	# Jumping
+	if Input.is_action_just_pressed("player_jump") and jumpCount < MAX_JUMP_COUNT:
 		velocity.y = JUMP_VELOCITY
+		jumpCount += 1
 		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.

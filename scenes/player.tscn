@@ -1,9 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://8j1kl15f7ryq"]
+[gd_scene load_steps=32 format=3 uid="uid://8j1kl15f7ryq"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_plpc0"]
 [ext_resource type="Texture2D" uid="uid://crrknnqcxgkk3" path="res://assets/sprites/knight.png" id="1_pmcpt"]
 [ext_resource type="Material" uid="uid://hkdd85186e42" path="res://shaders/SmoothPixel.tres" id="2_asdqb"]
-
 [ext_resource type="PackedScene" uid="uid://dv1lodecs50bs" path="res://scenes/weapon.tscn" id="4_5ek75"]
 [ext_resource type="PackedScene" uid="uid://nl220u532x7o" path="res://scenes/dash.tscn" id="4_62ocg"]
 
@@ -218,9 +217,6 @@ shape = SubResource("CircleShape2D_4kdck")
 [node name="Weapon" parent="FlipHandler" instance=ExtResource("4_5ek75")]
 position = Vector2(2, -5)
 
-[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_end"]
-[connection signal="on_hit" from="FlipHandler/Weapon" to="." method="_on_entity_hit"]
-
 [node name="Dash" parent="." instance=ExtResource("4_62ocg")]
 
 [node name="DashCooldownBar" type="ProgressBar" parent="."]
@@ -248,3 +244,6 @@ lifetime = 0.4
 one_shot = true
 preprocess = 0.2
 fixed_fps = 120
+
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_end"]
+[connection signal="on_hit" from="FlipHandler/Weapon" to="." method="_on_entity_hit"]
