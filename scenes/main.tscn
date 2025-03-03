@@ -1,10 +1,10 @@
 [gd_scene load_steps=19 format=4 uid="uid://qtfciyfj33pt"]
 
 [ext_resource type="Material" uid="uid://hkdd85186e42" path="res://shaders/SmoothPixel.tres" id="1_gcndh"]
-[ext_resource type="Shader" path="res://shaders/pixel_camera.gdshader" id="1_hijlh"]
+[ext_resource type="Shader" uid="uid://b8cvd0b0qkxpa" path="res://shaders/pixel_camera.gdshader" id="1_hijlh"]
 [ext_resource type="Texture2D" uid="uid://b8aysoeqef1f1" path="res://icon.svg" id="1_lhg5j"]
 [ext_resource type="PackedScene" uid="uid://8j1kl15f7ryq" path="res://scenes/player.tscn" id="2_5r4ce"]
-[ext_resource type="Script" path="res://scripts/camera.gd" id="4_jst04"]
+[ext_resource type="Script" uid="uid://j8q2uvh3comw" path="res://scripts/camera.gd" id="4_jst04"]
 [ext_resource type="PackedScene" uid="uid://jxyevycakmnv" path="res://scenes/interface.tscn" id="6_gt51k"]
 [ext_resource type="Texture2D" uid="uid://ryvgyi4m7ywi" path="res://assets/sprites/WorldBuilding/mainlev_build.png" id="7_isrj6"]
 [ext_resource type="PackedScene" uid="uid://dywdkewy1ti6p" path="res://scenes/targetDummy.tscn" id="7_jwb4o"]
@@ -13,7 +13,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qtmoe"]
 shader = ExtResource("1_hijlh")
-shader_parameter/cam_position = null
+shader_parameter/cam_position = Vector2(0, 0)
 shader_parameter/cam_offset = Vector2(0, 0)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ubapy"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dv1lodecs50bs"]
 
 [ext_resource type="Texture2D" uid="uid://brara5mfg8fs5" path="res://assets/sprites/sword/sword1.png" id="1_dggic"]
-[ext_resource type="Script" path="res://scripts/Weapon.gd" id="1_nn2k2"]
+[ext_resource type="Script" uid="uid://bhwar5gja10y4" path="res://scripts/Weapon.gd" id="1_nn2k2"]
 
 [sub_resource type="Animation" id="Animation_acfjo"]
 length = 0.001
@@ -104,8 +104,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sxqio"]
 _data = {
-"RESET": SubResource("Animation_acfjo"),
-"player_attack": SubResource("Animation_6qcdh")
+&"RESET": SubResource("Animation_acfjo"),
+&"player_attack": SubResource("Animation_6qcdh")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x2tqe"]
