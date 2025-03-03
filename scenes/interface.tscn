@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://du07qhtteauuh" path="res://assets/interface/hp_bar.tscn" id="1_wpx7d"]
 [ext_resource type="PackedScene" uid="uid://mkc0o25ok023" path="res://assets/interface/mana_bar.tscn" id="2_juv2u"]
-[ext_resource type="Script" path="res://scripts/DebugConsole/debug_console.gd" id="3_0x6lf"]
-[ext_resource type="Script" path="res://scripts/DebugConsole/command_box.gd" id="4_6ncm3"]
+[ext_resource type="Script" uid="uid://cqswot2ewonva" path="res://scripts/DebugConsole/debug_console.gd" id="3_0x6lf"]
+[ext_resource type="Script" uid="uid://e2eyy28mds0i" path="res://scripts/DebugConsole/command_box.gd" id="4_6ncm3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvi75"]
 bg_color = Color(1, 0.247466, 0.652583, 1)
