@@ -1,0 +1,230 @@
+[gd_scene load_steps=29 format=3 uid="uid://dywdkewy1ti6p"]
+
+[ext_resource type="Script" uid="uid://d3hwdpxj6mae4" path="res://entities/target_dummy/target_dummy.gd" id="1_0jncy"]
+[ext_resource type="Texture2D" uid="uid://bfrkld17xhc4t" path="res://entities/target_dummy/assets/base.png" id="1_c6luu"]
+[ext_resource type="Script" uid="uid://dk2yrqykdjtoy" path="res://entities/target_dummy/rotation_target.gd" id="1_dhaw3"]
+[ext_resource type="Texture2D" uid="uid://b342nma5semdt" path="res://entities/target_dummy/assets/stick.png" id="2_6gp1u"]
+[ext_resource type="AudioStream" uid="uid://dsknraipunkkx" path="res://assets/sounds/hurt.wav" id="2_r6gaj"]
+[ext_resource type="Texture2D" uid="uid://2jwvfmd28dqr" path="res://entities/target_dummy/assets/base_normal.png" id="2_v1hfx"]
+[ext_resource type="Texture2D" uid="uid://dg42k73dn75tx" path="res://entities/target_dummy/assets/body.png" id="3_6uwyd"]
+[ext_resource type="Texture2D" uid="uid://dog6ous3npwlb" path="res://entities/target_dummy/assets/head.png" id="4_s1dpl"]
+[ext_resource type="Texture2D" uid="uid://dmaqylpgciwkt" path="res://entities/target_dummy/assets/stick_normal.png" id="4_wcwt6"]
+[ext_resource type="Texture2D" uid="uid://dk4k7aqtebjqb" path="res://entities/target_dummy/assets/arm_shoulder.png" id="5_nlh6x"]
+[ext_resource type="Texture2D" uid="uid://ni5raqmng605" path="res://entities/target_dummy/assets/arm_forearm.png" id="6_0ffld"]
+[ext_resource type="Texture2D" uid="uid://vvb3groe37m8" path="res://entities/target_dummy/assets/body_normal.png" id="6_vsrv5"]
+[ext_resource type="Texture2D" uid="uid://e3cxyu5ibf1j" path="res://entities/target_dummy/assets/head_normal.png" id="8_7gjxm"]
+[ext_resource type="Texture2D" uid="uid://c2pqjpuh1yb3o" path="res://entities/target_dummy/assets/arm_shoulder_normal.png" id="10_rhyks"]
+[ext_resource type="Texture2D" uid="uid://dich4hql0evl5" path="res://entities/target_dummy/assets/arm_forearm_normal.png" id="12_bbrw3"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_b1pmq"]
+diffuse_texture = ExtResource("1_c6luu")
+normal_texture = ExtResource("2_v1hfx")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lxvet"]
+size = Vector2(10, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ky3x"]
+size = Vector2(2, 12)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_e6yf1"]
+diffuse_texture = ExtResource("2_6gp1u")
+normal_texture = ExtResource("4_wcwt6")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_fqfm5"]
+diffuse_texture = ExtResource("3_6uwyd")
+normal_texture = ExtResource("6_vsrv5")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dkp8l"]
+radius = 5.0
+height = 12.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_woi10"]
+diffuse_texture = ExtResource("4_s1dpl")
+normal_texture = ExtResource("8_7gjxm")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d355w"]
+radius = 4.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_rq7l3"]
+diffuse_texture = ExtResource("5_nlh6x")
+normal_texture = ExtResource("10_rhyks")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dx5d5"]
+radius = 2.5
+height = 5.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_jrsr7"]
+diffuse_texture = ExtResource("6_0ffld")
+normal_texture = ExtResource("12_bbrw3")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8xuwd"]
+radius = 2.5
+height = 6.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_58lwd"]
+font_size = 200
+
+[node name="TargetDummy" type="Node2D"]
+script = ExtResource("1_0jncy")
+maxHealth = 1e+06
+
+[node name="Hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_r6gaj")
+
+[node name="Joints" type="Node2D" parent="."]
+visible = false
+
+[node name="base-stick" type="PinJoint2D" parent="Joints"]
+node_a = NodePath("../../base")
+node_b = NodePath("../../stick")
+bias = 0.9
+motor_enabled = true
+script = ExtResource("1_dhaw3")
+enabled = true
+Proportional = 1.0
+
+[node name="stick-body" type="PinJoint2D" parent="Joints"]
+position = Vector2(0, -6)
+node_a = NodePath("../../stick")
+node_b = NodePath("../../body")
+motor_enabled = true
+script = ExtResource("1_dhaw3")
+enabled = true
+Proportional = 2.0
+Derivative = 0.04
+
+[node name="body-head" type="PinJoint2D" parent="Joints"]
+position = Vector2(0, -18)
+node_a = NodePath("../../body")
+node_b = NodePath("../../head")
+motor_enabled = true
+script = ExtResource("1_dhaw3")
+enabled = true
+Proportional = 0.3
+
+[node name="body-shoulderF" type="PinJoint2D" parent="Joints"]
+position = Vector2(3.5, -16)
+node_a = NodePath("../../body")
+node_b = NodePath("../../front_shoulder")
+
+[node name="body-shoulderR" type="PinJoint2D" parent="Joints"]
+position = Vector2(-4.5, -16)
+node_a = NodePath("../../body")
+node_b = NodePath("../../rear_shoulder")
+
+[node name="shoulderF-forearmF" type="PinJoint2D" parent="Joints"]
+position = Vector2(3.5, -12)
+node_a = NodePath("../../front_shoulder")
+node_b = NodePath("../../front_forearm")
+
+[node name="shoulderR-forearmR" type="PinJoint2D" parent="Joints"]
+position = Vector2(-4.5, -12)
+node_a = NodePath("../../rear_shoulder")
+node_b = NodePath("../../rear_forearm")
+
+[node name="base" type="StaticBody2D" parent="."]
+
+[node name="dummy_base" type="Sprite2D" parent="base"]
+texture = SubResource("CanvasTexture_b1pmq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="base"]
+shape = SubResource("RectangleShape2D_lxvet")
+disabled = true
+
+[node name="stick" type="RigidBody2D" parent="."]
+position = Vector2(0, -6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stick"]
+shape = SubResource("RectangleShape2D_4ky3x")
+
+[node name="dummy_stick" type="Sprite2D" parent="stick"]
+z_index = -1
+texture = SubResource("CanvasTexture_e6yf1")
+
+[node name="body" type="RigidBody2D" parent="."]
+position = Vector2(0, -6)
+
+[node name="dummy_body" type="Sprite2D" parent="body"]
+position = Vector2(0, -6)
+texture = SubResource("CanvasTexture_fqfm5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="body"]
+position = Vector2(0, -6)
+shape = SubResource("CapsuleShape2D_dkp8l")
+
+[node name="head" type="RigidBody2D" parent="."]
+position = Vector2(0, -22)
+mass = 0.1
+
+[node name="dummy_head" type="Sprite2D" parent="head"]
+texture = SubResource("CanvasTexture_woi10")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="head"]
+shape = SubResource("CircleShape2D_d355w")
+
+[node name="front_shoulder" type="RigidBody2D" parent="."]
+position = Vector2(3.5, -14.5)
+collision_layer = 0
+collision_mask = 0
+mass = 0.1
+
+[node name="dummy_front_shoulder" type="Sprite2D" parent="front_shoulder"]
+texture = SubResource("CanvasTexture_rq7l3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="front_shoulder"]
+shape = SubResource("CapsuleShape2D_dx5d5")
+
+[node name="front_forearm" type="RigidBody2D" parent="."]
+position = Vector2(3.5, -9)
+collision_layer = 0
+collision_mask = 0
+mass = 0.1
+
+[node name="dummy_forearm" type="Sprite2D" parent="front_forearm"]
+texture = SubResource("CanvasTexture_jrsr7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="front_forearm"]
+shape = SubResource("CapsuleShape2D_8xuwd")
+
+[node name="rear_shoulder" type="RigidBody2D" parent="."]
+z_index = -1
+position = Vector2(-4.5, -14.5)
+collision_layer = 0
+collision_mask = 0
+mass = 0.1
+
+[node name="dummy_front_shoulder" type="Sprite2D" parent="rear_shoulder"]
+texture = SubResource("CanvasTexture_rq7l3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rear_shoulder"]
+shape = SubResource("CapsuleShape2D_dx5d5")
+
+[node name="rear_forearm" type="RigidBody2D" parent="."]
+z_index = -1
+position = Vector2(-4.5, -9)
+collision_layer = 0
+collision_mask = 0
+mass = 0.1
+
+[node name="dummy_forearm" type="Sprite2D" parent="rear_forearm"]
+texture = SubResource("CanvasTexture_jrsr7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="rear_forearm"]
+shape = SubResource("CapsuleShape2D_8xuwd")
+
+[node name="Damage" type="Label" parent="."]
+offset_left = -25.0
+offset_top = -40.85
+offset_right = 975.0
+offset_bottom = 232.15
+scale = Vector2(0.05, 0.05)
+text = "
+"
+label_settings = SubResource("LabelSettings_58lwd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="Damage"]
+one_shot = true
+
+[connection signal="timeout" from="Damage/Timer" to="." method="_timer_end"]
