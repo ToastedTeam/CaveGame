@@ -37,12 +37,12 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("DamageBox:monitoring")
+tracks/3/path = NodePath("../DamageBox:monitoring")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -84,15 +84,15 @@ tracks/2/path = NodePath(".:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true, false]
+"values": [true]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("DamageBox:monitoring")
+tracks/3/path = NodePath("../DamageBox:monitoring")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -120,18 +120,20 @@ libraries = {
 &"": SubResource("AnimationLibrary_sxqio")
 }
 
-[node name="Weapon" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(6, 0)
+[node name="DamageBox" type="Area2D" parent="."]
+position = Vector2(9.5, -2.19603e-05)
 rotation = 1.57079
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_dggic")
-
-[node name="DamageBox" type="Area2D" parent="Weapon"]
-position = Vector2(0, -3.5)
+collision_layer = 4
+collision_mask = 4
 monitoring = false
 
-[node name="Collision" type="CollisionShape2D" parent="Weapon/DamageBox"]
+[node name="Collision" type="CollisionShape2D" parent="DamageBox"]
+visible = false
 shape = SubResource("RectangleShape2D_x2tqe")
 
-[connection signal="body_entered" from="Weapon/DamageBox" to="." method="_on_damage_box_body_entered"]
+[node name="Weapon" type="Sprite2D" parent="."]
+position = Vector2(6, 0)
+rotation = 1.57079
+texture = ExtResource("1_dggic")
+
+[connection signal="body_entered" from="DamageBox" to="." method="_on_damage_box_body_entered"]

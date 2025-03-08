@@ -32,6 +32,8 @@ enum dash {
 @export_subgroup("IK target overrides", "ik_")
 @export var ik_overrides: Array[IKTargetResource]
 @export_tool_button("Apply overrides") var ik_overridesBtn = _setupIK.bind()
+@export var IkAnimator: IKPlayerAnimator;
+
 var currentDirection = 1;
 #@export var headTarget: IKTargetResource
 #@export var headTarget: Node2D
@@ -95,10 +97,10 @@ func _setupIK() -> void:
 			var modification = modificationStack.get_modification(idx)
 			if override.targetModificationName == modification.resource_name:
 				var target = get_node(override.targetNodePath)
-				print("Found override " + override.targetModificationName)
-				print(" - Old path: " + str(modification.target_nodepath))
-				print(" - New path: " + str(target.get_path()))
+				#print(" - Old node: " + get_node(modification.target_nodepath).name)
+				#print(" - New path: " + str(target.name)
 				modification.target_nodepath = target.get_path()
+				Log.info("Found and applied override for " + override.targetModificationName)
 		pass
 	pass
 
@@ -203,13 +205,14 @@ func _physics_process(delta: float) -> void:
 	
 	if facing_right:
 		player_sprite.flip_h = false
-		$FlipHandler.scale.x = 1
+		#$FlipHandler.scale.x = 1
 	else:
 		player_sprite.flip_h = true
-		$FlipHandler.scale.x = -1
+		#$FlipHandler.scale.x = -1
 		
 	if Input.is_action_just_pressed("player_attack") and canAttack:
-		$FlipHandler/Weapon/AnimationPlayer.play("player_attack")
+		#$FlipHandler/Weapon/AnimationPlayer.play("player_attack")
+		IkAnimator.Attack_Melee()
 		canAttack = false
 		$AttackCooldown.start()
 

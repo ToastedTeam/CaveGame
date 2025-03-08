@@ -1,6 +1,8 @@
 class_name Weapon
 extends Node2D
 
+@export var AnimName: String = "Attack"
+
 signal on_hit(hitBody: Node2D)
 
 # Called when the node enters the scene tree for the first time.

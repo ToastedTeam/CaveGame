@@ -237,7 +237,7 @@ editor/draw_gizmo = false
 [sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_j3ovn"]
 resource_local_to_scene = true
 resource_name = "BackArm"
-target_nodepath = NodePath("/root/@EditorNode@21298/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11479/@VSplitContainer@11131/@HSplitContainer@11133/@HSplitContainer@11135/@Control@11136/@SubViewportContainer@11137/@SubViewport@11138/Player/Skeleton/r_arm")
+target_nodepath = NodePath("BHTarget_pos")
 flip_bend_direction = true
 joint_one_bone_idx = 3
 joint_one_bone2d_node = NodePath("hip/torso/shoulder_r")
@@ -247,7 +247,7 @@ joint_two_bone2d_node = NodePath("hip/torso/collar/offset/shoulder_r/forearm_r")
 [sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_afbqv"]
 resource_local_to_scene = true
 resource_name = "FrontArm"
-target_nodepath = NodePath("/root/@EditorNode@21298/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11479/@VSplitContainer@11131/@HSplitContainer@11133/@HSplitContainer@11135/@Control@11136/@SubViewportContainer@11137/@SubViewport@11138/Player/Skeleton/f_arm")
+target_nodepath = NodePath("FHTarget_pos")
 flip_bend_direction = true
 joint_one_bone_idx = 5
 joint_one_bone2d_node = NodePath("hip/torso/shoulder_f")
@@ -257,7 +257,7 @@ joint_two_bone2d_node = NodePath("hip/torso/shoulder_f/forearm_f")
 [sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_gx6sm"]
 resource_local_to_scene = true
 resource_name = "BackLeg"
-target_nodepath = NodePath("/root/@EditorNode@21298/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11479/@VSplitContainer@11131/@HSplitContainer@11133/@HSplitContainer@11135/@Control@11136/@SubViewportContainer@11137/@SubViewport@11138/Player/Skeleton/r_leg")
+target_nodepath = NodePath("BFTarget_pos")
 joint_one_bone_idx = 7
 joint_one_bone2d_node = NodePath("hip/thigh_r")
 joint_two_bone_idx = 8
@@ -266,7 +266,7 @@ joint_two_bone2d_node = NodePath("hip/thigh_r/calf_r")
 [sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_yqrof"]
 resource_local_to_scene = true
 resource_name = "FrontLeg"
-target_nodepath = NodePath("/root/@EditorNode@21298/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11479/@VSplitContainer@11131/@HSplitContainer@11133/@HSplitContainer@11135/@Control@11136/@SubViewportContainer@11137/@SubViewport@11138/Player/Skeleton/f_leg")
+target_nodepath = NodePath("FFTarget_pos")
 joint_one_bone_idx = 9
 joint_one_bone2d_node = NodePath("hip/thigh_f")
 joint_two_bone_idx = 10
@@ -308,11 +308,6 @@ sprite_frames = SubResource("SpriteFrames_w8q44")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="FlipHandler" type="Node2D" parent="."]
-
-[node name="Weapon" parent="FlipHandler" instance=ExtResource("4_5ek75")]
-position = Vector2(2, -5)
-
 [node name="DashCooldownBar" type="ProgressBar" parent="."]
 visible = false
 anchors_preset = 5
@@ -341,6 +336,7 @@ process_material = SubResource("ParticleProcessMaterial_8hh5x")
 modification_stack = SubResource("SkeletonModificationStack2D_3wlsy")
 
 [node name="hip" type="Bone2D" parent="Skeleton"]
+visible = false
 position = Vector2(-9.53674e-07, 0)
 scale = Vector2(0.999997, 0.999997)
 rest = Transform2D(0.999997, 0, 0, 0.999997, -9.53674e-07, 0)
@@ -358,9 +354,10 @@ Rotation = true
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="head" type="Bone2D" parent="Skeleton/hip/torso"]
+visible = false
 position = Vector2(0, -16)
 rotation = -0.218672
-scale = Vector2(0.999801, 0.999801)
+scale = Vector2(0.999802, 0.999802)
 rest = Transform2D(0.996097, 0.0859955, -0.0859955, 0.996097, 0, -16)
 metadata/_local_pose_override_enabled_ = true
 
@@ -372,7 +369,9 @@ remote_path = NodePath("../../../../../../sprites/TestplayerHead")
 update_scale = false
 
 [node name="shoulder_r" type="Bone2D" parent="Skeleton/hip/torso"]
+visible = false
 position = Vector2(0, -16)
+rotation = -1.80877
 rest = Transform2D(-0.752361, 0.658751, -0.658751, -0.752361, 0, -16)
 metadata/_local_pose_override_enabled_ = true
 
@@ -405,14 +404,14 @@ metadata/_custom_type_script = "uid://eji52ig0w3g5"
 [node name="shoulder_f" type="Bone2D" parent="Skeleton/hip/torso"]
 visible = false
 position = Vector2(0, -16)
-rotation = 2.67105
+rotation = -1.35201
 scale = Vector2(0.999991, 0.999991)
 rest = Transform2D(0.143437, 0.98965, -0.98965, 0.143437, 0, -16)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="forearm_f" type="Bone2D" parent="Skeleton/hip/torso/shoulder_f"]
 position = Vector2(10, -9.53677e-07)
-rotation = -1.17337
+rotation = -0.829743
 scale = Vector2(0.999991, 0.999991)
 rest = Transform2D(0.819048, -0.57371, 0.57371, 0.819048, 10, -9.53677e-07)
 auto_calculate_length_and_angle = false
@@ -429,6 +428,15 @@ Position = true
 Rotation = true
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
+[node name="Hand" type="Node2D" parent="Skeleton/hip/torso/shoulder_f/forearm_f" node_paths=PackedStringArray("node")]
+position = Vector2(10.314, 0)
+rotation = -1.5708
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../../../../sprites/FlipHandler")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
 [node name="RemoteTransform2DExtended" type="Node2D" parent="Skeleton/hip/torso/shoulder_f" node_paths=PackedStringArray("node")]
 position = Vector2(5, 0)
 rotation = -1.5708
@@ -441,7 +449,7 @@ metadata/_custom_type_script = "uid://eji52ig0w3g5"
 [node name="thigh_r" type="Bone2D" parent="Skeleton/hip"]
 visible = false
 position = Vector2(0, -4.76837e-07)
-rotation = -2.58658
+rotation = 0.166156
 scale = Vector2(0.999836, 0.999836)
 rest = Transform2D(0.0302842, 0.999378, -0.999378, 0.0302842, 0, -4.76837e-07)
 auto_calculate_length_and_angle = false
@@ -459,6 +467,7 @@ metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="calf_r" type="Bone2D" parent="Skeleton/hip/thigh_r"]
 position = Vector2(0, 11.0018)
+rotation = 0.791614
 scale = Vector2(0.999956, 0.999956)
 rest = Transform2D(0.708032, -0.706117, 0.706117, 0.708032, 12, 0)
 auto_calculate_length_and_angle = false
@@ -476,7 +485,7 @@ metadata/_custom_type_script = "uid://eji52ig0w3g5"
 [node name="thigh_f" type="Bone2D" parent="Skeleton/hip"]
 visible = false
 position = Vector2(1, -2.84217e-14)
-rotation = 1.53748
+rotation = 0.779271
 scale = Vector2(0.999843, 0.999843)
 rest = Transform2D(7.5486e-08, 0.999843, -0.999843, 7.5486e-08, 1, -2.84217e-14)
 metadata/_local_pose_override_enabled_ = true
@@ -492,7 +501,7 @@ metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="calf_f" type="Bone2D" parent="Skeleton/hip/thigh_f"]
 position = Vector2(12, 0)
-rotation = -0.770688
+rotation = 0.037967
 scale = Vector2(0.999954, 0.999954)
 rest = Transform2D(0.708031, -0.706116, 0.706116, 0.708031, 12, 0)
 auto_calculate_length_and_angle = false
@@ -508,46 +517,47 @@ Position = true
 Rotation = true
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
-[node name="f_leg" type="Marker2D" parent="Skeleton"]
-position = Vector2(1, 30)
+[node name="FFTarget_pos" type="Marker2D" parent="Skeleton"]
+position = Vector2(9, 26)
 
-[node name="r_leg" type="Marker2D" parent="Skeleton"]
-position = Vector2(0, 26)
+[node name="BFTarget_pos" type="Marker2D" parent="Skeleton"]
+position = Vector2(-16, 22)
 
 [node name="lookTarget" type="Marker2D" parent="Skeleton"]
 position = Vector2(30, -20)
 
-[node name="r_arm" type="Marker2D" parent="Skeleton"]
-position = Vector2(-9, 3)
+[node name="BHTarget_pos" type="Marker2D" parent="Skeleton"]
+position = Vector2(-5.425, -38.365)
 
-[node name="f_arm" type="Marker2D" parent="Skeleton"]
-position = Vector2(10, 3)
+[node name="FHTarget_pos" type="Marker2D" parent="Skeleton"]
+position = Vector2(-5, -36)
 
 [node name="sprites" type="Node2D" parent="."]
 
 [node name="TestplayerShoulder_r" type="Sprite2D" parent="sprites"]
 modulate = Color(0.71, 0.71, 0.71, 1)
-position = Vector2(-3.7618, -12.7062)
-rotation = 0.851636
+position = Vector2(-1.17865, -20.859)
+rotation = 2.90362
 scale = Vector2(0.999997, 0.999997)
 texture = ExtResource("9_a1qjk")
 
 [node name="TestplayerForearm_r" type="Sprite2D" parent="sprites"]
-position = Vector2(-8.23227, -3.45448)
-rotation = 0.118386
+modulate = Color(0.71, 0.71, 0.71, 1)
+position = Vector2(-3.77167, -31.549)
+rotation = 2.90362
 scale = Vector2(0.999997, 0.999997)
 texture = ExtResource("10_j3ovn")
 
 [node name="TestplayerThigh_B" type="Sprite2D" parent="sprites"]
 modulate = Color(0.6, 0.6, 0.6, 1)
-position = Vector2(3.29064, 5.01594)
-rotation = -0.580607
+position = Vector2(-0.992188, 5.91638)
+rotation = 0.166156
 scale = Vector2(0.999842, 0.999842)
 texture = ExtResource("6_qiwj3")
 
 [node name="TestplayerCalf_B" type="Node2D" parent="sprites"]
-position = Vector2(6.03383, 9.19739)
-rotation = 0.402368
+position = Vector2(-1.81931, 10.8485)
+rotation = 0.95777
 
 [node name="TestplayerCalf_B" type="Sprite2D" parent="sprites/TestplayerCalf_B"]
 modulate = Color(0.6, 0.6, 0.6, 1)
@@ -555,13 +565,14 @@ position = Vector2(3, 9)
 texture = ExtResource("7_26q78")
 
 [node name="TestplayerThigh_F" type="Sprite2D" parent="sprites"]
-position = Vector2(0.999997, 5.99904)
+position = Vector2(5.26787, 4.21589)
+rotation = -0.791529
 scale = Vector2(0.99984, 0.99984)
 texture = ExtResource("6_qiwj3")
 
 [node name="TestplayerCalf_F" type="Node2D" parent="sprites"]
-position = Vector2(0.999997, 11.9981)
-rotation = 0.0100805
+position = Vector2(9.53575, 8.43178)
+rotation = 0.0405659
 
 [node name="TestplayerCalf_F" type="Sprite2D" parent="sprites/TestplayerCalf_F"]
 position = Vector2(3, 9)
@@ -579,15 +590,22 @@ position = Vector2(-9.53674e-07, -7.99998)
 scale = Vector2(0.999997, 0.999997)
 texture = ExtResource("11_afbqv")
 
+[node name="FlipHandler" type="Node2D" parent="sprites"]
+position = Vector2(-3.74603, -34.2095)
+rotation = 2.53064
+
+[node name="Weapon" parent="sprites/FlipHandler" instance=ExtResource("4_5ek75")]
+position = Vector2(3.085, 0)
+
 [node name="TestplayerShoulder_f" type="Sprite2D" parent="sprites"]
-position = Vector2(0.71718, -11.0517)
-rotation = -0.143938
+position = Vector2(1.08523, -20.8807)
+rotation = -2.92281
 scale = Vector2(0.999988, 0.999988)
 texture = ExtResource("9_a1qjk")
 
 [node name="TestplayerForearm_f" type="Sprite2D" parent="sprites"]
-position = Vector2(5.54587, -1.73381)
-rotation = -0.754972
+position = Vector2(-1.27136, -30.676)
+rotation = 2.53064
 scale = Vector2(0.999979, 0.999979)
 texture = ExtResource("10_j3ovn")
 
@@ -598,4 +616,4 @@ shape = SubResource("CapsuleShape2D_a1qjk")
 
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_end"]
 [connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_end"]
-[connection signal="on_hit" from="FlipHandler/Weapon" to="." method="_on_entity_hit"]
+[connection signal="on_hit" from="sprites/FlipHandler/Weapon" to="." method="_on_entity_hit"]
