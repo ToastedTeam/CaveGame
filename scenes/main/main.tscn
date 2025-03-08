@@ -1,8 +1,9 @@
-[gd_scene load_steps=26 format=4 uid="uid://qtfciyfj33pt"]
+[gd_scene load_steps=27 format=4 uid="uid://qtfciyfj33pt"]
 
 [ext_resource type="Material" uid="uid://hkdd85186e42" path="res://shaders/SmoothPixel.tres" id="1_a8run"]
 [ext_resource type="Texture2D" uid="uid://b8aysoeqef1f1" path="res://icon.svg" id="2_ouso4"]
 [ext_resource type="PackedScene" uid="uid://8j1kl15f7ryq" path="res://entities/player/player.tscn" id="3_blune"]
+[ext_resource type="Script" uid="uid://bhda60gy1q5tc" path="res://entities/player/player_ik_animator.gd" id="3_th5th"]
 [ext_resource type="Script" uid="uid://b7h0h8wdhf0ws" path="res://entities/player/IKTargetResource.gd" id="4_ouso4"]
 [ext_resource type="Shader" uid="uid://b8cvd0b0qkxpa" path="res://shaders/pixel_camera.gdshader" id="4_th5th"]
 [ext_resource type="Script" uid="uid://j8q2uvh3comw" path="res://scenes/main/camera.gd" id="5_7smn1"]
@@ -12,11 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://bb0m10tlay88m" path="res://scenes/main/assets/world_tileset.png" id="9_ou6is"]
 [ext_resource type="PackedScene" uid="uid://dn52wlkh2g1wy" path="res://scenes/killzone/killzone.tscn" id="10_necax"]
 
-[sub_resource type="Resource" id="Resource_a1qjk"]
-script = ExtResource("4_ouso4")
-targetModificationName = "HeadLook"
-targetNodePath = NodePath("Skeleton/lookTarget")
-metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_blune"]
+size = Vector2(20, 20)
 
 [sub_resource type="Resource" id="Resource_j3ovn"]
 script = ExtResource("4_ouso4")
@@ -42,10 +40,10 @@ targetModificationName = "FrontLeg"
 targetNodePath = NodePath("Skeleton/f_leg")
 metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
 
-[sub_resource type="Resource" id="Resource_blune"]
+[sub_resource type="Resource" id="Resource_th5th"]
 script = ExtResource("4_ouso4")
 targetModificationName = "HeadLook"
-targetNodePath = NodePath("LookAt")
+targetNodePath = NodePath("../PlayerIKAnimator/LookAt")
 metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qtmoe"]
@@ -1431,25 +1429,31 @@ rotation = -0.785398
 scale = Vector2(1, 0.993091)
 texture = ExtResource("2_ouso4")
 
+[node name="PlayerIKAnimator" type="Node2D" parent="."]
+script = ExtResource("3_th5th")
+
+[node name="LookAt" type="Marker2D" parent="PlayerIKAnimator"]
+position = Vector2(69, -19)
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerIKAnimator/LookAt"]
+texture = SubResource("PlaceholderTexture2D_blune")
+
 [node name="Player" parent="." node_paths=PackedStringArray("health_bar", "mana_bar") instance=ExtResource("3_blune")]
-position = Vector2(6, -9)
+position = Vector2(24, -44)
 health_bar = NodePath("../Interface/Interface2/VBoxContainer/HealthBar/HealthBar")
 mana_bar = NodePath("../Interface/Interface2/VBoxContainer/ManaBar/ManaBar")
-ik_overrides = Array[ExtResource("4_ouso4")]([SubResource("Resource_a1qjk"), SubResource("Resource_j3ovn"), SubResource("Resource_afbqv"), SubResource("Resource_gx6sm"), SubResource("Resource_yqrof"), SubResource("Resource_blune")])
+ik_overrides = Array[ExtResource("4_ouso4")]([SubResource("Resource_j3ovn"), SubResource("Resource_afbqv"), SubResource("Resource_gx6sm"), SubResource("Resource_yqrof"), SubResource("Resource_th5th")])
 
-[node name="Camera2D" type="Camera2D" parent="Player" node_paths=PackedStringArray("followTarget")]
+[node name="Camera2D" type="Camera2D" parent="Player"]
 material = SubResource("ShaderMaterial_qtmoe")
+position = Vector2(-18, 35)
 zoom = Vector2(3, 3)
 limit_bottom = 180
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 script = ExtResource("5_7smn1")
-followTarget = NodePath("..")
 suppressPixelAlignment = true
-
-[node name="LookAt" type="Marker2D" parent="Player"]
-position = Vector2(40, -24)
 
 [node name="Interface" parent="." instance=ExtResource("6_raeie")]
 

@@ -93,6 +93,9 @@ func _setupIK() -> void:
 			var modification = modificationStack.get_modification(idx)
 			if override.targetModificationName == modification.resource_name:
 				var target = get_node(override.targetNodePath)
+				print("Found override " + override.targetModificationName)
+				print(" - Old path: " + str(modification.target_nodepath))
+				print(" - New path: " + str(target.get_path()))
 				modification.target_nodepath = target.get_path()
 		pass
 	pass
@@ -108,7 +111,7 @@ func _ready() -> void:
 	
 	health_bar.value = current_hp
 	mana_bar.value = current_mana
-	
+	_setupIK()
 	print("player hp: ", current_hp, " player mana: ", current_mana, " player damage: ", damage)
 
 func _physics_process(delta: float) -> void:

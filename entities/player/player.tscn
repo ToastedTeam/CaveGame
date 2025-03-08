@@ -229,13 +229,15 @@ initial_velocity_max = 10.0
 gravity = Vector3(0, 98, 0)
 color = Color(0.762404, 0.762404, 0.762404, 1)
 
-[sub_resource type="SkeletonModification2DLookAt" id="SkeletonModification2DLookAt_gx6sm"]
+[sub_resource type="SkeletonModification2DLookAt" id="SkeletonModification2DLookAt_a1qjk"]
+resource_local_to_scene = true
 resource_name = "HeadLook"
 bone_index = 2
 bone2d_node = NodePath("hip/torso/head")
 target_nodepath = NodePath("/root/@EditorNode@21298/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11479/@VSplitContainer@11131/@HSplitContainer@11133/@HSplitContainer@11135/@Control@11136/@SubViewportContainer@11137/@SubViewport@11138/Player/Skeleton/lookTarget")
 
-[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_yqrof"]
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_j3ovn"]
+resource_local_to_scene = true
 resource_name = "BackArm"
 target_nodepath = NodePath("/root/@EditorNode@21298/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11479/@VSplitContainer@11131/@HSplitContainer@11133/@HSplitContainer@11135/@Control@11136/@SubViewportContainer@11137/@SubViewport@11138/Player/Skeleton/r_arm")
 flip_bend_direction = true
@@ -243,7 +245,8 @@ joint_one_bone_idx = 3
 joint_one_bone2d_node = NodePath("hip/torso/shoulder_r")
 joint_two_bone_idx = 4
 
-[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_3wlsy"]
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_afbqv"]
+resource_local_to_scene = true
 resource_name = "FrontArm"
 target_nodepath = NodePath("/root/@EditorNode@21298/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11479/@VSplitContainer@11131/@HSplitContainer@11133/@HSplitContainer@11135/@Control@11136/@SubViewportContainer@11137/@SubViewport@11138/Player/Skeleton/f_arm")
 flip_bend_direction = true
@@ -252,7 +255,8 @@ joint_one_bone2d_node = NodePath("hip/torso/shoulder_f")
 joint_two_bone_idx = 6
 joint_two_bone2d_node = NodePath("hip/torso/shoulder_f/forearm_f")
 
-[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_7thud"]
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_gx6sm"]
+resource_local_to_scene = true
 resource_name = "BackLeg"
 target_nodepath = NodePath("/root/@EditorNode@21298/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11479/@VSplitContainer@11131/@HSplitContainer@11133/@HSplitContainer@11135/@Control@11136/@SubViewportContainer@11137/@SubViewport@11138/Player/Skeleton/r_leg")
 joint_one_bone_idx = 7
@@ -260,7 +264,8 @@ joint_one_bone2d_node = NodePath("hip/thigh_r")
 joint_two_bone_idx = 8
 joint_two_bone2d_node = NodePath("hip/thigh_r/calf_r")
 
-[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_a1qjk"]
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_yqrof"]
+resource_local_to_scene = true
 resource_name = "FrontLeg"
 target_nodepath = NodePath("/root/@EditorNode@21298/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11479/@VSplitContainer@11131/@HSplitContainer@11133/@HSplitContainer@11135/@Control@11136/@SubViewportContainer@11137/@SubViewport@11138/Player/Skeleton/f_leg")
 joint_one_bone_idx = 9
@@ -268,14 +273,15 @@ joint_one_bone2d_node = NodePath("hip/thigh_f")
 joint_two_bone_idx = 10
 joint_two_bone2d_node = NodePath("hip/thigh_f/calf_f")
 
-[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_wvtmh"]
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_3wlsy"]
+resource_local_to_scene = true
 enabled = true
 modification_count = 5
-modifications/0 = SubResource("SkeletonModification2DLookAt_gx6sm")
-modifications/1 = SubResource("SkeletonModification2DTwoBoneIK_yqrof")
-modifications/2 = SubResource("SkeletonModification2DTwoBoneIK_3wlsy")
-modifications/3 = SubResource("SkeletonModification2DTwoBoneIK_7thud")
-modifications/4 = SubResource("SkeletonModification2DTwoBoneIK_a1qjk")
+modifications/0 = SubResource("SkeletonModification2DLookAt_a1qjk")
+modifications/1 = SubResource("SkeletonModification2DTwoBoneIK_j3ovn")
+modifications/2 = SubResource("SkeletonModification2DTwoBoneIK_afbqv")
+modifications/3 = SubResource("SkeletonModification2DTwoBoneIK_gx6sm")
+modifications/4 = SubResource("SkeletonModification2DTwoBoneIK_yqrof")
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_plpc0")
@@ -331,7 +337,7 @@ fixed_fps = 120
 process_material = SubResource("ParticleProcessMaterial_8hh5x")
 
 [node name="Skeleton" type="Skeleton2D" parent="."]
-modification_stack = SubResource("SkeletonModificationStack2D_wvtmh")
+modification_stack = SubResource("SkeletonModificationStack2D_3wlsy")
 
 [node name="hip" type="Bone2D" parent="Skeleton"]
 position = Vector2(-9.53674e-07, 0)
@@ -474,7 +480,7 @@ position = Vector2(1, 30)
 position = Vector2(-9, 24)
 
 [node name="lookTarget" type="Marker2D" parent="Skeleton"]
-position = Vector2(30, -21)
+position = Vector2(34, -21)
 
 [node name="r_arm" type="Marker2D" parent="Skeleton"]
 position = Vector2(-9, 3)
@@ -521,9 +527,9 @@ scale = Vector2(0.999954, 0.999954)
 texture = ExtResource("7_26q78")
 
 [node name="TestplayerHead" type="Sprite2D" parent="polygons"]
-position = Vector2(0.322344, -21.9965)
-rotation = 0.0535218
-scale = Vector2(0.999805, 0.999805)
+position = Vector2(0.43703, -21.9892)
+rotation = 0.0726584
+scale = Vector2(0.999799, 0.999799)
 texture = ExtResource("8_7thud")
 
 [node name="TestplayerTorso" type="Sprite2D" parent="polygons"]
@@ -532,14 +538,14 @@ scale = Vector2(0.999997, 0.999997)
 texture = ExtResource("11_afbqv")
 
 [node name="TestplayerShoulder_f" type="Sprite2D" parent="polygons"]
-position = Vector2(0.717203, -11.0517)
-rotation = -0.143942
-scale = Vector2(0.999987, 0.999987)
+position = Vector2(0.717183, -11.0517)
+rotation = -0.143938
+scale = Vector2(0.999988, 0.999988)
 texture = ExtResource("9_a1qjk")
 
 [node name="TestplayerForearm" type="Sprite2D" parent="polygons/TestplayerShoulder_f"]
-position = Vector2(3.44219, 9.91432)
-rotation = -0.611027
+position = Vector2(3.44223, 9.9143)
+rotation = -0.611034
 scale = Vector2(0.999991, 0.999991)
 texture = ExtResource("10_j3ovn")
 
