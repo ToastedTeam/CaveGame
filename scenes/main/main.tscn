@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=4 uid="uid://qtfciyfj33pt"]
+[gd_scene load_steps=26 format=4 uid="uid://qtfciyfj33pt"]
 
 [ext_resource type="Material" uid="uid://hkdd85186e42" path="res://shaders/SmoothPixel.tres" id="1_a8run"]
 [ext_resource type="Texture2D" uid="uid://b8aysoeqef1f1" path="res://icon.svg" id="2_ouso4"]
 [ext_resource type="PackedScene" uid="uid://8j1kl15f7ryq" path="res://entities/player/player.tscn" id="3_blune"]
+[ext_resource type="Script" uid="uid://b7h0h8wdhf0ws" path="res://entities/player/IKTargetResource.gd" id="4_ouso4"]
 [ext_resource type="Shader" uid="uid://b8cvd0b0qkxpa" path="res://shaders/pixel_camera.gdshader" id="4_th5th"]
 [ext_resource type="Script" uid="uid://j8q2uvh3comw" path="res://scenes/main/camera.gd" id="5_7smn1"]
 [ext_resource type="PackedScene" uid="uid://jxyevycakmnv" path="res://scenes/interface/interface.tscn" id="6_raeie"]
@@ -10,6 +11,42 @@
 [ext_resource type="Texture2D" uid="uid://ryvgyi4m7ywi" path="res://scenes/main/assets/mainlev_build.png" id="8_nvumn"]
 [ext_resource type="Texture2D" uid="uid://bb0m10tlay88m" path="res://scenes/main/assets/world_tileset.png" id="9_ou6is"]
 [ext_resource type="PackedScene" uid="uid://dn52wlkh2g1wy" path="res://scenes/killzone/killzone.tscn" id="10_necax"]
+
+[sub_resource type="Resource" id="Resource_a1qjk"]
+script = ExtResource("4_ouso4")
+targetModificationName = "HeadLook"
+targetNodePath = NodePath("Skeleton/lookTarget")
+metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
+
+[sub_resource type="Resource" id="Resource_j3ovn"]
+script = ExtResource("4_ouso4")
+targetModificationName = "BackArm"
+targetNodePath = NodePath("Skeleton/r_arm")
+metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
+
+[sub_resource type="Resource" id="Resource_afbqv"]
+script = ExtResource("4_ouso4")
+targetModificationName = "FrontArm"
+targetNodePath = NodePath("Skeleton/f_arm")
+metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
+
+[sub_resource type="Resource" id="Resource_gx6sm"]
+script = ExtResource("4_ouso4")
+targetModificationName = "BackLeg"
+targetNodePath = NodePath("Skeleton/r_leg")
+metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
+
+[sub_resource type="Resource" id="Resource_yqrof"]
+script = ExtResource("4_ouso4")
+targetModificationName = "FrontLeg"
+targetNodePath = NodePath("Skeleton/f_leg")
+metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
+
+[sub_resource type="Resource" id="Resource_blune"]
+script = ExtResource("4_ouso4")
+targetModificationName = "HeadLook"
+targetNodePath = NodePath("LookAt")
+metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qtmoe"]
 shader = ExtResource("4_th5th")
@@ -1398,6 +1435,7 @@ texture = ExtResource("2_ouso4")
 position = Vector2(6, -9)
 health_bar = NodePath("../Interface/Interface2/VBoxContainer/HealthBar/HealthBar")
 mana_bar = NodePath("../Interface/Interface2/VBoxContainer/ManaBar/ManaBar")
+ik_overrides = Array[ExtResource("4_ouso4")]([SubResource("Resource_a1qjk"), SubResource("Resource_j3ovn"), SubResource("Resource_afbqv"), SubResource("Resource_gx6sm"), SubResource("Resource_yqrof"), SubResource("Resource_blune")])
 
 [node name="Camera2D" type="Camera2D" parent="Player" node_paths=PackedStringArray("followTarget")]
 material = SubResource("ShaderMaterial_qtmoe")
@@ -1409,6 +1447,9 @@ position_smoothing_speed = 10.0
 script = ExtResource("5_7smn1")
 followTarget = NodePath("..")
 suppressPixelAlignment = true
+
+[node name="LookAt" type="Marker2D" parent="Player"]
+position = Vector2(40, -24)
 
 [node name="Interface" parent="." instance=ExtResource("6_raeie")]
 

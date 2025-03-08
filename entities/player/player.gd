@@ -1,3 +1,4 @@
+@tool
 extends CharacterBody2D
 
 # Defining Player constants
@@ -19,6 +20,24 @@ const DASH_LENGTH = 0.15
 @export var health_bar: TextureProgressBar
 @export var mana_bar: TextureProgressBar
 @export var attack_cooldown: float
+
+@export_subgroup("IK target overrides", "ik_")
+@export var ik_overrides: Array[IKTargetResource]
+@export_tool_button("Apply overrides") var ik_overridesBtn = _setupIK.bind()
+#@export var headTarget: IKTargetResource
+#@export var headTarget: Node2D
+#@export var headTargetResourceName: String
+#@export_subgroup("Leg Targets", "leg_")
+#@export var leg_frontTarget: Node2D
+#@export var leg_frontTargetResourceName: String
+#@export var leg_backTarget: Node2D
+#@export var leg_backTargetResourceName: String
+#
+#@export_subgroup("Arm Targets", "arm_")
+#@export var arm_frontTarget: Node2D
+#@export var arm_frontTargetResourceName: String
+#@export var arm_backTarget: Node2D
+#@export var arm_backTargetResourceName: String
 
 # Variables
 var current_hp: int = MAX_HP:
@@ -54,8 +73,21 @@ var damage: int = BASE_DAMAGE:
 var canAttack = true;
 var jumpCount = 0;
 
+func _setupIK() -> void:
+	var modificationStack: SkeletonModificationStack2D = $Skeleton.get_modification_stack()
+	for override in ik_overrides:
+		for idx in modificationStack.modification_count:
+			var modification = modificationStack.get_modification(idx)
+			if override.targetModificationName == modification.resource_name:
+				var target = get_node(override.targetNodePath)
+				modification.target_nodepath = target.get_path()
+		pass
+	pass
+
 # Setting current 
-func _ready() -> void:	
+func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
 	health_bar.max_value = MAX_HP
 	mana_bar.max_value = MAX_MANA
 	dashCooldownBar.max_value = dash.DASH_CD
@@ -67,6 +99,8 @@ func _ready() -> void:
 	print("player hp: ", current_hp, " player mana: ", current_mana, " player damage: ", damage)
 
 func _physics_process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
 	# DEBUG STUFF SO ITS EASY TO ACCESS
 	if Input.is_action_just_pressed("DEBUG_takeDamage"):
 		current_hp -= 5
