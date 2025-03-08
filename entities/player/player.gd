@@ -1,4 +1,5 @@
 @tool
+class_name PlayerCharacter
 extends CharacterBody2D
 
 # Defining Player constants
@@ -24,6 +25,7 @@ const DASH_LENGTH = 0.15
 @export_subgroup("IK target overrides", "ik_")
 @export var ik_overrides: Array[IKTargetResource]
 @export_tool_button("Apply overrides") var ik_overridesBtn = _setupIK.bind()
+var currentDirection = 1;
 #@export var headTarget: IKTargetResource
 #@export var headTarget: Node2D
 #@export var headTargetResourceName: String
@@ -164,6 +166,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		player_sprite.play("jump")
 	
+	currentDirection = direction
 	if direction < 0:
 		player_sprite.flip_h = true
 		$FlipHandler.scale.x = -1

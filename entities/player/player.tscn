@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://8j1kl15f7ryq"]
+[gd_scene load_steps=51 format=3 uid="uid://8j1kl15f7ryq"]
 
 [ext_resource type="Script" uid="uid://7dppspqb023v" path="res://entities/player/player.gd" id="1_plpc0"]
 [ext_resource type="Texture2D" uid="uid://crrknnqcxgkk3" path="res://entities/player/assets/knight.png" id="1_pmcpt"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://nl220u532x7o" path="res://entities/player/dash.tscn" id="4_62ocg"]
 [ext_resource type="Texture2D" uid="uid://bx7hdcghlw868" path="res://entities/player/assets/testplayer_thigh.png" id="6_qiwj3"]
 [ext_resource type="Texture2D" uid="uid://dqr8qpi11o5o5" path="res://entities/player/assets/testplayer_calf.png" id="7_26q78"]
+[ext_resource type="Script" uid="uid://eji52ig0w3g5" path="res://addons/remotetransform2dextended/remoteTransform.gd" id="7_j3ovn"]
 [ext_resource type="Texture2D" uid="uid://diie3r4t0diox" path="res://entities/player/assets/testplayer_head.png" id="8_7thud"]
 [ext_resource type="Texture2D" uid="uid://7ende5uokjqm" path="res://entities/player/assets/testplayer_shoulder.png" id="9_a1qjk"]
 [ext_resource type="Texture2D" uid="uid://jd5stqkmswc0" path="res://entities/player/assets/testplayer_forearm.png" id="10_j3ovn"]
@@ -16,25 +17,25 @@
 [sub_resource type="Resource" id="Resource_j3ovn"]
 script = ExtResource("2_a1qjk")
 targetModificationName = "BackArm"
-targetNodePath = NodePath("Skeleton/r_arm")
+targetNodePath = NodePath("../PlayerIKAnimator/BHTarget")
 metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
 
 [sub_resource type="Resource" id="Resource_afbqv"]
 script = ExtResource("2_a1qjk")
 targetModificationName = "FrontArm"
-targetNodePath = NodePath("Skeleton/f_arm")
+targetNodePath = NodePath("../PlayerIKAnimator/FHTarget")
 metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
 
 [sub_resource type="Resource" id="Resource_gx6sm"]
 script = ExtResource("2_a1qjk")
 targetModificationName = "BackLeg"
-targetNodePath = NodePath("Skeleton/r_leg")
+targetNodePath = NodePath("../PlayerIKAnimator/BFTarget")
 metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
 
 [sub_resource type="Resource" id="Resource_yqrof"]
 script = ExtResource("2_a1qjk")
 targetModificationName = "FrontLeg"
-targetNodePath = NodePath("Skeleton/f_leg")
+targetNodePath = NodePath("../PlayerIKAnimator/FFTarget")
 metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
 
 [sub_resource type="Resource" id="Resource_a1qjk"]
@@ -208,9 +209,6 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4kdck"]
-radius = 5.0
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nn8mg"]
 bg_color = Color(0.321728, 0.321728, 0.321728, 1)
 
@@ -283,7 +281,12 @@ modifications/2 = SubResource("SkeletonModification2DTwoBoneIK_afbqv")
 modifications/3 = SubResource("SkeletonModification2DTwoBoneIK_gx6sm")
 modifications/4 = SubResource("SkeletonModification2DTwoBoneIK_yqrof")
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a1qjk"]
+radius = 5.6
+height = 56.0
+
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_plpc0")
 ik_overrides = Array[ExtResource("2_a1qjk")]([SubResource("Resource_j3ovn"), SubResource("Resource_afbqv"), SubResource("Resource_gx6sm"), SubResource("Resource_yqrof"), SubResource("Resource_a1qjk")])
 
@@ -298,10 +301,6 @@ position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_w8q44")
 animation = &"idle"
 autoplay = "idle"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -5)
-shape = SubResource("CircleShape2D_4kdck")
 
 [node name="FlipHandler" type="Node2D" parent="."]
 
@@ -342,145 +341,181 @@ modification_stack = SubResource("SkeletonModificationStack2D_3wlsy")
 [node name="hip" type="Bone2D" parent="Skeleton"]
 position = Vector2(-9.53674e-07, 0)
 scale = Vector2(0.999997, 0.999997)
-rest = Transform2D(0.999997, 0, 0, 0.999997, -10, 0)
+rest = Transform2D(0.999997, 0, 0, 0.999997, -9.53674e-07, 0)
 
 [node name="torso" type="Bone2D" parent="Skeleton/hip"]
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 editor_settings/show_bone_gizmo = false
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/hip/torso"]
-visible = false
-position = Vector2(0, -8.00002)
-remote_path = NodePath("../../../../polygons/TestplayerTorso")
+[node name="RemoteTransform2DExtended" type="Node2D" parent="Skeleton/hip/torso" node_paths=PackedStringArray("node")]
+position = Vector2(0, -8)
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../../sprites/TestplayerTorso")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="head" type="Bone2D" parent="Skeleton/hip/torso"]
-visible = false
 position = Vector2(0, -16)
 rotation = -0.218672
 scale = Vector2(0.999801, 0.999801)
-rest = Transform2D(0.998335, -0.0545041, 0.0545041, 0.998335, 0, -15.98)
+rest = Transform2D(0.996097, 0.0859955, -0.0859955, 0.996097, 0, -16)
 metadata/_local_pose_override_enabled_ = true
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/hip/torso/head"]
-position = Vector2(0.00109015, -6.0064)
-remote_path = NodePath("../../../../../polygons/TestplayerHead")
+[node name="flipHandler" type="Node2D" parent="Skeleton/hip/torso/head"]
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/hip/torso/head/flipHandler"]
+position = Vector2(0.00109005, -6.0064)
+remote_path = NodePath("../../../../../../sprites/TestplayerHead")
+update_scale = false
 
 [node name="shoulder_r" type="Bone2D" parent="Skeleton/hip/torso"]
-visible = false
 position = Vector2(0, -16)
-rest = Transform2D(1, 0, 0, 1, 0, -16)
+rest = Transform2D(-0.752361, 0.658751, -0.658751, -0.752361, 0, -16)
 metadata/_local_pose_override_enabled_ = true
+
+[node name="RemoteTransform2DExtended" type="Node2D" parent="Skeleton/hip/torso/shoulder_r" node_paths=PackedStringArray("node")]
+position = Vector2(5, 0)
+rotation = -1.5708
+scale = Vector2(1, 1)
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../../../sprites/TestplayerShoulder_r")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="forearm_r" type="Bone2D" parent="Skeleton/hip/torso/shoulder_r"]
 position = Vector2(10, -9.53677e-07)
-rest = Transform2D(1, 0, 0, 1, 10, -9.53677e-07)
+rest = Transform2D(0.743003, -0.669288, 0.669288, 0.743003, 10, -9.53677e-07)
 auto_calculate_length_and_angle = false
 length = 12.5
 bone_angle = 0.0
 metadata/_local_pose_override_enabled_ = true
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/hip/torso/shoulder_r/forearm_r"]
-position = Vector2(6.00001, 2.13163e-14)
+[node name="RemoteTransform2DExtended" type="Node2D" parent="Skeleton/hip/torso/shoulder_r/forearm_r" node_paths=PackedStringArray("node")]
+position = Vector2(6, 0)
 rotation = -1.5708
-remote_path = NodePath("../../../../../../polygons/TestplayerShoulder_r/TestplayerForearm")
-
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/hip/torso/shoulder_r"]
-position = Vector2(5.00001, -9.53677e-07)
-rotation = -1.5708
-remote_path = NodePath("../../../../../polygons/TestplayerShoulder_r")
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../../../../sprites/TestplayerForearm_r")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="shoulder_f" type="Bone2D" parent="Skeleton/hip/torso"]
 visible = false
 position = Vector2(0, -16)
 rotation = 2.67105
 scale = Vector2(0.999991, 0.999991)
-rest = Transform2D(1, 0, 0, 1, 0, -16)
+rest = Transform2D(0.143437, 0.98965, -0.98965, 0.143437, 0, -16)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="forearm_f" type="Bone2D" parent="Skeleton/hip/torso/shoulder_f"]
 position = Vector2(10, -9.53677e-07)
 rotation = -1.17337
 scale = Vector2(0.999991, 0.999991)
-rest = Transform2D(1, 0, 0, 1, 10, -9.53677e-07)
+rest = Transform2D(0.819048, -0.57371, 0.57371, 0.819048, 10, -9.53677e-07)
 auto_calculate_length_and_angle = false
 length = 12.5
 bone_angle = 0.0
 metadata/_local_pose_override_enabled_ = true
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/hip/torso/shoulder_f/forearm_f"]
-position = Vector2(6.00001, 2.13163e-14)
+[node name="RemoteTransform2DExtended" type="Node2D" parent="Skeleton/hip/torso/shoulder_f/forearm_f" node_paths=PackedStringArray("node")]
+position = Vector2(6, 0)
 rotation = -1.5708
-remote_path = NodePath("../../../../../../polygons/TestplayerShoulder_f/TestplayerForearm")
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../../../../sprites/TestplayerForearm_f")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/hip/torso/shoulder_f"]
-position = Vector2(5.00001, -9.53677e-07)
+[node name="RemoteTransform2DExtended" type="Node2D" parent="Skeleton/hip/torso/shoulder_f" node_paths=PackedStringArray("node")]
+position = Vector2(5, 0)
 rotation = -1.5708
-remote_path = NodePath("../../../../../polygons/TestplayerShoulder_f")
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../../../sprites/TestplayerShoulder_f")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="thigh_r" type="Bone2D" parent="Skeleton/hip"]
 visible = false
 position = Vector2(0, -4.76837e-07)
-rotation = 1.59076
-scale = Vector2(0.99985, 0.99985)
-rest = Transform2D(-0.641294, 0.767262, -0.767262, -0.641294, 0, -4.76837e-07)
+rotation = -2.58658
+scale = Vector2(0.999836, 0.999836)
+rest = Transform2D(0.0302842, 0.999378, -0.999378, 0.0302842, 0, -4.76837e-07)
+auto_calculate_length_and_angle = false
+length = 12.0
+bone_angle = 88.26
 metadata/_local_pose_override_enabled_ = true
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/hip/thigh_r"]
-position = Vector2(6.19, 0)
-rotation = -1.5708
-remote_path = NodePath("../../../../polygons/TestplayerThigh_B")
+[node name="RemoteTransform2DExtended" type="Node2D" parent="Skeleton/hip/thigh_r" node_paths=PackedStringArray("node")]
+position = Vector2(0, 6)
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../../sprites/TestplayerThigh_B")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="calf_r" type="Bone2D" parent="Skeleton/hip/thigh_r"]
-position = Vector2(12, 0)
-rotation = -0.770688
-scale = Vector2(0.999957, 0.999957)
-rest = Transform2D(0.983889, -0.178547, 0.178547, 0.983889, 12.0411, 0.160827)
+position = Vector2(0, 11.0018)
+scale = Vector2(0.999956, 0.999956)
+rest = Transform2D(0.708032, -0.706117, 0.706117, 0.708032, 12, 0)
 auto_calculate_length_and_angle = false
 length = 17.58
-bone_angle = 44.9224
+bone_angle = 90.0
 metadata/_local_pose_override_enabled_ = true
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/hip/thigh_r/calf_r"]
-position = Vector2(8.055, 3.245)
-rotation = -0.785398
-remote_path = NodePath("../../../../../polygons/TestplayerThigh_B/TestplayerCalf_B")
+[node name="RemoteTransform2DExtended" type="Node2D" parent="Skeleton/hip/thigh_r/calf_r" node_paths=PackedStringArray("node")]
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../../../sprites/TestplayerCalf_B")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="thigh_f" type="Bone2D" parent="Skeleton/hip"]
 visible = false
 position = Vector2(1, -2.84217e-14)
 rotation = 1.53748
 scale = Vector2(0.999843, 0.999843)
-rest = Transform2D(-0.641294, 0.767262, -0.767262, -0.641294, 0, -4.76837e-07)
+rest = Transform2D(7.5486e-08, 0.999843, -0.999843, 7.5486e-08, 1, -2.84217e-14)
 metadata/_local_pose_override_enabled_ = true
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/hip/thigh_f"]
-position = Vector2(6.19, 0)
+[node name="RemoteTransform2DExtended" type="Node2D" parent="Skeleton/hip/thigh_f" node_paths=PackedStringArray("node")]
+position = Vector2(6, 0)
 rotation = -1.5708
-remote_path = NodePath("../../../../polygons/TestplayerThigh_F")
+scale = Vector2(1, 1)
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../../sprites/TestplayerThigh_F")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="calf_f" type="Bone2D" parent="Skeleton/hip/thigh_f"]
 position = Vector2(12, 0)
 rotation = -0.770688
 scale = Vector2(0.999954, 0.999954)
-rest = Transform2D(0.983889, -0.178547, 0.178547, 0.983889, 12.0411, 0.160827)
+rest = Transform2D(0.708031, -0.706116, 0.706116, 0.708031, 12, 0)
 auto_calculate_length_and_angle = false
 length = 17.58
 bone_angle = 44.9224
 metadata/_local_pose_override_enabled_ = true
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/hip/thigh_f/calf_f"]
-position = Vector2(8.055, 3.245)
-rotation = -0.785398
-remote_path = NodePath("../../../../../polygons/TestplayerThigh_F/TestplayerCalf_F")
+[node name="RemoteTransform2DExtended" type="Node2D" parent="Skeleton/hip/thigh_f/calf_f" node_paths=PackedStringArray("node")]
+rotation = -0.776672
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../../../sprites/TestplayerCalf_F")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="f_leg" type="Marker2D" parent="Skeleton"]
 position = Vector2(1, 30)
 
 [node name="r_leg" type="Marker2D" parent="Skeleton"]
-position = Vector2(-9, 24)
+position = Vector2(0, 26)
 
 [node name="lookTarget" type="Marker2D" parent="Skeleton"]
-position = Vector2(34, -21)
+position = Vector2(30, -20)
 
 [node name="r_arm" type="Marker2D" parent="Skeleton"]
 position = Vector2(-9, 3)
@@ -488,66 +523,78 @@ position = Vector2(-9, 3)
 [node name="f_arm" type="Marker2D" parent="Skeleton"]
 position = Vector2(10, 3)
 
-[node name="polygons" type="Node2D" parent="."]
+[node name="sprites" type="Node2D" parent="."]
 
-[node name="TestplayerShoulder_r" type="Sprite2D" parent="polygons"]
+[node name="TestplayerShoulder_r" type="Sprite2D" parent="sprites"]
 modulate = Color(0.71, 0.71, 0.71, 1)
 position = Vector2(-3.7618, -12.7062)
-rotation = 0.851636
+rotation = 0.851639
 scale = Vector2(0.999997, 0.999997)
 texture = ExtResource("9_a1qjk")
 
-[node name="TestplayerForearm" type="Sprite2D" parent="polygons/TestplayerShoulder_r"]
-position = Vector2(4.0157, 9.45803)
-rotation = -0.73325
+[node name="TestplayerForearm_r" type="Sprite2D" parent="sprites"]
+position = Vector2(-8.23227, -3.45448)
+rotation = 0.118389
+scale = Vector2(0.999997, 0.999997)
 texture = ExtResource("10_j3ovn")
 
-[node name="TestplayerThigh_B" type="Sprite2D" parent="polygons"]
+[node name="TestplayerThigh_B" type="Sprite2D" parent="sprites"]
 modulate = Color(0.6, 0.6, 0.6, 1)
-position = Vector2(1.73912, 5.93968)
-rotation = -0.284839
-scale = Vector2(0.999847, 0.999847)
+position = Vector2(3.29064, 5.01594)
+rotation = -0.580607
+scale = Vector2(0.999842, 0.999842)
 texture = ExtResource("6_qiwj3")
 
-[node name="TestplayerCalf_B" type="Sprite2D" parent="polygons/TestplayerThigh_B"]
-position = Vector2(-5.35551, 12.6456)
-rotation = 1.06701
-scale = Vector2(0.999957, 0.999957)
+[node name="TestplayerCalf_B" type="Node2D" parent="sprites"]
+position = Vector2(6.03383, 9.19739)
+rotation = 0.402368
+
+[node name="TestplayerCalf_B" type="Sprite2D" parent="sprites/TestplayerCalf_B"]
+modulate = Color(0.6, 0.6, 0.6, 1)
+position = Vector2(3, 9)
 texture = ExtResource("7_26q78")
 
-[node name="TestplayerThigh_F" type="Sprite2D" parent="polygons"]
-position = Vector2(0.999997, 6.18901)
+[node name="TestplayerThigh_F" type="Sprite2D" parent="sprites"]
+position = Vector2(0.999997, 5.99904)
 scale = Vector2(0.99984, 0.99984)
 texture = ExtResource("6_qiwj3")
 
-[node name="TestplayerCalf_F" type="Sprite2D" parent="polygons/TestplayerThigh_F"]
-position = Vector2(3.39015, 13.8046)
-rotation = 0.00135813
-scale = Vector2(0.999954, 0.999954)
+[node name="TestplayerCalf_F" type="Node2D" parent="sprites"]
+position = Vector2(0.999997, 11.9981)
+rotation = 0.010081
+
+[node name="TestplayerCalf_F" type="Sprite2D" parent="sprites/TestplayerCalf_F"]
+position = Vector2(3, 9)
+scale = Vector2(0.999794, 0.999794)
 texture = ExtResource("7_26q78")
 
-[node name="TestplayerHead" type="Sprite2D" parent="polygons"]
-position = Vector2(0.43703, -21.9892)
-rotation = 0.0726584
+[node name="TestplayerHead" type="Sprite2D" parent="sprites"]
+position = Vector2(0.517606, -21.9828)
+rotation = 0.0861189
 scale = Vector2(0.999799, 0.999799)
 texture = ExtResource("8_7thud")
 
-[node name="TestplayerTorso" type="Sprite2D" parent="polygons"]
-position = Vector2(-9.53674e-07, -8)
+[node name="TestplayerTorso" type="Sprite2D" parent="sprites"]
+position = Vector2(-9.53674e-07, -7.99998)
 scale = Vector2(0.999997, 0.999997)
 texture = ExtResource("11_afbqv")
 
-[node name="TestplayerShoulder_f" type="Sprite2D" parent="polygons"]
-position = Vector2(0.717183, -11.0517)
-rotation = -0.143938
+[node name="TestplayerShoulder_f" type="Sprite2D" parent="sprites"]
+position = Vector2(0.71718, -11.0517)
+rotation = -0.143934
 scale = Vector2(0.999988, 0.999988)
 texture = ExtResource("9_a1qjk")
 
-[node name="TestplayerForearm" type="Sprite2D" parent="polygons/TestplayerShoulder_f"]
-position = Vector2(3.44223, 9.9143)
-rotation = -0.611034
-scale = Vector2(0.999991, 0.999991)
+[node name="TestplayerForearm_f" type="Sprite2D" parent="sprites"]
+position = Vector2(5.54587, -1.73381)
+rotation = -0.754969
+scale = Vector2(0.999979, 0.999979)
 texture = ExtResource("10_j3ovn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 1.45)
+shape = SubResource("CapsuleShape2D_a1qjk")
 
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_end"]
 [connection signal="on_hit" from="FlipHandler/Weapon" to="." method="_on_entity_hit"]

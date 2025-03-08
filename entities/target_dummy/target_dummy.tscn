@@ -123,6 +123,8 @@ node_a = NodePath("../../rear_shoulder")
 node_b = NodePath("../../rear_forearm")
 
 [node name="base" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="dummy_base" type="Sprite2D" parent="base"]
 texture = SubResource("CanvasTexture_b1pmq")
@@ -133,6 +135,8 @@ disabled = true
 
 [node name="stick" type="RigidBody2D" parent="."]
 position = Vector2(0, -6)
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="stick"]
 shape = SubResource("RectangleShape2D_4ky3x")
@@ -143,6 +147,8 @@ texture = SubResource("CanvasTexture_e6yf1")
 
 [node name="body" type="RigidBody2D" parent="."]
 position = Vector2(0, -6)
+collision_layer = 2
+collision_mask = 2
 
 [node name="dummy_body" type="Sprite2D" parent="body"]
 position = Vector2(0, -6)
@@ -154,6 +160,8 @@ shape = SubResource("CapsuleShape2D_dkp8l")
 
 [node name="head" type="RigidBody2D" parent="."]
 position = Vector2(0, -22)
+collision_layer = 2
+collision_mask = 2
 mass = 0.1
 
 [node name="dummy_head" type="Sprite2D" parent="head"]
