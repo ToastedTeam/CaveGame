@@ -18,13 +18,17 @@ const DASH_LENGTH = 0.15
 @onready var dash = $Dash
 @onready var dashCooldownBar = $DashCooldownBar
 @onready var dashParticles = $DashParticles
+
 @export var health_bar: TextureProgressBar
 @export var mana_bar: TextureProgressBar
+
 @export var attack_cooldown: float
 
 @export_subgroup("IK target overrides", "ik_")
 @export var ik_overrides: Array[IKTargetResource]
 @export_tool_button("Apply overrides") var ik_overridesBtn = _setupIK.bind()
+@export var IkAnimator: IKPlayerAnimator;
+
 var currentDirection = 1;
 #@export var headTarget: IKTargetResource
 #@export var headTarget: Node2D
@@ -82,10 +86,10 @@ func _setupIK() -> void:
 			var modification = modificationStack.get_modification(idx)
 			if override.targetModificationName == modification.resource_name:
 				var target = get_node(override.targetNodePath)
-				print("Found override " + override.targetModificationName)
-				print(" - Old path: " + str(modification.target_nodepath))
-				print(" - New path: " + str(target.get_path()))
+				#print(" - Old node: " + get_node(modification.target_nodepath).name)
+				#print(" - New path: " + str(target.name)
 				modification.target_nodepath = target.get_path()
+				Log.info("Found and applied override for " + override.targetModificationName)
 		pass
 	pass
 
@@ -169,13 +173,14 @@ func _physics_process(delta: float) -> void:
 	currentDirection = direction
 	if direction < 0:
 		player_sprite.flip_h = true
-		$FlipHandler.scale.x = -1
+		#$FlipHandler.scale.x = -1
 	elif direction > 0:
 		player_sprite.flip_h = false
-		$FlipHandler.scale.x = 1
+		#$FlipHandler.scale.x = 1
 		
 	if Input.is_action_just_pressed("player_attack") and canAttack:
-		$FlipHandler/Weapon/AnimationPlayer.play("player_attack")
+		#$FlipHandler/Weapon/AnimationPlayer.play("player_attack")
+		IkAnimator.Attack_Melee()
 		canAttack = false
 		$AttackCooldown.start()
 
