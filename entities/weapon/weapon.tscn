@@ -117,7 +117,7 @@ script = ExtResource("1_nn2k2")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Weapon")
 libraries = {
-"": SubResource("AnimationLibrary_sxqio")
+&"": SubResource("AnimationLibrary_sxqio")
 }
 
 [node name="Weapon" type="Sprite2D" parent="."]

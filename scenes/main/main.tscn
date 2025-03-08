@@ -2,9 +2,9 @@
 
 [ext_resource type="Material" uid="uid://hkdd85186e42" path="res://shaders/SmoothPixel.tres" id="1_a8run"]
 [ext_resource type="Texture2D" uid="uid://b8aysoeqef1f1" path="res://icon.svg" id="2_ouso4"]
-[ext_resource type="PackedScene" uid="uid://8j1kl15f7ryq" path="res://entities/player/player.tscn" id="3_blune"]
+[ext_resource type="PackedScene" uid="uid://d1apqvb47ik6v" path="res://entities/player/player.tscn" id="3_blune"]
 [ext_resource type="Script" uid="uid://bhda60gy1q5tc" path="res://entities/player/player_ik_animator.gd" id="3_th5th"]
-[ext_resource type="Script" uid="uid://b7h0h8wdhf0ws" path="res://entities/player/IKTargetResource.gd" id="4_ouso4"]
+[ext_resource type="Script" path="res://entities/player/resources/IKTargetResource.gd" id="4_ouso4"]
 [ext_resource type="Shader" uid="uid://b8cvd0b0qkxpa" path="res://shaders/pixel_camera.gdshader" id="4_th5th"]
 [ext_resource type="Script" uid="uid://j8q2uvh3comw" path="res://scenes/main/camera.gd" id="5_7smn1"]
 [ext_resource type="PackedScene" uid="uid://jxyevycakmnv" path="res://scenes/interface/interface.tscn" id="6_raeie"]
@@ -19,25 +19,25 @@ size = Vector2(20, 20)
 [sub_resource type="Resource" id="Resource_j3ovn"]
 script = ExtResource("4_ouso4")
 targetModificationName = "BackArm"
-targetNodePath = NodePath("Skeleton/r_arm")
+targetNodePath = NodePath("../PlayerIKAnimator/BHTarget")
 metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
 
 [sub_resource type="Resource" id="Resource_afbqv"]
 script = ExtResource("4_ouso4")
 targetModificationName = "FrontArm"
-targetNodePath = NodePath("Skeleton/f_arm")
+targetNodePath = NodePath("../PlayerIKAnimator/FHTarget")
 metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
 
 [sub_resource type="Resource" id="Resource_gx6sm"]
 script = ExtResource("4_ouso4")
 targetModificationName = "BackLeg"
-targetNodePath = NodePath("Skeleton/r_leg")
+targetNodePath = NodePath("../PlayerIKAnimator/BFTarget")
 metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
 
 [sub_resource type="Resource" id="Resource_yqrof"]
 script = ExtResource("4_ouso4")
 targetModificationName = "FrontLeg"
-targetNodePath = NodePath("Skeleton/f_leg")
+targetNodePath = NodePath("../PlayerIKAnimator/FFTarget")
 metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
 
 [sub_resource type="Resource" id="Resource_th5th"]
@@ -1429,14 +1429,23 @@ rotation = -0.785398
 scale = Vector2(1, 0.993091)
 texture = ExtResource("2_ouso4")
 
-[node name="PlayerIKAnimator" type="Node2D" parent="."]
+[node name="PlayerIKAnimator" type="Node2D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("3_th5th")
+player = NodePath("../Player")
 
 [node name="LookAt" type="Marker2D" parent="PlayerIKAnimator"]
 position = Vector2(69, -19)
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerIKAnimator/LookAt"]
 texture = SubResource("PlaceholderTexture2D_blune")
+
+[node name="BFTarget" type="Marker2D" parent="PlayerIKAnimator"]
+
+[node name="FFTarget" type="Marker2D" parent="PlayerIKAnimator"]
+
+[node name="BHTarget" type="Marker2D" parent="PlayerIKAnimator"]
+
+[node name="FHTarget" type="Marker2D" parent="PlayerIKAnimator"]
 
 [node name="Player" parent="." node_paths=PackedStringArray("health_bar", "mana_bar") instance=ExtResource("3_blune")]
 position = Vector2(24, -44)

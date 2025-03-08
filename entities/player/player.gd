@@ -1,4 +1,5 @@
 @tool
+class_name PlayerCharacter
 extends CharacterBody2D
 
 # Defining Player constants
@@ -31,6 +32,7 @@ enum dash {
 @export_subgroup("IK target overrides", "ik_")
 @export var ik_overrides: Array[IKTargetResource]
 @export_tool_button("Apply overrides") var ik_overridesBtn = _setupIK.bind()
+var currentDirection = 1;
 #@export var headTarget: IKTargetResource
 #@export var headTarget: Node2D
 #@export var headTargetResourceName: String
