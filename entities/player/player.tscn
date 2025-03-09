@@ -362,10 +362,13 @@ metadata/_local_pose_override_enabled_ = true
 
 [node name="flipHandler" type="Node2D" parent="Skeleton/hip/torso/head"]
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/hip/torso/head/flipHandler"]
-position = Vector2(0.00109005, -6.0064)
-remote_path = NodePath("../../../../../../sprites/TestplayerHead")
-update_scale = false
+[node name="RemoteTransform2DExtended" type="Node2D" parent="Skeleton/hip/torso/head/flipHandler" node_paths=PackedStringArray("node")]
+position = Vector2(0, -6)
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../../../../sprites/TestplayerHead")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="shoulder_r" type="Bone2D" parent="Skeleton/hip/torso"]
 visible = false
@@ -579,7 +582,7 @@ scale = Vector2(0.999794, 0.999794)
 texture = ExtResource("7_26q78")
 
 [node name="TestplayerHead" type="Sprite2D" parent="sprites"]
-position = Vector2(0.517606, -21.9828)
+position = Vector2(0.51597, -21.9765)
 rotation = 0.0861189
 scale = Vector2(0.999799, 0.999799)
 texture = ExtResource("8_7thud")
