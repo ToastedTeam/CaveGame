@@ -123,7 +123,6 @@ func _physics_process(delta: float) -> void:
 				$DashCooldownBar.show()
 				
 		_:
-			
 			# Dashing
 			# Extra checks to prevent dashing while standing still
 			# basically you have to click 'd' and have one of the directions pressed
@@ -137,7 +136,6 @@ func _physics_process(delta: float) -> void:
 			if not is_on_floor():
 				velocity += get_gravity() * delta
 				
-			
 			# Handle jump.
 			# Resetting jump count
 			if is_on_floor() and jumpCount != 0:
