@@ -1,24 +1,24 @@
 extends CharacterBody2D
 
 # Defining Player constants
-const SPEED = 120.0
-const JUMP_VELOCITY = -300.0
-const MAX_JUMP_COUNT = 2
-const MAX_HP = 20
-const MAX_MANA = 100
-const BASE_DAMAGE = 5
-const DASH_SPEED = SPEED * 6
-const DASH_DISTANCE = 80
 
+@export var move_speed: float = 120
+@export var jump_speed = 300.0
+@export var dash_speed = move_speed * 6
+@export var dash_dist = 80
+
+@export var jump_count = 2
+
+@export var max_hp = 20
+@export var max_mana = 100
+@export var health_bar: TextureProgressBar
+@export var mana_bar: TextureProgressBar
+
+@export var base_damage = 5
+@export var attack_cooldown: float = 0.1
 
 # Various Properties
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
-#@onready var dash = $Dash
-@onready var dashCooldownBar = $DashCooldownBar
-@onready var dashParticles = $DashParticles
-@export var health_bar: TextureProgressBar
-@export var mana_bar: TextureProgressBar
-@export var attack_cooldown: float
 
 enum dash {
 	ON_COOLDOWN = -1,
@@ -26,13 +26,9 @@ enum dash {
 	KEY_PRESSED = 1,
 	IS_DASHING = 2
 }
-var dash_state: dash = 0
-var pre_dash_x = 0
-
-var facing_right: bool = true
 
 # Variables
-var current_hp: int = MAX_HP:
+var current_hp: int = max_hp:
 	get:
 		return current_hp
 	set(value):
@@ -44,7 +40,7 @@ var current_hp: int = MAX_HP:
 		
 		health_bar.value = current_hp
 		
-var current_mana: int = MAX_MANA:
+var current_mana: int = max_mana:
 	get:
 		return current_mana
 	set(value):
@@ -56,19 +52,25 @@ var current_mana: int = MAX_MANA:
 		
 		mana_bar.value = current_mana
 		
-var damage: int = BASE_DAMAGE:
+var damage: int = base_damage:
 	get:
 		return damage
 	set(value):
 		damage = value
 		
-var canAttack = true;
-var jumpCount = 0;
+
+var facing_right: bool = true
+var jumpCount: int = 0;
+
+var dash_state: dash = 0
+var pre_dash_x: float = 0
+
+var canAttack: bool = true;
 
 # Setting current 
 func _ready() -> void:	
-	health_bar.max_value = MAX_HP
-	mana_bar.max_value = MAX_MANA
+	health_bar.max_value = max_hp
+	mana_bar.max_value = max_mana
 	$DashCooldownBar.max_value = $DashCooldown.wait_time
 	# Min value setters removed, unnecessary, are set via the nodes
 	
@@ -93,24 +95,24 @@ func _physics_process(delta: float) -> void:
 			pre_dash_x = global_position.x
 			velocity.y = 0
 			
-			dashParticles.restart()
+			$DashParticles.restart()
 			
 			if facing_right:
-				velocity.x = DASH_SPEED
+				velocity.x = dash_speed
 			else:
-				velocity.x = -DASH_SPEED
+				velocity.x = -dash_speed
 		
 		dash.IS_DASHING:
-			if abs(global_position.x - pre_dash_x) > DASH_DISTANCE:
+			if abs(global_position.x - pre_dash_x) > dash_dist:
 				if direction:
-					velocity.x = move_toward(velocity.x, SPEED * direction, DASH_SPEED)
-					if abs(velocity.x) <= SPEED:
+					velocity.x = move_toward(velocity.x, move_speed * direction, dash_speed)
+					if abs(velocity.x) <= move_speed:
 						dash_state = dash.ON_COOLDOWN
 						$DashCooldown.start()
 						$DashCooldownBar.show()
 				else:
-					velocity.x = move_toward(velocity.x, 0, DASH_SPEED)
-					if velocity.x == 0:
+					velocity.x = move_toward(velocity.x, 0, dash_speed)
+					if is_zero_approx(velocity.x):
 						dash_state = dash.ON_COOLDOWN
 						$DashCooldown.start()
 						$DashCooldownBar.show()
@@ -139,15 +141,15 @@ func _physics_process(delta: float) -> void:
 			if is_on_floor() and jumpCount != 0:
 				jumpCount = 0
 			# Jumping
-			if Input.is_action_just_pressed("player_jump") and jumpCount < MAX_JUMP_COUNT:
-				velocity.y = JUMP_VELOCITY
+			if Input.is_action_just_pressed("player_jump") and jumpCount < jump_count:
+				velocity.y = -jump_speed
 				jumpCount += 1
 				
 			if direction:
-				velocity.x = direction * SPEED
+				velocity.x = direction * move_speed
 				facing_right = direction > 0
 			else:
-				velocity.x = move_toward(velocity.x, 0, SPEED)
+				velocity.x = move_toward(velocity.x, 0, move_speed)
 	
 	move_and_slide()
 		
