@@ -1,27 +1,34 @@
 extends CharacterBody2D
 
 # Defining Player constants
-const SPEED = 120.0
-const JUMP_VELOCITY = -300.0
-const MAX_JUMP_COUNT = 2
-const MAX_HP = 20
-const MAX_MANA = 100
-const BASE_DAMAGE = 5
-const DASH_SPEED = SPEED * 6
-const DASH_LENGTH = 0.15
 
+@export var move_speed: float = 120
+@export var jump_speed = 300.0
+@export var dash_speed = move_speed * 6
+@export var dash_dist = 80
+
+@export var jump_count = 2
+
+@export var max_hp = 20
+@export var max_mana = 100
+@export var health_bar: TextureProgressBar
+@export var mana_bar: TextureProgressBar
+
+@export var base_damage = 5
+@export var attack_cooldown: float = 0.1
 
 # Various Properties
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var dash = $Dash
-@onready var dashCooldownBar = $DashCooldownBar
-@onready var dashParticles = $DashParticles
-@export var health_bar: TextureProgressBar
-@export var mana_bar: TextureProgressBar
-@export var attack_cooldown: float
+
+enum dash {
+	ON_COOLDOWN = -1,
+	READY = 0,
+	KEY_PRESSED = 1,
+	IS_DASHING = 2
+}
 
 # Variables
-var current_hp: int = MAX_HP:
+var current_hp: int = max_hp:
 	get:
 		return current_hp
 	set(value):
@@ -33,7 +40,7 @@ var current_hp: int = MAX_HP:
 		
 		health_bar.value = current_hp
 		
-var current_mana: int = MAX_MANA:
+var current_mana: int = max_mana:
 	get:
 		return current_mana
 	set(value):
@@ -45,20 +52,26 @@ var current_mana: int = MAX_MANA:
 		
 		mana_bar.value = current_mana
 		
-var damage: int = BASE_DAMAGE:
+var damage: int = base_damage:
 	get:
 		return damage
 	set(value):
 		damage = value
 		
-var canAttack = true;
-var jumpCount = 0;
+
+var facing_right: bool = true
+var jumpCount: int = 0;
+
+var dash_state: dash = 0
+var pre_dash_x: float = 0
+
+var canAttack: bool = true;
 
 # Setting current 
 func _ready() -> void:	
-	health_bar.max_value = MAX_HP
-	mana_bar.max_value = MAX_MANA
-	dashCooldownBar.max_value = dash.DASH_CD
+	health_bar.max_value = max_hp
+	mana_bar.max_value = max_mana
+	$DashCooldownBar.max_value = $DashCooldown.wait_time
 	# Min value setters removed, unnecessary, are set via the nodes
 	
 	health_bar.value = current_hp
@@ -73,49 +86,71 @@ func _physics_process(delta: float) -> void:
 		current_mana -= 5
 		print("Current hp: ", current_hp, "; Current mana: ", current_mana)
 
-	# Dashing
-	# Extra checks to prevent dashing while standing still
-	# basically you have to click 'd' and have one of the directions pressed
-	var isMoving := Input.get_axis("player_move_left", "player_move_right")
-	if Input.is_action_just_pressed("player_dash") and dash.isReady() and (isMoving or !is_on_floor()):
-		dash.startDash(DASH_LENGTH)
-		dashParticles.restart()
-		
-		if player_sprite.flip_h:
-			velocity.x = -DASH_SPEED
-		else:
-			velocity.x = DASH_SPEED
-	
-	if dash.getCooldown() > 0:
-		dashCooldownBar.show()
-		dashCooldownBar.value = dash.DASH_CD - dash.getCooldown()
-	else:
-		dashCooldownBar.hide()
-
-
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	# Handle jump.
-	# Resetting jump count
-	if is_on_floor() and jumpCount != 0:
-		jumpCount = 0
-	# Jumping
-	if Input.is_action_just_pressed("player_jump") and jumpCount < MAX_JUMP_COUNT:
-		velocity.y = JUMP_VELOCITY
-		jumpCount += 1
-		
 	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("player_move_left", "player_move_right")
 	
-	if !dash.isDashing():
-		if direction:
-			velocity.x = direction * SPEED
-		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
+	match dash_state:
+		dash.KEY_PRESSED:
+			dash_state = dash.IS_DASHING
+			pre_dash_x = global_position.x
+			velocity.y = 0
+			
+			$DashParticles.restart()
+			
+			if facing_right:
+				velocity.x = dash_speed
+			else:
+				velocity.x = -dash_speed
 		
+		dash.IS_DASHING:
+			if abs(global_position.x - pre_dash_x) > dash_dist:
+				if direction:
+					velocity.x = move_toward(velocity.x, move_speed * direction, dash_speed)
+					if abs(velocity.x) <= move_speed:
+						dash_state = dash.ON_COOLDOWN
+						$DashCooldown.start()
+						$DashCooldownBar.show()
+				else:
+					velocity.x = move_toward(velocity.x, 0, dash_speed)
+					if is_zero_approx(velocity.x):
+						dash_state = dash.ON_COOLDOWN
+						$DashCooldown.start()
+						$DashCooldownBar.show()
+			
+			elif velocity.x == 0:
+				dash_state = dash.ON_COOLDOWN
+				$DashCooldown.start()
+				$DashCooldownBar.show()
+				
+		_:
+			# Dashing
+			# Extra checks to prevent dashing while standing still
+			# basically you have to click 'd' and have one of the directions pressed
+			if dash_state != dash.ON_COOLDOWN:
+				if Input.is_action_just_pressed("player_dash") and (direction or !is_on_floor()):
+					dash_state = dash.KEY_PRESSED
+			else:
+				$DashCooldownBar.set_value_no_signal($DashCooldown.time_left)
+			
+			# Add the gravity.
+			if not is_on_floor():
+				velocity += get_gravity() * delta
+				
+			# Handle jump.
+			# Resetting jump count
+			if is_on_floor() and jumpCount != 0:
+				jumpCount = 0
+			# Jumping
+			if Input.is_action_just_pressed("player_jump") and jumpCount < jump_count:
+				velocity.y = -jump_speed
+				jumpCount += 1
+				
+			if direction:
+				velocity.x = direction * move_speed
+				facing_right = direction > 0
+			else:
+				velocity.x = move_toward(velocity.x, 0, move_speed)
+	
 	move_and_slide()
 		
 #	Player animations
@@ -127,12 +162,12 @@ func _physics_process(delta: float) -> void:
 	else:
 		player_sprite.play("jump")
 	
-	if direction < 0:
-		player_sprite.flip_h = true
-		$FlipHandler.scale.x = -1
-	elif direction > 0:
+	if facing_right:
 		player_sprite.flip_h = false
 		$FlipHandler.scale.x = 1
+	else:
+		player_sprite.flip_h = true
+		$FlipHandler.scale.x = -1
 		
 	if Input.is_action_just_pressed("player_attack") and canAttack:
 		$FlipHandler/Weapon/AnimationPlayer.play("player_attack")
@@ -149,3 +184,7 @@ func _on_entity_hit(body: Node2D) -> void:
 
 func _on_attack_cooldown_end() -> void:
 	canAttack = true
+
+func _on_dash_cooldown_end() -> void:
+	$DashCooldownBar.hide()
+	dash_state = dash.READY

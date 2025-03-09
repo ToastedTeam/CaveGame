@@ -76,6 +76,8 @@ player_dash={
 
 [physics]
 
+2d/physics_engine="GodotPhysics2D"
+2d/default_gravity=1000.0
 common/physics_interpolation=true
 
 [rendering]

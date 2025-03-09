@@ -1,10 +1,9 @@
-[gd_scene load_steps=32 format=3 uid="uid://8j1kl15f7ryq"]
+[gd_scene load_steps=31 format=3 uid="uid://8j1kl15f7ryq"]
 
 [ext_resource type="Script" uid="uid://7dppspqb023v" path="res://entities/player/player.gd" id="1_plpc0"]
 [ext_resource type="Texture2D" uid="uid://crrknnqcxgkk3" path="res://entities/player/assets/knight.png" id="1_pmcpt"]
 [ext_resource type="Material" uid="uid://hkdd85186e42" path="res://shaders/SmoothPixel.tres" id="2_asdqb"]
 [ext_resource type="PackedScene" uid="uid://dv1lodecs50bs" path="res://entities/weapon/weapon.tscn" id="4_5ek75"]
-[ext_resource type="PackedScene" uid="uid://nl220u532x7o" path="res://entities/player/dash.tscn" id="4_62ocg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s7par"]
 atlas = ExtResource("1_pmcpt")
@@ -199,6 +198,10 @@ script = ExtResource("1_plpc0")
 wait_time = 0.1
 one_shot = true
 
+[node name="DashCooldown" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 2
 material = ExtResource("2_asdqb")
@@ -216,8 +219,6 @@ shape = SubResource("CircleShape2D_4kdck")
 [node name="Weapon" parent="FlipHandler" instance=ExtResource("4_5ek75")]
 position = Vector2(2, -5)
 
-[node name="Dash" parent="." instance=ExtResource("4_62ocg")]
-
 [node name="DashCooldownBar" type="ProgressBar" parent="."]
 visible = false
 anchors_preset = 5
@@ -231,8 +232,6 @@ grow_horizontal = 2
 scale = Vector2(1, 0.5)
 theme_override_styles/background = SubResource("StyleBoxFlat_nn8mg")
 theme_override_styles/fill = SubResource("StyleBoxFlat_yncnl")
-max_value = 1.0
-value = 1.0
 show_percentage = false
 
 [node name="DashParticles" type="GPUParticles2D" parent="."]
@@ -245,4 +244,5 @@ fixed_fps = 120
 process_material = SubResource("ParticleProcessMaterial_8hh5x")
 
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_end"]
+[connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_end"]
 [connection signal="on_hit" from="FlipHandler/Weapon" to="." method="_on_entity_hit"]
