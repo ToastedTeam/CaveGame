@@ -20,8 +20,6 @@ const DASH_DISTANCE = 80
 @export var mana_bar: TextureProgressBar
 @export var attack_cooldown: float
 
-#var dash_was_pressed: bool = false
-#var is_dashing: bool = false
 enum dash {
 	ON_COOLDOWN = -1,
 	READY = 0,
@@ -186,6 +184,5 @@ func _on_attack_cooldown_end() -> void:
 	canAttack = true
 
 func _on_dash_cooldown_end() -> void:
-	#print("Dash cooldown ended")
 	$DashCooldownBar.hide()
 	dash_state = dash.READY
