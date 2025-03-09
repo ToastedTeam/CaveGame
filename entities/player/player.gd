@@ -8,17 +8,30 @@ const MAX_HP = 20
 const MAX_MANA = 100
 const BASE_DAMAGE = 5
 const DASH_SPEED = SPEED * 6
-const DASH_LENGTH = 0.15
+const DASH_DISTANCE = 80
 
 
 # Various Properties
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var dash = $Dash
+#@onready var dash = $Dash
 @onready var dashCooldownBar = $DashCooldownBar
 @onready var dashParticles = $DashParticles
 @export var health_bar: TextureProgressBar
 @export var mana_bar: TextureProgressBar
 @export var attack_cooldown: float
+
+#var dash_was_pressed: bool = false
+#var is_dashing: bool = false
+enum dash {
+	ON_COOLDOWN = -1,
+	READY = 0,
+	KEY_PRESSED = 1,
+	IS_DASHING = 2
+}
+var dash_state: dash = 0
+var pre_dash_x = 0
+
+var facing_right: bool = true
 
 # Variables
 var current_hp: int = MAX_HP:
@@ -58,7 +71,7 @@ var jumpCount = 0;
 func _ready() -> void:	
 	health_bar.max_value = MAX_HP
 	mana_bar.max_value = MAX_MANA
-	dashCooldownBar.max_value = dash.DASH_CD
+	$DashCooldownBar.max_value = $DashCooldown.wait_time
 	# Min value setters removed, unnecessary, are set via the nodes
 	
 	health_bar.value = current_hp
@@ -73,49 +86,73 @@ func _physics_process(delta: float) -> void:
 		current_mana -= 5
 		print("Current hp: ", current_hp, "; Current mana: ", current_mana)
 
-	# Dashing
-	# Extra checks to prevent dashing while standing still
-	# basically you have to click 'd' and have one of the directions pressed
-	var isMoving := Input.get_axis("player_move_left", "player_move_right")
-	if Input.is_action_just_pressed("player_dash") and dash.isReady() and (isMoving or !is_on_floor()):
-		dash.startDash(DASH_LENGTH)
-		dashParticles.restart()
-		
-		if player_sprite.flip_h:
-			velocity.x = -DASH_SPEED
-		else:
-			velocity.x = DASH_SPEED
-	
-	if dash.getCooldown() > 0:
-		dashCooldownBar.show()
-		dashCooldownBar.value = dash.DASH_CD - dash.getCooldown()
-	else:
-		dashCooldownBar.hide()
-
-
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	# Handle jump.
-	# Resetting jump count
-	if is_on_floor() and jumpCount != 0:
-		jumpCount = 0
-	# Jumping
-	if Input.is_action_just_pressed("player_jump") and jumpCount < MAX_JUMP_COUNT:
-		velocity.y = JUMP_VELOCITY
-		jumpCount += 1
-		
 	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("player_move_left", "player_move_right")
 	
-	if !dash.isDashing():
-		if direction:
-			velocity.x = direction * SPEED
-		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
+	match dash_state:
+		dash.KEY_PRESSED:
+			dash_state = dash.IS_DASHING
+			pre_dash_x = global_position.x
+			velocity.y = 0
+			
+			dashParticles.restart()
+			
+			if facing_right:
+				velocity.x = DASH_SPEED
+			else:
+				velocity.x = -DASH_SPEED
 		
+		dash.IS_DASHING:
+			if abs(global_position.x - pre_dash_x) > DASH_DISTANCE:
+				if direction:
+					velocity.x = move_toward(velocity.x, SPEED * direction, DASH_SPEED)
+					if abs(velocity.x) <= SPEED:
+						dash_state = dash.ON_COOLDOWN
+						$DashCooldown.start()
+						$DashCooldownBar.show()
+				else:
+					velocity.x = move_toward(velocity.x, 0, DASH_SPEED)
+					if velocity.x == 0:
+						dash_state = dash.ON_COOLDOWN
+						$DashCooldown.start()
+						$DashCooldownBar.show()
+			
+			elif velocity.x == 0:
+				dash_state = dash.ON_COOLDOWN
+				$DashCooldown.start()
+				$DashCooldownBar.show()
+				
+		_:
+			
+			# Dashing
+			# Extra checks to prevent dashing while standing still
+			# basically you have to click 'd' and have one of the directions pressed
+			if dash_state != dash.ON_COOLDOWN:
+				if Input.is_action_just_pressed("player_dash") and (direction or !is_on_floor()):
+					dash_state = dash.KEY_PRESSED
+			else:
+				$DashCooldownBar.set_value_no_signal($DashCooldown.time_left)
+			
+			# Add the gravity.
+			if not is_on_floor():
+				velocity += get_gravity() * delta
+				
+			
+			# Handle jump.
+			# Resetting jump count
+			if is_on_floor() and jumpCount != 0:
+				jumpCount = 0
+			# Jumping
+			if Input.is_action_just_pressed("player_jump") and jumpCount < MAX_JUMP_COUNT:
+				velocity.y = JUMP_VELOCITY
+				jumpCount += 1
+				
+			if direction:
+				velocity.x = direction * SPEED
+				facing_right = direction > 0
+			else:
+				velocity.x = move_toward(velocity.x, 0, SPEED)
+	
 	move_and_slide()
 		
 #	Player animations
@@ -149,3 +186,8 @@ func _on_entity_hit(body: Node2D) -> void:
 
 func _on_attack_cooldown_end() -> void:
 	canAttack = true
+
+func _on_dash_cooldown_end() -> void:
+	#print("Dash cooldown ended")
+	$DashCooldownBar.hide()
+	dash_state = dash.READY
