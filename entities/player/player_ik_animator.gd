@@ -5,6 +5,8 @@ extends Node2D
 @export var player: PlayerCharacter;
 @export var animationPlayer: AnimationPlayer;
 
+@export var maxFootDistanceFromTarget = 100;
+
 @export_category("IK Inhibitors")
 @export var inhibitFH: bool;
 @export var inhibitBH: bool;
@@ -14,6 +16,11 @@ extends Node2D
 var hip: Bone2D;
 var hand: RemoteTransform2DExtended;
 var lastDirection = 1;
+
+var FFTargetPos: Node2D;
+var BFTargetPos: Node2D;
+var FHTargetPos: Node2D;
+var BHTargetPos: Node2D;
 
 var default_states = {}
 func Attack_Melee() -> void:
@@ -44,7 +51,7 @@ func _IK_Bones_Set_Flipped(flipped: bool) -> void:
 		animationPlayer.get_parent().scale.x = -1 if flipped else 1
 	pass
 
-func _Hijack_Player_IK() -> void:
+func _Get_Player_Params() -> void:
 	var skeleton: Skeleton2D = player.get_node("Skeleton")
 	var modificationStack: SkeletonModificationStack2D = skeleton.get_modification_stack()
 	for idx in modificationStack.modification_count:
@@ -53,11 +60,17 @@ func _Hijack_Player_IK() -> void:
 			default_states[idx] = modification.flip_bend_direction
 	hand = skeleton.find_child("Hand", true, false)
 	default_states["hand_rot"] = hand.rotation_degrees;
+	
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
-	_Hijack_Player_IK()
+	_Get_Player_Params()
+	var animParent = animationPlayer.get_parent()
+	FFTargetPos = animParent.find_child("FFTarget_pos")
+	BFTargetPos = animParent.find_child("BFTarget_pos")
+	FHTargetPos = animParent.find_child("FHTarget_pos")
+	BHTargetPos = animParent.find_child("BHTarget_pos")
 	pass
 
 func _Flip_All_Sprites(flipped: bool, base: Node2D = player.get_node("sprites")) -> void:
@@ -67,24 +80,78 @@ func _Flip_All_Sprites(flipped: bool, base: Node2D = player.get_node("sprites"))
 		sprite.scale.x = -1 if flipped else 1;
 	pass
 
+var shouldMoveFF = false;
+var FF_t = 0.0
+var FF_duration = 0.2;
+var FF_originalPos: Vector2;
+
+var shouldMoveBF = false;
+var BF_t = 0.0;
+var BF_duration = 0.2;
+var BF_originalPos: Vector2;
+
+var last_grounded = true;
+
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
 	if hip == null:
 		hip = player.get_node("Skeleton/hip")
 	else:
-		var space_state = get_world_2d().direct_space_state
-		var query = PhysicsRayQueryParameters2D.create(hip.global_position, hip.global_position + Vector2(0, 35))
-		query.collision_mask = 0b00000000_00000000_00000000_00000001;
-		var result = space_state.intersect_ray(query)
-		if result:
-			$BFTarget.global_position = result.position;
-			$FFTarget.global_position = result.position;
-		else:
-			$BFTarget.global_position = hip.global_position + Vector2(0, 20);
-			$FFTarget.global_position = hip.global_position + Vector2(0, 20);
+		var grounded = player.is_on_floor()
+		var just_grounded = grounded and !last_grounded;
+		# Find where to put player's feet
+		if grounded:
+			var space_state = get_world_2d().direct_space_state
+			var query = PhysicsRayQueryParameters2D.create(hip.global_position, hip.global_position + Vector2(0, 35))
+			query.collision_mask = 0b00000000_00000000_00000000_00000001;
+			var result = space_state.intersect_ray(query)
+			if result: # If there's ground below, we set it to the ground
+				FFTargetPos.global_position = result.position + Vector2(player.currentDirection*10, 0);
+				BFTargetPos.global_position = result.position + Vector2(player.currentDirection*10, 0);
+		else: # Otherwise, we make the player curl up a little bit
+			FFTargetPos.global_position = hip.global_position + Vector2(0, 20);
+			BFTargetPos.global_position = hip.global_position + Vector2(0, 20);
 			pass
 		pass
+		if abs($FFTarget.global_position.x - FFTargetPos.global_position.x) > maxFootDistanceFromTarget and !shouldMoveBF:
+			shouldMoveFF = true;
+			FF_originalPos = $FFTarget.global_position;
+		
+		if abs($BFTarget.global_position.x - BFTargetPos.global_position.x) > maxFootDistanceFromTarget and !shouldMoveFF:
+			shouldMoveBF = true;
+			BF_originalPos = $BFTarget.global_position
+			#$BFTarget.global_position = BFTargetPos.global_position
+			
+		if just_grounded:
+			$FFTarget.global_position = FFTargetPos.global_position
+			$BFTarget.global_position = BFTargetPos.global_position
+			
+		
+		if shouldMoveFF and grounded:
+			FF_t += delta/FF_duration;
+			# interpolate in an arc, currently unimplemented
+			var positionC = (FFTargetPos.global_position + FF_originalPos)/2 + Vector2(0, -10)
+			var q0 = FF_originalPos.lerp(positionC, min(FF_t, 1.0))
+			var q1 = positionC.lerp(FFTargetPos.global_position, min(FF_t, 1.0))
+			$FFTarget.global_position = q0.lerp(q1, min(FF_t, 1.0))
+			if $FFTarget.global_position.distance_squared_to(FFTargetPos.global_position) < 10:
+				FF_t = 0;
+				shouldMoveFF = false;
+		elif !grounded:
+			$FFTarget.global_position = FFTargetPos.global_position
+		if shouldMoveBF:
+			BF_t += delta/BF_duration;
+			var positionC = (BFTargetPos.global_position + BF_originalPos)/2 + Vector2(0, -10)
+			var q0 = BF_originalPos.lerp(positionC, min(BF_t, 1.0))
+			var q1 = positionC.lerp(BFTargetPos.global_position, min(BF_t, 1.0))
+			$BFTarget.global_position = q0.lerp(q1, min(BF_t, 1.0))
+			if $BFTarget.global_position.distance_squared_to(BFTargetPos.global_position) < 10:
+				BF_t = 0;
+				shouldMoveBF = false;
+		elif !grounded:
+			$BFTarget.global_position = BFTargetPos.global_position
+		
 		if !inhibitFH:
 			$FHTarget.global_position = hip.global_position + Vector2(5, 5)
 		if !inhibitBH:
@@ -95,4 +162,9 @@ func _physics_process(delta: float) -> void:
 			elif player.currentDirection > 0:
 				_IK_Bones_Set_Flipped(false)
 		lastDirection = player.currentDirection
+		last_grounded = grounded
+		# NOTE: many of the position setting makes the player's limbs kinda
+		# lag behind. Now i got this accidentally, but personally I like it
+		# as it makes the movements feel a bit more organic,
+		# so it is intended :P
 	pass

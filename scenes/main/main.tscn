@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://qtfciyfj33pt"]
+[gd_scene load_steps=32 format=4 uid="uid://qtfciyfj33pt"]
 
 [ext_resource type="Material" uid="uid://hkdd85186e42" path="res://shaders/SmoothPixel.tres" id="1_a8run"]
 [ext_resource type="Texture2D" uid="uid://b8aysoeqef1f1" path="res://icon.svg" id="2_ouso4"]
@@ -16,6 +16,9 @@
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_blune"]
 size = Vector2(20, 20)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_th5th"]
+size = Vector2(10, 10)
 
 [sub_resource type="Resource" id="Resource_j3ovn"]
 script = ExtResource("4_ouso4")
@@ -1681,6 +1684,7 @@ position = Vector2(-4, -5)
 script = ExtResource("3_th5th")
 player = NodePath("../Player")
 animationPlayer = NodePath("../Player/targetPositions/Animation")
+maxFootDistanceFromTarget = 5
 
 [node name="LookAt" type="Marker2D" parent="PlayerIKAnimator"]
 position = Vector2(69, -19)
@@ -1690,13 +1694,16 @@ texture = SubResource("PlaceholderTexture2D_blune")
 
 [node name="BFTarget" type="Marker2D" parent="PlayerIKAnimator"]
 
+[node name="Sprite2D" type="Sprite2D" parent="PlayerIKAnimator/BFTarget"]
+texture = SubResource("PlaceholderTexture2D_th5th")
+
 [node name="FFTarget" type="Marker2D" parent="PlayerIKAnimator"]
 
 [node name="BHTarget" type="Marker2D" parent="PlayerIKAnimator"]
 position = Vector2(-5.425, -69.365)
 
 [node name="FHTarget" type="Marker2D" parent="PlayerIKAnimator"]
-position = Vector2(-5, -69.365)
+position = Vector2(0, -31)
 
 [node name="Sprite2D2" type="Sprite2D" parent="PlayerIKAnimator/FHTarget"]
 texture = SubResource("PlaceholderTexture2D_blune")
@@ -1724,8 +1731,14 @@ suppressPixelAlignment = true
 [node name="FFTarget_pos" type="Marker2D" parent="Player/targetPositions"]
 position = Vector2(9, 26)
 
+[node name="Sprite2D" type="Sprite2D" parent="Player/targetPositions/FFTarget_pos"]
+texture = SubResource("PlaceholderTexture2D_th5th")
+
 [node name="BFTarget_pos" type="Marker2D" parent="Player/targetPositions"]
 position = Vector2(-16, 22)
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/targetPositions/BFTarget_pos"]
+texture = SubResource("PlaceholderTexture2D_th5th")
 
 [node name="BHTarget_pos" type="Marker2D" parent="Player/targetPositions"]
 position = Vector2(-3.835, 10)
