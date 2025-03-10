@@ -14,11 +14,11 @@
 [ext_resource type="Texture2D" uid="uid://bb0m10tlay88m" path="res://scenes/main/assets/world_tileset.png" id="9_ou6is"]
 [ext_resource type="PackedScene" uid="uid://dn52wlkh2g1wy" path="res://scenes/killzone/killzone.tscn" id="10_necax"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_blune"]
-size = Vector2(20, 20)
-
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_th5th"]
 size = Vector2(10, 10)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_blune"]
+size = Vector2(20, 20)
 
 [sub_resource type="Resource" id="Resource_j3ovn"]
 script = ExtResource("4_ouso4")
@@ -47,7 +47,7 @@ metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
 [sub_resource type="Resource" id="Resource_th5th"]
 script = ExtResource("4_ouso4")
 targetModificationName = "HeadLook"
-targetNodePath = NodePath("../PlayerIKAnimator/LookAt")
+targetNodePath = NodePath("targetPositions/LookAt")
 metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qtmoe"]
@@ -1686,12 +1686,6 @@ player = NodePath("../Player")
 animationPlayer = NodePath("../Player/targetPositions/Animation")
 maxFootDistanceFromTarget = 5
 
-[node name="LookAt" type="Marker2D" parent="PlayerIKAnimator"]
-position = Vector2(69, -19)
-
-[node name="Sprite2D" type="Sprite2D" parent="PlayerIKAnimator/LookAt"]
-texture = SubResource("PlaceholderTexture2D_blune")
-
 [node name="BFTarget" type="Marker2D" parent="PlayerIKAnimator"]
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerIKAnimator/BFTarget"]
@@ -1762,6 +1756,12 @@ metadata/_custom_type_script = "uid://eji52ig0w3g5"
 libraries = {
 &"": SubResource("AnimationLibrary_gx6sm")
 }
+
+[node name="LookAt" type="Marker2D" parent="Player/targetPositions"]
+position = Vector2(85, -14)
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/targetPositions/LookAt"]
+texture = SubResource("PlaceholderTexture2D_blune")
 
 [node name="Interface" parent="." instance=ExtResource("6_raeie")]
 
