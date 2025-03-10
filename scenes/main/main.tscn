@@ -1795,6 +1795,8 @@ collision_enabled = false
 
 [node name="Killzone2" parent="." instance=ExtResource("10_necax")]
 position = Vector2(0, 190)
+collision_layer = 7
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone2"]
 shape = SubResource("WorldBoundaryShape2D_kfodh")
