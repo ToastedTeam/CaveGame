@@ -1685,6 +1685,7 @@ script = ExtResource("3_th5th")
 player = NodePath("../Player")
 animationPlayer = NodePath("../Player/targetPositions/Animation")
 maxFootDistanceFromTarget = 5
+ArmRestOffset = Vector2(0.235, 6.165)
 
 [node name="BFTarget" type="Marker2D" parent="PlayerIKAnimator"]
 
@@ -1694,12 +1695,13 @@ texture = SubResource("PlaceholderTexture2D_th5th")
 [node name="FFTarget" type="Marker2D" parent="PlayerIKAnimator"]
 
 [node name="BHTarget" type="Marker2D" parent="PlayerIKAnimator"]
-position = Vector2(-5.425, -69.365)
+position = Vector2(29, -58)
 
 [node name="FHTarget" type="Marker2D" parent="PlayerIKAnimator"]
 position = Vector2(0, -31)
 
 [node name="Sprite2D2" type="Sprite2D" parent="PlayerIKAnimator/FHTarget"]
+visible = false
 texture = SubResource("PlaceholderTexture2D_blune")
 
 [node name="Player" parent="." node_paths=PackedStringArray("health_bar", "mana_bar", "IkAnimator") instance=ExtResource("3_blune")]
@@ -1721,6 +1723,7 @@ script = ExtResource("5_7smn1")
 suppressPixelAlignment = true
 
 [node name="targetPositions" type="Node2D" parent="Player"]
+visible = false
 
 [node name="FFTarget_pos" type="Marker2D" parent="Player/targetPositions"]
 position = Vector2(9, 26)
