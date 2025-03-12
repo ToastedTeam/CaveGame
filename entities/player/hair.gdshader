@@ -9,6 +9,7 @@ uniform vec4 color : source_color;
 
 void vertex() {
 
+	
 	// Called for every vertex the material is visible on.
 }
 
@@ -47,7 +48,6 @@ void fragment() {
 				test = finalDistance/fRadius;
 				finalDirection = (UV-transformed)/fRadius;
 				//directions[numDirections++] = (UV-transformed)/fRadius;
-
 			}
 		}
 	}
@@ -71,7 +71,6 @@ void fragment() {
 		COLOR = vec4(0.0);
 	}
 		//COLOR = vec4(UV, 0.0, 1.0);
-
 	// Called for every pixel the material is visible on.
 }
 
