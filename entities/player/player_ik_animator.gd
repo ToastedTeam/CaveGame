@@ -13,6 +13,9 @@ extends Node2D
 @export var inhibitFF: bool;
 @export var inhibitBF: bool;
 
+@export_category("IK Parameters")
+@export var ArmRestOffset: Vector2 = Vector2(0, 5);
+
 var hip: Bone2D;
 var hand: RemoteTransform2DExtended;
 var lastDirection = 1;
@@ -21,6 +24,9 @@ var FFTargetPos: Node2D;
 var BFTargetPos: Node2D;
 var FHTargetPos: Node2D;
 var BHTargetPos: Node2D;
+
+var collarBone: Bone2D;
+var collarOffsetBone: Bone2D;
 
 var default_states = {}
 func Attack_Melee() -> void:
@@ -44,9 +50,11 @@ func _IK_Bones_Set_Flipped(flipped: bool) -> void:
 			elif modification is SkeletonModification2DLookAt:
 				var flip: Node2D = skeleton.get_bone(modification.bone_index).get_node("flipHandler")
 				flip.scale = Vector2.ONE * -1 if flipped else Vector2.ONE
-				pass
+				#pass
 		_Flip_All_Sprites(flipped)
 		hand.rotation_degrees = default_states["hand_rot"] + (-1 if flipped else 1)
+		collarBone.rotation = PI if flipped else 0
+		collarOffsetBone.rotation = PI if flipped else 0
 		# WHAT THE HELL IS GOING ON
 		animationPlayer.get_parent().scale.x = -1 if flipped else 1
 	pass
@@ -71,15 +79,18 @@ func _ready() -> void:
 	BFTargetPos = animParent.find_child("BFTarget_pos")
 	FHTargetPos = animParent.find_child("FHTarget_pos")
 	BHTargetPos = animParent.find_child("BHTarget_pos")
+	hip = player.get_node("Skeleton/hip")
+	collarBone = hip.find_child("collar", true, false);
+	collarOffsetBone = collarBone.find_child("offset", true, false);
 	pass
 
 func _Flip_All_Sprites(flipped: bool, base: Node2D = player.get_node("sprites")) -> void:
 	for sprite: Node2D in base.get_children(true):
-		if sprite == null:
+		if sprite == null or sprite.is_in_group("noFlip"):
 			continue;
 		sprite.scale.x = -1 if flipped else 1;
 	pass
-
+	
 var shouldMoveFF = false;
 var FF_t = 0.0
 var FF_duration = 0.2;
@@ -107,8 +118,8 @@ func _physics_process(delta: float) -> void:
 			query.collision_mask = 0b00000000_00000000_00000000_00000001;
 			var result = space_state.intersect_ray(query)
 			if result: # If there's ground below, we set it to the ground
-				FFTargetPos.global_position = result.position + Vector2(player.currentDirection*10, 0);
-				BFTargetPos.global_position = result.position + Vector2(player.currentDirection*10, 0);
+				FFTargetPos.global_position = result.position + Vector2(player.currentDirection*10, 5);
+				BFTargetPos.global_position = result.position + Vector2(player.currentDirection*10, 5);
 		else: # Otherwise, we make the player curl up a little bit
 			FFTargetPos.global_position = hip.global_position + Vector2(0, 20);
 			BFTargetPos.global_position = hip.global_position + Vector2(0, 20);
@@ -153,9 +164,9 @@ func _physics_process(delta: float) -> void:
 			$BFTarget.global_position = BFTargetPos.global_position
 		
 		if !inhibitFH:
-			$FHTarget.global_position = hip.global_position + Vector2(5, 5)
+			$FHTarget.global_position = hip.global_position + ArmRestOffset
 		if !inhibitBH:
-			$BHTarget.global_position = hip.global_position + Vector2(-2, 5)
+			$BHTarget.global_position = hip.global_position + Vector2(-2, 0) + ArmRestOffset
 		if lastDirection != player.currentDirection:
 			if player.currentDirection < 0:
 				_IK_Bones_Set_Flipped(true)

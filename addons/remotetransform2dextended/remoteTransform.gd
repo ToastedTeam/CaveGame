@@ -15,5 +15,5 @@ func _process(delta: float) -> void:
 		if Rotation:
 			node.global_rotation = lerp(node.global_rotation, global_rotation, Smoothing);
 		if Scale:
-			node.global_scale = node.global_scale.lerp(global_scale, Smoothing)
+			node.scale = node.scale.lerp(scale, Smoothing)
 	pass
