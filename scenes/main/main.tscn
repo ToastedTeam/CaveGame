@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://qtfciyfj33pt"]
+[gd_scene load_steps=43 format=4 uid="uid://qtfciyfj33pt"]
 
 [ext_resource type="Material" uid="uid://hkdd85186e42" path="res://shaders/SmoothPixel.tres" id="1_a8run"]
 [ext_resource type="Texture2D" uid="uid://b8aysoeqef1f1" path="res://icon.svg" id="2_ouso4"]
@@ -20,7 +20,7 @@ resource_name = "Forearm R"
 script = ExtResource("4_raeie")
 NodeToFlip = "Forearm_R"
 OriginalPosition = 0
-FlippedPosition = 11
+FlippedPosition = -2
 changeModulation = true
 normalModulation = Color(0.788235, 0.788235, 0.788235, 1)
 flippedModulation = Color(1, 1, 1, 1)
@@ -31,7 +31,7 @@ resource_name = "Shoulder R"
 script = ExtResource("4_raeie")
 NodeToFlip = "Shoulder_R"
 OriginalPosition = 1
-FlippedPosition = 12
+FlippedPosition = -1
 changeModulation = true
 normalModulation = Color(0.788235, 0.788235, 0.788235, 1)
 flippedModulation = Color(1, 1, 1, 1)
@@ -63,7 +63,7 @@ metadata/_custom_type_script = "uid://dfl57bvdn0c7l"
 resource_name = "Held Weapon"
 script = ExtResource("4_raeie")
 NodeToFlip = "FlipHandler"
-OriginalPosition = 10
+OriginalPosition = -3
 FlippedPosition = 2
 changeModulation = false
 normalModulation = Color(1, 1, 1, 1)
@@ -110,6 +110,17 @@ NodeToFlip = "Thigh_F"
 OriginalPosition = 5
 FlippedPosition = 3
 changeModulation = true
+normalModulation = Color(1, 1, 1, 1)
+flippedModulation = Color(0.788235, 0.788235, 0.788235, 1)
+metadata/_custom_type_script = "uid://dfl57bvdn0c7l"
+
+[sub_resource type="Resource" id="Resource_p8abn"]
+resource_name = "Star"
+script = ExtResource("4_raeie")
+NodeToFlip = "Star"
+OriginalPosition = -4
+FlippedPosition = 0
+changeModulation = false
 normalModulation = Color(1, 1, 1, 1)
 flippedModulation = Color(0.788235, 0.788235, 0.788235, 1)
 metadata/_custom_type_script = "uid://dfl57bvdn0c7l"
@@ -1780,12 +1791,13 @@ scale = Vector2(1, 0.993091)
 texture = ExtResource("2_ouso4")
 
 [node name="PlayerIKAnimator" type="Node2D" parent="." node_paths=PackedStringArray("player", "animationPlayer")]
+visible = false
 position = Vector2(-4, -5)
 script = ExtResource("3_th5th")
 player = NodePath("../Player")
 animationPlayer = NodePath("../Player/targetPositions/Animation")
 maxFootDistanceFromTarget = 5
-FlipRules = Array[ExtResource("4_raeie")]([SubResource("Resource_hxu8e"), SubResource("Resource_raeie"), SubResource("Resource_7smn1"), SubResource("Resource_nvumn"), SubResource("Resource_ou6is"), SubResource("Resource_necax"), SubResource("Resource_r4lks"), SubResource("Resource_pg34l"), SubResource("Resource_m4h2d")])
+FlipRules = Array[ExtResource("4_raeie")]([SubResource("Resource_hxu8e"), SubResource("Resource_raeie"), SubResource("Resource_7smn1"), SubResource("Resource_nvumn"), SubResource("Resource_ou6is"), SubResource("Resource_necax"), SubResource("Resource_r4lks"), SubResource("Resource_pg34l"), SubResource("Resource_m4h2d"), SubResource("Resource_p8abn")])
 ArmRestOffset = Vector2(0.235, 6.05)
 FArmRest = Vector2(0.2, 0)
 BArmRest = Vector2(-4.805, 0.62)
@@ -1872,7 +1884,7 @@ texture = SubResource("PlaceholderTexture2D_blune")
 [node name="Interface" parent="." instance=ExtResource("6_raeie")]
 
 [node name="TargetDummy" parent="." instance=ExtResource("7_hxu8e")]
-position = Vector2(-59, -27)
+position = Vector2(-33, -5)
 maxInvincibilityFrames = 30
 
 [node name="Layer0" type="TileMapLayer" parent="."]

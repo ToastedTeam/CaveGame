@@ -58,7 +58,7 @@ func _IK_Bones_Set_Flipped(flipped: bool) -> void:
 		_Flip_All_Sprites(flipped)
 		hand.rotation_degrees = default_states["hand_rot"] + (-1 if flipped else 1)
 		collarBone.rotation = PI if flipped else 0
-		#collarOffsetBone.rotation = PI if flipped else 0
+		collarOffsetBone.rotation = PI if flipped else 0
 		# WHAT THE HELL IS GOING ON
 		animationPlayer.get_parent().scale.x = -1 if flipped else 1
 		

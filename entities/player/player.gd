@@ -162,20 +162,20 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 		
 #	Player animations
-	if is_on_floor():
-		if direction:
-			player_sprite.play("run")
-		else:
-			player_sprite.play("idle")
-	else:
-		player_sprite.play("jump")
+	#if is_on_floor():
+		#if direction:
+			#player_sprite.play("run")
+		#else:
+			#player_sprite.play("idle")
+	#else:
+		#player_sprite.play("jump")
 	
 	currentDirection = direction
-	if direction < 0:
-		player_sprite.flip_h = true
+	#if direction < 0:
+		#player_sprite.flip_h = true
 		#$FlipHandler.scale.x = -1
-	elif direction > 0:
-		player_sprite.flip_h = false
+	#elif direction > 0:
+		#player_sprite.flip_h = false
 		#$FlipHandler.scale.x = 1
 		
 	if Input.is_action_just_pressed("player_attack") and canAttack:

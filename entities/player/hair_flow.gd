@@ -2,7 +2,7 @@
 extends Node2D
 
 var prop: PackedVector2Array;
-var nodes: Array;
+var nodes: Array[Node2D];
 var lastS: PackedVector2Array;
 var lastE: PackedVector2Array;
 var lastGlobalPos: Vector2;
@@ -16,6 +16,7 @@ var shouldSave: bool = false;
 @export var iterations: int;
 
 var frameCount = 0;
+var frameLimit = 5;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -66,8 +67,10 @@ func verlet(points: PackedVector2Array, idx: int, timeStep: float) -> void:
 	
 	var a_x = acc[idx];
 	var diff = Vector2.ZERO #x - oldx;
-	var anotherdiff = global_position - lastGlobalPos
-	x += diff + a_x*timeStep*timeStep;
+	var xDiff = -abs(global_position.x - lastGlobalPos.x) #-abs(points[0].x - points[pointCount-1].x)/10
+	var yDiff = global_position.y - lastGlobalPos.y
+	var final = Vector2(yDiff, xDiff)
+	x += diff + a_x*timeStep*timeStep + (Vector2(2, 5) * final/2 if hairPoint == idx else Vector2.ZERO);
 	points[idx] = x;
 	#print(anotherdiff)
 	#print(nodes[pointCount-1].global_position.y - global_position.y)
@@ -110,6 +113,7 @@ func copyLast() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	frameCount += 1;
+	#print(hairPoint)
 	if shouldSave:
 		lastS = prop.duplicate();
 	shouldSave = !shouldSave;
@@ -132,14 +136,19 @@ func _physics_process(delta: float) -> void:
 	#queue_redraw()
 	lastGlobalPos = global_position;
 	#lastGlobalPos = nodes[pointCount-1].global_position
-	if frameCount > 5:
-		yImpact = clamp(randf_range(yImpact-maxDiff,yImpact+maxDiff), min, max)
+	if frameCount > frameLimit:
+		#yImpact = clamp(randf_range(yImpact-maxDiff,yImpact+maxDiff), min, max)
+		#yImpact = randf_range(min, max)
+		#print(yImpact)
+		hairPoint = randi_range(1, pointCount)
 		frameCount = 0
 	pass
-var max = 0.5
-var min = 0
-var maxDiff = 0.5
-var yImpact = 0
+
+var hairPoint = 0;
+var max = 10
+var min = -10
+var maxDiff = 10
+var yImpact = 5
 
 func _draw():
 	pass
