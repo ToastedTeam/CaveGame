@@ -6,6 +6,7 @@ extends Node2D
 @export var animationPlayer: AnimationPlayer;
 
 @export var maxFootDistanceFromTarget = 100;
+@export var FlipRules: Array[FlipRule];
 
 @export_category("IK Inhibitors")
 @export var inhibitFH: bool;
@@ -15,6 +16,9 @@ extends Node2D
 
 @export_category("IK Parameters")
 @export var ArmRestOffset: Vector2 = Vector2(0, 5);
+@export var FArmRest: Vector2 = Vector2(0, 0);
+@export var BArmRest: Vector2 = Vector2(0, 0);
+
 
 var hip: Bone2D;
 var hand: RemoteTransform2DExtended;
@@ -54,9 +58,19 @@ func _IK_Bones_Set_Flipped(flipped: bool) -> void:
 		_Flip_All_Sprites(flipped)
 		hand.rotation_degrees = default_states["hand_rot"] + (-1 if flipped else 1)
 		collarBone.rotation = PI if flipped else 0
-		collarOffsetBone.rotation = PI if flipped else 0
+		#collarOffsetBone.rotation = PI if flipped else 0
 		# WHAT THE HELL IS GOING ON
 		animationPlayer.get_parent().scale.x = -1 if flipped else 1
+		
+		var sprites = player.get_node("sprites")
+		for rule in FlipRules:
+			var targetNode: Node2D = sprites.get_node(rule.NodeToFlip)
+			sprites.move_child(targetNode, rule.FlippedPosition if flipped else rule.OriginalPosition)
+			if rule.changeModulation:
+				print("old modulation: ", targetNode.modulate)
+				targetNode.modulate = rule.flippedModulation if flipped else rule.normalModulation
+				print("new modulation: ", targetNode.modulate)
+			
 	pass
 
 func _Get_Player_Params() -> void:
@@ -164,9 +178,9 @@ func _physics_process(delta: float) -> void:
 			$BFTarget.global_position = BFTargetPos.global_position
 		
 		if !inhibitFH:
-			$FHTarget.global_position = hip.global_position + ArmRestOffset
+			$FHTarget.global_position = hip.global_position + ArmRestOffset + FArmRest
 		if !inhibitBH:
-			$BHTarget.global_position = hip.global_position + Vector2(-2, 0) + ArmRestOffset
+			$BHTarget.global_position = hip.global_position + BArmRest + ArmRestOffset
 		if lastDirection != player.currentDirection:
 			if player.currentDirection < 0:
 				_IK_Bones_Set_Flipped(true)
