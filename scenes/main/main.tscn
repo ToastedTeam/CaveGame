@@ -291,7 +291,7 @@ tracks/10/path = NodePath("../sprites/FlipHandler/Weapon/DamageBox:monitoring")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0, 0.59),
+"times": PackedFloat32Array(0.003, 0.59),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -1791,7 +1791,6 @@ scale = Vector2(1, 0.993091)
 texture = ExtResource("2_ouso4")
 
 [node name="PlayerIKAnimator" type="Node2D" parent="." node_paths=PackedStringArray("player", "animationPlayer")]
-visible = false
 position = Vector2(-4, -5)
 script = ExtResource("3_th5th")
 player = NodePath("../Player")
@@ -1815,7 +1814,7 @@ position = Vector2(9, -5)
 texture = SubResource("PlaceholderTexture2D_th5th")
 
 [node name="BHTarget" type="Marker2D" parent="PlayerIKAnimator"]
-position = Vector2(-5.425, -69.365)
+position = Vector2(68, -3)
 
 [node name="Sprite2D2" type="Sprite2D" parent="PlayerIKAnimator/BHTarget"]
 texture = SubResource("PlaceholderTexture2D_blune")
@@ -1828,6 +1827,7 @@ texture = SubResource("PlaceholderTexture2D_blune")
 
 [node name="Player" parent="." node_paths=PackedStringArray("health_bar", "mana_bar", "IkAnimator") instance=ExtResource("3_blune")]
 position = Vector2(-4, -36)
+dash_dist = 120
 health_bar = NodePath("../Interface/Interface2/VBoxContainer/HealthBar/HealthBar")
 mana_bar = NodePath("../Interface/Interface2/VBoxContainer/ManaBar/ManaBar")
 ik_overrides = Array[ExtResource("4_ouso4")]([SubResource("Resource_j3ovn"), SubResource("Resource_afbqv"), SubResource("Resource_gx6sm"), SubResource("Resource_yqrof"), SubResource("Resource_th5th")])
@@ -1873,7 +1873,7 @@ Smoothing = 0.5
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="BHTarget_pos" type="Marker2D" parent="Player/targetPositions"]
-position = Vector2(-5.425, -38.365)
+position = Vector2(68, 28)
 
 [node name="Synchroniser" type="Node2D" parent="Player/targetPositions/BHTarget_pos" node_paths=PackedStringArray("node")]
 script = ExtResource("4_7smn1")
