@@ -22,7 +22,7 @@ vec2 transformPoint(vec2 TL, vec2 point) {
 
 // first point is always at the center
 void fragment() {
-	vec2 tl = vec2(points[0].x - size.x/2., points[0].y - size.y/2.);
+	vec2 tl = vec2(points[1].x - size.x/2., points[1].y - size.y/2.);
 	//vec2 br = vec2(test[0].x + size.x/2., test[0].y + size.y/2.);
 	bool found = false;
 	float fRadius = pointRadius/size.x;
@@ -33,7 +33,7 @@ void fragment() {
 	float finalDistance = 0.;
 	vec2 finalDirection;
 
-	for(int i = 0; i < numPoints; i++){
+	for(int i = 1; i < numPoints; i++){
 		float mult = float(scale);
 		vec2 reduced = vec2(round(UV.x*mult)/mult, round(UV.y*mult)/mult);
 		vec2 transformed = transformPoint(tl, points[i]);
