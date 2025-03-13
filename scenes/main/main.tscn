@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://hkdd85186e42" path="res://shaders/SmoothPixel.tres" id="1_a8run"]
 [ext_resource type="Texture2D" uid="uid://b8aysoeqef1f1" path="res://icon.svg" id="2_ouso4"]
-[ext_resource type="PackedScene" uid="uid://d1apqvb47ik6v" path="res://entities/player/player.tscn" id="3_blune"]
+[ext_resource type="PackedScene" uid="uid://8j1kl15f7ryq" path="res://entities/player/player.tscn" id="3_blune"]
 [ext_resource type="Script" uid="uid://bhda60gy1q5tc" path="res://entities/player/player_ik_animator.gd" id="3_th5th"]
 [ext_resource type="Script" uid="uid://eji52ig0w3g5" path="res://addons/remotetransform2dextended/remoteTransform.gd" id="4_7smn1"]
 [ext_resource type="Script" uid="uid://b7h0h8wdhf0ws" path="res://entities/player/resources/IKTargetResource.gd" id="4_ouso4"]
