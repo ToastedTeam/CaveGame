@@ -150,7 +150,7 @@ func _Flip_All_Sprites(flipped: bool, base: Node2D = player.get_node("sprites"))
 
 func _process(delta: float) -> void:
 	if state != AnimState.Dashing:
-		if player.currentDirection != 0:
+		if player.currentDirection != 0 and !player.hitWall:
 			setAnimState(AnimState.Walking)
 		else:
 			setAnimState(AnimState.Idle)
@@ -159,7 +159,7 @@ func _process(delta: float) -> void:
 # Returns hip.global_position if there's no result 
 func getGroundPosition() -> Vector2:
 	var space_state = get_world_2d().direct_space_state
-	var query = PhysicsRayQueryParameters2D.create(hip.global_position, hip.global_position + Vector2(0, 35))
+	var query = PhysicsRayQueryParameters2D.create(hip.global_position, hip.global_position + Vector2(0, 50))
 	query.collision_mask = 0b00000000_00000000_00000000_00000001;
 	var result = space_state.intersect_ray(query)
 	if result:
@@ -176,6 +176,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		var grounded = player.is_on_floor()
 		var just_grounded = grounded and !last_grounded;
+		if just_grounded:
+			setAnimState(AnimState.Idle)
 		# Find where to put player's feet
 		if state != AnimState.Dashing:
 			if !grounded: # Curl up player's legs if they're in the air
@@ -183,6 +185,9 @@ func _physics_process(delta: float) -> void:
 				(BFTargetPos.get_node("Synchroniser") as RemoteTransform2DExtended).Position = true;
 				FFTargetPos.global_position = hip.global_position + Vector2(0, 20);
 				BFTargetPos.global_position = hip.global_position + Vector2(0, 20);
+				currentWalk = WalkState.None
+				currentWalkChanged = true
+				
 			else:
 				match state:
 					AnimState.Idle:
@@ -192,8 +197,8 @@ func _physics_process(delta: float) -> void:
 						setAnimState(AnimState.Idle)
 						var ground = getGroundPosition()
 						if ground != hip.global_position:
-							FFTargetPos.global_position = ground + Vector2(player.currentDirection*10, 5);
-							BFTargetPos.global_position = ground + Vector2(player.currentDirection*10, 5);
+							FFTargetPos.global_position = ground + Vector2(0, 5);
+							BFTargetPos.global_position = ground + Vector2(0, 5);
 						pass
 					AnimState.Walking:
 						#Engine.time_scale = 0.1
@@ -304,10 +309,12 @@ func _physics_process(delta: float) -> void:
 		
 		# Arm rest inhibition
 		if !inhibitFH:
-			$FHTarget.global_position = hip.global_position + ArmRestOffset + FArmRest
+			FHTargetPos.global_position = hip.global_position + ArmRestOffset + FArmRest
 		if !inhibitBH:
-			$BHTarget.global_position = hip.global_position + BArmRest + ArmRestOffset
-			
+			BHTargetPos.global_position = hip.global_position + BArmRest + ArmRestOffset
+		
+		
+		
 		if lastDirection != player.currentDirection:
 			if player.currentDirection < 0:
 				_IK_Bones_Set_Flipped(true)
