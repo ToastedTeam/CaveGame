@@ -35,6 +35,7 @@ enum dash {
 @export var IkAnimator: IKPlayerAnimator;
 
 var currentDirection = 1;
+var facing = 1;
 #@export var headTarget: IKTargetResource
 #@export var headTarget: Node2D
 #@export var headTargetResourceName: String
@@ -126,7 +127,7 @@ func _physics_process(delta: float) -> void:
 		current_hp -= 5
 		current_mana -= 5
 		print("Current hp: ", current_hp, "; Current mana: ", current_mana)
-
+		
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("player_move_left", "player_move_right")
 	

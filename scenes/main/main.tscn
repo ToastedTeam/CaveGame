@@ -1791,7 +1791,6 @@ scale = Vector2(1, 0.993091)
 texture = ExtResource("2_ouso4")
 
 [node name="PlayerIKAnimator" type="Node2D" parent="." node_paths=PackedStringArray("player", "animationPlayer")]
-visible = false
 position = Vector2(-4, -5)
 script = ExtResource("3_th5th")
 player = NodePath("../Player")
@@ -1808,15 +1807,21 @@ BArmRest = Vector2(-4.805, 0.62)
 texture = SubResource("PlaceholderTexture2D_th5th")
 
 [node name="FFTarget" type="Marker2D" parent="PlayerIKAnimator"]
+z_index = 500
+position = Vector2(9, -5)
+
+[node name="Sprite2D2" type="Sprite2D" parent="PlayerIKAnimator/FFTarget"]
+texture = SubResource("PlaceholderTexture2D_th5th")
 
 [node name="BHTarget" type="Marker2D" parent="PlayerIKAnimator"]
+visible = false
 position = Vector2(29, -58)
 
 [node name="FHTarget" type="Marker2D" parent="PlayerIKAnimator"]
+visible = false
 position = Vector2(0, -31)
 
 [node name="Sprite2D2" type="Sprite2D" parent="PlayerIKAnimator/FHTarget"]
-visible = false
 texture = SubResource("PlaceholderTexture2D_blune")
 
 [node name="Player" parent="." node_paths=PackedStringArray("health_bar", "mana_bar", "IkAnimator") instance=ExtResource("3_blune")]
@@ -1838,19 +1843,33 @@ script = ExtResource("5_7smn1")
 suppressPixelAlignment = true
 
 [node name="targetPositions" type="Node2D" parent="Player"]
-visible = false
 
 [node name="FFTarget_pos" type="Marker2D" parent="Player/targetPositions"]
 position = Vector2(9, 26)
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/targetPositions/FFTarget_pos"]
+z_index = 40
 texture = SubResource("PlaceholderTexture2D_th5th")
 
+[node name="Synchroniser" type="Node2D" parent="Player/targetPositions/FFTarget_pos" node_paths=PackedStringArray("node")]
+script = ExtResource("4_7smn1")
+node = NodePath("../../../../PlayerIKAnimator/FFTarget")
+Smoothing = 0.5
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
 [node name="BFTarget_pos" type="Marker2D" parent="Player/targetPositions"]
+visible = false
 position = Vector2(-16, 22)
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/targetPositions/BFTarget_pos"]
+z_index = 60
 texture = SubResource("PlaceholderTexture2D_th5th")
+
+[node name="Synchroniser" type="Node2D" parent="Player/targetPositions/BFTarget_pos" node_paths=PackedStringArray("node")]
+script = ExtResource("4_7smn1")
+node = NodePath("../../../../PlayerIKAnimator/BFTarget")
+Smoothing = 0.5
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="BHTarget_pos" type="Marker2D" parent="Player/targetPositions"]
 position = Vector2(-3.835, 10)
