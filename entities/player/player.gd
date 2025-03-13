@@ -1,3 +1,5 @@
+@tool
+class_name PlayerCharacter
 extends CharacterBody2D
 
 # Defining Player constants
@@ -26,6 +28,30 @@ enum dash {
 	KEY_PRESSED = 1,
 	IS_DASHING = 2
 }
+
+@export_subgroup("IK target overrides", "ik_")
+@export var ik_overrides: Array[IKTargetResource]
+@export_tool_button("Apply overrides") var ik_overridesBtn = _setupIK.bind()
+@export var IkAnimator: IKPlayerAnimator;
+
+var currentDirection = 1;
+var facing = 1;
+var hitWall = false;
+
+#@export var headTarget: IKTargetResource
+#@export var headTarget: Node2D
+#@export var headTargetResourceName: String
+#@export_subgroup("Leg Targets", "leg_")
+#@export var leg_frontTarget: Node2D
+#@export var leg_frontTargetResourceName: String
+#@export var leg_backTarget: Node2D
+#@export var leg_backTargetResourceName: String
+#
+#@export_subgroup("Arm Targets", "arm_")
+#@export var arm_frontTarget: Node2D
+#@export var arm_frontTargetResourceName: String
+#@export var arm_backTarget: Node2D
+#@export var arm_backTargetResourceName: String
 
 # Variables
 var current_hp: int = max_hp:
@@ -67,8 +93,24 @@ var pre_dash_x: float = 0
 
 var canAttack: bool = true;
 
+func _setupIK() -> void:
+	var modificationStack: SkeletonModificationStack2D = $Skeleton.get_modification_stack()
+	for override in ik_overrides:
+		for idx in modificationStack.modification_count:
+			var modification = modificationStack.get_modification(idx)
+			if override.targetModificationName == modification.resource_name:
+				var target = get_node(override.targetNodePath)
+				#print(" - Old node: " + get_node(modification.target_nodepath).name)
+				#print(" - New path: " + str(target.name)
+				modification.target_nodepath = target.get_path()
+				Log.info("Found and applied override for " + override.targetModificationName)
+		pass
+	pass
+
 # Setting current 
 func _ready() -> void:	
+	if Engine.is_editor_hint():
+		return
 	health_bar.max_value = max_hp
 	mana_bar.max_value = max_mana
 	$DashCooldownBar.max_value = $DashCooldown.wait_time
@@ -76,16 +118,18 @@ func _ready() -> void:
 	
 	health_bar.value = current_hp
 	mana_bar.value = current_mana
-	
+	_setupIK()
 	print("player hp: ", current_hp, " player mana: ", current_mana, " player damage: ", damage)
 
 func _physics_process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
 	# DEBUG STUFF SO ITS EASY TO ACCESS
 	if Input.is_action_just_pressed("DEBUG_takeDamage"):
 		current_hp -= 5
 		current_mana -= 5
 		print("Current hp: ", current_hp, "; Current mana: ", current_mana)
-
+		
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("player_move_left", "player_move_right")
 	
@@ -96,7 +140,7 @@ func _physics_process(delta: float) -> void:
 			velocity.y = 0
 			
 			$DashParticles.restart()
-			
+			IkAnimator.setAnimState(IkAnimator.AnimState.Dashing)
 			if facing_right:
 				velocity.x = dash_speed
 			else:
@@ -110,17 +154,21 @@ func _physics_process(delta: float) -> void:
 						dash_state = dash.ON_COOLDOWN
 						$DashCooldown.start()
 						$DashCooldownBar.show()
+						IkAnimator.setAnimState(IkAnimator.AnimState.Idle)
 				else:
 					velocity.x = move_toward(velocity.x, 0, dash_speed)
 					if is_zero_approx(velocity.x):
 						dash_state = dash.ON_COOLDOWN
 						$DashCooldown.start()
 						$DashCooldownBar.show()
+						IkAnimator.setAnimState(IkAnimator.AnimState.Idle)
+						
 			
 			elif velocity.x == 0:
 				dash_state = dash.ON_COOLDOWN
 				$DashCooldown.start()
 				$DashCooldownBar.show()
+				IkAnimator.setAnimState(IkAnimator.AnimState.Idle)
 				
 		_:
 			# Dashing
@@ -154,23 +202,27 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 		
 #	Player animations
-	if is_on_floor():
-		if direction:
-			player_sprite.play("run")
-		else:
-			player_sprite.play("idle")
-	else:
-		player_sprite.play("jump")
+	#if is_on_floor():
+		#if direction:
+			#player_sprite.play("run")
+		#else:
+			#player_sprite.play("idle")
+	#else:
+		#player_sprite.play("jump")
 	
-	if facing_right:
-		player_sprite.flip_h = false
-		$FlipHandler.scale.x = 1
-	else:
-		player_sprite.flip_h = true
-		$FlipHandler.scale.x = -1
+	currentDirection = direction
+	#if direction < 0:
+		#player_sprite.flip_h = true
+		#$FlipHandler.scale.x = -1
+	#elif direction > 0:
+		#player_sprite.flip_h = false
+		#$FlipHandler.scale.x = 1
+		
+	hitWall = is_on_wall()
 		
 	if Input.is_action_just_pressed("player_attack") and canAttack:
-		$FlipHandler/Weapon/AnimationPlayer.play("player_attack")
+		#$FlipHandler/Weapon/AnimationPlayer.play("player_attack")
+		IkAnimator.Attack_Melee()
 		canAttack = false
 		$AttackCooldown.start()
 

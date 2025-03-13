@@ -1,177 +1,67 @@
-[gd_scene load_steps=31 format=3 uid="uid://8j1kl15f7ryq"]
+[gd_scene load_steps=61 format=3 uid="uid://c11ldn4yd0i8w"]
 
 [ext_resource type="Script" uid="uid://7dppspqb023v" path="res://entities/player/player.gd" id="1_plpc0"]
-[ext_resource type="Texture2D" uid="uid://crrknnqcxgkk3" path="res://entities/player/assets/knight.png" id="1_pmcpt"]
-[ext_resource type="Material" uid="uid://hkdd85186e42" path="res://shaders/SmoothPixel.tres" id="2_asdqb"]
+[ext_resource type="Script" uid="uid://b7h0h8wdhf0ws" path="res://entities/player/resources/IKTargetResource.gd" id="2_a1qjk"]
 [ext_resource type="PackedScene" uid="uid://dv1lodecs50bs" path="res://entities/weapon/weapon.tscn" id="4_5ek75"]
+[ext_resource type="Script" uid="uid://eji52ig0w3g5" path="res://addons/remotetransform2dextended/remoteTransform.gd" id="7_j3ovn"]
+[ext_resource type="Texture2D" uid="uid://bqlsw70spd7yu" path="res://entities/player/assets/miku/arm/forearm.png" id="7_mtric"]
+[ext_resource type="Texture2D" uid="uid://c4xtyl64a5h48" path="res://entities/player/assets/miku/arm/forearm_normal.png" id="8_bwdx1"]
+[ext_resource type="Texture2D" uid="uid://c8fykc0bjlnjv" path="res://entities/player/assets/miku/arm/shoulder.png" id="8_eyb6c"]
+[ext_resource type="Texture2D" uid="uid://qe6mb860gsay" path="res://entities/player/assets/miku/leg2/thigh.png" id="9_221hk"]
+[ext_resource type="Texture2D" uid="uid://b58wsx6kru1o5" path="res://entities/player/assets/miku/leg2/calf.png" id="10_ghoj8"]
+[ext_resource type="Texture2D" uid="uid://bgddq2fjge45t" path="res://entities/player/assets/miku/arm/shoulder_normal.png" id="10_vewsg"]
+[ext_resource type="Texture2D" uid="uid://ce2sd1jvcmmob" path="res://entities/player/assets/miku/leg1/thigh.png" id="11_t1t22"]
+[ext_resource type="Texture2D" uid="uid://p7l6sjmoppj3" path="res://entities/player/assets/miku/leg2/calf_normal.png" id="12_2soq1"]
+[ext_resource type="Texture2D" uid="uid://bycbdsol47j34" path="res://entities/player/assets/miku/leg1/calf.png" id="12_50fht"]
+[ext_resource type="Texture2D" uid="uid://cl70vbj41tmep" path="res://entities/player/assets/miku/head/head.png" id="13_wuv6x"]
+[ext_resource type="Texture2D" uid="uid://cngvnt1uum4vc" path="res://entities/player/assets/miku/leg2/thigh_normal.png" id="14_8q4fm"]
+[ext_resource type="Texture2D" uid="uid://clml407bj0sj0" path="res://entities/player/assets/miku/head/eyes.png" id="14_qpopc"]
+[ext_resource type="Texture2D" uid="uid://7mcad2lbhm8e" path="res://entities/player/assets/miku/head/hair.png" id="15_wq0jh"]
+[ext_resource type="Texture2D" uid="uid://b8x6srayav8vn" path="res://entities/player/assets/miku/head/weird_bang_thing.png" id="16_gt4e4"]
+[ext_resource type="Texture2D" uid="uid://du236lnrim850" path="res://entities/player/assets/miku/leg1/calf_normal.png" id="16_np63p"]
+[ext_resource type="Texture2D" uid="uid://dg6atghom0fhg" path="res://entities/player/assets/miku/torso.png" id="17_24ehl"]
+[ext_resource type="Texture2D" uid="uid://be8tgb10rtsl2" path="res://entities/player/assets/miku/skirt.png" id="18_bwdx1"]
+[ext_resource type="Texture2D" uid="uid://bgaj0f7dp6sdi" path="res://entities/player/assets/miku/torso_jacket.png" id="19_vewsg"]
+[ext_resource type="Texture2D" uid="uid://bm6munwfhcl0d" path="res://entities/player/assets/miku/head/head_normal.png" id="21_0eo6o"]
+[ext_resource type="Script" uid="uid://cki8fllcntgui" path="res://entities/player/hair_flow.gd" id="21_221hk"]
+[ext_resource type="Shader" uid="uid://b3dtbkc71evh6" path="res://entities/player/hair.gdshader" id="22_ghoj8"]
+[ext_resource type="Texture2D" uid="uid://dt2l2yfrvpvan" path="res://entities/player/assets/miku/torso_normal.png" id="26_ttr27"]
+[ext_resource type="Texture2D" uid="uid://de37tk41yp4mb" path="res://entities/player/assets/miku/skirt_normal.png" id="28_13wue"]
+[ext_resource type="Texture2D" uid="uid://wrrekxjvg0vl" path="res://entities/player/assets/miku/torso_jacket_normal.png" id="30_wy7bt"]
+[ext_resource type="Texture2D" uid="uid://fwxqtdhk3jua" path="res://entities/player/assets/miku/lantern/star.png" id="31_np63p"]
+[ext_resource type="Texture2D" uid="uid://dvsm342nxn8t6" path="res://entities/player/assets/miku/lantern/glass.png" id="32_0eo6o"]
+[ext_resource type="Texture2D" uid="uid://cmrdtpty5fhk2" path="res://entities/player/assets/miku/lantern/puffy_thing.png" id="33_ttr27"]
+[ext_resource type="Texture2D" uid="uid://bxbcwehybwg8e" path="res://entities/player/assets/miku/lantern/puffy_thing_second_part.png" id="34_13wue"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s7par"]
-atlas = ExtResource("1_pmcpt")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="Resource" id="Resource_j3ovn"]
+script = ExtResource("2_a1qjk")
+targetModificationName = "BackArm"
+targetNodePath = NodePath("../PlayerIKAnimator/BHTarget")
+metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0moiw"]
-atlas = ExtResource("1_pmcpt")
-region = Rect2(32, 0, 32, 32)
+[sub_resource type="Resource" id="Resource_afbqv"]
+script = ExtResource("2_a1qjk")
+targetModificationName = "FrontArm"
+targetNodePath = NodePath("../PlayerIKAnimator/FHTarget")
+metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6qibl"]
-atlas = ExtResource("1_pmcpt")
-region = Rect2(64, 0, 32, 32)
+[sub_resource type="Resource" id="Resource_gx6sm"]
+script = ExtResource("2_a1qjk")
+targetModificationName = "BackLeg"
+targetNodePath = NodePath("../PlayerIKAnimator/BFTarget")
+metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3gqcy"]
-atlas = ExtResource("1_pmcpt")
-region = Rect2(96, 0, 32, 32)
+[sub_resource type="Resource" id="Resource_yqrof"]
+script = ExtResource("2_a1qjk")
+targetModificationName = "FrontLeg"
+targetNodePath = NodePath("../PlayerIKAnimator/FFTarget")
+metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_emvq3"]
-atlas = ExtResource("1_pmcpt")
-region = Rect2(64, 160, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f1hfr"]
-atlas = ExtResource("1_pmcpt")
-region = Rect2(0, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xlrjt"]
-atlas = ExtResource("1_pmcpt")
-region = Rect2(32, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b7t82"]
-atlas = ExtResource("1_pmcpt")
-region = Rect2(64, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_557so"]
-atlas = ExtResource("1_pmcpt")
-region = Rect2(96, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1onyl"]
-atlas = ExtResource("1_pmcpt")
-region = Rect2(128, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lnnst"]
-atlas = ExtResource("1_pmcpt")
-region = Rect2(160, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jp70f"]
-atlas = ExtResource("1_pmcpt")
-region = Rect2(192, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ud75l"]
-atlas = ExtResource("1_pmcpt")
-region = Rect2(224, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y4qt1"]
-atlas = ExtResource("1_pmcpt")
-region = Rect2(0, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_juopc"]
-atlas = ExtResource("1_pmcpt")
-region = Rect2(32, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_16ow8"]
-atlas = ExtResource("1_pmcpt")
-region = Rect2(64, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rb682"]
-atlas = ExtResource("1_pmcpt")
-region = Rect2(96, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0iq6q"]
-atlas = ExtResource("1_pmcpt")
-region = Rect2(128, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0rmc4"]
-atlas = ExtResource("1_pmcpt")
-region = Rect2(160, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bmdnn"]
-atlas = ExtResource("1_pmcpt")
-region = Rect2(192, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_071sl"]
-atlas = ExtResource("1_pmcpt")
-region = Rect2(224, 96, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_w8q44"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s7par")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0moiw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6qibl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3gqcy")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_emvq3")
-}],
-"loop": true,
-"name": &"jump",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f1hfr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xlrjt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b7t82")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_557so")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1onyl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lnnst")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jp70f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ud75l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_y4qt1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_juopc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_16ow8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rb682")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0iq6q")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0rmc4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bmdnn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_071sl")
-}],
-"loop": true,
-"name": &"run",
-"speed": 10.0
-}]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_4kdck"]
-radius = 5.0
+[sub_resource type="Resource" id="Resource_a1qjk"]
+script = ExtResource("2_a1qjk")
+targetModificationName = "HeadLook"
+targetNodePath = NodePath("Skeleton/lookTarget")
+metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nn8mg"]
 bg_color = Color(0.321728, 0.321728, 0.321728, 1)
@@ -191,8 +81,132 @@ initial_velocity_max = 10.0
 gravity = Vector3(0, 98, 0)
 color = Color(0.762404, 0.762404, 0.762404, 1)
 
+[sub_resource type="SkeletonModification2DLookAt" id="SkeletonModification2DLookAt_a1qjk"]
+resource_local_to_scene = true
+resource_name = "HeadLook"
+bone_index = 4
+bone2d_node = NodePath("hip/torso/collar/offset/head")
+target_nodepath = NodePath("/root/@EditorNode@21298/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11479/@VSplitContainer@11131/@HSplitContainer@11133/@HSplitContainer@11135/@Control@11136/@SubViewportContainer@11137/@SubViewport@11138/Player/Skeleton/lookTarget")
+editor/draw_gizmo = false
+
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_j3ovn"]
+resource_local_to_scene = true
+resource_name = "BackArm"
+target_nodepath = NodePath("BHTarget_pos")
+flip_bend_direction = true
+joint_one_bone_idx = 5
+joint_one_bone2d_node = NodePath("hip/torso/collar/offset/shoulder_r")
+joint_two_bone_idx = 6
+joint_two_bone2d_node = NodePath("hip/torso/collar/offset/shoulder_r/forearm_r")
+
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_afbqv"]
+resource_local_to_scene = true
+resource_name = "FrontArm"
+target_nodepath = NodePath("FHTarget_pos")
+flip_bend_direction = true
+joint_one_bone_idx = 7
+joint_one_bone2d_node = NodePath("hip/torso/collar/offset/shoulder_f")
+joint_two_bone_idx = 8
+joint_two_bone2d_node = NodePath("hip/torso/collar/offset/shoulder_f/forearm_f")
+
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_gx6sm"]
+resource_local_to_scene = true
+resource_name = "BackLeg"
+target_nodepath = NodePath("BFTarget_pos")
+joint_one_bone_idx = 9
+joint_one_bone2d_node = NodePath("hip/thigh_r")
+joint_two_bone_idx = 10
+joint_two_bone2d_node = NodePath("hip/thigh_r/calf_r")
+
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_yqrof"]
+resource_local_to_scene = true
+resource_name = "FrontLeg"
+target_nodepath = NodePath("FFTarget_pos")
+joint_one_bone_idx = 11
+joint_one_bone2d_node = NodePath("hip/thigh_f")
+joint_two_bone_idx = 12
+joint_two_bone2d_node = NodePath("hip/thigh_f/calf_f")
+
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_3wlsy"]
+resource_local_to_scene = true
+enabled = true
+modification_count = 5
+modifications/0 = SubResource("SkeletonModification2DLookAt_a1qjk")
+modifications/1 = SubResource("SkeletonModification2DTwoBoneIK_j3ovn")
+modifications/2 = SubResource("SkeletonModification2DTwoBoneIK_afbqv")
+modifications/3 = SubResource("SkeletonModification2DTwoBoneIK_gx6sm")
+modifications/4 = SubResource("SkeletonModification2DTwoBoneIK_yqrof")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_geky7"]
+diffuse_texture = ExtResource("7_mtric")
+normal_texture = ExtResource("8_bwdx1")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_qwspa"]
+diffuse_texture = ExtResource("8_eyb6c")
+normal_texture = ExtResource("10_vewsg")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_r633c"]
+diffuse_texture = ExtResource("10_ghoj8")
+normal_texture = ExtResource("12_2soq1")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_pacje"]
+diffuse_texture = ExtResource("9_221hk")
+normal_texture = ExtResource("14_8q4fm")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_2h0qb"]
+diffuse_texture = ExtResource("12_50fht")
+normal_texture = ExtResource("16_np63p")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_mmk7k"]
+diffuse_texture = ExtResource("11_t1t22")
+normal_texture = ExtResource("14_8q4fm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_221hk"]
+shader = ExtResource("22_ghoj8")
+shader_parameter/size = Vector2(200, 200)
+shader_parameter/pointRadius = 2.775
+shader_parameter/numPoints = 1
+shader_parameter/points = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/color = Color(0.2607, 0.79, 0.63121, 1)
+shader_parameter/scale = 250
+
+[sub_resource type="QuadMesh" id="QuadMesh_mtric"]
+size = Vector2(200, 200)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_g3pa7"]
+diffuse_texture = ExtResource("13_wuv6x")
+normal_texture = ExtResource("21_0eo6o")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t1t22"]
+shader = ExtResource("22_ghoj8")
+shader_parameter/size = Vector2(200, 200)
+shader_parameter/pointRadius = 2.775
+shader_parameter/numPoints = 1
+shader_parameter/points = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/color = Color(0.321569, 0.894118, 0.721569, 1)
+shader_parameter/scale = 250
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_7otdo"]
+diffuse_texture = ExtResource("17_24ehl")
+normal_texture = ExtResource("26_ttr27")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_c112w"]
+diffuse_texture = ExtResource("18_bwdx1")
+normal_texture = ExtResource("28_13wue")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_u37te"]
+diffuse_texture = ExtResource("19_vewsg")
+normal_texture = ExtResource("30_wy7bt")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a1qjk"]
+radius = 5.6
+height = 56.0
+
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_plpc0")
+dash_speed = 720.0
+ik_overrides = Array[ExtResource("2_a1qjk")]([SubResource("Resource_j3ovn"), SubResource("Resource_afbqv"), SubResource("Resource_gx6sm"), SubResource("Resource_yqrof"), SubResource("Resource_a1qjk")])
 
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 0.1
@@ -202,32 +216,15 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 2
-material = ExtResource("2_asdqb")
-position = Vector2(0, -12)
-sprite_frames = SubResource("SpriteFrames_w8q44")
-animation = &"idle"
-autoplay = "idle"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -5)
-shape = SubResource("CircleShape2D_4kdck")
-
-[node name="FlipHandler" type="Node2D" parent="."]
-
-[node name="Weapon" parent="FlipHandler" instance=ExtResource("4_5ek75")]
-position = Vector2(2, -5)
-
 [node name="DashCooldownBar" type="ProgressBar" parent="."]
 visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -7.0
-offset_top = -22.0
+offset_top = -40.0
 offset_right = 8.0
-offset_bottom = -18.0
+offset_bottom = -36.0
 grow_horizontal = 2
 scale = Vector2(1, 0.5)
 theme_override_styles/background = SubResource("StyleBoxFlat_nn8mg")
@@ -243,6 +240,371 @@ preprocess = 0.2
 fixed_fps = 120
 process_material = SubResource("ParticleProcessMaterial_8hh5x")
 
+[node name="Skeleton" type="Skeleton2D" parent="."]
+modification_stack = SubResource("SkeletonModificationStack2D_3wlsy")
+
+[node name="hip" type="Bone2D" parent="Skeleton"]
+position = Vector2(-9.53674e-07, 0)
+scale = Vector2(0.999997, 0.999997)
+rest = Transform2D(0.999997, 0, 0, 0.999997, -9.53674e-07, 0)
+
+[node name="torso" type="Bone2D" parent="Skeleton/hip"]
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+editor_settings/show_bone_gizmo = false
+
+[node name="RemoteTransform2DExtended" type="Node2D" parent="Skeleton/hip/torso" node_paths=PackedStringArray("node")]
+position = Vector2(0, -8)
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../../sprites/Torso")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="collar" type="Bone2D" parent="Skeleton/hip/torso"]
+position = Vector2(9.53674e-07, -16)
+scale = Vector2(0.999982, 0.999982)
+rest = Transform2D(0.999982, 0, 0, 0.999982, 9.53674e-07, -16)
+editor_settings/show_bone_gizmo = false
+
+[node name="offset" type="Bone2D" parent="Skeleton/hip/torso/collar"]
+position = Vector2(-1.5, 0)
+scale = Vector2(0.999992, 0.999992)
+rest = Transform2D(0.999992, 0, 0, 0.999992, -1.5, 0)
+editor_settings/show_bone_gizmo = false
+
+[node name="head" type="Bone2D" parent="Skeleton/hip/torso/collar/offset"]
+scale = Vector2(0.999854, 0.999854)
+rest = Transform2D(0.999855, 0, 0, 0.999855, 0, 0)
+auto_calculate_length_and_angle = false
+length = 12.44
+bone_angle = -7.00297e-07
+editor_settings/show_bone_gizmo = false
+metadata/_local_pose_override_enabled_ = true
+
+[node name="flipHandler" type="Node2D" parent="Skeleton/hip/torso/collar/offset/head"]
+
+[node name="RemoteTransform2DExtended" type="Node2D" parent="Skeleton/hip/torso/collar/offset/head/flipHandler" node_paths=PackedStringArray("node")]
+position = Vector2(0, -7)
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../../../../../../sprites/Head")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="shoulder_r" type="Bone2D" parent="Skeleton/hip/torso/collar/offset"]
+position = Vector2(-0.5, 0)
+rotation = 1.4289
+scale = Vector2(0.999991, 0.999991)
+rest = Transform2D(-4.3711e-08, 0.999992, -0.999992, -4.3711e-08, -0.5, 0)
+editor_settings/show_bone_gizmo = false
+metadata/_local_pose_override_enabled_ = true
+
+[node name="RemoteTransform2DExtended" type="Node2D" parent="Skeleton/hip/torso/collar/offset/shoulder_r" node_paths=PackedStringArray("node")]
+position = Vector2(5, 0)
+rotation = -1.5708
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../../../../../sprites/Shoulder_R")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="forearm_r" type="Bone2D" parent="Skeleton/hip/torso/collar/offset/shoulder_r"]
+position = Vector2(10, -9.53677e-07)
+scale = Vector2(0.999999, 0.999999)
+rest = Transform2D(0.999999, 0, 0, 0.999999, 10, -9.53677e-07)
+auto_calculate_length_and_angle = false
+length = 12.5
+bone_angle = 0.0
+editor_settings/show_bone_gizmo = false
+metadata/_local_pose_override_enabled_ = true
+
+[node name="RemoteTransform2DExtended" type="Node2D" parent="Skeleton/hip/torso/collar/offset/shoulder_r/forearm_r" node_paths=PackedStringArray("node")]
+position = Vector2(5, -0.5)
+rotation = -1.5708
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../../../../../../sprites/Forearm_R")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="shoulder_f" type="Bone2D" parent="Skeleton/hip/torso/collar/offset"]
+position = Vector2(-0.5, 0)
+rotation = 1.43825
+scale = Vector2(0.999986, 0.999986)
+rest = Transform2D(-4.37108e-08, 0.999986, -0.999986, -4.37108e-08, -0.5, 0)
+editor_settings/show_bone_gizmo = false
+metadata/_local_pose_override_enabled_ = true
+
+[node name="RemoteTransform2DExtended" type="Node2D" parent="Skeleton/hip/torso/collar/offset/shoulder_f" node_paths=PackedStringArray("node")]
+position = Vector2(5, 0)
+rotation = -1.5708
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../../../../../sprites/Shoulder_F")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="forearm_f" type="Bone2D" parent="Skeleton/hip/torso/collar/offset/shoulder_f"]
+position = Vector2(10, -9.53677e-07)
+scale = Vector2(0.999989, 0.999989)
+rest = Transform2D(0.999989, 0, 0, 0.999989, 10, -9.53677e-07)
+auto_calculate_length_and_angle = false
+length = 12.5
+bone_angle = 0.0
+editor_settings/show_bone_gizmo = false
+metadata/_local_pose_override_enabled_ = true
+
+[node name="RemoteTransform2DExtended" type="Node2D" parent="Skeleton/hip/torso/collar/offset/shoulder_f/forearm_f" node_paths=PackedStringArray("node")]
+position = Vector2(5, -0.5)
+rotation = -1.5708
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../../../../../../sprites/Forearm_F")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="Hand" type="Node2D" parent="Skeleton/hip/torso/collar/offset/shoulder_f/forearm_f" node_paths=PackedStringArray("node")]
+position = Vector2(9.775, -1.165)
+rotation = -1.5708
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../../../../../../sprites/FlipHandler")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="thigh_r" type="Bone2D" parent="Skeleton/hip"]
+rotation = -0.144474
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 12.0
+bone_angle = 90.0
+editor_settings/show_bone_gizmo = false
+metadata/_local_pose_override_enabled_ = true
+
+[node name="RemoteTransform2DExtended" type="Node2D" parent="Skeleton/hip/thigh_r" node_paths=PackedStringArray("node")]
+position = Vector2(0, 6)
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../../sprites/Thigh_B")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="calf_r" type="Bone2D" parent="Skeleton/hip/thigh_r"]
+position = Vector2(0, 12)
+rotation = 0.954114
+scale = Vector2(0.999928, 0.999928)
+rest = Transform2D(0.999928, 0, 0, 0.999928, 0, 12)
+auto_calculate_length_and_angle = false
+length = 17.58
+bone_angle = 90.0
+editor_settings/show_bone_gizmo = false
+metadata/_local_pose_override_enabled_ = true
+
+[node name="RemoteTransform2DExtended" type="Node2D" parent="Skeleton/hip/thigh_r/calf_r" node_paths=PackedStringArray("node")]
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../../../sprites/Calf_B")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="thigh_f" type="Bone2D" parent="Skeleton/hip"]
+position = Vector2(1, -2.84217e-14)
+rotation = -0.0333211
+scale = Vector2(0.999842, 0.999842)
+rest = Transform2D(0.999842, 0, 0, 0.999842, 1, -2.84217e-14)
+auto_calculate_length_and_angle = false
+length = 12.0
+bone_angle = 90.0
+editor_settings/show_bone_gizmo = false
+metadata/_local_pose_override_enabled_ = true
+
+[node name="RemoteTransform2DExtended" type="Node2D" parent="Skeleton/hip/thigh_f" node_paths=PackedStringArray("node")]
+position = Vector2(0, 6)
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../../sprites/Thigh_F")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="calf_f" type="Bone2D" parent="Skeleton/hip/thigh_f"]
+position = Vector2(1, 12)
+scale = Vector2(0.999951, 0.999951)
+rest = Transform2D(0.999951, 0, 0, 0.999951, 1, 12)
+auto_calculate_length_and_angle = false
+length = 17.58
+bone_angle = 90.0
+editor_settings/show_bone_gizmo = false
+metadata/_local_pose_override_enabled_ = true
+
+[node name="RemoteTransform2DExtended" type="Node2D" parent="Skeleton/hip/thigh_f/calf_f" node_paths=PackedStringArray("node")]
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../../../sprites/Calf_F")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="FFTarget_pos" type="Marker2D" parent="Skeleton"]
+position = Vector2(2, 30)
+
+[node name="BFTarget_pos" type="Marker2D" parent="Skeleton"]
+position = Vector2(-11, 24)
+
+[node name="lookTarget" type="Marker2D" parent="Skeleton"]
+position = Vector2(32, -16)
+
+[node name="BHTarget_pos" type="Marker2D" parent="Skeleton"]
+position = Vector2(2, 12)
+
+[node name="FHTarget_pos" type="Marker2D" parent="Skeleton"]
+position = Vector2(2, 14)
+
+[node name="sprites" type="Node2D" parent="."]
+
+[node name="Forearm_R" type="Sprite2D" parent="sprites"]
+modulate = Color(0.788235, 0.788235, 0.788235, 1)
+position = Vector2(0.616221, -1.22198)
+rotation = -0.141899
+texture = SubResource("CanvasTexture_geky7")
+
+[node name="Shoulder_R" type="Sprite2D" parent="sprites"]
+modulate = Color(0.788235, 0.788235, 0.788235, 1)
+position = Vector2(-1.29288, -11.0504)
+rotation = -0.141899
+texture = SubResource("CanvasTexture_qwspa")
+
+[node name="Calf_B" type="Node2D" parent="sprites"]
+modulate = Color(0.788235, 0.788235, 0.788235, 1)
+position = Vector2(1.72765, 11.8749)
+rotation = 0.80964
+
+[node name="Calf" type="Sprite2D" parent="sprites/Calf_B"]
+position = Vector2(0, 9.24)
+texture = SubResource("CanvasTexture_r633c")
+
+[node name="Thigh_B" type="Sprite2D" parent="sprites"]
+modulate = Color(0.787759, 0.787759, 0.787759, 1)
+position = Vector2(0.863827, 5.93747)
+rotation = -0.144474
+texture = SubResource("CanvasTexture_pacje")
+
+[node name="Calf_F" type="Node2D" parent="sprites"]
+position = Vector2(2.399, 11.9581)
+rotation = -0.0333211
+
+[node name="Calf" type="Sprite2D" parent="sprites/Calf_F"]
+position = Vector2(0, 8.85)
+texture = SubResource("CanvasTexture_2h0qb")
+
+[node name="Thigh_F" type="Sprite2D" parent="sprites"]
+position = Vector2(1.19985, 5.9957)
+rotation = -0.0333211
+texture = SubResource("CanvasTexture_mmk7k")
+
+[node name="BHair" type="Node2D" parent="sprites" groups=["noFlip"]]
+position = Vector2(-5.19258, -30.5802)
+script = ExtResource("21_221hk")
+pointCount = 11
+gravity = Vector2(0, 9)
+restLength = 3.245
+deltaMult = 27.61
+iterations = 100
+
+[node name="Render" type="MeshInstance2D" parent="sprites/BHair"]
+material = SubResource("ShaderMaterial_221hk")
+mesh = SubResource("QuadMesh_mtric")
+
+[node name="Head" type="Sprite2D" parent="sprites"]
+position = Vector2(-1.49998, -22.9987)
+texture = SubResource("CanvasTexture_g3pa7")
+
+[node name="Eyes" type="Sprite2D" parent="sprites/Head"]
+position = Vector2(2.5, -0.5)
+texture = ExtResource("14_qpopc")
+
+[node name="Hair" type="Sprite2D" parent="sprites/Head"]
+position = Vector2(0, -4)
+texture = ExtResource("15_wq0jh")
+
+[node name="WeirdBangThing" type="Sprite2D" parent="sprites/Head"]
+position = Vector2(-3.5, -5)
+texture = ExtResource("16_gt4e4")
+
+[node name="FHairMover" type="Node2D" parent="sprites/Head" node_paths=PackedStringArray("node")]
+position = Vector2(-4.93657, -5.72336)
+script = ExtResource("7_j3ovn")
+node = NodePath("../../FrontHair")
+Position = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="BHairMover" type="Node2D" parent="sprites/Head" node_paths=PackedStringArray("node")]
+position = Vector2(-3.69259, -7.58145)
+script = ExtResource("7_j3ovn")
+node = NodePath("../../BHair")
+Position = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="FrontHair" type="Node2D" parent="sprites" groups=["noFlip"]]
+position = Vector2(-6.43656, -28.7221)
+script = ExtResource("21_221hk")
+pointCount = 11
+gravity = Vector2(0, 9)
+restLength = 3.245
+deltaMult = 18.735
+iterations = 100
+
+[node name="Render" type="MeshInstance2D" parent="sprites/FrontHair"]
+material = SubResource("ShaderMaterial_t1t22")
+mesh = SubResource("QuadMesh_mtric")
+
+[node name="Torso" type="Sprite2D" parent="sprites"]
+position = Vector2(-9.53674e-07, -7.99998)
+texture = SubResource("CanvasTexture_7otdo")
+
+[node name="Skirt" type="Sprite2D" parent="sprites/Torso"]
+position = Vector2(-0.5, 9)
+texture = SubResource("CanvasTexture_c112w")
+
+[node name="TorsoJacket" type="Sprite2D" parent="sprites/Torso"]
+position = Vector2(-2, 0.999976)
+texture = SubResource("CanvasTexture_u37te")
+
+[node name="Star" type="Sprite2D" parent="sprites"]
+visible = false
+texture = ExtResource("31_np63p")
+
+[node name="Glass" type="Sprite2D" parent="sprites/Star"]
+texture = ExtResource("32_0eo6o")
+
+[node name="PuffyThing" type="Sprite2D" parent="sprites/Star/Glass"]
+position = Vector2(-2, 3)
+texture = ExtResource("33_ttr27")
+
+[node name="PuffyThingSecondPart" type="Sprite2D" parent="sprites/Star/Glass"]
+position = Vector2(-2, 5)
+texture = ExtResource("34_13wue")
+
+[node name="FlipHandler" type="Node2D" parent="sprites"]
+position = Vector2(1.76815, 3.44667)
+rotation = -0.132554
+
+[node name="Weapon" parent="sprites/FlipHandler" instance=ExtResource("4_5ek75")]
+position = Vector2(3.085, 0)
+
+[node name="Forearm_F" type="Sprite2D" parent="sprites"]
+position = Vector2(0.477976, -1.1983)
+rotation = -0.132554
+texture = SubResource("CanvasTexture_geky7")
+
+[node name="Shoulder_F" type="Sprite2D" parent="sprites"]
+position = Vector2(-1.33917, -11.044)
+rotation = -0.132554
+texture = SubResource("CanvasTexture_qwspa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 1.45)
+shape = SubResource("CapsuleShape2D_a1qjk")
+
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_end"]
 [connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_end"]
-[connection signal="on_hit" from="FlipHandler/Weapon" to="." method="_on_entity_hit"]
+[connection signal="on_hit" from="sprites/FlipHandler/Weapon" to="." method="_on_entity_hit"]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://pcmt8aleyyar"]
+
+[ext_resource type="Texture2D" uid="uid://dcijwqug58p0u" path="res://entities/box/color.png" id="1_pihpk"]
+[ext_resource type="Texture2D" uid="uid://rn2ofjprkfpk" path="res://entities/box/normal.png" id="2_mfoj8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ct2mp"]
+size = Vector2(32, 32)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_4xi2l"]
+diffuse_texture = ExtResource("1_pihpk")
+normal_texture = ExtResource("2_mfoj8")
+
+[node name="Box" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("RectangleShape2D_ct2mp")
+
+[node name="Color" type="Sprite2D" parent="RigidBody2D"]
+texture = SubResource("CanvasTexture_4xi2l")

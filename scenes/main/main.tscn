@@ -1,8 +1,12 @@
-[gd_scene load_steps=19 format=4 uid="uid://qtfciyfj33pt"]
+[gd_scene load_steps=43 format=4 uid="uid://qtfciyfj33pt"]
 
 [ext_resource type="Material" uid="uid://hkdd85186e42" path="res://shaders/SmoothPixel.tres" id="1_a8run"]
 [ext_resource type="Texture2D" uid="uid://b8aysoeqef1f1" path="res://icon.svg" id="2_ouso4"]
-[ext_resource type="PackedScene" uid="uid://8j1kl15f7ryq" path="res://entities/player/player.tscn" id="3_blune"]
+[ext_resource type="PackedScene" uid="uid://c11ldn4yd0i8w" path="res://entities/player/player.tscn" id="3_blune"]
+[ext_resource type="Script" uid="uid://bhda60gy1q5tc" path="res://entities/player/player_ik_animator.gd" id="3_th5th"]
+[ext_resource type="Script" uid="uid://eji52ig0w3g5" path="res://addons/remotetransform2dextended/remoteTransform.gd" id="4_7smn1"]
+[ext_resource type="Script" uid="uid://b7h0h8wdhf0ws" path="res://entities/player/resources/IKTargetResource.gd" id="4_ouso4"]
+[ext_resource type="Script" uid="uid://dfl57bvdn0c7l" path="res://entities/player/resources/FlipRule.gd" id="4_raeie"]
 [ext_resource type="Shader" uid="uid://b8cvd0b0qkxpa" path="res://shaders/pixel_camera.gdshader" id="4_th5th"]
 [ext_resource type="Script" uid="uid://j8q2uvh3comw" path="res://scenes/main/camera.gd" id="5_7smn1"]
 [ext_resource type="PackedScene" uid="uid://jxyevycakmnv" path="res://scenes/interface/interface.tscn" id="6_raeie"]
@@ -11,10 +15,402 @@
 [ext_resource type="Texture2D" uid="uid://bb0m10tlay88m" path="res://scenes/main/assets/world_tileset.png" id="9_ou6is"]
 [ext_resource type="PackedScene" uid="uid://dn52wlkh2g1wy" path="res://scenes/killzone/killzone.tscn" id="10_necax"]
 
+[sub_resource type="Resource" id="Resource_hxu8e"]
+resource_name = "Forearm R"
+script = ExtResource("4_raeie")
+NodeToFlip = "Forearm_R"
+OriginalPosition = 0
+FlippedPosition = -2
+changeModulation = true
+normalModulation = Color(0.788235, 0.788235, 0.788235, 1)
+flippedModulation = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://dfl57bvdn0c7l"
+
+[sub_resource type="Resource" id="Resource_raeie"]
+resource_name = "Shoulder R"
+script = ExtResource("4_raeie")
+NodeToFlip = "Shoulder_R"
+OriginalPosition = 1
+FlippedPosition = -1
+changeModulation = true
+normalModulation = Color(0.788235, 0.788235, 0.788235, 1)
+flippedModulation = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://dfl57bvdn0c7l"
+
+[sub_resource type="Resource" id="Resource_7smn1"]
+resource_name = "Forearm F"
+script = ExtResource("4_raeie")
+NodeToFlip = "Forearm_F"
+OriginalPosition = -1
+FlippedPosition = 0
+changeModulation = true
+normalModulation = Color(1, 1, 1, 1)
+flippedModulation = Color(0.788235, 0.788235, 0.788235, 1)
+metadata/_custom_type_script = "uid://dfl57bvdn0c7l"
+
+[sub_resource type="Resource" id="Resource_nvumn"]
+resource_name = "Shoulder F"
+script = ExtResource("4_raeie")
+NodeToFlip = "Shoulder_F"
+OriginalPosition = -1
+FlippedPosition = 1
+changeModulation = true
+normalModulation = Color(1, 1, 1, 1)
+flippedModulation = Color(0.788235, 0.788235, 0.788235, 1)
+metadata/_custom_type_script = "uid://dfl57bvdn0c7l"
+
+[sub_resource type="Resource" id="Resource_ou6is"]
+resource_name = "Held Weapon"
+script = ExtResource("4_raeie")
+NodeToFlip = "FlipHandler"
+OriginalPosition = -3
+FlippedPosition = 2
+changeModulation = false
+normalModulation = Color(1, 1, 1, 1)
+flippedModulation = Color(0.788235, 0.788235, 0.788235, 1)
+metadata/_custom_type_script = "uid://dfl57bvdn0c7l"
+
+[sub_resource type="Resource" id="Resource_necax"]
+resource_name = "Calf B"
+script = ExtResource("4_raeie")
+NodeToFlip = "Calf_B"
+OriginalPosition = 2
+FlippedPosition = 4
+changeModulation = true
+normalModulation = Color(0.788235, 0.788235, 0.788235, 1)
+flippedModulation = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://dfl57bvdn0c7l"
+
+[sub_resource type="Resource" id="Resource_r4lks"]
+resource_name = "Thigh B"
+script = ExtResource("4_raeie")
+NodeToFlip = "Thigh_B"
+OriginalPosition = 3
+FlippedPosition = 5
+changeModulation = true
+normalModulation = Color(0.788235, 0.788235, 0.788235, 1)
+flippedModulation = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://dfl57bvdn0c7l"
+
+[sub_resource type="Resource" id="Resource_pg34l"]
+resource_name = "Calf F"
+script = ExtResource("4_raeie")
+NodeToFlip = "Calf_F"
+OriginalPosition = 4
+FlippedPosition = 2
+changeModulation = true
+normalModulation = Color(1, 1, 1, 1)
+flippedModulation = Color(0.788235, 0.788235, 0.788235, 1)
+metadata/_custom_type_script = "uid://dfl57bvdn0c7l"
+
+[sub_resource type="Resource" id="Resource_m4h2d"]
+resource_name = "Thigh F"
+script = ExtResource("4_raeie")
+NodeToFlip = "Thigh_F"
+OriginalPosition = 5
+FlippedPosition = 3
+changeModulation = true
+normalModulation = Color(1, 1, 1, 1)
+flippedModulation = Color(0.788235, 0.788235, 0.788235, 1)
+metadata/_custom_type_script = "uid://dfl57bvdn0c7l"
+
+[sub_resource type="Resource" id="Resource_p8abn"]
+resource_name = "Star"
+script = ExtResource("4_raeie")
+NodeToFlip = "Star"
+OriginalPosition = -4
+FlippedPosition = 0
+changeModulation = false
+normalModulation = Color(1, 1, 1, 1)
+flippedModulation = Color(0.788235, 0.788235, 0.788235, 1)
+metadata/_custom_type_script = "uid://dfl57bvdn0c7l"
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_th5th"]
+size = Vector2(10, 10)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_blune"]
+size = Vector2(20, 20)
+
+[sub_resource type="Resource" id="Resource_j3ovn"]
+script = ExtResource("4_ouso4")
+targetModificationName = "BackArm"
+targetNodePath = NodePath("../PlayerIKAnimator/BHTarget")
+metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
+
+[sub_resource type="Resource" id="Resource_afbqv"]
+script = ExtResource("4_ouso4")
+targetModificationName = "FrontArm"
+targetNodePath = NodePath("../PlayerIKAnimator/FHTarget")
+metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
+
+[sub_resource type="Resource" id="Resource_gx6sm"]
+script = ExtResource("4_ouso4")
+targetModificationName = "BackLeg"
+targetNodePath = NodePath("../PlayerIKAnimator/BFTarget")
+metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
+
+[sub_resource type="Resource" id="Resource_yqrof"]
+script = ExtResource("4_ouso4")
+targetModificationName = "FrontLeg"
+targetNodePath = NodePath("../PlayerIKAnimator/FFTarget")
+metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
+
+[sub_resource type="Resource" id="Resource_th5th"]
+script = ExtResource("4_ouso4")
+targetModificationName = "HeadLook"
+targetNodePath = NodePath("targetPositions/LookAt")
+metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qtmoe"]
 shader = ExtResource("4_th5th")
 shader_parameter/cam_position = Vector2(0, 0)
 shader_parameter/cam_offset = Vector2(0, 0)
+
+[sub_resource type="Animation" id="Animation_j3ovn"]
+resource_name = "Attack"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FHTarget_pos:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-5, -0.25, 0, 0.0666667, 9, 20, -0.06, -4, 0.0333333, 6, 20, -0.0666667, 7, 0.0333333, -6, -3, -0.0666667, 13, 0.25, 0),
+"times": PackedFloat32Array(0, 0.166667, 0.3, 0.466667)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FHTarget_pos:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-38.365, -0.25, 0, 0.0666667, -2, -14.26, -0.0666667, -12, 0.1, 9, 10, -0.0666667, -6, 0.0666667, 13),
+"times": PackedFloat32Array(0, 0.166667, 0.366667)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BHTarget_pos:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-5.425, -0.25, 0, 0.0666667, 9, 20.865, -0.06, -4, 0.0333333, 6, 20, -0.0666667, 7, 0.0333333, -6, -3.835, -0.0666667, 13, 0.25, 0),
+"times": PackedFloat32Array(0, 0.166667, 0.3, 0.466667)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BHTarget_pos:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-38.365, -0.25, 0, 0.0666667, -2, -14.26, -0.0666667, -12, 0.1, 9, 10, -0.0666667, -6, 0.0666667, 13),
+"times": PackedFloat32Array(0, 0.166667, 0.366667)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FHTarget_pos/Synchroniser:Smoothing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.566667, 1),
+"transitions": PackedFloat32Array(78.7933, 1, 1),
+"update": 0,
+"values": [0.5, 0.24, 1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FHTarget_pos/Synchroniser:Position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.566667),
+"transitions": PackedFloat32Array(1e+06, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../../PlayerIKAnimator:inhibitFH")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.56),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BHTarget_pos/Synchroniser:Smoothing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.58, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.5, 0.24, 1.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BHTarget_pos/Synchroniser:Position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.566667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../../PlayerIKAnimator:inhibitBH")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.57),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../sprites/FlipHandler/Weapon/DamageBox:monitoring")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.003, 0.59),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_afbqv"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FHTarget_pos:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FHTarget_pos:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FHTarget_pos/Synchroniser:Smoothing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FHTarget_pos/Synchroniser:Position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../PlayerIKAnimator:inhibitFH")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BHTarget_pos/Synchroniser:Smoothing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BHTarget_pos/Synchroniser:Position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../../PlayerIKAnimator:inhibitBH")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../sprites/FlipHandler/Weapon/DamageBox:monitoring")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gx6sm"]
+_data = {
+&"Attack": SubResource("Animation_j3ovn"),
+&"RESET": SubResource("Animation_afbqv")
+}
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ubapy"]
 texture = ExtResource("8_nvumn")
@@ -1394,26 +1790,123 @@ rotation = -0.785398
 scale = Vector2(1, 0.993091)
 texture = ExtResource("2_ouso4")
 
-[node name="Player" parent="." node_paths=PackedStringArray("health_bar", "mana_bar") instance=ExtResource("3_blune")]
-position = Vector2(6, -9)
+[node name="PlayerIKAnimator" type="Node2D" parent="." node_paths=PackedStringArray("player", "animationPlayer")]
+position = Vector2(-4, -5)
+script = ExtResource("3_th5th")
+player = NodePath("../Player")
+animationPlayer = NodePath("../Player/targetPositions/Animation")
+maxFootDistanceFromTarget = 5
+FlipRules = Array[ExtResource("4_raeie")]([SubResource("Resource_hxu8e"), SubResource("Resource_raeie"), SubResource("Resource_7smn1"), SubResource("Resource_nvumn"), SubResource("Resource_ou6is"), SubResource("Resource_necax"), SubResource("Resource_r4lks"), SubResource("Resource_pg34l"), SubResource("Resource_m4h2d"), SubResource("Resource_p8abn")])
+ArmRestOffset = Vector2(0.235, 6.05)
+FArmRest = Vector2(0.2, 0)
+BArmRest = Vector2(-4.805, 0.62)
+
+[node name="BFTarget" type="Marker2D" parent="PlayerIKAnimator"]
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerIKAnimator/BFTarget"]
+texture = SubResource("PlaceholderTexture2D_th5th")
+
+[node name="FFTarget" type="Marker2D" parent="PlayerIKAnimator"]
+z_index = 500
+position = Vector2(9, -5)
+
+[node name="Sprite2D2" type="Sprite2D" parent="PlayerIKAnimator/FFTarget"]
+texture = SubResource("PlaceholderTexture2D_th5th")
+
+[node name="BHTarget" type="Marker2D" parent="PlayerIKAnimator"]
+position = Vector2(68, -3)
+
+[node name="Sprite2D2" type="Sprite2D" parent="PlayerIKAnimator/BHTarget"]
+texture = SubResource("PlaceholderTexture2D_blune")
+
+[node name="FHTarget" type="Marker2D" parent="PlayerIKAnimator"]
+position = Vector2(0, -31)
+
+[node name="Sprite2D2" type="Sprite2D" parent="PlayerIKAnimator/FHTarget"]
+texture = SubResource("PlaceholderTexture2D_blune")
+
+[node name="Player" parent="." node_paths=PackedStringArray("health_bar", "mana_bar", "IkAnimator") instance=ExtResource("3_blune")]
+position = Vector2(-4, -36)
+dash_dist = 120
 health_bar = NodePath("../Interface/Interface2/VBoxContainer/HealthBar/HealthBar")
 mana_bar = NodePath("../Interface/Interface2/VBoxContainer/ManaBar/ManaBar")
+ik_overrides = Array[ExtResource("4_ouso4")]([SubResource("Resource_j3ovn"), SubResource("Resource_afbqv"), SubResource("Resource_gx6sm"), SubResource("Resource_yqrof"), SubResource("Resource_th5th")])
+IkAnimator = NodePath("../PlayerIKAnimator")
 
-[node name="Camera2D" type="Camera2D" parent="Player" node_paths=PackedStringArray("followTarget")]
+[node name="Camera2D" type="Camera2D" parent="Player"]
 material = SubResource("ShaderMaterial_qtmoe")
+position = Vector2(-18, 35)
 zoom = Vector2(3, 3)
 limit_bottom = 180
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 script = ExtResource("5_7smn1")
-followTarget = NodePath("..")
 suppressPixelAlignment = true
+
+[node name="targetPositions" type="Node2D" parent="Player"]
+
+[node name="FFTarget_pos" type="Marker2D" parent="Player/targetPositions"]
+position = Vector2(9, 26)
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/targetPositions/FFTarget_pos"]
+z_index = 40
+texture = SubResource("PlaceholderTexture2D_th5th")
+
+[node name="Synchroniser" type="Node2D" parent="Player/targetPositions/FFTarget_pos" node_paths=PackedStringArray("node")]
+script = ExtResource("4_7smn1")
+node = NodePath("../../../../PlayerIKAnimator/FFTarget")
+Smoothing = 0.5
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="BFTarget_pos" type="Marker2D" parent="Player/targetPositions"]
+position = Vector2(-16, 22)
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/targetPositions/BFTarget_pos"]
+z_index = 60
+texture = SubResource("PlaceholderTexture2D_th5th")
+
+[node name="Synchroniser" type="Node2D" parent="Player/targetPositions/BFTarget_pos" node_paths=PackedStringArray("node")]
+script = ExtResource("4_7smn1")
+node = NodePath("../../../../PlayerIKAnimator/BFTarget")
+Smoothing = 0.5
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="BHTarget_pos" type="Marker2D" parent="Player/targetPositions"]
+position = Vector2(68, 28)
+
+[node name="Synchroniser" type="Node2D" parent="Player/targetPositions/BHTarget_pos" node_paths=PackedStringArray("node")]
+script = ExtResource("4_7smn1")
+node = NodePath("../../../../PlayerIKAnimator/BHTarget")
+Position = true
+Smoothing = 0.5
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="FHTarget_pos" type="Marker2D" parent="Player/targetPositions"]
+
+[node name="Synchroniser" type="Node2D" parent="Player/targetPositions/FHTarget_pos" node_paths=PackedStringArray("node")]
+script = ExtResource("4_7smn1")
+node = NodePath("../../../../PlayerIKAnimator/FHTarget")
+Position = true
+Smoothing = 0.5
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="Animation" type="AnimationPlayer" parent="Player/targetPositions"]
+libraries = {
+&"": SubResource("AnimationLibrary_gx6sm")
+}
+
+[node name="LookAt" type="Marker2D" parent="Player/targetPositions"]
+position = Vector2(85, -14)
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/targetPositions/LookAt"]
+texture = SubResource("PlaceholderTexture2D_blune")
 
 [node name="Interface" parent="." instance=ExtResource("6_raeie")]
 
 [node name="TargetDummy" parent="." instance=ExtResource("7_hxu8e")]
-position = Vector2(-59, -1)
+position = Vector2(-33, -5)
+maxInvincibilityFrames = 30
 
 [node name="Layer0" type="TileMapLayer" parent="."]
 use_parent_material = true
@@ -1442,6 +1935,8 @@ collision_enabled = false
 
 [node name="Killzone2" parent="." instance=ExtResource("10_necax")]
 position = Vector2(0, 190)
+collision_layer = 7
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone2"]
 shape = SubResource("WorldBoundaryShape2D_kfodh")
