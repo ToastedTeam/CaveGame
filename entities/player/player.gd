@@ -14,7 +14,7 @@ const DASH_LENGTH = 0.15
 
 
 # Various Properties
-@onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
+#@onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var dash = $Dash
 @onready var dashCooldownBar = $DashCooldownBar
 @onready var dashParticles = $DashParticles
@@ -30,6 +30,7 @@ const DASH_LENGTH = 0.15
 @export var IkAnimator: IKPlayerAnimator;
 
 var currentDirection = 1;
+var facing = 1;
 #@export var headTarget: IKTargetResource
 #@export var headTarget: Node2D
 #@export var headTargetResourceName: String
@@ -124,10 +125,13 @@ func _physics_process(delta: float) -> void:
 		dash.startDash(DASH_LENGTH)
 		dashParticles.restart()
 		
-		if player_sprite.flip_h:
-			velocity.x = -DASH_SPEED
-		else:
-			velocity.x = DASH_SPEED
+		#if player_sprite.flip_h:
+			#velocity.x = -DASH_SPEED
+		#else:
+			#velocity.x = DASH_SPEED
+		velocity.x = DASH_SPEED * facing
+		
+		IkAnimator.Start_Dash()
 	
 	if dash.getCooldown() > 0:
 		dashCooldownBar.show()
@@ -152,7 +156,9 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("player_move_left", "player_move_right")
-	
+	if direction != 0:
+		facing = direction
+		
 	if !dash.isDashing():
 		if direction:
 			velocity.x = direction * SPEED

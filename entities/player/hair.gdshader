@@ -8,7 +8,7 @@ uniform vec2[100] points;
 uniform vec4 color : source_color;
 
 void vertex() {
-	
+
 	// Called for every vertex the material is visible on.
 }
 
@@ -32,7 +32,7 @@ void fragment() {
 	int numDirections = 0;
 	float finalDistance = 0.;
 	vec2 finalDirection;
-	
+
 	for(int i = 0; i < numPoints; i++){
 		float mult = float(scale);
 		vec2 reduced = vec2(round(UV.x*mult)/mult, round(UV.y*mult)/mult);
@@ -47,7 +47,7 @@ void fragment() {
 				test = finalDistance/fRadius;
 				finalDirection = (UV-transformed)/fRadius;
 				//directions[numDirections++] = (UV-transformed)/fRadius;
-				
+
 			}
 		}
 	}
@@ -71,7 +71,7 @@ void fragment() {
 		COLOR = vec4(0.0);
 	}
 		//COLOR = vec4(UV, 0.0, 1.0);
-	
+
 	// Called for every pixel the material is visible on.
 }
 
