@@ -154,7 +154,7 @@ func _physics_process(delta: float) -> void:
 						dash_state = dash.ON_COOLDOWN
 						$DashCooldown.start()
 						$DashCooldownBar.show()
-						IkAnimator.setAnimState(IkAnimator.AnimState.Idle)
+						IkAnimator.setAnimState(IkAnimator.AnimState.Walking)
 				else:
 					velocity.x = move_toward(velocity.x, 0, dash_speed)
 					if is_zero_approx(velocity.x):
@@ -168,6 +168,7 @@ func _physics_process(delta: float) -> void:
 				dash_state = dash.ON_COOLDOWN
 				$DashCooldown.start()
 				$DashCooldownBar.show()
+				IkAnimator.setAnimState(IkAnimator.AnimState.Idle)
 				
 		_:
 			# Dashing
