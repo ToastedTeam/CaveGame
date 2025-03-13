@@ -36,6 +36,8 @@ enum dash {
 
 var currentDirection = 1;
 var facing = 1;
+var hitWall = false;
+
 #@export var headTarget: IKTargetResource
 #@export var headTarget: Node2D
 #@export var headTargetResourceName: String
@@ -211,6 +213,8 @@ func _physics_process(delta: float) -> void:
 	#elif direction > 0:
 		#player_sprite.flip_h = false
 		#$FlipHandler.scale.x = 1
+		
+	hitWall = is_on_wall()
 		
 	if Input.is_action_just_pressed("player_attack") and canAttack:
 		#$FlipHandler/Weapon/AnimationPlayer.play("player_attack")
