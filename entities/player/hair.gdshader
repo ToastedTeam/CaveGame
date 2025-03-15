@@ -41,11 +41,11 @@ void fragment() {
 		if(finalDistance < (fRadius)){
 			//COLOR = vec4(UV.xy, 1.0, 1.0);
 			found = true;
-			directions[numDirections++] = (UV-transformed)/fRadius;
+			directions[numDirections++] = (reduced-transformed)/fRadius;
 			//dist[numDirections-1] = finalDistance/fRadius;
 			if (test > finalDistance/fRadius){
 				test = finalDistance/fRadius;
-				finalDirection = (UV-transformed)/fRadius;
+				finalDirection = (reduced-transformed)/fRadius;
 				//directions[numDirections++] = (UV-transformed)/fRadius;
 			}
 		}

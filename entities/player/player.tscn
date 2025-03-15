@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://c11ldn4yd0i8w"]
+[gd_scene load_steps=69 format=3 uid="uid://c11ldn4yd0i8w"]
 
 [ext_resource type="Script" uid="uid://7dppspqb023v" path="res://entities/player/player.gd" id="1_plpc0"]
 [ext_resource type="Script" uid="uid://b7h0h8wdhf0ws" path="res://entities/player/resources/IKTargetResource.gd" id="2_a1qjk"]
@@ -24,12 +24,16 @@
 [ext_resource type="Texture2D" uid="uid://bgaj0f7dp6sdi" path="res://entities/player/assets/miku/torso_jacket.png" id="19_vewsg"]
 [ext_resource type="Texture2D" uid="uid://bm6munwfhcl0d" path="res://entities/player/assets/miku/head/head_normal.png" id="21_0eo6o"]
 [ext_resource type="Script" uid="uid://cki8fllcntgui" path="res://entities/player/hair_flow.gd" id="21_221hk"]
+[ext_resource type="Texture2D" uid="uid://biqfu7kfhoar0" path="res://entities/player/assets/miku/head/hair_normal.png" id="21_ttr27"]
 [ext_resource type="Shader" uid="uid://b3dtbkc71evh6" path="res://entities/player/hair.gdshader" id="22_ghoj8"]
+[ext_resource type="Texture2D" uid="uid://dup8co2iynhvr" path="res://entities/player/assets/miku/head/bowtie_normal.png" id="23_13wue"]
 [ext_resource type="Texture2D" uid="uid://dt2l2yfrvpvan" path="res://entities/player/assets/miku/torso_normal.png" id="26_ttr27"]
 [ext_resource type="Texture2D" uid="uid://de37tk41yp4mb" path="res://entities/player/assets/miku/skirt_normal.png" id="28_13wue"]
 [ext_resource type="Texture2D" uid="uid://wrrekxjvg0vl" path="res://entities/player/assets/miku/torso_jacket_normal.png" id="30_wy7bt"]
 [ext_resource type="Texture2D" uid="uid://fwxqtdhk3jua" path="res://entities/player/assets/miku/lantern/star.png" id="31_np63p"]
 [ext_resource type="Texture2D" uid="uid://dvsm342nxn8t6" path="res://entities/player/assets/miku/lantern/glass.png" id="32_0eo6o"]
+[ext_resource type="Texture2D" uid="uid://ct4p4rmtan1ow" path="res://entities/target_dummy/assets/2d_lights_and_shadows_neutral_point_light.webp" id="32_8q4fm"]
+[ext_resource type="Script" uid="uid://dk2yrqykdjtoy" path="res://entities/target_dummy/rotation_target.gd" id="33_2soq1"]
 [ext_resource type="Texture2D" uid="uid://cmrdtpty5fhk2" path="res://entities/player/assets/miku/lantern/puffy_thing.png" id="33_ttr27"]
 [ext_resource type="Texture2D" uid="uid://bxbcwehybwg8e" path="res://entities/player/assets/miku/lantern/puffy_thing_second_part.png" id="34_13wue"]
 
@@ -177,6 +181,14 @@ size = Vector2(200, 200)
 diffuse_texture = ExtResource("13_wuv6x")
 normal_texture = ExtResource("21_0eo6o")
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_wy7bt"]
+diffuse_texture = ExtResource("15_wq0jh")
+normal_texture = ExtResource("21_ttr27")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ssgi7"]
+diffuse_texture = ExtResource("16_gt4e4")
+normal_texture = ExtResource("23_13wue")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t1t22"]
 shader = ExtResource("22_ghoj8")
 shader_parameter/size = Vector2(200, 200)
@@ -197,6 +209,12 @@ normal_texture = ExtResource("28_13wue")
 [sub_resource type="CanvasTexture" id="CanvasTexture_u37te"]
 diffuse_texture = ExtResource("19_vewsg")
 normal_texture = ExtResource("30_wy7bt")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vewsg"]
+radius = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2soq1"]
+radius = 1.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a1qjk"]
 radius = 5.6
@@ -261,9 +279,9 @@ Rotation = true
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="collar" type="Bone2D" parent="Skeleton/hip/torso"]
-position = Vector2(9.53674e-07, -16)
+position = Vector2(0, -13.5)
 scale = Vector2(0.999982, 0.999982)
-rest = Transform2D(0.999982, 0, 0, 0.999982, 9.53674e-07, -16)
+rest = Transform2D(0.999982, 0, 0, 0.999982, 0, -13.5)
 editor_settings/show_bone_gizmo = false
 
 [node name="offset" type="Bone2D" parent="Skeleton/hip/torso/collar"]
@@ -274,7 +292,7 @@ editor_settings/show_bone_gizmo = false
 
 [node name="head" type="Bone2D" parent="Skeleton/hip/torso/collar/offset"]
 scale = Vector2(0.999854, 0.999854)
-rest = Transform2D(0.999855, 0, 0, 0.999855, 0, 0)
+rest = Transform2D(0.999854, 0, 0, 0.999854, 0, 0)
 auto_calculate_length_and_angle = false
 length = 12.44
 bone_angle = -7.00297e-07
@@ -292,10 +310,10 @@ Rotation = true
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="shoulder_r" type="Bone2D" parent="Skeleton/hip/torso/collar/offset"]
-position = Vector2(-0.5, 0)
-rotation = 1.4289
+position = Vector2(-0.5, -1)
+rotation = 2.70308
 scale = Vector2(0.999991, 0.999991)
-rest = Transform2D(-4.3711e-08, 0.999992, -0.999992, -4.3711e-08, -0.5, 0)
+rest = Transform2D(-0.905374, 0.424593, -0.424593, -0.905374, -0.5, -1)
 editor_settings/show_bone_gizmo = false
 metadata/_local_pose_override_enabled_ = true
 
@@ -328,10 +346,10 @@ Rotation = true
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="shoulder_f" type="Bone2D" parent="Skeleton/hip/torso/collar/offset"]
-position = Vector2(-0.5, 0)
-rotation = 1.43825
+position = Vector2(-0.5, -1)
+rotation = 0.129786
 scale = Vector2(0.999986, 0.999986)
-rest = Transform2D(-4.37108e-08, 0.999986, -0.999986, -4.37108e-08, -0.5, 0)
+rest = Transform2D(0.991575, 0.12942, -0.12942, 0.991575, -0.5, -1)
 editor_settings/show_bone_gizmo = false
 metadata/_local_pose_override_enabled_ = true
 
@@ -373,7 +391,6 @@ Rotation = true
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="thigh_r" type="Bone2D" parent="Skeleton/hip"]
-rotation = -0.144474
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 auto_calculate_length_and_angle = false
 length = 12.0
@@ -390,10 +407,9 @@ Rotation = true
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="calf_r" type="Bone2D" parent="Skeleton/hip/thigh_r"]
-position = Vector2(0, 12)
-rotation = 0.954114
+position = Vector2(0.5, 14.5)
 scale = Vector2(0.999928, 0.999928)
-rest = Transform2D(0.999928, 0, 0, 0.999928, 0, 12)
+rest = Transform2D(0.999928, 0, 0, 0.999928, 0.5, 14.5)
 auto_calculate_length_and_angle = false
 length = 17.58
 bone_angle = 90.0
@@ -408,10 +424,9 @@ Rotation = true
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="thigh_f" type="Bone2D" parent="Skeleton/hip"]
-position = Vector2(1, -2.84217e-14)
-rotation = -0.0333211
+position = Vector2(-0.5, 0)
 scale = Vector2(0.999842, 0.999842)
-rest = Transform2D(0.999842, 0, 0, 0.999842, 1, -2.84217e-14)
+rest = Transform2D(0.999842, 0, 0, 0.999842, -0.5, 0)
 auto_calculate_length_and_angle = false
 length = 12.0
 bone_angle = 90.0
@@ -427,9 +442,9 @@ Rotation = true
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="calf_f" type="Bone2D" parent="Skeleton/hip/thigh_f"]
-position = Vector2(1, 12)
+position = Vector2(0.5, 14.5)
 scale = Vector2(0.999951, 0.999951)
-rest = Transform2D(0.999951, 0, 0, 0.999951, 1, 12)
+rest = Transform2D(0.999951, 0, 0, 0.999951, 0.5, 14.5)
 auto_calculate_length_and_angle = false
 length = 17.58
 bone_angle = 90.0
@@ -450,7 +465,7 @@ position = Vector2(2, 30)
 position = Vector2(-11, 24)
 
 [node name="lookTarget" type="Marker2D" parent="Skeleton"]
-position = Vector2(32, -16)
+position = Vector2(32, -13.5)
 
 [node name="BHTarget_pos" type="Marker2D" parent="Skeleton"]
 position = Vector2(2, 12)
@@ -462,46 +477,46 @@ position = Vector2(2, 14)
 
 [node name="Forearm_R" type="Sprite2D" parent="sprites"]
 modulate = Color(0.788235, 0.788235, 0.788235, 1)
-position = Vector2(0.616221, -1.22198)
-rotation = -0.141899
+position = Vector2(0.733112, 0.256867)
+rotation = -0.149815
 texture = SubResource("CanvasTexture_geky7")
 
 [node name="Shoulder_R" type="Sprite2D" parent="sprites"]
 modulate = Color(0.788235, 0.788235, 0.788235, 1)
-position = Vector2(-1.29288, -11.0504)
-rotation = -0.141899
+position = Vector2(-1.25373, -9.55612)
+rotation = -0.149815
 texture = SubResource("CanvasTexture_qwspa")
 
 [node name="Calf_B" type="Node2D" parent="sprites"]
 modulate = Color(0.788235, 0.788235, 0.788235, 1)
-position = Vector2(1.72765, 11.8749)
+position = Vector2(2.58236, 14.2769)
 rotation = 0.80964
 
 [node name="Calf" type="Sprite2D" parent="sprites/Calf_B"]
-position = Vector2(0, 9.24)
+position = Vector2(0, 8.85)
 texture = SubResource("CanvasTexture_r633c")
 
 [node name="Thigh_B" type="Sprite2D" parent="sprites"]
 modulate = Color(0.787759, 0.787759, 0.787759, 1)
-position = Vector2(0.863827, 5.93747)
-rotation = -0.144474
+position = Vector2(0.863821, 5.93747)
+rotation = -0.144473
 texture = SubResource("CanvasTexture_pacje")
 
 [node name="Calf_F" type="Node2D" parent="sprites"]
-position = Vector2(2.399, 11.9581)
-rotation = -0.0333211
+position = Vector2(1.20215, 14.406)
+rotation = -0.0831412
 
 [node name="Calf" type="Sprite2D" parent="sprites/Calf_F"]
 position = Vector2(0, 8.85)
 texture = SubResource("CanvasTexture_2h0qb")
 
 [node name="Thigh_F" type="Sprite2D" parent="sprites"]
-position = Vector2(1.19985, 5.9957)
-rotation = -0.0333211
+position = Vector2(-0.00180995, 5.97828)
+rotation = -0.0831412
 texture = SubResource("CanvasTexture_mmk7k")
 
 [node name="BHair" type="Node2D" parent="sprites" groups=["noFlip"]]
-position = Vector2(-5.19258, -30.5802)
+position = Vector2(-5.19258, -28.0802)
 script = ExtResource("21_221hk")
 pointCount = 11
 gravity = Vector2(0, 9)
@@ -514,7 +529,7 @@ material = SubResource("ShaderMaterial_221hk")
 mesh = SubResource("QuadMesh_mtric")
 
 [node name="Head" type="Sprite2D" parent="sprites"]
-position = Vector2(-1.49998, -22.9987)
+position = Vector2(-1.49998, -20.4987)
 texture = SubResource("CanvasTexture_g3pa7")
 
 [node name="Eyes" type="Sprite2D" parent="sprites/Head"]
@@ -523,11 +538,11 @@ texture = ExtResource("14_qpopc")
 
 [node name="Hair" type="Sprite2D" parent="sprites/Head"]
 position = Vector2(0, -4)
-texture = ExtResource("15_wq0jh")
+texture = SubResource("CanvasTexture_wy7bt")
 
 [node name="WeirdBangThing" type="Sprite2D" parent="sprites/Head"]
 position = Vector2(-3.5, -5)
-texture = ExtResource("16_gt4e4")
+texture = SubResource("CanvasTexture_ssgi7")
 
 [node name="FHairMover" type="Node2D" parent="sprites/Head" node_paths=PackedStringArray("node")]
 position = Vector2(-4.93657, -5.72336)
@@ -544,7 +559,7 @@ Position = true
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="FrontHair" type="Node2D" parent="sprites" groups=["noFlip"]]
-position = Vector2(-6.43656, -28.7221)
+position = Vector2(-6.43655, -26.2221)
 script = ExtResource("21_221hk")
 pointCount = 11
 gravity = Vector2(0, 9)
@@ -561,15 +576,14 @@ position = Vector2(-9.53674e-07, -7.99998)
 texture = SubResource("CanvasTexture_7otdo")
 
 [node name="Skirt" type="Sprite2D" parent="sprites/Torso"]
-position = Vector2(-0.5, 9)
+position = Vector2(-0.5, 8)
 texture = SubResource("CanvasTexture_c112w")
 
 [node name="TorsoJacket" type="Sprite2D" parent="sprites/Torso"]
-position = Vector2(-2, 0.999976)
+position = Vector2(-2, 2.5)
 texture = SubResource("CanvasTexture_u37te")
 
 [node name="Star" type="Sprite2D" parent="sprites"]
-visible = false
 texture = ExtResource("31_np63p")
 
 [node name="Glass" type="Sprite2D" parent="sprites/Star"]
@@ -583,22 +597,105 @@ texture = ExtResource("33_ttr27")
 position = Vector2(-2, 5)
 texture = ExtResource("34_13wue")
 
+[node name="PointLight2D" type="PointLight2D" parent="sprites/Star"]
+energy = 0.5
+texture = ExtResource("32_8q4fm")
+
 [node name="FlipHandler" type="Node2D" parent="sprites"]
-position = Vector2(1.76815, 3.44667)
-rotation = -0.132554
+position = Vector2(1.90201, 4.92025)
+rotation = -0.139442
 
 [node name="Weapon" parent="sprites/FlipHandler" instance=ExtResource("4_5ek75")]
 position = Vector2(3.085, 0)
 
 [node name="Forearm_F" type="Sprite2D" parent="sprites"]
-position = Vector2(0.477976, -1.1983)
-rotation = -0.132554
+position = Vector2(0.579876, 0.284278)
+rotation = -0.139442
 texture = SubResource("CanvasTexture_geky7")
 
 [node name="Shoulder_F" type="Sprite2D" parent="sprites"]
-position = Vector2(-1.33917, -11.044)
-rotation = -0.132554
+position = Vector2(-1.30505, -9.54868)
+rotation = -0.139442
 texture = SubResource("CanvasTexture_qwspa")
+
+[node name="accessories" type="Node2D" parent="."]
+
+[node name="root" type="StaticBody2D" parent="accessories"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="accessories/root"]
+shape = SubResource("CircleShape2D_vewsg")
+
+[node name="starRb" type="RigidBody2D" parent="accessories"]
+collision_layer = 0
+collision_mask = 0
+mass = 13.245
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="accessories/starRb"]
+shape = SubResource("CircleShape2D_2soq1")
+
+[node name="RemoteTransform2DExtended" type="Node2D" parent="accessories/starRb" node_paths=PackedStringArray("node")]
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../sprites/Star")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="starChainRb" type="RigidBody2D" parent="accessories"]
+position = Vector2(-2, 3)
+collision_layer = 0
+collision_mask = 0
+mass = 3.015
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="accessories/starChainRb"]
+shape = SubResource("CircleShape2D_2soq1")
+
+[node name="RemoteTransform2DExtended" type="Node2D" parent="accessories/starChainRb" node_paths=PackedStringArray("node")]
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../sprites/Star/Glass/PuffyThing")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="starChain2Rb" type="RigidBody2D" parent="accessories"]
+position = Vector2(-2, 5)
+collision_layer = 0
+collision_mask = 0
+mass = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="accessories/starChain2Rb"]
+shape = SubResource("CircleShape2D_2soq1")
+
+[node name="RemoteTransform2DExtended" type="Node2D" parent="accessories/starChain2Rb" node_paths=PackedStringArray("node")]
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../sprites/Star/Glass/PuffyThingSecondPart")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="root-starRb" type="PinJoint2D" parent="accessories"]
+visible = false
+position = Vector2(-1, -2)
+node_a = NodePath("../starRb")
+node_b = NodePath("../root")
+bias = 0.9
+motor_enabled = true
+script = ExtResource("33_2soq1")
+enabled = true
+Proportional = 1.0
+
+[node name="starRb-starChainRb" type="PinJoint2D" parent="accessories"]
+visible = false
+position = Vector2(-2, 2)
+node_a = NodePath("../starRb")
+node_b = NodePath("../starChainRb")
+
+[node name="starChainRb-starChain2Rb" type="PinJoint2D" parent="accessories"]
+visible = false
+position = Vector2(-2, 4)
+node_a = NodePath("../starChainRb")
+node_b = NodePath("../starChain2Rb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

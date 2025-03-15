@@ -1791,6 +1791,7 @@ scale = Vector2(1, 0.993091)
 texture = ExtResource("2_ouso4")
 
 [node name="PlayerIKAnimator" type="Node2D" parent="." node_paths=PackedStringArray("player", "animationPlayer")]
+visible = false
 position = Vector2(-4, -5)
 script = ExtResource("3_th5th")
 player = NodePath("../Player")
@@ -1835,7 +1836,7 @@ IkAnimator = NodePath("../PlayerIKAnimator")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 material = SubResource("ShaderMaterial_qtmoe")
-position = Vector2(-18, 35)
+position = Vector2(0, -3)
 zoom = Vector2(3, 3)
 limit_bottom = 180
 limit_smoothed = true
@@ -1845,6 +1846,7 @@ script = ExtResource("5_7smn1")
 suppressPixelAlignment = true
 
 [node name="targetPositions" type="Node2D" parent="Player"]
+visible = false
 
 [node name="FFTarget_pos" type="Marker2D" parent="Player/targetPositions"]
 position = Vector2(9, 26)
