@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://c11ldn4yd0i8w"]
+[gd_scene load_steps=69 format=3 uid="uid://c11ldn4yd0i8w"]
 
 [ext_resource type="Script" uid="uid://7dppspqb023v" path="res://entities/player/player.gd" id="1_plpc0"]
 [ext_resource type="Script" uid="uid://b7h0h8wdhf0ws" path="res://entities/player/resources/IKTargetResource.gd" id="2_a1qjk"]
@@ -24,12 +24,16 @@
 [ext_resource type="Texture2D" uid="uid://bgaj0f7dp6sdi" path="res://entities/player/assets/miku/torso_jacket.png" id="19_vewsg"]
 [ext_resource type="Texture2D" uid="uid://bm6munwfhcl0d" path="res://entities/player/assets/miku/head/head_normal.png" id="21_0eo6o"]
 [ext_resource type="Script" uid="uid://cki8fllcntgui" path="res://entities/player/hair_flow.gd" id="21_221hk"]
+[ext_resource type="Texture2D" uid="uid://biqfu7kfhoar0" path="res://entities/player/assets/miku/head/hair_normal.png" id="21_ttr27"]
 [ext_resource type="Shader" uid="uid://b3dtbkc71evh6" path="res://entities/player/hair.gdshader" id="22_ghoj8"]
+[ext_resource type="Texture2D" uid="uid://dup8co2iynhvr" path="res://entities/player/assets/miku/head/bowtie_normal.png" id="23_13wue"]
 [ext_resource type="Texture2D" uid="uid://dt2l2yfrvpvan" path="res://entities/player/assets/miku/torso_normal.png" id="26_ttr27"]
 [ext_resource type="Texture2D" uid="uid://de37tk41yp4mb" path="res://entities/player/assets/miku/skirt_normal.png" id="28_13wue"]
 [ext_resource type="Texture2D" uid="uid://wrrekxjvg0vl" path="res://entities/player/assets/miku/torso_jacket_normal.png" id="30_wy7bt"]
 [ext_resource type="Texture2D" uid="uid://fwxqtdhk3jua" path="res://entities/player/assets/miku/lantern/star.png" id="31_np63p"]
 [ext_resource type="Texture2D" uid="uid://dvsm342nxn8t6" path="res://entities/player/assets/miku/lantern/glass.png" id="32_0eo6o"]
+[ext_resource type="Texture2D" uid="uid://ct4p4rmtan1ow" path="res://entities/target_dummy/assets/2d_lights_and_shadows_neutral_point_light.webp" id="32_8q4fm"]
+[ext_resource type="Script" uid="uid://dk2yrqykdjtoy" path="res://entities/target_dummy/rotation_target.gd" id="33_2soq1"]
 [ext_resource type="Texture2D" uid="uid://cmrdtpty5fhk2" path="res://entities/player/assets/miku/lantern/puffy_thing.png" id="33_ttr27"]
 [ext_resource type="Texture2D" uid="uid://bxbcwehybwg8e" path="res://entities/player/assets/miku/lantern/puffy_thing_second_part.png" id="34_13wue"]
 
@@ -177,6 +181,14 @@ size = Vector2(200, 200)
 diffuse_texture = ExtResource("13_wuv6x")
 normal_texture = ExtResource("21_0eo6o")
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_wy7bt"]
+diffuse_texture = ExtResource("15_wq0jh")
+normal_texture = ExtResource("21_ttr27")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ssgi7"]
+diffuse_texture = ExtResource("16_gt4e4")
+normal_texture = ExtResource("23_13wue")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t1t22"]
 shader = ExtResource("22_ghoj8")
 shader_parameter/size = Vector2(200, 200)
@@ -197,6 +209,12 @@ normal_texture = ExtResource("28_13wue")
 [sub_resource type="CanvasTexture" id="CanvasTexture_u37te"]
 diffuse_texture = ExtResource("19_vewsg")
 normal_texture = ExtResource("30_wy7bt")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vewsg"]
+radius = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2soq1"]
+radius = 1.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a1qjk"]
 radius = 5.6
@@ -241,6 +259,7 @@ fixed_fps = 120
 process_material = SubResource("ParticleProcessMaterial_8hh5x")
 
 [node name="Skeleton" type="Skeleton2D" parent="."]
+visible = false
 modification_stack = SubResource("SkeletonModificationStack2D_3wlsy")
 
 [node name="hip" type="Bone2D" parent="Skeleton"]
@@ -523,11 +542,11 @@ texture = ExtResource("14_qpopc")
 
 [node name="Hair" type="Sprite2D" parent="sprites/Head"]
 position = Vector2(0, -4)
-texture = ExtResource("15_wq0jh")
+texture = SubResource("CanvasTexture_wy7bt")
 
 [node name="WeirdBangThing" type="Sprite2D" parent="sprites/Head"]
 position = Vector2(-3.5, -5)
-texture = ExtResource("16_gt4e4")
+texture = SubResource("CanvasTexture_ssgi7")
 
 [node name="FHairMover" type="Node2D" parent="sprites/Head" node_paths=PackedStringArray("node")]
 position = Vector2(-4.93657, -5.72336)
@@ -565,11 +584,11 @@ position = Vector2(-0.5, 9)
 texture = SubResource("CanvasTexture_c112w")
 
 [node name="TorsoJacket" type="Sprite2D" parent="sprites/Torso"]
+visible = false
 position = Vector2(-2, 0.999976)
 texture = SubResource("CanvasTexture_u37te")
 
 [node name="Star" type="Sprite2D" parent="sprites"]
-visible = false
 texture = ExtResource("31_np63p")
 
 [node name="Glass" type="Sprite2D" parent="sprites/Star"]
@@ -582,6 +601,10 @@ texture = ExtResource("33_ttr27")
 [node name="PuffyThingSecondPart" type="Sprite2D" parent="sprites/Star/Glass"]
 position = Vector2(-2, 5)
 texture = ExtResource("34_13wue")
+
+[node name="PointLight2D" type="PointLight2D" parent="sprites/Star"]
+energy = 0.5
+texture = ExtResource("32_8q4fm")
 
 [node name="FlipHandler" type="Node2D" parent="sprites"]
 position = Vector2(1.76815, 3.44667)
@@ -599,6 +622,85 @@ texture = SubResource("CanvasTexture_geky7")
 position = Vector2(-1.33917, -11.044)
 rotation = -0.132554
 texture = SubResource("CanvasTexture_qwspa")
+
+[node name="accessories" type="Node2D" parent="."]
+
+[node name="root" type="StaticBody2D" parent="accessories"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="accessories/root"]
+shape = SubResource("CircleShape2D_vewsg")
+
+[node name="starRb" type="RigidBody2D" parent="accessories"]
+collision_layer = 0
+collision_mask = 0
+mass = 13.245
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="accessories/starRb"]
+shape = SubResource("CircleShape2D_2soq1")
+
+[node name="RemoteTransform2DExtended" type="Node2D" parent="accessories/starRb" node_paths=PackedStringArray("node")]
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../sprites/Star")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="starChainRb" type="RigidBody2D" parent="accessories"]
+position = Vector2(-2, 3)
+collision_layer = 0
+collision_mask = 0
+mass = 3.015
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="accessories/starChainRb"]
+shape = SubResource("CircleShape2D_2soq1")
+
+[node name="RemoteTransform2DExtended" type="Node2D" parent="accessories/starChainRb" node_paths=PackedStringArray("node")]
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../sprites/Star/Glass/PuffyThing")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="starChain2Rb" type="RigidBody2D" parent="accessories"]
+position = Vector2(-2, 5)
+collision_layer = 0
+collision_mask = 0
+mass = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="accessories/starChain2Rb"]
+shape = SubResource("CircleShape2D_2soq1")
+
+[node name="RemoteTransform2DExtended" type="Node2D" parent="accessories/starChain2Rb" node_paths=PackedStringArray("node")]
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../sprites/Star/Glass/PuffyThingSecondPart")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="root-starRb" type="PinJoint2D" parent="accessories"]
+visible = false
+position = Vector2(-1, -2)
+node_a = NodePath("../starRb")
+node_b = NodePath("../root")
+bias = 0.9
+motor_enabled = true
+script = ExtResource("33_2soq1")
+enabled = true
+Proportional = 1.0
+
+[node name="starRb-starChainRb" type="PinJoint2D" parent="accessories"]
+visible = false
+position = Vector2(-2, 2)
+node_a = NodePath("../starRb")
+node_b = NodePath("../starChainRb")
+
+[node name="starChainRb-starChain2Rb" type="PinJoint2D" parent="accessories"]
+visible = false
+position = Vector2(-2, 4)
+node_a = NodePath("../starChainRb")
+node_b = NodePath("../starChain2Rb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
