@@ -1837,7 +1837,7 @@ IkAnimator = NodePath("../PlayerIKAnimator")
 [node name="Camera2D" type="Camera2D" parent="Player"]
 material = SubResource("ShaderMaterial_qtmoe")
 position = Vector2(0, -3)
-zoom = Vector2(5, 5)
+zoom = Vector2(3, 3)
 limit_bottom = 180
 limit_smoothed = true
 position_smoothing_enabled = true
