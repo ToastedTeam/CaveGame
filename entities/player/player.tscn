@@ -259,7 +259,6 @@ fixed_fps = 120
 process_material = SubResource("ParticleProcessMaterial_8hh5x")
 
 [node name="Skeleton" type="Skeleton2D" parent="."]
-visible = false
 modification_stack = SubResource("SkeletonModificationStack2D_3wlsy")
 
 [node name="hip" type="Bone2D" parent="Skeleton"]
@@ -280,9 +279,9 @@ Rotation = true
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="collar" type="Bone2D" parent="Skeleton/hip/torso"]
-position = Vector2(9.53674e-07, -16)
+position = Vector2(0, -13.5)
 scale = Vector2(0.999982, 0.999982)
-rest = Transform2D(0.999982, 0, 0, 0.999982, 9.53674e-07, -16)
+rest = Transform2D(0.999982, 0, 0, 0.999982, 0, -13.5)
 editor_settings/show_bone_gizmo = false
 
 [node name="offset" type="Bone2D" parent="Skeleton/hip/torso/collar"]
@@ -293,7 +292,7 @@ editor_settings/show_bone_gizmo = false
 
 [node name="head" type="Bone2D" parent="Skeleton/hip/torso/collar/offset"]
 scale = Vector2(0.999854, 0.999854)
-rest = Transform2D(0.999855, 0, 0, 0.999855, 0, 0)
+rest = Transform2D(0.999854, 0, 0, 0.999854, 0, 0)
 auto_calculate_length_and_angle = false
 length = 12.44
 bone_angle = -7.00297e-07
@@ -311,10 +310,10 @@ Rotation = true
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="shoulder_r" type="Bone2D" parent="Skeleton/hip/torso/collar/offset"]
-position = Vector2(-0.5, 0)
-rotation = 1.4289
+position = Vector2(-0.5, -1)
+rotation = 2.70308
 scale = Vector2(0.999991, 0.999991)
-rest = Transform2D(-4.3711e-08, 0.999992, -0.999992, -4.3711e-08, -0.5, 0)
+rest = Transform2D(-0.905374, 0.424593, -0.424593, -0.905374, -0.5, -1)
 editor_settings/show_bone_gizmo = false
 metadata/_local_pose_override_enabled_ = true
 
@@ -347,10 +346,10 @@ Rotation = true
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="shoulder_f" type="Bone2D" parent="Skeleton/hip/torso/collar/offset"]
-position = Vector2(-0.5, 0)
-rotation = 1.43825
+position = Vector2(-0.5, -1)
+rotation = 0.129786
 scale = Vector2(0.999986, 0.999986)
-rest = Transform2D(-4.37108e-08, 0.999986, -0.999986, -4.37108e-08, -0.5, 0)
+rest = Transform2D(0.991575, 0.12942, -0.12942, 0.991575, -0.5, -1)
 editor_settings/show_bone_gizmo = false
 metadata/_local_pose_override_enabled_ = true
 
@@ -392,7 +391,6 @@ Rotation = true
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="thigh_r" type="Bone2D" parent="Skeleton/hip"]
-rotation = -0.144474
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 auto_calculate_length_and_angle = false
 length = 12.0
@@ -409,10 +407,9 @@ Rotation = true
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="calf_r" type="Bone2D" parent="Skeleton/hip/thigh_r"]
-position = Vector2(0, 12)
-rotation = 0.954114
+position = Vector2(0.5, 14.5)
 scale = Vector2(0.999928, 0.999928)
-rest = Transform2D(0.999928, 0, 0, 0.999928, 0, 12)
+rest = Transform2D(0.999928, 0, 0, 0.999928, 0.5, 14.5)
 auto_calculate_length_and_angle = false
 length = 17.58
 bone_angle = 90.0
@@ -427,10 +424,9 @@ Rotation = true
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="thigh_f" type="Bone2D" parent="Skeleton/hip"]
-position = Vector2(1, -2.84217e-14)
-rotation = -0.0333211
+position = Vector2(-0.5, 0)
 scale = Vector2(0.999842, 0.999842)
-rest = Transform2D(0.999842, 0, 0, 0.999842, 1, -2.84217e-14)
+rest = Transform2D(0.999842, 0, 0, 0.999842, -0.5, 0)
 auto_calculate_length_and_angle = false
 length = 12.0
 bone_angle = 90.0
@@ -446,9 +442,9 @@ Rotation = true
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="calf_f" type="Bone2D" parent="Skeleton/hip/thigh_f"]
-position = Vector2(1, 12)
+position = Vector2(0.5, 14.5)
 scale = Vector2(0.999951, 0.999951)
-rest = Transform2D(0.999951, 0, 0, 0.999951, 1, 12)
+rest = Transform2D(0.999951, 0, 0, 0.999951, 0.5, 14.5)
 auto_calculate_length_and_angle = false
 length = 17.58
 bone_angle = 90.0
@@ -469,7 +465,7 @@ position = Vector2(2, 30)
 position = Vector2(-11, 24)
 
 [node name="lookTarget" type="Marker2D" parent="Skeleton"]
-position = Vector2(32, -16)
+position = Vector2(32, -13.5)
 
 [node name="BHTarget_pos" type="Marker2D" parent="Skeleton"]
 position = Vector2(2, 12)
@@ -481,46 +477,46 @@ position = Vector2(2, 14)
 
 [node name="Forearm_R" type="Sprite2D" parent="sprites"]
 modulate = Color(0.788235, 0.788235, 0.788235, 1)
-position = Vector2(0.616221, -1.22198)
-rotation = -0.141899
+position = Vector2(0.733112, 0.256867)
+rotation = -0.149815
 texture = SubResource("CanvasTexture_geky7")
 
 [node name="Shoulder_R" type="Sprite2D" parent="sprites"]
 modulate = Color(0.788235, 0.788235, 0.788235, 1)
-position = Vector2(-1.29288, -11.0504)
-rotation = -0.141899
+position = Vector2(-1.25373, -9.55612)
+rotation = -0.149815
 texture = SubResource("CanvasTexture_qwspa")
 
 [node name="Calf_B" type="Node2D" parent="sprites"]
 modulate = Color(0.788235, 0.788235, 0.788235, 1)
-position = Vector2(1.72765, 11.8749)
+position = Vector2(2.58236, 14.2769)
 rotation = 0.80964
 
 [node name="Calf" type="Sprite2D" parent="sprites/Calf_B"]
-position = Vector2(0, 9.24)
+position = Vector2(0, 8.85)
 texture = SubResource("CanvasTexture_r633c")
 
 [node name="Thigh_B" type="Sprite2D" parent="sprites"]
 modulate = Color(0.787759, 0.787759, 0.787759, 1)
-position = Vector2(0.863827, 5.93747)
-rotation = -0.144474
+position = Vector2(0.863821, 5.93747)
+rotation = -0.144473
 texture = SubResource("CanvasTexture_pacje")
 
 [node name="Calf_F" type="Node2D" parent="sprites"]
-position = Vector2(2.399, 11.9581)
-rotation = -0.0333211
+position = Vector2(1.20215, 14.406)
+rotation = -0.0831412
 
 [node name="Calf" type="Sprite2D" parent="sprites/Calf_F"]
 position = Vector2(0, 8.85)
 texture = SubResource("CanvasTexture_2h0qb")
 
 [node name="Thigh_F" type="Sprite2D" parent="sprites"]
-position = Vector2(1.19985, 5.9957)
-rotation = -0.0333211
+position = Vector2(-0.00180995, 5.97828)
+rotation = -0.0831412
 texture = SubResource("CanvasTexture_mmk7k")
 
 [node name="BHair" type="Node2D" parent="sprites" groups=["noFlip"]]
-position = Vector2(-5.19258, -30.5802)
+position = Vector2(-5.19258, -28.0802)
 script = ExtResource("21_221hk")
 pointCount = 11
 gravity = Vector2(0, 9)
@@ -533,7 +529,7 @@ material = SubResource("ShaderMaterial_221hk")
 mesh = SubResource("QuadMesh_mtric")
 
 [node name="Head" type="Sprite2D" parent="sprites"]
-position = Vector2(-1.49998, -22.9987)
+position = Vector2(-1.49998, -20.4987)
 texture = SubResource("CanvasTexture_g3pa7")
 
 [node name="Eyes" type="Sprite2D" parent="sprites/Head"]
@@ -563,7 +559,7 @@ Position = true
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="FrontHair" type="Node2D" parent="sprites" groups=["noFlip"]]
-position = Vector2(-6.43656, -28.7221)
+position = Vector2(-6.43655, -26.2221)
 script = ExtResource("21_221hk")
 pointCount = 11
 gravity = Vector2(0, 9)
@@ -580,12 +576,11 @@ position = Vector2(-9.53674e-07, -7.99998)
 texture = SubResource("CanvasTexture_7otdo")
 
 [node name="Skirt" type="Sprite2D" parent="sprites/Torso"]
-position = Vector2(-0.5, 9)
+position = Vector2(-0.5, 8)
 texture = SubResource("CanvasTexture_c112w")
 
 [node name="TorsoJacket" type="Sprite2D" parent="sprites/Torso"]
-visible = false
-position = Vector2(-2, 0.999976)
+position = Vector2(-2, 2.5)
 texture = SubResource("CanvasTexture_u37te")
 
 [node name="Star" type="Sprite2D" parent="sprites"]
@@ -607,20 +602,20 @@ energy = 0.5
 texture = ExtResource("32_8q4fm")
 
 [node name="FlipHandler" type="Node2D" parent="sprites"]
-position = Vector2(1.76815, 3.44667)
-rotation = -0.132554
+position = Vector2(1.90201, 4.92025)
+rotation = -0.139442
 
 [node name="Weapon" parent="sprites/FlipHandler" instance=ExtResource("4_5ek75")]
 position = Vector2(3.085, 0)
 
 [node name="Forearm_F" type="Sprite2D" parent="sprites"]
-position = Vector2(0.477976, -1.1983)
-rotation = -0.132554
+position = Vector2(0.579876, 0.284278)
+rotation = -0.139442
 texture = SubResource("CanvasTexture_geky7")
 
 [node name="Shoulder_F" type="Sprite2D" parent="sprites"]
-position = Vector2(-1.33917, -11.044)
-rotation = -0.132554
+position = Vector2(-1.30505, -9.54868)
+rotation = -0.139442
 texture = SubResource("CanvasTexture_qwspa")
 
 [node name="accessories" type="Node2D" parent="."]
