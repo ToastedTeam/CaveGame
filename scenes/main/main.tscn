@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://qtfciyfj33pt"]
+[gd_scene load_steps=54 format=4 uid="uid://qtfciyfj33pt"]
 
 [ext_resource type="Material" uid="uid://hkdd85186e42" path="res://shaders/SmoothPixel.tres" id="1_a8run"]
 [ext_resource type="Texture2D" uid="uid://b8aysoeqef1f1" path="res://icon.svg" id="2_ouso4"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dfl57bvdn0c7l" path="res://entities/player/resources/FlipRule.gd" id="4_raeie"]
 [ext_resource type="Shader" uid="uid://b8cvd0b0qkxpa" path="res://shaders/pixel_camera.gdshader" id="4_th5th"]
 [ext_resource type="Script" uid="uid://j8q2uvh3comw" path="res://scenes/main/camera.gd" id="5_7smn1"]
+[ext_resource type="Texture2D" uid="uid://bt2bhvto5pfuq" path="res://structures/rest_area/assets/campfire.png" id="6_hxu8e"]
 [ext_resource type="PackedScene" uid="uid://jxyevycakmnv" path="res://scenes/interface/interface.tscn" id="6_raeie"]
 [ext_resource type="PackedScene" uid="uid://dywdkewy1ti6p" path="res://entities/target_dummy/target_dummy.tscn" id="7_hxu8e"]
 [ext_resource type="Texture2D" uid="uid://ryvgyi4m7ywi" path="res://scenes/main/assets/mainlev_build.png" id="8_nvumn"]
@@ -130,6 +131,73 @@ size = Vector2(10, 10)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_blune"]
 size = Vector2(20, 20)
+
+[sub_resource type="Curve" id="Curve_nvumn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0561798), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_y2hkx"]
+curve = SubResource("Curve_nvumn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ou6is"]
+particle_flag_disable_z = true
+angle_min = -163.5
+angle_max = 140.5
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 12.1
+initial_velocity_max = 12.1
+angular_velocity_min = -14.45
+angular_velocity_max = 23.6
+damping_min = 7.235
+damping_max = 7.235
+scale_min = 5.0
+scale_max = 7.8
+scale_curve = SubResource("CurveTexture_y2hkx")
+color = Color(0.29219, 0.29219, 0.29219, 0.509804)
+
+[sub_resource type="Gradient" id="Gradient_necax"]
+offsets = PackedFloat32Array(0, 0.309091, 1)
+colors = PackedColorArray(0.933333, 1, 0, 1, 0.970909, 0.436364, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xlrih"]
+gradient = SubResource("Gradient_necax")
+
+[sub_resource type="Curve" id="Curve_r4lks"]
+_limits = [0.0, 2.75, 0.0, 1.0]
+_data = [Vector2(0, 2.75), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jjql1"]
+curve = SubResource("Curve_r4lks")
+
+[sub_resource type="Curve" id="Curve_pg34l"]
+_data = [Vector2(0, 1), 0.0, -0.0391816, 0, 0, Vector2(1, 0), -1.01873, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_pscky"]
+curve = SubResource("Curve_pg34l")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m4h2d"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 5.7
+angle_min = -46.5
+angle_max = 57.0
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 11.55
+initial_velocity_max = 20.7
+angular_velocity_min = -18.05
+angular_velocity_max = 14.9
+damping_min = 12.605
+damping_max = 12.605
+scale_min = 5.75
+scale_max = 6.6
+scale_curve = SubResource("CurveTexture_pscky")
+color = Color(0.717331, 0.676126, 0, 1)
+color_ramp = SubResource("GradientTexture1D_xlrih")
+emission_curve = SubResource("CurveTexture_jjql1")
+hue_variation_min = -0.02
+hue_variation_max = 0.02
 
 [sub_resource type="Resource" id="Resource_j3ovn"]
 script = ExtResource("4_ouso4")
@@ -1840,6 +1908,25 @@ visible = false
 script = ExtResource("4_7smn1")
 node = NodePath("../../../Player/Skeleton/hip")
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="Campfire" type="Sprite2D" parent="PlayerIKAnimator"]
+position = Vector2(40, -9)
+texture = ExtResource("6_hxu8e")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="PlayerIKAnimator/Campfire"]
+visible = false
+position = Vector2(38, 2)
+
+[node name="smoke" type="GPUParticles2D" parent="PlayerIKAnimator/Campfire"]
+position = Vector2(-3, 6)
+amount = 6
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_ou6is")
+
+[node name="fire" type="GPUParticles2D" parent="PlayerIKAnimator/Campfire"]
+position = Vector2(-3, 8)
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_m4h2d")
 
 [node name="Player" parent="." node_paths=PackedStringArray("health_bar", "mana_bar", "IkAnimator") instance=ExtResource("3_blune")]
 position = Vector2(-4, -36)

@@ -1,8 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://babgoqd6p8s7d"]
+[gd_scene load_steps=39 format=3 uid="uid://babgoqd6p8s7d"]
 
 [ext_resource type="PackedScene" uid="uid://c11ldn4yd0i8w" path="res://entities/player/player.tscn" id="1_6clvg"]
 [ext_resource type="Script" uid="uid://bhda60gy1q5tc" path="res://entities/player/player_ik_animator.gd" id="1_v7w66"]
 [ext_resource type="Script" uid="uid://dfl57bvdn0c7l" path="res://entities/player/resources/FlipRule.gd" id="2_o18k1"]
+[ext_resource type="Script" uid="uid://eji52ig0w3g5" path="res://addons/remotetransform2dextended/remoteTransform.gd" id="3_xfcxd"]
+[ext_resource type="Script" uid="uid://b7h0h8wdhf0ws" path="res://entities/player/resources/IKTargetResource.gd" id="5_86xse"]
+[ext_resource type="Texture2D" uid="uid://m4xjhaprdbe5" path="res://structures/rest_area/assets/LogsFlat.png" id="6_xlrih"]
+[ext_resource type="Texture2D" uid="uid://bnwj6bdvkmixq" path="res://structures/rest_area/assets/LogsFlatNormal.png" id="7_367mj"]
+[ext_resource type="Texture2D" uid="uid://ct4p4rmtan1ow" path="res://entities/target_dummy/assets/2d_lights_and_shadows_neutral_point_light.webp" id="8_jjql1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qk7b1"]
 radius = 100.0
@@ -117,11 +122,116 @@ normalModulation = Color(1, 1, 1, 1)
 flippedModulation = Color(0.788235, 0.788235, 0.788235, 1)
 metadata/_custom_type_script = "uid://dfl57bvdn0c7l"
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xfcxd"]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_y2hkx"]
 size = Vector2(10, 10)
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_86xse"]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xlrih"]
 size = Vector2(20, 20)
+
+[sub_resource type="Resource" id="Resource_a1qjk"]
+script = ExtResource("5_86xse")
+targetModificationName = "HeadLook"
+targetNodePath = NodePath("Skeleton/lookTarget")
+metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
+
+[sub_resource type="Resource" id="Resource_367mj"]
+script = ExtResource("5_86xse")
+targetModificationName = "BackArm"
+targetNodePath = NodePath("../PlayerIKAnimator/BHTarget")
+metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
+
+[sub_resource type="Resource" id="Resource_jjql1"]
+script = ExtResource("5_86xse")
+targetModificationName = "FrontArm"
+targetNodePath = NodePath("../PlayerIKAnimator/FHTarget")
+metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
+
+[sub_resource type="Resource" id="Resource_korw2"]
+script = ExtResource("5_86xse")
+targetModificationName = "BackLeg"
+targetNodePath = NodePath("../PlayerIKAnimator/BFTarget")
+metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
+
+[sub_resource type="Resource" id="Resource_pscky"]
+script = ExtResource("5_86xse")
+targetModificationName = "FrontLeg"
+targetNodePath = NodePath("../PlayerIKAnimator/FFTarget")
+metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_korw2"]
+diffuse_texture = ExtResource("6_xlrih")
+normal_texture = ExtResource("7_367mj")
+
+[sub_resource type="Curve" id="Curve_86xse"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0561798), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_86xse"]
+curve = SubResource("Curve_86xse")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xlrih"]
+particle_flag_disable_z = true
+angle_min = -163.5
+angle_max = 140.5
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 12.1
+initial_velocity_max = 12.1
+angular_velocity_min = -14.45
+angular_velocity_max = 23.6
+damping_min = 7.235
+damping_max = 7.235
+scale_min = 5.0
+scale_max = 7.8
+scale_curve = SubResource("CurveTexture_86xse")
+color = Color(0.29219, 0.29219, 0.29219, 0.509804)
+
+[sub_resource type="Gradient" id="Gradient_y2hkx"]
+offsets = PackedFloat32Array(0, 0.309091, 1)
+colors = PackedColorArray(0.933333, 1, 0, 1, 0.970909, 0.436364, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_y2hkx"]
+gradient = SubResource("Gradient_y2hkx")
+
+[sub_resource type="Curve" id="Curve_367mj"]
+_limits = [0.0, 2.75, 0.0, 1.0]
+_data = [Vector2(0, 2.75), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xlrih"]
+curve = SubResource("Curve_367mj")
+
+[sub_resource type="Curve" id="Curve_korw2"]
+_data = [Vector2(0, 1), 0.0, -0.0391816, 0, 0, Vector2(1, 0), -1.01873, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_367mj"]
+curve = SubResource("Curve_korw2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1722b"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 5.7
+angle_min = -46.5
+angle_max = 57.0
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 11.55
+initial_velocity_max = 20.7
+angular_velocity_min = -18.05
+angular_velocity_max = 14.9
+damping_min = 12.605
+damping_max = 12.605
+scale_min = 5.75
+scale_max = 6.6
+scale_curve = SubResource("CurveTexture_367mj")
+color = Color(0.717331, 0.676126, 0, 1)
+color_ramp = SubResource("GradientTexture1D_y2hkx")
+emission_curve = SubResource("CurveTexture_xlrih")
+hue_variation_min = -0.02
+hue_variation_max = 0.02
+
+[sub_resource type="Environment" id="Environment_367mj"]
+background_mode = 1
+glow_enabled = true
 
 [node name="RestArea" type="Node2D"]
 
@@ -133,10 +243,10 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBarrier"]
 shape = SubResource("CircleShape2D_qk7b1")
 
-[node name="PlayerIKAnimator" type="Node2D" parent="."]
-visible = false
+[node name="PlayerIKAnimator" type="Node2D" parent="." node_paths=PackedStringArray("player")]
 position = Vector2(-4, -5)
 script = ExtResource("1_v7w66")
+player = NodePath("../Player")
 maxFootDistanceFromTarget = 5
 FlipRules = Array[ExtResource("2_o18k1")]([SubResource("Resource_hxu8e"), SubResource("Resource_raeie"), SubResource("Resource_7smn1"), SubResource("Resource_nvumn"), SubResource("Resource_ou6is"), SubResource("Resource_necax"), SubResource("Resource_r4lks"), SubResource("Resource_pg34l"), SubResource("Resource_m4h2d"), SubResource("Resource_p8abn")])
 ArmRestOffset = Vector2(0.235, 6.05)
@@ -146,26 +256,72 @@ BArmRest = Vector2(-4.805, 0.62)
 [node name="BFTarget" type="Marker2D" parent="PlayerIKAnimator"]
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerIKAnimator/BFTarget"]
-texture = SubResource("PlaceholderTexture2D_xfcxd")
+visible = false
+texture = SubResource("PlaceholderTexture2D_y2hkx")
 
 [node name="FFTarget" type="Marker2D" parent="PlayerIKAnimator"]
 z_index = 500
 position = Vector2(9, -5)
 
 [node name="Sprite2D2" type="Sprite2D" parent="PlayerIKAnimator/FFTarget"]
-texture = SubResource("PlaceholderTexture2D_xfcxd")
+visible = false
+texture = SubResource("PlaceholderTexture2D_y2hkx")
 
 [node name="BHTarget" type="Marker2D" parent="PlayerIKAnimator"]
 position = Vector2(68, -3)
 
 [node name="Sprite2D2" type="Sprite2D" parent="PlayerIKAnimator/BHTarget"]
-texture = SubResource("PlaceholderTexture2D_86xse")
+visible = false
+texture = SubResource("PlaceholderTexture2D_xlrih")
 
 [node name="FHTarget" type="Marker2D" parent="PlayerIKAnimator"]
-position = Vector2(0, -31)
+position = Vector2(-7, 3)
 
 [node name="Sprite2D2" type="Sprite2D" parent="PlayerIKAnimator/FHTarget"]
-texture = SubResource("PlaceholderTexture2D_86xse")
+visible = false
+texture = SubResource("PlaceholderTexture2D_xlrih")
+
+[node name="HipTarget" type="Marker2D" parent="PlayerIKAnimator"]
+position = Vector2(-3, -29)
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerIKAnimator/HipTarget"]
+visible = false
+texture = SubResource("PlaceholderTexture2D_xlrih")
+
+[node name="Synchroniser" type="Node2D" parent="PlayerIKAnimator/HipTarget" node_paths=PackedStringArray("node")]
+visible = false
+script = ExtResource("3_xfcxd")
+node = NodePath("../../../Player/Skeleton/hip")
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="Player" parent="." instance=ExtResource("1_6clvg")]
-position = Vector2(-7, -34)
+position = Vector2(1, -33)
+ik_overrides = Array[ExtResource("5_86xse")]([SubResource("Resource_a1qjk"), SubResource("Resource_367mj"), SubResource("Resource_jjql1"), SubResource("Resource_korw2"), SubResource("Resource_pscky")])
+
+[node name="Campfire" type="Sprite2D" parent="."]
+position = Vector2(40, -14)
+texture = SubResource("CanvasTexture_korw2")
+
+[node name="smoke" type="GPUParticles2D" parent="Campfire"]
+position = Vector2(-3, 6)
+amount = 6
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_xlrih")
+
+[node name="fire" type="GPUParticles2D" parent="Campfire"]
+position = Vector2(-3, 8)
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_1722b")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_367mj")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(35, -16)
+color = Color(1, 0.557333, 0.17, 1)
+energy = 1.1
+texture = ExtResource("8_jjql1")
+height = 97.0
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)

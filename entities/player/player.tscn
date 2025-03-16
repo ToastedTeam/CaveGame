@@ -40,25 +40,25 @@
 [sub_resource type="Resource" id="Resource_j3ovn"]
 script = ExtResource("2_a1qjk")
 targetModificationName = "BackArm"
-targetNodePath = NodePath("../PlayerIKAnimator/BHTarget")
+targetNodePath = NodePath("")
 metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
 
 [sub_resource type="Resource" id="Resource_afbqv"]
 script = ExtResource("2_a1qjk")
 targetModificationName = "FrontArm"
-targetNodePath = NodePath("../PlayerIKAnimator/FHTarget")
+targetNodePath = NodePath("")
 metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
 
 [sub_resource type="Resource" id="Resource_gx6sm"]
 script = ExtResource("2_a1qjk")
 targetModificationName = "BackLeg"
-targetNodePath = NodePath("../PlayerIKAnimator/BFTarget")
+targetNodePath = NodePath("")
 metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
 
 [sub_resource type="Resource" id="Resource_yqrof"]
 script = ExtResource("2_a1qjk")
 targetModificationName = "FrontLeg"
-targetNodePath = NodePath("../PlayerIKAnimator/FFTarget")
+targetNodePath = NodePath("")
 metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
 
 [sub_resource type="Resource" id="Resource_a1qjk"]
