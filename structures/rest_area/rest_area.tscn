@@ -131,7 +131,7 @@ size = Vector2(20, 20)
 [sub_resource type="Resource" id="Resource_a1qjk"]
 script = ExtResource("5_86xse")
 targetModificationName = "HeadLook"
-targetNodePath = NodePath("Skeleton/lookTarget")
+targetNodePath = NodePath("../PlayerIKAnimator/look")
 metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
 
 [sub_resource type="Resource" id="Resource_367mj"]
@@ -244,7 +244,7 @@ collision_mask = 4
 shape = SubResource("CircleShape2D_qk7b1")
 
 [node name="PlayerIKAnimator" type="Node2D" parent="." node_paths=PackedStringArray("player")]
-position = Vector2(-4, -5)
+position = Vector2(10, -5)
 script = ExtResource("1_v7w66")
 player = NodePath("../Player")
 maxFootDistanceFromTarget = 5
@@ -254,6 +254,7 @@ FArmRest = Vector2(0.2, 0)
 BArmRest = Vector2(-4.805, 0.62)
 
 [node name="BFTarget" type="Marker2D" parent="PlayerIKAnimator"]
+position = Vector2(2, 5)
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerIKAnimator/BFTarget"]
 visible = false
@@ -261,21 +262,21 @@ texture = SubResource("PlaceholderTexture2D_y2hkx")
 
 [node name="FFTarget" type="Marker2D" parent="PlayerIKAnimator"]
 z_index = 500
-position = Vector2(9, -5)
+position = Vector2(7, 5)
 
 [node name="Sprite2D2" type="Sprite2D" parent="PlayerIKAnimator/FFTarget"]
 visible = false
 texture = SubResource("PlaceholderTexture2D_y2hkx")
 
 [node name="BHTarget" type="Marker2D" parent="PlayerIKAnimator"]
-position = Vector2(68, -3)
+position = Vector2(-31, 5)
 
 [node name="Sprite2D2" type="Sprite2D" parent="PlayerIKAnimator/BHTarget"]
 visible = false
 texture = SubResource("PlaceholderTexture2D_xlrih")
 
 [node name="FHTarget" type="Marker2D" parent="PlayerIKAnimator"]
-position = Vector2(-7, 3)
+position = Vector2(-40, 8)
 
 [node name="Sprite2D2" type="Sprite2D" parent="PlayerIKAnimator/FHTarget"]
 visible = false
@@ -294,8 +295,16 @@ script = ExtResource("3_xfcxd")
 node = NodePath("../../../Player/Skeleton/hip")
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
+[node name="look" type="Marker2D" parent="PlayerIKAnimator"]
+position = Vector2(21, -9)
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerIKAnimator/look"]
+visible = false
+texture = SubResource("PlaceholderTexture2D_xlrih")
+
 [node name="Player" parent="." instance=ExtResource("1_6clvg")]
-position = Vector2(1, -33)
+position = Vector2(-9, -4)
+rotation = -0.244789
 ik_overrides = Array[ExtResource("5_86xse")]([SubResource("Resource_a1qjk"), SubResource("Resource_367mj"), SubResource("Resource_jjql1"), SubResource("Resource_korw2"), SubResource("Resource_pscky")])
 
 [node name="Campfire" type="Sprite2D" parent="."]
@@ -317,8 +326,15 @@ process_material = SubResource("ParticleProcessMaterial_1722b")
 environment = SubResource("Environment_367mj")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(35, -16)
+position = Vector2(38, -11)
 color = Color(1, 0.557333, 0.17, 1)
+energy = 1.1
+texture = ExtResource("8_jjql1")
+height = 97.0
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(36, -15)
 energy = 1.1
 texture = ExtResource("8_jjql1")
 height = 97.0

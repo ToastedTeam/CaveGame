@@ -103,7 +103,8 @@ func _setupIK() -> void:
 				#print(" - Old node: " + get_node(modification.target_nodepath).name)
 				#print(" - New path: " + str(target.name)
 				modification.target_nodepath = target.get_path()
-				Log.info("Found and applied override for " + override.targetModificationName)
+				#Log.info("Found and applied override for " + override.targetModificationName)
+				print("Found and applied override for " + override.targetModificationName)
 		pass
 	pass
 
