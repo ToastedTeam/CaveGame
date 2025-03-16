@@ -1791,7 +1791,6 @@ scale = Vector2(1, 0.993091)
 texture = ExtResource("2_ouso4")
 
 [node name="PlayerIKAnimator" type="Node2D" parent="." node_paths=PackedStringArray("player", "animationPlayer")]
-visible = false
 position = Vector2(-4, -5)
 script = ExtResource("3_th5th")
 player = NodePath("../Player")
@@ -1803,11 +1802,13 @@ FArmRest = Vector2(0.2, 0)
 BArmRest = Vector2(-4.805, 0.62)
 
 [node name="BFTarget" type="Marker2D" parent="PlayerIKAnimator"]
+visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerIKAnimator/BFTarget"]
 texture = SubResource("PlaceholderTexture2D_th5th")
 
 [node name="FFTarget" type="Marker2D" parent="PlayerIKAnimator"]
+visible = false
 z_index = 500
 position = Vector2(9, -5)
 
@@ -1815,16 +1816,30 @@ position = Vector2(9, -5)
 texture = SubResource("PlaceholderTexture2D_th5th")
 
 [node name="BHTarget" type="Marker2D" parent="PlayerIKAnimator"]
+visible = false
 position = Vector2(68, -3)
 
 [node name="Sprite2D2" type="Sprite2D" parent="PlayerIKAnimator/BHTarget"]
 texture = SubResource("PlaceholderTexture2D_blune")
 
 [node name="FHTarget" type="Marker2D" parent="PlayerIKAnimator"]
+visible = false
 position = Vector2(0, -31)
 
 [node name="Sprite2D2" type="Sprite2D" parent="PlayerIKAnimator/FHTarget"]
 texture = SubResource("PlaceholderTexture2D_blune")
+
+[node name="HipTarget" type="Marker2D" parent="PlayerIKAnimator"]
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerIKAnimator/HipTarget"]
+visible = false
+texture = SubResource("PlaceholderTexture2D_blune")
+
+[node name="Synchroniser" type="Node2D" parent="PlayerIKAnimator/HipTarget" node_paths=PackedStringArray("node")]
+visible = false
+script = ExtResource("4_7smn1")
+node = NodePath("../../../Player/Skeleton/hip")
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="Player" parent="." node_paths=PackedStringArray("health_bar", "mana_bar", "IkAnimator") instance=ExtResource("3_blune")]
 position = Vector2(-4, -36)
@@ -1893,16 +1908,16 @@ Position = true
 Smoothing = 0.5
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
-[node name="Animation" type="AnimationPlayer" parent="Player/targetPositions"]
-libraries = {
-&"": SubResource("AnimationLibrary_gx6sm")
-}
-
 [node name="LookAt" type="Marker2D" parent="Player/targetPositions"]
 position = Vector2(85, -14)
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/targetPositions/LookAt"]
 texture = SubResource("PlaceholderTexture2D_blune")
+
+[node name="Animation" type="AnimationPlayer" parent="Player/targetPositions"]
+libraries = {
+&"": SubResource("AnimationLibrary_gx6sm")
+}
 
 [node name="Interface" parent="." instance=ExtResource("6_raeie")]
 

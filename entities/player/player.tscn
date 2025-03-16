@@ -458,6 +458,12 @@ Position = true
 Rotation = true
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
+[node name="AccessoryRootSync" type="Node2D" parent="Skeleton/hip" node_paths=PackedStringArray("node")]
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../accessories/root")
+Position = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
 [node name="FFTarget_pos" type="Marker2D" parent="Skeleton"]
 position = Vector2(2, 30)
 
@@ -498,7 +504,7 @@ texture = SubResource("CanvasTexture_r633c")
 
 [node name="Thigh_B" type="Sprite2D" parent="sprites"]
 modulate = Color(0.787759, 0.787759, 0.787759, 1)
-position = Vector2(0.863827, 5.93747)
+position = Vector2(0.863825, 5.93747)
 rotation = -0.144474
 texture = SubResource("CanvasTexture_pacje")
 
@@ -621,6 +627,7 @@ texture = SubResource("CanvasTexture_qwspa")
 [node name="accessories" type="Node2D" parent="."]
 
 [node name="root" type="StaticBody2D" parent="accessories"]
+position = Vector2(-9.53674e-07, 0)
 collision_layer = 0
 collision_mask = 0
 

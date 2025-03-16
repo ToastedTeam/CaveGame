@@ -1,9 +1,127 @@
-[gd_scene load_steps=3 format=3 uid="uid://babgoqd6p8s7d"]
+[gd_scene load_steps=17 format=3 uid="uid://babgoqd6p8s7d"]
 
 [ext_resource type="PackedScene" uid="uid://c11ldn4yd0i8w" path="res://entities/player/player.tscn" id="1_6clvg"]
+[ext_resource type="Script" uid="uid://bhda60gy1q5tc" path="res://entities/player/player_ik_animator.gd" id="1_v7w66"]
+[ext_resource type="Script" uid="uid://dfl57bvdn0c7l" path="res://entities/player/resources/FlipRule.gd" id="2_o18k1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qk7b1"]
 radius = 100.0
+
+[sub_resource type="Resource" id="Resource_hxu8e"]
+resource_name = "Forearm R"
+script = ExtResource("2_o18k1")
+NodeToFlip = "Forearm_R"
+OriginalPosition = 0
+FlippedPosition = -2
+changeModulation = true
+normalModulation = Color(0.788235, 0.788235, 0.788235, 1)
+flippedModulation = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://dfl57bvdn0c7l"
+
+[sub_resource type="Resource" id="Resource_raeie"]
+resource_name = "Shoulder R"
+script = ExtResource("2_o18k1")
+NodeToFlip = "Shoulder_R"
+OriginalPosition = 1
+FlippedPosition = -1
+changeModulation = true
+normalModulation = Color(0.788235, 0.788235, 0.788235, 1)
+flippedModulation = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://dfl57bvdn0c7l"
+
+[sub_resource type="Resource" id="Resource_7smn1"]
+resource_name = "Forearm F"
+script = ExtResource("2_o18k1")
+NodeToFlip = "Forearm_F"
+OriginalPosition = -1
+FlippedPosition = 0
+changeModulation = true
+normalModulation = Color(1, 1, 1, 1)
+flippedModulation = Color(0.788235, 0.788235, 0.788235, 1)
+metadata/_custom_type_script = "uid://dfl57bvdn0c7l"
+
+[sub_resource type="Resource" id="Resource_nvumn"]
+resource_name = "Shoulder F"
+script = ExtResource("2_o18k1")
+NodeToFlip = "Shoulder_F"
+OriginalPosition = -1
+FlippedPosition = 1
+changeModulation = true
+normalModulation = Color(1, 1, 1, 1)
+flippedModulation = Color(0.788235, 0.788235, 0.788235, 1)
+metadata/_custom_type_script = "uid://dfl57bvdn0c7l"
+
+[sub_resource type="Resource" id="Resource_ou6is"]
+resource_name = "Held Weapon"
+script = ExtResource("2_o18k1")
+NodeToFlip = "FlipHandler"
+OriginalPosition = -3
+FlippedPosition = 2
+changeModulation = false
+normalModulation = Color(1, 1, 1, 1)
+flippedModulation = Color(0.788235, 0.788235, 0.788235, 1)
+metadata/_custom_type_script = "uid://dfl57bvdn0c7l"
+
+[sub_resource type="Resource" id="Resource_necax"]
+resource_name = "Calf B"
+script = ExtResource("2_o18k1")
+NodeToFlip = "Calf_B"
+OriginalPosition = 2
+FlippedPosition = 4
+changeModulation = true
+normalModulation = Color(0.788235, 0.788235, 0.788235, 1)
+flippedModulation = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://dfl57bvdn0c7l"
+
+[sub_resource type="Resource" id="Resource_r4lks"]
+resource_name = "Thigh B"
+script = ExtResource("2_o18k1")
+NodeToFlip = "Thigh_B"
+OriginalPosition = 3
+FlippedPosition = 5
+changeModulation = true
+normalModulation = Color(0.788235, 0.788235, 0.788235, 1)
+flippedModulation = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://dfl57bvdn0c7l"
+
+[sub_resource type="Resource" id="Resource_pg34l"]
+resource_name = "Calf F"
+script = ExtResource("2_o18k1")
+NodeToFlip = "Calf_F"
+OriginalPosition = 4
+FlippedPosition = 2
+changeModulation = true
+normalModulation = Color(1, 1, 1, 1)
+flippedModulation = Color(0.788235, 0.788235, 0.788235, 1)
+metadata/_custom_type_script = "uid://dfl57bvdn0c7l"
+
+[sub_resource type="Resource" id="Resource_m4h2d"]
+resource_name = "Thigh F"
+script = ExtResource("2_o18k1")
+NodeToFlip = "Thigh_F"
+OriginalPosition = 5
+FlippedPosition = 3
+changeModulation = true
+normalModulation = Color(1, 1, 1, 1)
+flippedModulation = Color(0.788235, 0.788235, 0.788235, 1)
+metadata/_custom_type_script = "uid://dfl57bvdn0c7l"
+
+[sub_resource type="Resource" id="Resource_p8abn"]
+resource_name = "Star"
+script = ExtResource("2_o18k1")
+NodeToFlip = "Star"
+OriginalPosition = -4
+FlippedPosition = 0
+changeModulation = false
+normalModulation = Color(1, 1, 1, 1)
+flippedModulation = Color(0.788235, 0.788235, 0.788235, 1)
+metadata/_custom_type_script = "uid://dfl57bvdn0c7l"
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xfcxd"]
+size = Vector2(10, 10)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_86xse"]
+size = Vector2(20, 20)
 
 [node name="RestArea" type="Node2D"]
 
@@ -14,6 +132,40 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBarrier"]
 shape = SubResource("CircleShape2D_qk7b1")
+
+[node name="PlayerIKAnimator" type="Node2D" parent="."]
+visible = false
+position = Vector2(-4, -5)
+script = ExtResource("1_v7w66")
+maxFootDistanceFromTarget = 5
+FlipRules = Array[ExtResource("2_o18k1")]([SubResource("Resource_hxu8e"), SubResource("Resource_raeie"), SubResource("Resource_7smn1"), SubResource("Resource_nvumn"), SubResource("Resource_ou6is"), SubResource("Resource_necax"), SubResource("Resource_r4lks"), SubResource("Resource_pg34l"), SubResource("Resource_m4h2d"), SubResource("Resource_p8abn")])
+ArmRestOffset = Vector2(0.235, 6.05)
+FArmRest = Vector2(0.2, 0)
+BArmRest = Vector2(-4.805, 0.62)
+
+[node name="BFTarget" type="Marker2D" parent="PlayerIKAnimator"]
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerIKAnimator/BFTarget"]
+texture = SubResource("PlaceholderTexture2D_xfcxd")
+
+[node name="FFTarget" type="Marker2D" parent="PlayerIKAnimator"]
+z_index = 500
+position = Vector2(9, -5)
+
+[node name="Sprite2D2" type="Sprite2D" parent="PlayerIKAnimator/FFTarget"]
+texture = SubResource("PlaceholderTexture2D_xfcxd")
+
+[node name="BHTarget" type="Marker2D" parent="PlayerIKAnimator"]
+position = Vector2(68, -3)
+
+[node name="Sprite2D2" type="Sprite2D" parent="PlayerIKAnimator/BHTarget"]
+texture = SubResource("PlaceholderTexture2D_86xse")
+
+[node name="FHTarget" type="Marker2D" parent="PlayerIKAnimator"]
+position = Vector2(0, -31)
+
+[node name="Sprite2D2" type="Sprite2D" parent="PlayerIKAnimator/FHTarget"]
+texture = SubResource("PlaceholderTexture2D_86xse")
 
 [node name="Player" parent="." instance=ExtResource("1_6clvg")]
 position = Vector2(-7, -34)
