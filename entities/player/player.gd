@@ -20,7 +20,7 @@ extends CharacterBody2D
 @export var attack_cooldown: float = 0.1
 
 # Various Properties
-@onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
+# @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 enum dash {
 	ON_COOLDOWN = -1,
