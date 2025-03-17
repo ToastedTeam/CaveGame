@@ -58,28 +58,32 @@ var hitWall = false;
 #@export var arm_backTargetResourceName: String
 
 # Variables
-var current_hp: int = max_hp:
+var current_hp: float = max_hp:
 	get:
 		return current_hp
 	set(value):
 		if value < 0:
 			print("The player has died")
 			current_hp = 0
-		else:
+		elif value <= max_hp:
 			current_hp = value
+		else:
+			current_hp = max_hp
 		
 		health_bar.value = current_hp
 		
-var current_mana: int = max_mana:
+var current_mana: float = max_mana:
 	get:
 		return current_mana
 	set(value):
 		if value < 0:
 			print("The player has run out of Mana")
 			current_mana = 0
-		else:
+		elif value <= max_mana:
 			current_mana = value
-		
+		else:
+			current_mana = max_mana
+			
 		mana_bar.value = current_mana
 		
 var damage: int = base_damage:

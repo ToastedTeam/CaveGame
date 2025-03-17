@@ -733,7 +733,7 @@ texture = SubResource("CanvasTexture_r633c")
 
 [node name="Thigh_B" type="Sprite2D" parent="sprites"]
 modulate = Color(0.787759, 0.787759, 0.787759, 1)
-position = Vector2(0.863827, 5.93747)
+position = Vector2(0.863825, 5.93747)
 rotation = -0.144474
 texture = SubResource("CanvasTexture_pacje")
 
@@ -942,9 +942,9 @@ modulate = Color(1, 1, 1, 0)
 show_behind_parent = true
 light_mask = 0
 material = SubResource("CanvasItemMaterial_0eo6o")
-offset_left = -4.5
+offset_left = -3.6
 offset_top = -30.0
-offset_right = 31.5
+offset_right = 32.4
 offset_bottom = 58.0
 scale = Vector2(0.2, 0.2)
 text = "E"

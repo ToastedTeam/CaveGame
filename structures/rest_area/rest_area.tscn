@@ -1,11 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://babgoqd6p8s7d"]
+[gd_scene load_steps=15 format=3 uid="uid://babgoqd6p8s7d"]
 
+[ext_resource type="Script" uid="uid://lmpf2d2cdvkk" path="res://structures/rest_area/regen_area.gd" id="1_y2hkx"]
 [ext_resource type="Script" uid="uid://cgidgcbi2lrix" path="res://structures/rest_area/rest_player.gd" id="6_86xse"]
 [ext_resource type="Texture2D" uid="uid://m4xjhaprdbe5" path="res://structures/rest_area/assets/LogsFlat.png" id="6_xlrih"]
 [ext_resource type="Texture2D" uid="uid://bnwj6bdvkmixq" path="res://structures/rest_area/assets/LogsFlatNormal.png" id="7_367mj"]
 [ext_resource type="Material" uid="uid://cxkuqrvxipgqi" path="res://structures/rest_area/smoke_material.tres" id="8_367mj"]
 [ext_resource type="Texture2D" uid="uid://ct4p4rmtan1ow" path="res://entities/target_dummy/assets/2d_lights_and_shadows_neutral_point_light.webp" id="8_jjql1"]
 [ext_resource type="PackedScene" uid="uid://dpcyqtwlj1uhu" path="res://scenes/interaction_hint/interaction_hint.tscn" id="10_jjql1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_86xse"]
+radius = 100.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qk7b1"]
 radius = 100.0
@@ -429,6 +433,16 @@ size = Vector2(115.145, 20)
 
 [node name="RestArea" type="Node2D"]
 
+[node name="RegenArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_y2hkx")
+hpRegenFac = 10.0
+manaRegenFac = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RegenArea"]
+shape = SubResource("CircleShape2D_86xse")
+
 [node name="EnemyBarrier" type="StaticBody2D" parent="."]
 visible = false
 collision_layer = 4
@@ -482,4 +496,6 @@ shape = SubResource("RectangleShape2D_jjql1")
 [node name="RestPlayer" type="Node" parent="InteractionHint"]
 script = ExtResource("6_86xse")
 
+[connection signal="body_entered" from="RegenArea" to="RegenArea" method="_player_entered"]
+[connection signal="body_exited" from="RegenArea" to="RegenArea" method="_player_exited"]
 [connection signal="onPlayerInteract" from="InteractionHint" to="InteractionHint/RestPlayer" method="makePlayerRest"]
