@@ -33,6 +33,7 @@ enabled=PackedStringArray("res://addons/directional_hinge/plugin.cfg", "res://ad
 [global_group]
 
 player=""
+UI=""
 
 [input]
 

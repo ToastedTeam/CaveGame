@@ -2449,14 +2449,16 @@ position = Vector2(0, 0)
 scale = Vector2(0.999892, 0.999892)
 
 [node name="head" parent="Player/Skeleton/hip/torso/collar/offset" index="0"]
-rotation = -0.00579705
+rotation = -0.00579714
 scale = Vector2(0.999852, 0.999852)
 
 [node name="shoulder_r" parent="Player/Skeleton/hip/torso/collar/offset" index="1"]
 rotation = 1.9395
+scale = Vector2(0.999991, 0.999991)
 
 [node name="forearm_r" parent="Player/Skeleton/hip/torso/collar/offset/shoulder_r" index="1"]
 rotation = -0.833589
+scale = Vector2(0.999999, 0.999999)
 
 [node name="shoulder_f" parent="Player/Skeleton/hip/torso/collar/offset" index="2"]
 rotation = 2.43437
@@ -2464,6 +2466,7 @@ scale = Vector2(0.999985, 0.999985)
 
 [node name="forearm_f" parent="Player/Skeleton/hip/torso/collar/offset/shoulder_f" index="1"]
 rotation = -1.73952
+scale = Vector2(0.999989, 0.999989)
 
 [node name="thigh_r" parent="Player/Skeleton/hip" index="1"]
 rotation = 0.0587558
@@ -2472,11 +2475,11 @@ rotation = 0.0587558
 rotation = -0.0468391
 
 [node name="Forearm_R" parent="Player/sprites" index="0"]
-position = Vector2(-2.91508, -0.927193)
+position = Vector2(-2.91508, -0.927197)
 rotation = -0.464893
 
 [node name="Shoulder_R" parent="Player/sprites" index="1"]
-position = Vector2(-3.80149, -9.83509)
+position = Vector2(-3.8015, -9.83509)
 rotation = 0.368695
 
 [node name="Calf_B" parent="Player/sprites" index="2"]
@@ -2500,7 +2503,7 @@ position = Vector2(-5.27686, -28.0564)
 
 [node name="Head" parent="Player/sprites" index="7"]
 position = Vector2(-1.54038, -20.4965)
-rotation = -0.00579708
+rotation = -0.00579714
 
 [node name="FrontHair" parent="Player/sprites" index="8"]
 position = Vector2(-6.51005, -26.1911)
@@ -2509,16 +2512,16 @@ position = Vector2(-6.51005, -26.1911)
 position = Vector2(0, -7.99914)
 
 [node name="FlipHandler" parent="Player/sprites" index="11"]
-position = Vector2(-1.34706, -2.6392)
+position = Vector2(-1.34707, -2.63922)
 rotation = -0.875946
 
 [node name="Forearm_F" parent="Player/sprites" index="12"]
-position = Vector2(-5.44008, -5.18528)
+position = Vector2(-5.4401, -5.1853)
 rotation = -0.875946
 
 [node name="Shoulder_F" parent="Player/sprites" index="13"]
-position = Vector2(-5.80001, -11.2503)
-rotation = 0.863568
+position = Vector2(-5.80003, -11.2503)
+rotation = 0.863572
 
 [node name="root" parent="Player/accessories" index="0"]
 position = Vector2(0, 0)
