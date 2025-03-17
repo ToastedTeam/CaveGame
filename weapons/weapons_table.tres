@@ -15,5 +15,5 @@ metadata/_custom_type_script = "uid://cv8dg51cnw5y"
 
 [resource]
 script = ExtResource("1_eqy1g")
-MeleeWeapons = Array[Object]([SubResource("Resource_yj7ab"), SubResource("Resource_wkvpw")])
+MeleeWeapons = Array[ExtResource("1_yj7ab")]([SubResource("Resource_yj7ab"), SubResource("Resource_wkvpw")])
 MagicWeapons = Array[ExtResource("1_yj7ab")]([])

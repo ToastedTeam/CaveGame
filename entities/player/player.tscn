@@ -612,7 +612,6 @@ metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="thigh_r" type="Bone2D" parent="Skeleton/hip"]
 rotation = -0.144474
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 auto_calculate_length_and_angle = false
 length = 12.0
@@ -942,9 +941,9 @@ modulate = Color(1, 1, 1, 0)
 show_behind_parent = true
 light_mask = 0
 material = SubResource("CanvasItemMaterial_0eo6o")
-offset_left = -3.6
+offset_left = -4.5
 offset_top = -30.0
-offset_right = 32.4
+offset_right = 31.5
 offset_bottom = 58.0
 scale = Vector2(0.2, 0.2)
 text = "E"

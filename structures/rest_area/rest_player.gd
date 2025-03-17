@@ -16,10 +16,12 @@ func makePlayerRest(player: PlayerCharacter):
 		var attacks: AttackSelectionController = UI.get_node("WeaponSelector/Margin/Attacks")
 		var fliphandler = player.get_node("sprites/FlipHandler")
 		for child in fliphandler.get_children():
-			child.queue_free()
+			# Unsafe, may break
+			child.free()
 			pass
 		var inst = attacks.Table.GetData(attacks.Table.MeleeWeapons[attacks.currentMeleeWeapon].name).asset.instantiate()
-		fliphandler.add_child(inst)
+		inst.name = "Weapon"
+		fliphandler.call_deferred("add_child", inst, true)
 		
 		weapons.hide()
 		return
