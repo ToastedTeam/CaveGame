@@ -19,6 +19,10 @@ extends CharacterBody2D
 @export var base_damage = 5
 @export var attack_cooldown: float = 0.1
 
+@export var inhibitUserInput: bool = false;
+@export var animPlayer: AnimationPlayer;
+
+var targetX: float = 0;
 # Various Properties
 # @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -122,6 +126,34 @@ func _ready() -> void:
 	_setupIK()
 	print("player hp: ", current_hp, " player mana: ", current_mana, " player damage: ", damage)
 
+func _getPlayerMovement() -> float:
+	if !inhibitUserInput:
+		return Input.get_axis("player_move_left", "player_move_right")
+	else:
+		return 0;
+	pass
+
+func _isPlayerJumping() -> bool:
+	if !inhibitUserInput:
+		return Input.is_action_just_pressed("player_jump")
+	else:
+		return false;
+	pass
+
+func _isPlayerDashing() -> bool:
+	if !inhibitUserInput:
+		return Input.is_action_just_pressed("player_dash")
+	else:
+		return false;
+	pass
+
+func _isPlayerJustAttacking() -> bool:
+	if !inhibitUserInput:
+		return Input.is_action_just_pressed("player_attack")
+	else:
+		return false;
+	pass
+
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
@@ -132,7 +164,7 @@ func _physics_process(delta: float) -> void:
 		print("Current hp: ", current_hp, "; Current mana: ", current_mana)
 		
 	# Get the input direction and handle the movement/deceleration.
-	var direction := Input.get_axis("player_move_left", "player_move_right")
+	var direction := _getPlayerMovement()
 	
 	match dash_state:
 		dash.KEY_PRESSED:
@@ -176,7 +208,7 @@ func _physics_process(delta: float) -> void:
 			# Extra checks to prevent dashing while standing still
 			# basically you have to click 'd' and have one of the directions pressed
 			if dash_state != dash.ON_COOLDOWN:
-				if Input.is_action_just_pressed("player_dash") and (direction or !is_on_floor()):
+				if _isPlayerDashing() and (direction or !is_on_floor()):
 					dash_state = dash.KEY_PRESSED
 			else:
 				$DashCooldownBar.set_value_no_signal($DashCooldown.time_left)
@@ -190,7 +222,7 @@ func _physics_process(delta: float) -> void:
 			if is_on_floor() and jumpCount != 0:
 				jumpCount = 0
 			# Jumping
-			if Input.is_action_just_pressed("player_jump") and jumpCount < jump_count:
+			if _isPlayerJumping() and jumpCount < jump_count:
 				velocity.y = -jump_speed
 				jumpCount += 1
 				
@@ -221,12 +253,12 @@ func _physics_process(delta: float) -> void:
 		
 	hitWall = is_on_wall()
 		
-	if Input.is_action_just_pressed("player_attack") and canAttack:
+	if _isPlayerJustAttacking() and canAttack:
 		#$FlipHandler/Weapon/AnimationPlayer.play("player_attack")
 		IkAnimator.Attack_Melee()
 		canAttack = false
 		$AttackCooldown.start()
-
+		pass
 
 func _on_entity_hit(body: Node2D) -> void:
 	var body_parent = body.get_parent()
