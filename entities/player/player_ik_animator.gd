@@ -69,8 +69,12 @@ func Attack_Melee() -> void:
 	animationPlayer.play(weapon.AnimName)
 	pass
 
-func Attack_Magic() -> void:
-	Log.info("Perform magic attack, play some animation or something...")
+func Attack_Ranged() -> void:
+	#if not hand.node.get_node("Ranged"):
+		#return
+	#Log.info("Perform magic attack, play some animation or something...")
+	var ranged = hand.node.get_node("Ranged") as RangedWeapon
+	ranged._attack()
 	pass
 
 func Start_Dash() -> void:

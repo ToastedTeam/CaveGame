@@ -733,7 +733,7 @@ texture = SubResource("CanvasTexture_r633c")
 
 [node name="Thigh_B" type="Sprite2D" parent="sprites"]
 modulate = Color(0.787759, 0.787759, 0.787759, 1)
-position = Vector2(0.863827, 5.93747)
+position = Vector2(0.863825, 5.93747)
 rotation = -0.144474
 texture = SubResource("CanvasTexture_pacje")
 
@@ -956,9 +956,6 @@ vertical_alignment = 1
 libraries = {
 &"": SubResource("AnimationLibrary_wy7bt")
 }
-
-[node name="ProjectileMarker" type="Marker2D" parent="."]
-position = Vector2(4, -6)
 
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_end"]
 [connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_end"]

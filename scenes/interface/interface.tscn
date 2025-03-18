@@ -89,6 +89,35 @@ autowrap_mode = 3
 layout_mode = 2
 text = ">"
 
+[node name="RangedAttacks" type="HBoxContainer" parent="WeaponSelector/Margin/Attacks"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Previous" type="Button" parent="WeaponSelector/Margin/Attacks/RangedAttacks"]
+layout_mode = 2
+text = "<"
+
+[node name="InfoElements" type="VBoxContainer" parent="WeaponSelector/Margin/Attacks/RangedAttacks"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Texture" type="TextureRect" parent="WeaponSelector/Margin/Attacks/RangedAttacks/InfoElements"]
+layout_mode = 2
+texture = ExtResource("3_qqekr")
+stretch_mode = 3
+
+[node name="Description" type="Label" parent="WeaponSelector/Margin/Attacks/RangedAttacks/InfoElements"]
+custom_minimum_size = Vector2(206, 0)
+layout_mode = 2
+text = "a basic sword omg no way a hit sword lmao wtf twsag sfas dfasd fasdf asdf asdf asdf asdf asdf asdf "
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Next" type="Button" parent="WeaponSelector/Margin/Attacks/RangedAttacks"]
+layout_mode = 2
+text = ">"
+
 [node name="DebugConsole" type="VBoxContainer" parent="." node_paths=PackedStringArray("LogOutput")]
 process_mode = 3
 visible = false
@@ -125,3 +154,5 @@ script = ExtResource("4_6ncm3")
 
 [connection signal="button_down" from="WeaponSelector/Margin/Attacks/MeleeAttacks/Previous" to="WeaponSelector/Margin/Attacks" method="_on_previous_melee"]
 [connection signal="button_down" from="WeaponSelector/Margin/Attacks/MeleeAttacks/Next" to="WeaponSelector/Margin/Attacks" method="_on_next_melee"]
+[connection signal="button_down" from="WeaponSelector/Margin/Attacks/RangedAttacks/Previous" to="WeaponSelector/Margin/Attacks" method="_on_previous_ranged"]
+[connection signal="button_down" from="WeaponSelector/Margin/Attacks/RangedAttacks/Next" to="WeaponSelector/Margin/Attacks" method="_on_next_ranged"]

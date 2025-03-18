@@ -2449,7 +2449,7 @@ position = Vector2(0, 0)
 scale = Vector2(0.999892, 0.999892)
 
 [node name="head" parent="Player/Skeleton/hip/torso/collar/offset" index="0"]
-rotation = -0.00579708
+rotation = -0.00579712
 scale = Vector2(0.999852, 0.999852)
 
 [node name="shoulder_r" parent="Player/Skeleton/hip/torso/collar/offset" index="1"]
@@ -2507,7 +2507,7 @@ position = Vector2(-5.27686, -28.0564)
 
 [node name="Head" parent="Player/sprites" index="7"]
 position = Vector2(-1.54038, -20.4965)
-rotation = -0.00579713
+rotation = -0.00579711
 
 [node name="FrontHair" parent="Player/sprites" index="8"]
 position = Vector2(-6.51005, -26.1911)
@@ -2658,6 +2658,7 @@ collision_mask = 7
 shape = SubResource("WorldBoundaryShape2D_kfodh")
 
 [node name="RestArea" parent="." instance=ExtResource("15_raeie")]
+visible = false
 position = Vector2(80, 0)
 
 [editable path="Player"]
