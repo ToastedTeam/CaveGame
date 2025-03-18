@@ -15,6 +15,7 @@ extends Node2D
 @export var inhibitBF: bool;
 
 @export_category("IK Parameters")
+@export var IdleLegOffset: Vector2 = Vector2(0, 5);
 @export var ArmRestOffset: Vector2 = Vector2(0, 5);
 @export var FArmRest: Vector2 = Vector2(0, 0);
 @export var BArmRest: Vector2 = Vector2(0, 0);
@@ -47,8 +48,9 @@ enum WalkState {
 	None
 }
 
-var state: AnimState = AnimState.Idle
-var lastState: AnimState = AnimState.Idle
+
+@export var state: AnimState = AnimState.Idle
+@export var lastState: AnimState = AnimState.Idle
 
 var currentWalk: WalkState = WalkState.None;
 var currentWalkChanged = false;
@@ -99,10 +101,8 @@ func _IK_Bones_Set_Flipped(flipped: bool) -> void:
 			var targetNode: Node2D = sprites.get_node(rule.NodeToFlip)
 			sprites.move_child(targetNode, rule.FlippedPosition if flipped else rule.OriginalPosition)
 			if rule.changeModulation:
-				print("old modulation: ", targetNode.modulate)
 				targetNode.modulate = rule.flippedModulation if flipped else rule.normalModulation
-				print("new modulation: ", targetNode.modulate)
-			
+		(player.get_node("targetPositions/HipTarget/Synchroniser") as RemoteTransform2DExtended).rotationOffset = PI if flipped else 0
 	pass
 
 func _Get_Player_Params() -> void:
@@ -191,69 +191,71 @@ func _physics_process(delta: float) -> void:
 			else:
 				match state:
 					AnimState.Idle:
-						if lastState != AnimState.Idle:
-							(FFTargetPos.get_node("Synchroniser") as RemoteTransform2DExtended).Position = true;
-							(BFTargetPos.get_node("Synchroniser") as RemoteTransform2DExtended).Position = true;
-						setAnimState(AnimState.Idle)
-						var ground = getGroundPosition()
-						if ground != hip.global_position:
-							FFTargetPos.global_position = ground + Vector2(0, 5);
-							BFTargetPos.global_position = ground + Vector2(0, 5);
-						pass
-					AnimState.Walking:
-						#Engine.time_scale = 0.1
-						if lastState != AnimState.Walking:
-							(FFTargetPos.get_node("Synchroniser") as RemoteTransform2DExtended).Position = false;
-							(BFTargetPos.get_node("Synchroniser") as RemoteTransform2DExtended).Position = false;
-							currentWalk = WalkState.None
-						setAnimState(AnimState.Walking)
-						var ground = getGroundPosition()
-						if ground != hip.global_position:
+						if !inhibitBF and !inhibitFF:
+							if lastState != AnimState.Idle:
+								(FFTargetPos.get_node("Synchroniser") as RemoteTransform2DExtended).Position = true;
+								(BFTargetPos.get_node("Synchroniser") as RemoteTransform2DExtended).Position = true;
+							setAnimState(AnimState.Idle)
+							var ground = getGroundPosition()
+							if ground != hip.global_position:
+								FFTargetPos.global_position = ground + IdleLegOffset;
+								BFTargetPos.global_position = ground + IdleLegOffset;
 							pass
-						hip.position.y = abs(sin(walkTime*PI))-0.5
-						match currentWalk:
-							WalkState.None:
-								currentWalk = WalkState.FrontFoot;
-								currentWalkChanged = true
+					AnimState.Walking:
+						if !inhibitBF and !inhibitFF:
+							#Engine.time_scale = 0.1
+							if lastState != AnimState.Walking:
+								(FFTargetPos.get_node("Synchroniser") as RemoteTransform2DExtended).Position = false;
+								(BFTargetPos.get_node("Synchroniser") as RemoteTransform2DExtended).Position = false;
+								currentWalk = WalkState.None
+							setAnimState(AnimState.Walking)
+							var ground = getGroundPosition()
+							if ground != hip.global_position:
 								pass
-							WalkState.FrontFoot:
-								if currentWalkChanged:
-									stepOriginPos = ground
-									currentWalkChanged = false
-									walkTime = 0
-									footOriginalPos = $FFTarget.global_position
-								walkTime += delta/walkDuration;
-								FFTargetPos.global_position = stepOriginPos + Vector2(player.currentDirection*30, 5);
-								var positionC = (FFTargetPos.global_position + footOriginalPos)/2 + Vector2(0, -20)
-								var q0 = footOriginalPos.lerp(positionC, min(walkTime, 1.0))
-								var q1 = positionC.lerp(FFTargetPos.global_position, min(walkTime, 1.0))
-								$FFTarget.global_position = q0.lerp(q1, min(walkTime, 1.0))
-								if $FFTarget.global_position.distance_squared_to(FFTargetPos.global_position) < 10:
-									currentWalk = WalkState.BackFoot
+							hip.position.y = (abs(sin(walkTime*PI))-0.5)
+							match currentWalk:
+								WalkState.None:
+									currentWalk = WalkState.FrontFoot;
 									currentWalkChanged = true
-									#FF_t = 0;
-									#shouldMoveFF = false;
-								pass
-							WalkState.BackFoot:
-								if currentWalkChanged:
-									stepOriginPos = ground
-									currentWalkChanged = false
-									walkTime = 0
-									footOriginalPos = $BFTarget.global_position
-								walkTime += delta/walkDuration;
-								BFTargetPos.global_position = stepOriginPos + Vector2(player.currentDirection*30, 5);
-								var positionC = (BFTargetPos.global_position + footOriginalPos)/2 + Vector2(0, -20)
-								var q0 = footOriginalPos.lerp(positionC, min(walkTime, 1.0))
-								var q1 = positionC.lerp(BFTargetPos.global_position, min(walkTime, 1.0))
-								$BFTarget.global_position = q0.lerp(q1, min(walkTime, 1.0))
-								if $BFTarget.global_position.distance_squared_to(BFTargetPos.global_position) < 10:
-									currentWalk = WalkState.FrontFoot
-									currentWalkChanged = true
-								pass
-						pass
+									pass
+								WalkState.FrontFoot:
+									if currentWalkChanged:
+										stepOriginPos = ground
+										currentWalkChanged = false
+										walkTime = 0
+										footOriginalPos = $FFTarget.global_position
+									walkTime += delta/walkDuration;
+									FFTargetPos.global_position = stepOriginPos + Vector2(player.currentDirection*30, 5);
+									var positionC = (FFTargetPos.global_position + footOriginalPos)/2 + Vector2(0, -25)
+									var q0 = footOriginalPos.lerp(positionC, min(walkTime, 1.0))
+									var q1 = positionC.lerp(FFTargetPos.global_position, min(walkTime, 1.0))
+									$FFTarget.global_position = q0.lerp(q1, min(walkTime, 1.0))
+									if $FFTarget.global_position.distance_squared_to(FFTargetPos.global_position) < 10:
+										currentWalk = WalkState.BackFoot
+										currentWalkChanged = true
+										#FF_t = 0;
+										#shouldMoveFF = false;
+									pass
+								WalkState.BackFoot:
+									if currentWalkChanged:
+										stepOriginPos = ground
+										currentWalkChanged = false
+										walkTime = 0
+										footOriginalPos = $BFTarget.global_position
+									walkTime += delta/walkDuration;
+									BFTargetPos.global_position = stepOriginPos + Vector2(player.currentDirection*30, 5);
+									var positionC = (BFTargetPos.global_position + footOriginalPos)/2 + Vector2(0, -25)
+									var q0 = footOriginalPos.lerp(positionC, min(walkTime, 1.0))
+									var q1 = positionC.lerp(BFTargetPos.global_position, min(walkTime, 1.0))
+									$BFTarget.global_position = q0.lerp(q1, min(walkTime, 1.0))
+									if $BFTarget.global_position.distance_squared_to(BFTargetPos.global_position) < 10:
+										currentWalk = WalkState.FrontFoot
+										currentWalkChanged = true
+									pass
+							pass
 					_:
 						pass
-		if state == AnimState.Dashing and lastState != AnimState.Dashing:
+		if state == AnimState.Dashing and lastState != AnimState.Dashing and !inhibitBF and !inhibitFF:
 			(FFTargetPos.get_node("Synchroniser") as RemoteTransform2DExtended).Position = true;
 			(BFTargetPos.get_node("Synchroniser") as RemoteTransform2DExtended).Position = true;
 			FFTargetPos.global_position = hip.global_position + Vector2(-20, 20);
@@ -261,59 +263,11 @@ func _physics_process(delta: float) -> void:
 			setAnimState(AnimState.Dashing)
 			pass
 		
-		#if grounded:
-			#var space_state = get_world_2d().direct_space_state
-			#var query = PhysicsRayQueryParameters2D.create(hip.global_position, hip.global_position + Vector2(0, 35))
-			#query.collision_mask = 0b00000000_00000000_00000000_00000001;
-			#var result = space_state.intersect_ray(query)
-			#if result: # If there's ground below, we set it to the ground
-				#FFTargetPos.global_position = result.position + Vector2(player.currentDirection*10, 5);
-				#BFTargetPos.global_position = result.position + Vector2(player.currentDirection*10, 5);
-		#
-		#if just_grounded:
-			#$FFTarget.global_position = FFTargetPos.global_position
-			#$BFTarget.global_position = BFTargetPos.global_position
-		
-		#if abs($FFTarget.global_position.x - FFTargetPos.global_position.x) > maxFootDistanceFromTarget and !shouldMoveBF:
-			#shouldMoveFF = true;
-			#FF_originalPos = $FFTarget.global_position;
-		#
-		#if abs($BFTarget.global_position.x - BFTargetPos.global_position.x) > maxFootDistanceFromTarget and !shouldMoveFF:
-			#shouldMoveBF = true;
-			#BF_originalPos = $BFTarget.global_position
-			##$BFTarget.global_position = BFTargetPos.global_position
-		#
-		#if shouldMoveFF and grounded and !inhibitFF:
-			#FF_t += delta/FF_duration;
-			## interpolate in an arc, currently unimplemented
-			#var positionC = (FFTargetPos.global_position + FF_originalPos)/2 + Vector2(0, -10)
-			#var q0 = FF_originalPos.lerp(positionC, min(FF_t, 1.0))
-			#var q1 = positionC.lerp(FFTargetPos.global_position, min(FF_t, 1.0))
-			#$FFTarget.global_position = q0.lerp(q1, min(FF_t, 1.0))
-			#if $FFTarget.global_position.distance_squared_to(FFTargetPos.global_position) < 10:
-				#FF_t = 0;
-				#shouldMoveFF = false;
-		#elif !grounded and !inhibitFF:
-			#$FFTarget.global_position = FFTargetPos.global_position
-		#if shouldMoveBF and !inhibitBF:
-			#BF_t += delta/BF_duration;
-			#var positionC = (BFTargetPos.global_position + BF_originalPos)/2 + Vector2(0, -10)
-			#var q0 = BF_originalPos.lerp(positionC, min(BF_t, 1.0))
-			#var q1 = positionC.lerp(BFTargetPos.global_position, min(BF_t, 1.0))
-			#$BFTarget.global_position = q0.lerp(q1, min(BF_t, 1.0))
-			#if $BFTarget.global_position.distance_squared_to(BFTargetPos.global_position) < 10:
-				#BF_t = 0;
-				#shouldMoveBF = false;
-		#elif !grounded and !inhibitBF:
-			#$BFTarget.global_position = BFTargetPos.global_position
-		
 		# Arm rest inhibition
 		if !inhibitFH:
 			FHTargetPos.global_position = hip.global_position + ArmRestOffset + FArmRest
 		if !inhibitBH:
 			BHTargetPos.global_position = hip.global_position + BArmRest + ArmRestOffset
-		
-		
 		
 		if lastDirection != player.currentDirection:
 			if player.currentDirection < 0:

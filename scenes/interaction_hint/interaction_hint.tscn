@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpcyqtwlj1uhu"]
+
+[ext_resource type="Script" uid="uid://5jgao8vsrkf3" path="res://scenes/interaction_hint/interaction_hint.gd" id="1_2v8n6"]
+
+[node name="InteractionHint" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_2v8n6")
+
+[connection signal="body_shape_entered" from="." to="." method="_on_interaction_entered"]
+[connection signal="body_shape_exited" from="." to="." method="_on_interaction_exited"]

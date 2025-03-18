@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="WeaponTable" load_steps=5 format=3 uid="uid://c2qj0falsfk2y"]
+
+[ext_resource type="Script" uid="uid://dgrvk082jbica" path="res://weapons/weapons_table.gd" id="1_eqy1g"]
+[ext_resource type="Script" uid="uid://cv8dg51cnw5y" path="res://weapons/weaponEntry.gd" id="1_yj7ab"]
+
+[sub_resource type="Resource" id="Resource_yj7ab"]
+script = ExtResource("1_yj7ab")
+name = "sword1"
+metadata/_custom_type_script = "uid://cv8dg51cnw5y"
+
+[sub_resource type="Resource" id="Resource_wkvpw"]
+script = ExtResource("1_yj7ab")
+name = "sword2"
+metadata/_custom_type_script = "uid://cv8dg51cnw5y"
+
+[resource]
+script = ExtResource("1_eqy1g")
+MeleeWeapons = Array[ExtResource("1_yj7ab")]([SubResource("Resource_yj7ab"), SubResource("Resource_wkvpw")])
+MagicWeapons = Array[ExtResource("1_yj7ab")]([])

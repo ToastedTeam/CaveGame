@@ -1,8 +1,8 @@
-[gd_scene load_steps=69 format=3 uid="uid://c11ldn4yd0i8w"]
+[gd_scene load_steps=75 format=3 uid="uid://c11ldn4yd0i8w"]
 
 [ext_resource type="Script" uid="uid://7dppspqb023v" path="res://entities/player/player.gd" id="1_plpc0"]
 [ext_resource type="Script" uid="uid://b7h0h8wdhf0ws" path="res://entities/player/resources/IKTargetResource.gd" id="2_a1qjk"]
-[ext_resource type="PackedScene" uid="uid://dv1lodecs50bs" path="res://entities/weapon/weapon.tscn" id="4_5ek75"]
+[ext_resource type="PackedScene" uid="uid://dv1lodecs50bs" path="res://weapons/sword1/weapon.tscn" id="4_5ek75"]
 [ext_resource type="Script" uid="uid://eji52ig0w3g5" path="res://addons/remotetransform2dextended/remoteTransform.gd" id="7_j3ovn"]
 [ext_resource type="Texture2D" uid="uid://bqlsw70spd7yu" path="res://entities/player/assets/miku/arm/forearm.png" id="7_mtric"]
 [ext_resource type="Texture2D" uid="uid://c4xtyl64a5h48" path="res://entities/player/assets/miku/arm/forearm_normal.png" id="8_bwdx1"]
@@ -40,25 +40,25 @@
 [sub_resource type="Resource" id="Resource_j3ovn"]
 script = ExtResource("2_a1qjk")
 targetModificationName = "BackArm"
-targetNodePath = NodePath("../PlayerIKAnimator/BHTarget")
+targetNodePath = NodePath("")
 metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
 
 [sub_resource type="Resource" id="Resource_afbqv"]
 script = ExtResource("2_a1qjk")
 targetModificationName = "FrontArm"
-targetNodePath = NodePath("../PlayerIKAnimator/FHTarget")
+targetNodePath = NodePath("")
 metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
 
 [sub_resource type="Resource" id="Resource_gx6sm"]
 script = ExtResource("2_a1qjk")
 targetModificationName = "BackLeg"
-targetNodePath = NodePath("../PlayerIKAnimator/BFTarget")
+targetNodePath = NodePath("")
 metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
 
 [sub_resource type="Resource" id="Resource_yqrof"]
 script = ExtResource("2_a1qjk")
 targetModificationName = "FrontLeg"
-targetNodePath = NodePath("../PlayerIKAnimator/FFTarget")
+targetNodePath = NodePath("")
 metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
 
 [sub_resource type="Resource" id="Resource_a1qjk"]
@@ -218,9 +218,229 @@ radius = 1.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a1qjk"]
 radius = 5.6
-height = 56.0
+height = 58.0
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0eo6o"]
+light_mode = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_0eo6o"]
+font_size = 64
+
+[sub_resource type="Animation" id="Animation_ttr27"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-4.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-30, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate:r")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate:g")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:modulate:b")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:modulate:a")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_13wue"]
+resource_name = "popdown"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-4.5, -0.25, 0, 0.25, 0, -4.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-55, -1, 0, 0.133333, -1, -30, -1.03333, 3, 0.133333, -6),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate:r")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate:g")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:modulate:b")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:modulate:a")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="Animation" id="Animation_0eo6o"]
+resource_name = "popup"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-4.5, -0.25, 0, 0.25, 0, -4.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-30, -0.25, 0, 0.133333, -6, -55, -1, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate:r")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate:g")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:modulate:b")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:modulate:a")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wy7bt"]
+_data = {
+&"RESET": SubResource("Animation_ttr27"),
+&"popdown": SubResource("Animation_13wue"),
+&"popup": SubResource("Animation_0eo6o")
+}
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_plpc0")
 dash_speed = 720.0
@@ -311,7 +531,7 @@ metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="shoulder_r" type="Bone2D" parent="Skeleton/hip/torso/collar/offset"]
 position = Vector2(-0.5, -1)
-rotation = 2.70308
+rotation = 1.42099
 scale = Vector2(0.999991, 0.999991)
 rest = Transform2D(-0.905374, 0.424593, -0.424593, -0.905374, -0.5, -1)
 editor_settings/show_bone_gizmo = false
@@ -347,8 +567,8 @@ metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="shoulder_f" type="Bone2D" parent="Skeleton/hip/torso/collar/offset"]
 position = Vector2(-0.5, -1)
-rotation = 0.129786
-scale = Vector2(0.999986, 0.999986)
+rotation = 1.43136
+scale = Vector2(0.999985, 0.999985)
 rest = Transform2D(0.991575, 0.12942, -0.12942, 0.991575, -0.5, -1)
 editor_settings/show_bone_gizmo = false
 metadata/_local_pose_override_enabled_ = true
@@ -391,6 +611,7 @@ Rotation = true
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="thigh_r" type="Bone2D" parent="Skeleton/hip"]
+rotation = -0.144474
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 auto_calculate_length_and_angle = false
 length = 12.0
@@ -408,6 +629,7 @@ metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="calf_r" type="Bone2D" parent="Skeleton/hip/thigh_r"]
 position = Vector2(0.5, 14.5)
+rotation = 0.954114
 scale = Vector2(0.999928, 0.999928)
 rest = Transform2D(0.999928, 0, 0, 0.999928, 0.5, 14.5)
 auto_calculate_length_and_angle = false
@@ -425,7 +647,8 @@ metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="thigh_f" type="Bone2D" parent="Skeleton/hip"]
 position = Vector2(-0.5, 0)
-scale = Vector2(0.999842, 0.999842)
+rotation = -0.0831412
+scale = Vector2(0.99984, 0.99984)
 rest = Transform2D(0.999842, 0, 0, 0.999842, -0.5, 0)
 auto_calculate_length_and_angle = false
 length = 12.0
@@ -458,19 +681,30 @@ Position = true
 Rotation = true
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
+[node name="AccessoryRootSync" type="Node2D" parent="Skeleton/hip" node_paths=PackedStringArray("node")]
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../accessories/root")
+Position = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
 [node name="FFTarget_pos" type="Marker2D" parent="Skeleton"]
+visible = false
 position = Vector2(2, 30)
 
 [node name="BFTarget_pos" type="Marker2D" parent="Skeleton"]
+visible = false
 position = Vector2(-11, 24)
 
 [node name="lookTarget" type="Marker2D" parent="Skeleton"]
+visible = false
 position = Vector2(32, -13.5)
 
 [node name="BHTarget_pos" type="Marker2D" parent="Skeleton"]
+visible = false
 position = Vector2(2, 12)
 
 [node name="FHTarget_pos" type="Marker2D" parent="Skeleton"]
+visible = false
 position = Vector2(2, 14)
 
 [node name="sprites" type="Node2D" parent="."]
@@ -489,7 +723,7 @@ texture = SubResource("CanvasTexture_qwspa")
 
 [node name="Calf_B" type="Node2D" parent="sprites"]
 modulate = Color(0.788235, 0.788235, 0.788235, 1)
-position = Vector2(2.58236, 14.2769)
+position = Vector2(2.58237, 14.2769)
 rotation = 0.80964
 
 [node name="Calf" type="Sprite2D" parent="sprites/Calf_B"]
@@ -498,8 +732,8 @@ texture = SubResource("CanvasTexture_r633c")
 
 [node name="Thigh_B" type="Sprite2D" parent="sprites"]
 modulate = Color(0.787759, 0.787759, 0.787759, 1)
-position = Vector2(0.863821, 5.93747)
-rotation = -0.144473
+position = Vector2(0.863825, 5.93747)
+rotation = -0.144474
 texture = SubResource("CanvasTexture_pacje")
 
 [node name="Calf_F" type="Node2D" parent="sprites"]
@@ -606,7 +840,6 @@ position = Vector2(1.90201, 4.92025)
 rotation = -0.139442
 
 [node name="Weapon" parent="sprites/FlipHandler" instance=ExtResource("4_5ek75")]
-position = Vector2(3.085, 0)
 
 [node name="Forearm_F" type="Sprite2D" parent="sprites"]
 position = Vector2(0.579876, 0.284278)
@@ -621,6 +854,7 @@ texture = SubResource("CanvasTexture_qwspa")
 [node name="accessories" type="Node2D" parent="."]
 
 [node name="root" type="StaticBody2D" parent="accessories"]
+position = Vector2(-9.53674e-07, 0)
 collision_layer = 0
 collision_mask = 0
 
@@ -699,8 +933,28 @@ node_b = NodePath("../starChain2Rb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2(0, 1.45)
+position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_a1qjk")
+
+[node name="InteractionHint" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+show_behind_parent = true
+light_mask = 0
+material = SubResource("CanvasItemMaterial_0eo6o")
+offset_left = -4.5
+offset_top = -30.0
+offset_right = 31.5
+offset_bottom = 58.0
+scale = Vector2(0.2, 0.2)
+text = "E"
+label_settings = SubResource("LabelSettings_0eo6o")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="anim" type="AnimationPlayer" parent="InteractionHint"]
+libraries = {
+&"": SubResource("AnimationLibrary_wy7bt")
+}
 
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_end"]
 [connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_end"]
