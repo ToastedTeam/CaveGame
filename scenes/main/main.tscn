@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://qtfciyfj33pt"]
+[gd_scene load_steps=43 format=4 uid="uid://qtfciyfj33pt"]
 
 [ext_resource type="Material" uid="uid://hkdd85186e42" path="res://shaders/SmoothPixel.tres" id="1_a8run"]
 [ext_resource type="Texture2D" uid="uid://b8aysoeqef1f1" path="res://icon.svg" id="2_ouso4"]
@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://ryvgyi4m7ywi" path="res://scenes/main/assets/mainlev_build.png" id="8_nvumn"]
 [ext_resource type="Texture2D" uid="uid://bb0m10tlay88m" path="res://scenes/main/assets/world_tileset.png" id="9_ou6is"]
 [ext_resource type="PackedScene" uid="uid://dn52wlkh2g1wy" path="res://scenes/killzone/killzone.tscn" id="10_necax"]
-[ext_resource type="PackedScene" uid="uid://dn8amu36njlul" path="res://scenes/pause_menu.tscn" id="15_raeie"]
 
 [sub_resource type="Resource" id="Resource_hxu8e"]
 resource_name = "Forearm R"
@@ -1943,10 +1942,6 @@ collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone2"]
 shape = SubResource("WorldBoundaryShape2D_kfodh")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("15_raeie")]
 
 [editable path="Interface"]
 [editable path="Interface/Interface2/VBoxContainer/HealthBar"]
