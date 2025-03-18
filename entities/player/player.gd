@@ -22,6 +22,8 @@ extends CharacterBody2D
 @export var inhibitUserInput: bool = false;
 @export var animPlayer: AnimationPlayer;
 
+var projectile = preload("res://weapons/projectile/projectile.tscn")
+
 var targetX: float = 0;
 # Various Properties
 # @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -151,9 +153,16 @@ func _isPlayerDashing() -> bool:
 		return false;
 	pass
 
-func _isPlayerJustAttacking() -> bool:
+func _isPlayerJustAttackingMelee() -> bool:
 	if !inhibitUserInput:
-		return Input.is_action_just_pressed("player_attack")
+		return Input.is_action_just_pressed("player_attack_melee")
+	else:
+		return false;
+	pass
+	
+func _isPlayerJustAttackingRanged() -> bool:
+	if !inhibitUserInput:
+		return Input.is_action_just_pressed("player_attack_ranged")
 	else:
 		return false;
 	pass
@@ -257,12 +266,25 @@ func _physics_process(delta: float) -> void:
 		
 	hitWall = is_on_wall()
 		
-	if _isPlayerJustAttacking() and canAttack:
+	if _isPlayerJustAttackingMelee() and canAttack:
 		#$FlipHandler/Weapon/AnimationPlayer.play("player_attack")
 		IkAnimator.Attack_Melee()
 		canAttack = false
 		$AttackCooldown.start()
-		pass
+	
+	if _isPlayerJustAttackingRanged() and canAttack:
+		var proj_instance: Projectile = projectile.instantiate()
+		
+		proj_instance.rotation = 0 if facing_right else PI
+		proj_instance.global_position = $ProjectileMarker.global_position
+		
+		get_tree().root.get_child(0).add_child(proj_instance)
+		#root.add_child(proj_instance)
+		#add_child(proj_instance)
+		
+		#IkAnimator.Attack_Melee()
+		canAttack = false
+		$AttackCooldown.start()
 
 func _on_entity_hit(body: Node2D) -> void:
 	var body_parent = body.get_parent()

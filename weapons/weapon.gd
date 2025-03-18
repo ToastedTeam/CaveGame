@@ -5,16 +5,15 @@ extends Node2D
 
 signal on_hit(hitBody: Node2D)
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	var player = get_tree().root.find_child("Player", true, false) as PlayerCharacter
+	on_hit.connect(player._on_entity_hit)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-
+	
+func _attack() -> void:
+	pass
 
 func _on_damage_box_body_entered(body: Node2D) -> void:
 	on_hit.emit(body);
-	pass # Replace with function body.

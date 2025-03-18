@@ -612,6 +612,7 @@ metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="thigh_r" type="Bone2D" parent="Skeleton/hip"]
 rotation = -0.144474
+scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 auto_calculate_length_and_angle = false
 length = 12.0
@@ -648,7 +649,7 @@ metadata/_custom_type_script = "uid://eji52ig0w3g5"
 [node name="thigh_f" type="Bone2D" parent="Skeleton/hip"]
 position = Vector2(-0.5, 0)
 rotation = -0.0831412
-scale = Vector2(0.99984, 0.99984)
+scale = Vector2(0.999836, 0.999836)
 rest = Transform2D(0.999842, 0, 0, 0.999842, -0.5, 0)
 auto_calculate_length_and_angle = false
 length = 12.0
@@ -732,7 +733,7 @@ texture = SubResource("CanvasTexture_r633c")
 
 [node name="Thigh_B" type="Sprite2D" parent="sprites"]
 modulate = Color(0.787759, 0.787759, 0.787759, 1)
-position = Vector2(0.863825, 5.93747)
+position = Vector2(0.863827, 5.93747)
 rotation = -0.144474
 texture = SubResource("CanvasTexture_pacje")
 
@@ -956,6 +957,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_wy7bt")
 }
 
+[node name="ProjectileMarker" type="Marker2D" parent="."]
+position = Vector2(4, -6)
+
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_end"]
 [connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_end"]
-[connection signal="on_hit" from="sprites/FlipHandler/Weapon" to="." method="_on_entity_hit"]
