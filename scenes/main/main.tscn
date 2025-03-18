@@ -2734,10 +2734,10 @@ scale = Vector2(0.999852, 0.999852)
 
 [node name="shoulder_r" parent="Player/Skeleton/hip/torso/collar/offset" index="1"]
 rotation = 1.93946
+scale = Vector2(0.999991, 0.999991)
 
 [node name="forearm_r" parent="Player/Skeleton/hip/torso/collar/offset/shoulder_r" index="1"]
 rotation = -0.833527
-scale = Vector2(0.999999, 0.999999)
 
 [node name="shoulder_f" parent="Player/Skeleton/hip/torso/collar/offset" index="2"]
 rotation = 1.4022
