@@ -253,20 +253,16 @@ func _physics_process(delta: float) -> void:
 		
 	if _isPlayerJustAttackingMelee() and canAttack:
 		#$FlipHandler/Weapon/AnimationPlayer.play("player_attack")
-		IkAnimator.Attack_Melee()
 		canAttack = false
+		IkAnimator.Attack_Melee()
 		$AttackCooldown.start()
 	
-	if _isPlayerJustAttackingRanged() and canAttack:
-		
-		#var proj_instance: Projectile = projectile.instantiate()
-		#proj_instance.rotation = 0 if facing_right else PI
-		#proj_instance.global_position = $ProjectileMarker.global_position
-		#
-		#get_tree().root.get_child(0).add_child(proj_instance)
+	var ranged = $sprites/FlipHandler/Ranged
+	if _isPlayerJustAttackingRanged() and canAttack and ranged and current_mana >= 10:
+		current_mana -= 10;
+		canAttack = false
 		
 		IkAnimator.Attack_Ranged()
-		canAttack = false
 		$AttackCooldown.start()
 
 func _on_entity_hit(body: Node2D) -> void:
