@@ -3,10 +3,11 @@ extends Node2D
 
 @export var AnimName: String = "Attack"
 
+@onready var player = get_tree().root.find_child("Player", true, false) as PlayerCharacter
+
 signal on_hit(hitBody: Node2D)
 
 func _ready() -> void:
-	var player = get_tree().root.find_child("Player", true, false) as PlayerCharacter
 	on_hit.connect(player._on_entity_hit)
 
 func _process(delta: float) -> void:

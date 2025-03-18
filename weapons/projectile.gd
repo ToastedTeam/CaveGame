@@ -3,8 +3,6 @@ extends Weapon
 
 @export var speed = 300
 
-#var player_script = preload("res://entities/player/player.gd")
-
 func _ready() -> void:
 	super()
 	set_as_top_level(true)
@@ -19,4 +17,3 @@ func _on_damage_box_body_entered(body: Node2D) -> void:
 
 func _on_screen_exited() -> void:
 	queue_free()
-	#pass

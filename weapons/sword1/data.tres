@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://dbcxx6wjckfrn"]
+[gd_resource type="Resource" script_class="WeaponStats" load_steps=4 format=3 uid="uid://dbcxx6wjckfrn"]
 
 [ext_resource type="PackedScene" uid="uid://dv1lodecs50bs" path="res://weapons/sword1/weapon.tscn" id="1_1vx72"]
 [ext_resource type="Texture2D" uid="uid://brara5mfg8fs5" path="res://weapons/sword1/assets/sword1.png" id="1_5uxbr"]
