@@ -39,6 +39,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="WeaponSelector" type="PanelContainer" parent="."]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5

@@ -9,7 +9,7 @@ func makePlayerRest(player: PlayerCharacter):
 		weapons.show()
 		return
 	else:
-		player.animPlayer.play("RESET")
+		player.animPlayer.play("restFloorUp")
 		resting = false
 		var UI = get_tree().get_nodes_in_group("UI")[0]
 		var weapons: Control = UI.get_node("WeaponSelector")
