@@ -498,8 +498,8 @@ texture = SubResource("CanvasTexture_r633c")
 
 [node name="Thigh_B" type="Sprite2D" parent="sprites"]
 modulate = Color(0.787759, 0.787759, 0.787759, 1)
-position = Vector2(0.863821, 5.93747)
-rotation = -0.144473
+position = Vector2(0.863825, 5.93747)
+rotation = -0.144474
 texture = SubResource("CanvasTexture_pacje")
 
 [node name="Calf_F" type="Node2D" parent="sprites"]
