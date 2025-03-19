@@ -43,6 +43,7 @@ enum dash {
 var currentDirection = 1;
 var facing = 1;
 var hitWall = false;
+var in_safe_area = false;
 
 #@export var headTarget: IKTargetResource
 #@export var headTarget: Node2D
@@ -248,22 +249,19 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	currentDirection = direction
-		
 	hitWall = is_on_wall()
-		
-	if _isPlayerJustAttackingMelee() and canAttack:
-		#$FlipHandler/Weapon/AnimationPlayer.play("player_attack")
-		canAttack = false
-		IkAnimator.Attack_Melee()
-		$AttackCooldown.start()
 	
-	var ranged = $sprites/FlipHandler/Ranged
-	if _isPlayerJustAttackingRanged() and canAttack and ranged and current_mana >= 10:
-		current_mana -= 10;
-		canAttack = false
+	if not in_safe_area:
+		if _isPlayerJustAttackingMelee() and canAttack:
+			if IkAnimator.Attack_Melee():
+				canAttack = false
+				$AttackCooldown.start()
 		
-		IkAnimator.Attack_Ranged()
-		$AttackCooldown.start()
+		if _isPlayerJustAttackingRanged() and canAttack and current_mana >= 10:
+			if IkAnimator.Attack_Ranged():
+				current_mana -= 10;
+				canAttack = false
+				$AttackCooldown.start()
 
 func _on_entity_hit(body: Node2D) -> void:
 	var body_parent = body.get_parent()

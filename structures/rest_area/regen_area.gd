@@ -16,11 +16,13 @@ func _physics_process(delta: float) -> void:
 
 func _player_entered(body: Node2D) -> void:
 	if "player" in body.get_groups():
+		player.in_safe_area = true
 		isPlayerIn = true
 	pass # Replace with function body.
 
 
 func _player_exited(body: Node2D) -> void:
 	if "player" in body.get_groups():
+		player.in_safe_area = false
 		isPlayerIn = false
 	pass # Replace with function body.

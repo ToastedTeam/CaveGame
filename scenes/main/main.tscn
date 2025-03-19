@@ -2695,7 +2695,7 @@ texture = SubResource("PlaceholderTexture2D_blune")
 
 [node name="FHTarget" type="Marker2D" parent="PlayerIKAnimator"]
 visible = false
-position = Vector2(6, -20)
+position = Vector2(4, -29)
 
 [node name="Sprite2D2" type="Sprite2D" parent="PlayerIKAnimator/FHTarget"]
 texture = SubResource("PlaceholderTexture2D_blune")
@@ -2753,19 +2753,19 @@ rotation = -0.0473331
 scale = Vector2(0.99984, 0.99984)
 
 [node name="Forearm_R" parent="Player/sprites" index="0"]
-position = Vector2(-2.91473, -0.926941)
+position = Vector2(-2.91474, -0.926949)
 rotation = -0.464864
 
 [node name="Shoulder_R" parent="Player/sprites" index="1"]
-position = Vector2(-3.80115, -9.83455)
-rotation = 0.36866
+position = Vector2(-3.80115, -9.83456)
+rotation = 0.368661
 
 [node name="Calf_B" parent="Player/sprites" index="2"]
-position = Vector2(-0.454931, 14.4992)
+position = Vector2(-0.454932, 14.4992)
 rotation = 0.0658351
 
 [node name="Thigh_B" parent="Player/sprites" index="3"]
-position = Vector2(-0.394663, 5.98606)
+position = Vector2(-0.394664, 5.98607)
 rotation = 0.0658351
 
 [node name="Calf_F" parent="Player/sprites" index="4"]
@@ -2777,11 +2777,11 @@ position = Vector2(-0.216119, 5.99138)
 rotation = -0.0473331
 
 [node name="BHair" parent="Player/sprites" index="6"]
-position = Vector2(-5.27689, -28.0557)
+position = Vector2(-5.2769, -28.0557)
 
 [node name="Head" parent="Player/sprites" index="7"]
 position = Vector2(-1.54036, -20.4958)
-rotation = -0.0058046
+rotation = -0.00580464
 
 [node name="FrontHair" parent="Player/sprites" index="8"]
 position = Vector2(-6.51007, -26.1904)
@@ -2790,16 +2790,16 @@ position = Vector2(-6.51007, -26.1904)
 position = Vector2(0, -7.99875)
 
 [node name="FlipHandler" parent="Player/sprites" index="11"]
-position = Vector2(2.46617, 4.79743)
-rotation = -0.168602
+position = Vector2(-1.347, -2.63909)
+rotation = -0.875947
 
 [node name="Forearm_F" parent="Player/sprites" index="12"]
-position = Vector2(1.00966, 0.202698)
-rotation = -0.168602
+position = Vector2(-5.43984, -5.18504)
+rotation = -0.875947
 
 [node name="Shoulder_F" parent="Player/sprites" index="13"]
-position = Vector2(-1.16081, -9.5696)
-rotation = -0.168602
+position = Vector2(-5.79975, -11.2497)
+rotation = 0.86357
 
 [node name="root" parent="Player/accessories" index="0"]
 position = Vector2(0, 0)
@@ -2893,6 +2893,12 @@ libraries = {
 }
 
 [node name="Interface" parent="." instance=ExtResource("6_raeie")]
+
+[node name="Texture" parent="Interface/WeaponSelector/Margin/Attacks/MeleeAttacks/InfoElements" index="0"]
+texture = null
+
+[node name="Texture" parent="Interface/WeaponSelector/Margin/Attacks/RangedAttacks/InfoElements" index="0"]
+texture = null
 
 [node name="TargetDummy" parent="." instance=ExtResource("7_hxu8e")]
 position = Vector2(-33, -21)
