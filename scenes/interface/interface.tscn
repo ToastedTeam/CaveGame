@@ -1,13 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://jxyevycakmnv"]
+[gd_scene load_steps=7 format=3 uid="uid://jxyevycakmnv"]
 
 [ext_resource type="PackedScene" uid="uid://du07qhtteauuh" path="res://scenes/interface/hp_bar.tscn" id="1_wpx7d"]
 [ext_resource type="PackedScene" uid="uid://mkc0o25ok023" path="res://scenes/interface/mana_bar.tscn" id="2_juv2u"]
 [ext_resource type="Script" uid="uid://cqswot2ewonva" path="res://scenes/debug_console/debug_console.gd" id="3_0x6lf"]
-[ext_resource type="Script" uid="uid://ceqabomyba6px" path="res://scenes/interface/WeaponSelectionScreen.gd" id="3_7i0gs"]
-[ext_resource type="Texture2D" uid="uid://brara5mfg8fs5" path="res://weapons/sword1/assets/sword1.png" id="3_qqekr"]
-[ext_resource type="PackedScene" uid="uid://dn8amu36njlul" path="res://scenes/pause_menu.tscn" id="3_qqekr"]
 [ext_resource type="Script" uid="uid://e2eyy28mds0i" path="res://scenes/debug_console/command_box.gd" id="4_6ncm3"]
-[ext_resource type="Resource" uid="uid://c2qj0falsfk2y" path="res://weapons/weapons_table.tres" id="4_tf5yn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvi75"]
 bg_color = Color(1, 0.247466, 0.652583, 1)
@@ -15,7 +11,7 @@ bg_color = Color(1, 0.247466, 0.652583, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4iq1j"]
 bg_color = Color(0, 0, 0, 1)
 
-[node name="CanvasLayer" type="CanvasLayer" groups=["UI"]]
+[node name="CanvasLayer" type="CanvasLayer"]
 
 [node name="Interface2" type="Control" parent="."]
 layout_mode = 3
@@ -38,91 +34,6 @@ layout_mode = 2
 
 [node name="ManaBar" parent="Interface2/VBoxContainer" instance=ExtResource("2_juv2u")]
 layout_mode = 2
-
-[node name="WeaponSelector" type="PanelContainer" parent="."]
-visible = false
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -180.0
-offset_right = 180.0
-offset_bottom = 69.0
-grow_horizontal = 2
-
-[node name="Margin" type="MarginContainer" parent="WeaponSelector"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="Attacks" type="HBoxContainer" parent="WeaponSelector/Margin"]
-layout_mode = 2
-script = ExtResource("3_7i0gs")
-Table = ExtResource("4_tf5yn")
-
-[node name="MeleeAttacks" type="HBoxContainer" parent="WeaponSelector/Margin/Attacks"]
-custom_minimum_size = Vector2(250, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Previous" type="Button" parent="WeaponSelector/Margin/Attacks/MeleeAttacks"]
-layout_mode = 2
-text = "<"
-
-[node name="InfoElements" type="VBoxContainer" parent="WeaponSelector/Margin/Attacks/MeleeAttacks"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Texture" type="TextureRect" parent="WeaponSelector/Margin/Attacks/MeleeAttacks/InfoElements"]
-layout_mode = 2
-texture = ExtResource("3_qqekr")
-stretch_mode = 3
-
-[node name="Description" type="Label" parent="WeaponSelector/Margin/Attacks/MeleeAttacks/InfoElements"]
-custom_minimum_size = Vector2(206, 0)
-layout_mode = 2
-text = "a basic sword omg no way a hit sword lmao wtf twsag sfas dfasd fasdf asdf asdf asdf asdf asdf asdf "
-horizontal_alignment = 1
-autowrap_mode = 3
-
-[node name="Next" type="Button" parent="WeaponSelector/Margin/Attacks/MeleeAttacks"]
-layout_mode = 2
-text = ">"
-
-[node name="RangedAttacks" type="HBoxContainer" parent="WeaponSelector/Margin/Attacks"]
-custom_minimum_size = Vector2(250, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Previous" type="Button" parent="WeaponSelector/Margin/Attacks/RangedAttacks"]
-layout_mode = 2
-text = "<"
-
-[node name="InfoElements" type="VBoxContainer" parent="WeaponSelector/Margin/Attacks/RangedAttacks"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Texture" type="TextureRect" parent="WeaponSelector/Margin/Attacks/RangedAttacks/InfoElements"]
-layout_mode = 2
-texture = ExtResource("3_qqekr")
-stretch_mode = 3
-
-[node name="Description" type="Label" parent="WeaponSelector/Margin/Attacks/RangedAttacks/InfoElements"]
-custom_minimum_size = Vector2(206, 0)
-layout_mode = 2
-text = "a basic sword omg no way a hit sword lmao wtf twsag sfas dfasd fasdf asdf asdf asdf asdf asdf asdf "
-horizontal_alignment = 1
-autowrap_mode = 3
-
-[node name="Next" type="Button" parent="WeaponSelector/Margin/Attacks/RangedAttacks"]
-layout_mode = 2
-text = ">"
-
-[node name="PauseMenu" parent="." instance=ExtResource("3_qqekr")]
-offset_top = 24.0
-offset_bottom = 24.0
 
 [node name="DebugConsole" type="VBoxContainer" parent="." node_paths=PackedStringArray("LogOutput")]
 process_mode = 3
@@ -157,8 +68,3 @@ layout_mode = 2
 placeholder_text = "Write GDScript here"
 scroll_fit_content_height = true
 script = ExtResource("4_6ncm3")
-
-[connection signal="button_down" from="WeaponSelector/Margin/Attacks/MeleeAttacks/Previous" to="WeaponSelector/Margin/Attacks" method="_on_previous_melee"]
-[connection signal="button_down" from="WeaponSelector/Margin/Attacks/MeleeAttacks/Next" to="WeaponSelector/Margin/Attacks" method="_on_next_melee"]
-[connection signal="button_down" from="WeaponSelector/Margin/Attacks/RangedAttacks/Previous" to="WeaponSelector/Margin/Attacks" method="_on_previous_ranged"]
-[connection signal="button_down" from="WeaponSelector/Margin/Attacks/RangedAttacks/Next" to="WeaponSelector/Margin/Attacks" method="_on_next_ranged"]

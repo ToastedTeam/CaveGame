@@ -60,7 +60,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("ui_cancel") and visible:
 		get_tree().paused = false
 		hide()
-		get_viewport().set_input_as_handled()
 		return
 	elif event.is_action_pressed("ui_accept") and visible:
 		Log.info(eval_code($Command.text))
