@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://dn8amu36njlul"]
 
-[ext_resource type="Script" uid="uid://chc4mk64xl8n1" path="res://pause_menu.gd" id="1_myx47"]
-[ext_resource type="Shader" uid="uid://bus8qxo8npi86" path="res://shaders/blur.gdshader" id="2_kukqi"]
+[ext_resource type="Script" uid="uid://chc4mk64xl8n1" path="res://scenes/MenuScenes/pause_menu.gd" id="1_obruh"]
+[ext_resource type="Shader" uid="uid://bus8qxo8npi86" path="res://shaders/blur.gdshader" id="2_62wk8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5d2l8"]
-shader = ExtResource("2_kukqi")
+shader = ExtResource("2_62wk8")
 shader_parameter/lod = 0.0
 
 [sub_resource type="Animation" id="Animation_7l7mv"]
@@ -101,7 +101,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_myx47")
+script = ExtResource("1_obruh")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_5d2l8")
