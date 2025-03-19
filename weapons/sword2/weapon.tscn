@@ -15,6 +15,7 @@ position = Vector2(9.5, -2.19603e-05)
 rotation = 1.57079
 collision_layer = 4
 collision_mask = 4
+monitoring = false
 
 [node name="Collision" type="CollisionShape2D" parent="DamageBox"]
 visible = false
