@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://qtfciyfj33pt"]
+[gd_scene load_steps=52 format=4 uid="uid://qtfciyfj33pt"]
 
 [ext_resource type="Material" uid="uid://hkdd85186e42" path="res://shaders/SmoothPixel.tres" id="1_a8run"]
 [ext_resource type="Texture2D" uid="uid://b8aysoeqef1f1" path="res://icon.svg" id="2_ouso4"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dn52wlkh2g1wy" path="res://scenes/killzone/killzone.tscn" id="10_necax"]
 [ext_resource type="Texture2D" uid="uid://d0ts487dm2mfs" path="res://scenes/main/assets/tileset_00.png" id="15_raeie"]
 [ext_resource type="Texture2D" uid="uid://6dee36dur7b3" path="res://scenes/main/assets/key_icons.png" id="16_hxu8e"]
+[ext_resource type="PackedScene" uid="uid://babgoqd6p8s7d" path="res://structures/rest_area/rest_area.tscn" id="15_raeie"]
 
 [sub_resource type="Resource" id="Resource_hxu8e"]
 resource_name = "Forearm R"
@@ -161,6 +162,62 @@ script = ExtResource("4_ouso4")
 targetModificationName = "HeadLook"
 targetNodePath = NodePath("targetPositions/LookAt")
 metadata/_custom_type_script = "uid://b7h0h8wdhf0ws"
+
+[sub_resource type="SkeletonModification2DLookAt" id="SkeletonModification2DLookAt_raeie"]
+resource_local_to_scene = true
+resource_name = "HeadLook"
+bone_index = 4
+bone2d_node = NodePath("hip/torso/collar/offset/head")
+target_nodepath = NodePath("/root/@EditorNode@21298/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11479/@VSplitContainer@11131/@HSplitContainer@11133/@HSplitContainer@11135/@Control@11136/@SubViewportContainer@11137/@SubViewport@11138/Main/Player/targetPositions/LookAt")
+editor/draw_gizmo = false
+
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_hxu8e"]
+resource_local_to_scene = true
+resource_name = "BackArm"
+target_nodepath = NodePath("/root/@EditorNode@21298/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11479/@VSplitContainer@11131/@HSplitContainer@11133/@HSplitContainer@11135/@Control@11136/@SubViewportContainer@11137/@SubViewport@11138/Main/PlayerIKAnimator/BHTarget")
+flip_bend_direction = true
+joint_one_bone_idx = 5
+joint_one_bone2d_node = NodePath("hip/torso/collar/offset/shoulder_r")
+joint_two_bone_idx = 6
+joint_two_bone2d_node = NodePath("hip/torso/collar/offset/shoulder_r/forearm_r")
+
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_nvumn"]
+resource_local_to_scene = true
+resource_name = "FrontArm"
+target_nodepath = NodePath("/root/@EditorNode@21298/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11479/@VSplitContainer@11131/@HSplitContainer@11133/@HSplitContainer@11135/@Control@11136/@SubViewportContainer@11137/@SubViewport@11138/Main/PlayerIKAnimator/FHTarget")
+flip_bend_direction = true
+joint_one_bone_idx = 7
+joint_one_bone2d_node = NodePath("hip/torso/collar/offset/shoulder_f")
+joint_two_bone_idx = 8
+joint_two_bone2d_node = NodePath("hip/torso/collar/offset/shoulder_f/forearm_f")
+
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_ou6is"]
+resource_local_to_scene = true
+resource_name = "BackLeg"
+target_nodepath = NodePath("/root/@EditorNode@21298/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11479/@VSplitContainer@11131/@HSplitContainer@11133/@HSplitContainer@11135/@Control@11136/@SubViewportContainer@11137/@SubViewport@11138/Main/PlayerIKAnimator/BFTarget")
+joint_one_bone_idx = 9
+joint_one_bone2d_node = NodePath("hip/thigh_r")
+joint_two_bone_idx = 10
+joint_two_bone2d_node = NodePath("hip/thigh_r/calf_r")
+
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_necax"]
+resource_local_to_scene = true
+resource_name = "FrontLeg"
+target_nodepath = NodePath("/root/@EditorNode@21298/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11479/@VSplitContainer@11131/@HSplitContainer@11133/@HSplitContainer@11135/@Control@11136/@SubViewportContainer@11137/@SubViewport@11138/Main/PlayerIKAnimator/FFTarget")
+joint_one_bone_idx = 11
+joint_one_bone2d_node = NodePath("hip/thigh_f")
+joint_two_bone_idx = 12
+joint_two_bone2d_node = NodePath("hip/thigh_f/calf_f")
+
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_r4lks"]
+resource_local_to_scene = true
+enabled = true
+modification_count = 5
+modifications/0 = SubResource("SkeletonModification2DLookAt_raeie")
+modifications/1 = SubResource("SkeletonModification2DTwoBoneIK_hxu8e")
+modifications/2 = SubResource("SkeletonModification2DTwoBoneIK_nvumn")
+modifications/3 = SubResource("SkeletonModification2DTwoBoneIK_ou6is")
+modifications/4 = SubResource("SkeletonModification2DTwoBoneIK_necax")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qtmoe"]
 shader = ExtResource("4_th5th")
@@ -349,55 +406,55 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../../PlayerIKAnimator:inhibitFH")
+tracks/4/path = NodePath("BHTarget_pos/Synchroniser:Smoothing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [null]
+"update": 0,
+"values": [0.5]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("BHTarget_pos/Synchroniser:Smoothing")
+tracks/5/path = NodePath("BHTarget_pos/Synchroniser:Position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.5]
+"update": 1,
+"values": [true]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("BHTarget_pos/Synchroniser:Position")
+tracks/6/path = NodePath("../sprites/FlipHandler/Weapon/DamageBox:monitoring")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../../PlayerIKAnimator:inhibitBH")
+tracks/7/path = NodePath("FFTarget_pos/Synchroniser:Position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [null]
+"values": [false]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("../sprites/FlipHandler/Weapon/DamageBox:monitoring")
+tracks/8/path = NodePath("BFTarget_pos/Synchroniser:Position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -406,12 +463,1924 @@ tracks/8/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("HipTarget/Synchroniser:Position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.0001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("HipTarget/Synchroniser:Rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.0001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("BHTarget_pos:position:x")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/12/type = "bezier"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("BHTarget_pos:position:y")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(6, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/13/type = "bezier"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("HipTarget:position:x")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/14/type = "bezier"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("HipTarget:position:y")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/15/type = "bezier"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("HipTarget:rotation")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/16/type = "bezier"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("LookAt:position:x")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(85, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/17/type = "bezier"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("LookAt:position:y")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-14, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/18/type = "bezier"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("FFTarget_pos:position:x")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/19/type = "bezier"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("FFTarget_pos:position:y")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(32, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/20/type = "bezier"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("BFTarget_pos:position:x")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-2, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/21/type = "bezier"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("BFTarget_pos:position:y")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(34, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("..:inhibitUserInput")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("../../PlayerIKAnimator:inhibitFF")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("../../PlayerIKAnimator:inhibitBF")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("../Skeleton/hip:position")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/26/type = "value"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("../Skeleton/hip:rotation")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("../../PlayerIKAnimator:inhibitFH")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/28/type = "value"
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/path = NodePath("../../PlayerIKAnimator:inhibitBH")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/29/type = "value"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("../../PlayerIKAnimator:state")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/30/type = "value"
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/path = NodePath("../../PlayerIKAnimator:lastState")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_pg34l"]
+resource_name = "restFloor"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FFTarget_pos/Synchroniser:Position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BFTarget_pos/Synchroniser:Position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BHTarget_pos/Synchroniser:Position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FHTarget_pos/Synchroniser:Position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FFTarget_pos:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 9, -0.0402465, 0, 0.0264202, 0, 13, -0.159791, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.262877, 0.637515, 1.25641, 1.46667, 1.76667)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FFTarget_pos:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(32, -0.25, 0, 0.25, 0, 34, -0.25, 0, 0.25, 0, 34, -0.25, 0, 0.128927, -2, 32, -0.0402465, 2, 0.0264202, 0, 34, -0.126458, -1, 0.25, 0),
+"times": PackedFloat32Array(0, 0.637515, 1.25641, 1.46667, 1.76667)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BFTarget_pos:position:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-2, -0.25, 0, 0.25, 0, -1, -0.25, 0, 0.018669, 0, 6, -0.0304265, -1, 0.0695735, 6, 16, -0.0638497, -1, 0.0361503, -1),
+"times": PackedFloat32Array(0, 1.6, 1.78243, 1.98252)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BFTarget_pos:position:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(34, -0.25, 0, 0.25, 0, 34, -0.25, 0, 0.0853357, -1, 32, -0.0304265, 1, 0.0362402, -1, 34.02, -0.0638497, 1, 0.13615, 11),
+"times": PackedFloat32Array(0, 1.6, 1.78243, 2)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BHTarget_pos:position:x")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, -28, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.666667, 1.16667)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("BHTarget_pos:position:y")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(6, -0.25, 0, 0.25, 0, 26, -0.25, 0, 0.25, 0, 35, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.666667, 1.16667)
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("HipTarget/Synchroniser:Position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("HipTarget/Synchroniser:Rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/12/type = "bezier"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("FHTarget_pos:position:x")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(2, -0.25, 0, 0.25, 0, -1, -0.25, 0, 0.25, 0, -24, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.666667, 1.1667)
+}
+tracks/13/type = "bezier"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("FHTarget_pos:position:y")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(9, -0.25, 0, 0.25, 0, 21, -0.25, 0, 0.25, 0, 35, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.666667, 1.1667)
+}
+tracks/14/type = "bezier"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("HipTarget:position:x")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -2, -0.25, 0, 0.25, 0, -13, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.666667, 1.1667)
+}
+tracks/15/type = "bezier"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("HipTarget:position:y")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.1, 0, 0.2, 12, 23, -0.533333, 2, 0.03, 0, 29, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.666667, 1.1667)
+}
+tracks/16/type = "bezier"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("HipTarget:rotation")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.325715, -0.25, 0, 0.25, 0, -0.259744, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.666667, 1.1667)
+}
+tracks/17/type = "bezier"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("LookAt:position:x")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(85, -0.25, 0, 0.25, 0, 36, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.466667)
+}
+tracks/18/type = "bezier"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("LookAt:position:y")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-14, -0.25, 0, 0.25, 0, 29, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.466667)
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("..:inhibitUserInput")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("../../PlayerIKAnimator:inhibitFH")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("../../PlayerIKAnimator:inhibitBH")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("../../PlayerIKAnimator:inhibitFF")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("../../PlayerIKAnimator:inhibitBF")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_raeie"]
+resource_name = "restFloor"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FFTarget_pos/Synchroniser:Position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BFTarget_pos/Synchroniser:Position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BHTarget_pos/Synchroniser:Position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FHTarget_pos/Synchroniser:Position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FFTarget_pos:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(13, -0.159791, 0, 0.25, 0, 9, -0.0402465, 0, 0.0264202, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3, 0.51026, 1.12915, 1.50379, 1.76667)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FFTarget_pos:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(34, -0.126458, -1, 0.25, 0, 32, -0.0402465, 2, 0.0264202, 0, 34, -0.25, 0, 0.128927, -2, 34, -0.25, 0, 0.25, 0, 31.665, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3, 0.51026, 1.12915, 1.76667)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BFTarget_pos:position:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(16, -0.0638497, -1, 0.0361503, -1, 6, -0.0304265, -1, 0.0695735, 6, -3.695, -0.25, 0, 0.018669, 0, -2, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.41748, 0.7, 0.966667, 2)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BFTarget_pos:position:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(34.02, -0.0638497, 1, 0.13615, 11, 32, -0.0304265, 1, 0.0362402, -1, 34, -0.25, 0, 0.0853357, -1, 30.335, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.4, 0.7, 0.966667, 2)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BHTarget_pos:position:x")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-28, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.83333, 1.33333, 2)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("BHTarget_pos:position:y")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(35, -0.25, 0, 0.25, 0, 26, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.83333, 1.33333, 2)
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("HipTarget/Synchroniser:Position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("HipTarget/Synchroniser:Rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/12/type = "bezier"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("FHTarget_pos:position:x")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-24, -0.25, 0, 0.25, 0, -18.355, -0.25, 0, 0.25, 0, -18.355, -0.25, 0, 0.18073, 50.855, 2, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.8333, 1, 2)
+}
+tracks/13/type = "bezier"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("FHTarget_pos:position:y")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(35, -0.25, 0, 0.25, 0, 35.325, -0.25, 0, 0.25, 0, 35.325, -0.25, 0, 0.25, 0, 9, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.8333, 1, 2)
+}
+tracks/14/type = "bezier"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("HipTarget:position:x")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-13, -0.25, 0, 0.18762, -2.5, 0, -0.345747, 11.5, 0.091, -3, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.8333, 1.56667, 2)
+}
+tracks/15/type = "bezier"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("HipTarget:position:y")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(29, -0.25, 0, 0.25, 0, 23, -0.533333, 2, 0.03, 0, 0, -0.1, 0, 0.2, 12),
+"times": PackedFloat32Array(0.8333, 1.33333, 2)
+}
+tracks/16/type = "bezier"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("HipTarget:rotation")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-0.259744, -0.25, 0, 0.25, 0, 0.325715, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.8333, 1.33333, 2)
+}
+tracks/17/type = "bezier"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("LookAt:position:x")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(36, -0.25, 0, 0.25, 0, 85, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(1.53333, 2)
+}
+tracks/18/type = "bezier"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("LookAt:position:y")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(29, -0.25, 0, 0.25, 0, -14, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(1.53333, 2)
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("..:inhibitUserInput")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("../../PlayerIKAnimator:inhibitFH")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("../../PlayerIKAnimator:inhibitBH")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("../../PlayerIKAnimator:inhibitFF")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("../../PlayerIKAnimator:inhibitBF")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gx6sm"]
 _data = {
 &"Attack": SubResource("Animation_j3ovn"),
-&"RESET": SubResource("Animation_afbqv")
+&"RESET": SubResource("Animation_afbqv"),
+&"restFloor": SubResource("Animation_pg34l"),
+&"restFloorUp": SubResource("Animation_raeie")
 }
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ubapy"]
+texture = ExtResource("8_nvumn")
+6:1/0 = 0
+20:1/0 = 0
+21:1/0 = 0
+23:1/0 = 0
+24:1/0 = 0
+25:1/0 = 0
+36:1/0 = 0
+47:1/0 = 0
+48:1/0 = 0
+49:1/0 = 0
+50:1/0 = 0
+51:1/0 = 0
+52:1/0 = 0
+53:1/0 = 0
+54:1/0 = 0
+55:1/0 = 0
+56:1/0 = 0
+57:1/0 = 0
+60:1/0 = 0
+61:1/0 = 0
+62:1/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+6:2/0 = 0
+8:2/0 = 0
+10:2/0 = 0
+12:2/0 = 0
+14:2/0 = 0
+15:2/0 = 0
+17:2/0 = 0
+18:2/0 = 0
+20:2/0 = 0
+21:2/0 = 0
+23:2/0 = 0
+24:2/0 = 0
+25:2/0 = 0
+27:2/0 = 0
+28:2/0 = 0
+30:2/0 = 0
+32:2/0 = 0
+34:2/0 = 0
+36:2/0 = 0
+60:2/0 = 0
+61:2/0 = 0
+62:2/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+6:3/0 = 0
+17:3/0 = 0
+18:3/0 = 0
+36:3/0 = 0
+47:3/0 = 0
+48:3/0 = 0
+49:3/0 = 0
+50:3/0 = 0
+51:3/0 = 0
+52:3/0 = 0
+53:3/0 = 0
+54:3/0 = 0
+55:3/0 = 0
+56:3/0 = 0
+57:3/0 = 0
+60:3/0 = 0
+61:3/0 = 0
+62:3/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+10:4/0 = 0
+12:4/0 = 0
+14:4/0 = 0
+15:4/0 = 0
+20:4/0 = 0
+21:4/0 = 0
+22:4/0 = 0
+27:4/0 = 0
+28:4/0 = 0
+30:4/0 = 0
+32:4/0 = 0
+34:4/0 = 0
+35:4/0 = 0
+60:4/0 = 0
+61:4/0 = 0
+62:4/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+39:5/0 = 0
+40:5/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+8:6/0 = 0
+10:6/0 = 0
+12:6/0 = 0
+14:6/0 = 0
+15:6/0 = 0
+17:6/0 = 0
+19:6/0 = 0
+20:6/0 = 0
+22:6/0 = 0
+24:6/0 = 0
+26:6/0 = 0
+27:6/0 = 0
+30:6/0 = 0
+32:6/0 = 0
+34:6/0 = 0
+36:6/0 = 0
+37:6/0 = 0
+39:6/0 = 0
+40:6/0 = 0
+47:6/0 = 0
+48:6/0 = 0
+49:6/0 = 0
+51:6/0 = 0
+52:6/0 = 0
+53:6/0 = 0
+55:6/0 = 0
+56:6/0 = 0
+57:6/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+8:7/0 = 0
+10:7/0 = 0
+14:7/0 = 0
+15:7/0 = 0
+17:7/0 = 0
+19:7/0 = 0
+20:7/0 = 0
+22:7/0 = 0
+24:7/0 = 0
+26:7/0 = 0
+27:7/0 = 0
+32:7/0 = 0
+34:7/0 = 0
+36:7/0 = 0
+37:7/0 = 0
+39:7/0 = 0
+40:7/0 = 0
+47:7/0 = 0
+48:7/0 = 0
+49:7/0 = 0
+51:7/0 = 0
+52:7/0 = 0
+53:7/0 = 0
+55:7/0 = 0
+56:7/0 = 0
+57:7/0 = 0
+60:7/0 = 0
+61:7/0 = 0
+62:7/0 = 0
+10:8/0 = 0
+12:8/0 = 0
+14:8/0 = 0
+15:8/0 = 0
+22:8/0 = 0
+30:8/0 = 0
+32:8/0 = 0
+47:8/0 = 0
+48:8/0 = 0
+49:8/0 = 0
+51:8/0 = 0
+52:8/0 = 0
+53:8/0 = 0
+55:8/0 = 0
+56:8/0 = 0
+57:8/0 = 0
+60:8/0 = 0
+62:8/0 = 0
+2:9/0 = 0
+5:9/0 = 0
+37:9/0 = 0
+40:9/0 = 0
+60:9/0 = 0
+62:9/0 = 0
+2:10/0 = 0
+3:10/0 = 0
+5:10/0 = 0
+6:10/0 = 0
+8:10/0 = 0
+9:10/0 = 0
+16:10/0 = 0
+26:10/0 = 0
+33:10/0 = 0
+34:10/0 = 0
+36:10/0 = 0
+37:10/0 = 0
+39:10/0 = 0
+40:10/0 = 0
+55:10/0 = 0
+56:10/0 = 0
+57:10/0 = 0
+60:10/0 = 0
+62:10/0 = 0
+2:11/0 = 0
+3:11/0 = 0
+5:11/0 = 0
+6:11/0 = 0
+8:11/0 = 0
+9:11/0 = 0
+12:11/0 = 0
+14:11/0 = 0
+16:11/0 = 0
+17:11/0 = 0
+25:11/0 = 0
+26:11/0 = 0
+28:11/0 = 0
+30:11/0 = 0
+33:11/0 = 0
+34:11/0 = 0
+36:11/0 = 0
+37:11/0 = 0
+39:11/0 = 0
+40:11/0 = 0
+55:11/0 = 0
+56:11/0 = 0
+57:11/0 = 0
+2:12/0 = 0
+3:12/0 = 0
+5:12/0 = 0
+6:12/0 = 0
+8:12/0 = 0
+9:12/0 = 0
+16:12/0 = 0
+17:12/0 = 0
+25:12/0 = 0
+26:12/0 = 0
+33:12/0 = 0
+34:12/0 = 0
+36:12/0 = 0
+37:12/0 = 0
+39:12/0 = 0
+40:12/0 = 0
+55:12/0 = 0
+56:12/0 = 0
+57:12/0 = 0
+60:12/0 = 0
+61:12/0 = 0
+62:12/0 = 0
+12:14/0 = 0
+14:14/0 = 0
+16:14/0 = 0
+18:14/0 = 0
+24:14/0 = 0
+26:14/0 = 0
+28:14/0 = 0
+30:14/0 = 0
+60:14/0 = 0
+61:14/0 = 0
+62:14/0 = 0
+1:15/0 = 0
+2:15/0 = 0
+3:15/0 = 0
+4:15/0 = 0
+6:15/0 = 0
+8:15/0 = 0
+9:15/0 = 0
+33:15/0 = 0
+34:15/0 = 0
+36:15/0 = 0
+38:15/0 = 0
+39:15/0 = 0
+40:15/0 = 0
+41:15/0 = 0
+1:16/0 = 0
+2:16/0 = 0
+3:16/0 = 0
+12:16/0 = 0
+14:16/0 = 0
+16:16/0 = 0
+26:16/0 = 0
+28:16/0 = 0
+30:16/0 = 0
+39:16/0 = 0
+40:16/0 = 0
+41:16/0 = 0
+9:18/0 = 0
+10:18/0 = 0
+12:18/0 = 0
+13:18/0 = 0
+15:18/0 = 0
+16:18/0 = 0
+18:18/0 = 0
+19:18/0 = 0
+23:18/0 = 0
+24:18/0 = 0
+26:18/0 = 0
+27:18/0 = 0
+29:18/0 = 0
+30:18/0 = 0
+32:18/0 = 0
+33:18/0 = 0
+46:18/0 = 0
+47:18/0 = 0
+48:18/0 = 0
+52:18/0 = 0
+53:18/0 = 0
+61:18/0 = 0
+62:18/0 = 0
+52:19/0 = 0
+53:19/0 = 0
+61:19/0 = 0
+62:19/0 = 0
+12:20/0 = 0
+14:20/0 = 0
+15:20/0 = 0
+27:20/0 = 0
+28:20/0 = 0
+30:20/0 = 0
+52:20/0 = 0
+53:20/0 = 0
+61:20/0 = 0
+62:20/0 = 0
+12:21/0 = 0
+14:21/0 = 0
+15:21/0 = 0
+27:21/0 = 0
+28:21/0 = 0
+30:21/0 = 0
+52:21/0 = 0
+53:21/0 = 0
+61:21/0 = 0
+62:21/0 = 0
+14:22/0 = 0
+15:22/0 = 0
+17:22/0 = 0
+21:22/0 = 0
+22:22/0 = 0
+24:22/0 = 0
+25:22/0 = 0
+27:22/0 = 0
+28:22/0 = 0
+52:22/0 = 0
+53:22/0 = 0
+61:22/0 = 0
+62:22/0 = 0
+12:23/0 = 0
+14:23/0 = 0
+15:23/0 = 0
+17:23/0 = 0
+19:23/0 = 0
+21:23/0 = 0
+22:23/0 = 0
+24:23/0 = 0
+25:23/0 = 0
+27:23/0 = 0
+28:23/0 = 0
+30:23/0 = 0
+52:23/0 = 0
+53:23/0 = 0
+61:23/0 = 0
+62:23/0 = 0
+12:24/0 = 0
+14:24/0 = 0
+15:24/0 = 0
+17:24/0 = 0
+19:24/0 = 0
+21:24/0 = 0
+22:24/0 = 0
+24:24/0 = 0
+25:24/0 = 0
+27:24/0 = 0
+28:24/0 = 0
+30:24/0 = 0
+52:25/0 = 0
+53:25/0 = 0
+55:25/0 = 0
+56:25/0 = 0
+58:25/0 = 0
+59:25/0 = 0
+61:25/0 = 0
+62:25/0 = 0
+52:26/0 = 0
+53:26/0 = 0
+55:26/0 = 0
+56:26/0 = 0
+58:26/0 = 0
+59:26/0 = 0
+61:26/0 = 0
+62:26/0 = 0
+52:27/0 = 0
+53:27/0 = 0
+55:27/0 = 0
+56:27/0 = 0
+58:27/0 = 0
+59:27/0 = 0
+61:27/0 = 0
+62:27/0 = 0
+8:28/0 = 0
+9:28/0 = 0
+11:28/0 = 0
+12:28/0 = 0
+13:28/0 = 0
+15:28/0 = 0
+16:28/0 = 0
+18:28/0 = 0
+20:28/0 = 0
+22:28/0 = 0
+24:28/0 = 0
+26:28/0 = 0
+27:28/0 = 0
+29:28/0 = 0
+30:28/0 = 0
+31:28/0 = 0
+33:28/0 = 0
+34:28/0 = 0
+52:28/0 = 0
+53:28/0 = 0
+55:28/0 = 0
+56:28/0 = 0
+58:28/0 = 0
+59:28/0 = 0
+61:28/0 = 0
+62:28/0 = 0
+8:29/0 = 0
+9:29/0 = 0
+11:29/0 = 0
+12:29/0 = 0
+13:29/0 = 0
+15:29/0 = 0
+16:29/0 = 0
+18:29/0 = 0
+20:29/0 = 0
+22:29/0 = 0
+24:29/0 = 0
+26:29/0 = 0
+27:29/0 = 0
+29:29/0 = 0
+30:29/0 = 0
+31:29/0 = 0
+33:29/0 = 0
+34:29/0 = 0
+52:29/0 = 0
+53:29/0 = 0
+55:29/0 = 0
+56:29/0 = 0
+58:29/0 = 0
+59:29/0 = 0
+61:29/0 = 0
+62:29/0 = 0
+52:30/0 = 0
+53:30/0 = 0
+55:30/0 = 0
+56:30/0 = 0
+58:30/0 = 0
+59:30/0 = 0
+61:30/0 = 0
+62:30/0 = 0
+8:31/0 = 0
+9:31/0 = 0
+10:31/0 = 0
+12:31/0 = 0
+13:31/0 = 0
+15:31/0 = 0
+16:31/0 = 0
+18:31/0 = 0
+24:31/0 = 0
+26:31/0 = 0
+27:31/0 = 0
+29:31/0 = 0
+30:31/0 = 0
+32:31/0 = 0
+33:31/0 = 0
+34:31/0 = 0
+8:32/0 = 0
+9:32/0 = 0
+10:32/0 = 0
+15:32/0 = 0
+16:32/0 = 0
+18:32/0 = 0
+24:32/0 = 0
+26:32/0 = 0
+27:32/0 = 0
+32:32/0 = 0
+33:32/0 = 0
+34:32/0 = 0
+52:32/0 = 0
+53:32/0 = 0
+54:32/0 = 0
+55:32/0 = 0
+56:32/0 = 0
+57:32/0 = 0
+58:32/0 = 0
+59:32/0 = 0
+60:32/0 = 0
+61:32/0 = 0
+62:32/0 = 0
+8:33/0 = 0
+9:33/0 = 0
+10:33/0 = 0
+12:33/0 = 0
+30:33/0 = 0
+32:33/0 = 0
+33:33/0 = 0
+34:33/0 = 0
+52:33/0 = 0
+53:33/0 = 0
+54:33/0 = 0
+55:33/0 = 0
+56:33/0 = 0
+58:33/0 = 0
+59:33/0 = 0
+60:33/0 = 0
+61:33/0 = 0
+62:33/0 = 0
+52:34/0 = 0
+53:34/0 = 0
+54:34/0 = 0
+55:34/0 = 0
+56:34/0 = 0
+58:34/0 = 0
+59:34/0 = 0
+60:34/0 = 0
+61:34/0 = 0
+62:34/0 = 0
+1:35/0 = 0
+1:35/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+29:35/0 = 0
+52:35/0 = 0
+53:35/0 = 0
+54:35/0 = 0
+55:35/0 = 0
+56:35/0 = 0
+57:35/0 = 0
+58:35/0 = 0
+59:35/0 = 0
+60:35/0 = 0
+61:35/0 = 0
+62:35/0 = 0
+1:36/0 = 0
+6:36/0 = 0
+7:36/0 = 0
+29:36/0 = 0
+52:36/0 = 0
+53:36/0 = 0
+54:36/0 = 0
+55:36/0 = 0
+59:36/0 = 0
+60:36/0 = 0
+61:36/0 = 0
+62:36/0 = 0
+1:37/0 = 0
+3:37/0 = 0
+3:37/0/physics_layer_0/polygon_0/points = PackedVector2Array(-7.5, -8, -0.5, -4, 6.375, 8, -8, 8)
+4:37/0 = 0
+6:37/0 = 0
+7:37/0 = 0
+26:37/0 = 0
+27:37/0 = 0
+29:37/0 = 0
+3:38/0 = 0
+3:38/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:38/0 = 0
+4:38/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -4.125, -3.125, -0.375, 8, -8, 8)
+26:38/0 = 0
+27:38/0 = 0
+3:39/0 = 0
+3:39/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:39/0 = 0
+4:39/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 3.125, -8, 6.125, 7, 8, 8, -8, 8)
+6:39/0 = 0
+6:39/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5.48008, -1.76777, -2.82843, -8, 8, -8, 8, 8, -8, 8, -8, 8)
+7:39/0 = 0
+7:39/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -2.82843, -8, 3.53553, -1.5026, 7.15946, 8, -8, 8, -8, 8)
+9:39/0 = 0
+9:39/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3.09359, 2.2981, 1.67938, 1.67938, 8, 8, -8, 8, -8, 8)
+11:39/0 = 0
+11:39/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6.8059, 1.59099, -5.03814, -2.12132, 0.353554, -3.09359, 8, 8, -8, 8, -8, 8)
+13:39/0 = 0
+13:39/0/physics_layer_0/polygon_0/points = PackedVector2Array(3.53553, 5.83363, 5.39169, 3.27037, 8, 8, -4.41942, 8)
+14:39/0 = 0
+14:39/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3.18198, -1.59099, -0.088388, 1.67938, 5.39169, 3.27037, 8, 8, -7.24784, 8, -5.83363, 0.618718)
+16:39/0 = 0
+16:39/0/physics_layer_0/polygon_0/points = PackedVector2Array(1.06066, -1.06066, 4.59619, -0.883883, 8, 8, -8, 8, -6.54074, 4.59619, -1.5026, 3.27037)
+17:39/0 = 0
+17:39/0/physics_layer_0/polygon_0/points = PackedVector2Array(3.97748, 8, -8, 8, -6.54074, 4.59619, -1.67938, 5.74524)
+19:39/0 = 0
+19:39/0/physics_layer_0/polygon_0/points = PackedVector2Array(7.07107, 8, -8, 8, -6.54074, 4.59619, -0.795496, -3.18198, 5.39169, -2.2981)
+21:39/0 = 0
+23:39/0 = 0
+24:39/0 = 0
+26:39/0 = 0
+27:39/0 = 0
+3:40/0 = 0
+3:40/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:40/0 = 0
+4:40/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:40/0 = 0
+6:40/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:40/0 = 0
+7:40/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:40/0 = 0
+9:40/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8, -8, 8)
+11:40/0 = 0
+11:40/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+13:40/0 = 0
+13:40/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+14:40/0 = 0
+14:40/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+16:40/0 = 0
+16:40/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+17:40/0 = 0
+17:40/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+19:40/0 = 0
+19:40/0/physics_layer_0/polygon_0/points = PackedVector2Array(7.07107, 8, -8, 8, -8, -8, 8, -8)
+21:40/0 = 0
+21:40/0/physics_layer_0/polygon_0/points = PackedVector2Array(7.07107, 8, -8, 8, -8, -8, 8, -8)
+23:40/0 = 0
+23:40/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+24:40/0 = 0
+24:40/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+26:40/0 = 0
+26:40/0/physics_layer_0/polygon_0/points = PackedVector2Array(7.07107, 8, -8, 8, -8, -8, 8, -8)
+27:40/0 = 0
+27:40/0/physics_layer_0/polygon_0/points = PackedVector2Array(7.07107, 8, -8, 8, -8, -8, 8, -8)
+3:41/0 = 0
+3:41/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:41/0 = 0
+4:41/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:41/0 = 0
+6:41/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:41/0 = 0
+7:41/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:41/0 = 0
+9:41/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+11:41/0 = 0
+11:41/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+13:41/0 = 0
+13:41/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+14:41/0 = 0
+14:41/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+16:41/0 = 0
+16:41/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+17:41/0 = 0
+17:41/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+19:41/0 = 0
+19:41/0/physics_layer_0/polygon_0/points = PackedVector2Array(7.07107, 8, -8, 8, -8, -8, 8, -8)
+21:41/0 = 0
+21:41/0/physics_layer_0/polygon_0/points = PackedVector2Array(7.07107, 8, -8, 8, -8, -8, 8, -8)
+23:41/0 = 0
+23:41/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+24:41/0 = 0
+24:41/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+26:41/0 = 0
+26:41/0/physics_layer_0/polygon_0/points = PackedVector2Array(7.07107, 8, -8, 8, -8, -8, 8, -8)
+27:41/0 = 0
+27:41/0/physics_layer_0/polygon_0/points = PackedVector2Array(7.07107, 8, -8, 8, -8, -8, 8, -8)
+30:41/0 = 0
+31:41/0 = 0
+32:41/0 = 0
+56:41/0 = 0
+56:41/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+57:41/0 = 0
+57:41/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+58:41/0 = 0
+58:41/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -5.625, -0.25, -5.375, 4, -8, 8)
+3:42/0 = 0
+3:42/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3.71231, 3.09359, 0.618718, -3.0052, 8, -2.12132, 8, 8, -8, 8, -8, 8)
+4:42/0 = 0
+4:42/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0.441941, -4.59619, 1.23744, 0.53033, 3.62392, 4.86136, 8, -8, 8, -8, 8)
+26:42/0 = 0
+27:42/0 = 0
+3:43/0 = 0
+3:43/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:43/0 = 0
+4:43/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 2.91681, -8, 5.03814, -4.33103, 4.86136, 8, -8, 8, -8, 8)
+14:43/0 = 0
+15:43/0 = 0
+17:43/0 = 0
+18:43/0 = 0
+20:43/0 = 0
+21:43/0 = 0
+23:43/0 = 0
+24:43/0 = 0
+26:43/0 = 0
+27:43/0 = 0
+32:43/0 = 0
+33:43/0 = 0
+34:43/0 = 0
+35:43/0 = 0
+36:43/0 = 0
+37:43/0 = 0
+38:43/0 = 0
+39:43/0 = 0
+40:43/0 = 0
+42:43/0 = 0
+43:43/0 = 0
+45:43/0 = 0
+45:43/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+46:43/0 = 0
+46:43/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 5.75, -4, -3, -1.875, -5.25, 8, -8, 8)
+48:43/0 = 0
+48:43/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+49:43/0 = 0
+49:43/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+50:43/0 = 0
+50:43/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+51:43/0 = 0
+51:43/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 3.75, 0.5, 1.75, 8, -4.5, 8, -8, 8)
+52:43/0 = 0
+52:43/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+53:43/0 = 0
+53:43/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+54:43/0 = 0
+54:43/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+55:43/0 = 0
+55:43/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+56:43/0 = 0
+56:43/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4.75, 2.625, -0.25, -2.625, 3.5, -5.875, 5.5, -5.125, 8, -8, 8)
+3:44/0 = 0
+3:44/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:44/0 = 0
+4:44/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:44/0 = 0
+6:44/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:44/0 = 0
+8:44/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+10:44/0 = 0
+10:44/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+12:44/0 = 0
+12:44/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+14:44/0 = 0
+15:44/0 = 0
+17:44/0 = 0
+18:44/0 = 0
+20:44/0 = 0
+21:44/0 = 0
+23:44/0 = 0
+24:44/0 = 0
+26:44/0 = 0
+27:44/0 = 0
+32:44/0 = 0
+33:44/0 = 0
+34:44/0 = 0
+35:44/0 = 0
+36:44/0 = 0
+37:44/0 = 0
+38:44/0 = 0
+39:44/0 = 0
+40:44/0 = 0
+42:44/0 = 0
+43:44/0 = 0
+45:44/0 = 0
+45:44/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 5.375, -0.5, 8, 8, -8, 8)
+46:44/0 = 0
+48:44/0 = 0
+48:44/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+49:44/0 = 0
+49:44/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+50:44/0 = 0
+50:44/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 7, 2.625, -1.5, 5, -8, 8)
+51:44/0 = 0
+51:44/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 0.125, -6.625, -3, 0.125, -8, 4)
+52:44/0 = 0
+52:44/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+53:44/0 = 0
+53:44/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+54:44/0 = 0
+54:44/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 5.875, -6.875, 5.5)
+55:44/0 = 0
+55:44/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4.75, 1.5, -3.625, -3.25, -2.625, -8, 0)
+56:44/0 = 0
+3:45/0 = 0
+3:45/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:45/0 = 0
+4:45/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+26:45/0 = 0
+27:45/0 = 0
+6:46/0 = 0
+6:46/0/physics_layer_0/polygon_0/points = PackedVector2Array(7.07107, 8, -8, 8, -8, -8, 8, -8)
+8:46/0 = 0
+8:46/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+10:46/0 = 0
+10:46/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+12:46/0 = 0
+12:46/0/physics_layer_0/polygon_0/points = PackedVector2Array(7.07107, 8, -8, 8, -8, -8, 8, -8)
+14:46/0 = 0
+14:46/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+15:46/0 = 0
+15:46/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+16:46/0 = 0
+16:46/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+17:46/0 = 0
+18:46/0 = 0
+19:46/0 = 0
+21:46/0 = 0
+23:46/0 = 0
+34:46/0 = 0
+35:46/0 = 0
+36:46/0 = 0
+52:46/0 = 0
+52:46/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+53:46/0 = 0
+53:46/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+54:46/0 = 0
+54:46/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -3.375, 8, 8, -1.875, 8, -8, 8)
+3:47/0 = 0
+3:47/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:47/0 = 0
+4:47/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+14:47/0 = 0
+15:47/0 = 0
+15:47/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+16:47/0 = 0
+17:47/0 = 0
+17:47/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+18:47/0 = 0
+18:47/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+19:47/0 = 0
+26:47/0 = 0
+27:47/0 = 0
+34:47/0 = 0
+35:47/0 = 0
+36:47/0 = 0
+52:47/0 = 0
+52:47/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+53:47/0 = 0
+53:47/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+54:47/0 = 0
+54:47/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -0.125, 3, 2.375, -3.375, 4.375, -8, 8)
+3:48/0 = 0
+3:48/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:48/0 = 0
+4:48/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:48/0 = 0
+6:48/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:48/0 = 0
+8:48/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+10:48/0 = 0
+10:48/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+12:48/0 = 0
+12:48/0/physics_layer_0/polygon_0/points = PackedVector2Array(7.07107, 8, -8, 8, -8, -8, 8, -8)
+14:48/0 = 0
+15:48/0 = 0
+16:48/0 = 0
+16:48/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+17:48/0 = 0
+18:48/0 = 0
+19:48/0 = 0
+19:48/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+21:48/0 = 0
+23:48/0 = 0
+26:48/0 = 0
+27:48/0 = 0
+39:48/0 = 0
+40:48/0 = 0
+41:48/0 = 0
+42:48/0 = 0
+14:49/0 = 0
+15:49/0 = 0
+16:49/0 = 0
+17:49/0 = 0
+17:49/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+18:49/0 = 0
+18:49/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+19:49/0 = 0
+34:49/0 = 0
+35:49/0 = 0
+36:49/0 = 0
+39:49/0 = 0
+40:49/0 = 0
+41:49/0 = 0
+42:49/0 = 0
+52:49/0 = 0
+52:49/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+53:49/0 = 0
+53:49/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+54:49/0 = 0
+54:49/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -3.875, -4.75, -1.5, -0.5, -3.5, 3.5, -8, 8)
+3:50/0 = 0
+3:50/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:50/0 = 0
+4:50/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:50/0 = 0
+6:50/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:50/0 = 0
+8:50/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+10:50/0 = 0
+10:50/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+12:50/0 = 0
+12:50/0/physics_layer_0/polygon_0/points = PackedVector2Array(7.07107, 8, -8, 8, -8, -8, 8, -8)
+21:50/0 = 0
+23:50/0 = 0
+26:50/0 = 0
+27:50/0 = 0
+39:50/0 = 0
+40:50/0 = 0
+41:50/0 = 0
+42:50/0 = 0
+3:51/0 = 0
+3:51/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:51/0 = 0
+4:51/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+14:51/0 = 0
+15:51/0 = 0
+16:51/0 = 0
+17:51/0 = 0
+18:51/0 = 0
+19:51/0 = 0
+26:51/0 = 0
+27:51/0 = 0
+34:51/0 = 0
+35:51/0 = 0
+36:51/0 = 0
+39:51/0 = 0
+40:51/0 = 0
+41:51/0 = 0
+42:51/0 = 0
+52:51/0 = 0
+52:51/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+53:51/0 = 0
+53:51/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+54:51/0 = 0
+54:51/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 1.625, -5.625, 1.75, -1.5, 2.75, 1, -3.125, 4.5, -8, 8)
+14:52/0 = 0
+15:52/0 = 0
+16:52/0 = 0
+17:52/0 = 0
+18:52/0 = 0
+19:52/0 = 0
+21:52/0 = 0
+23:52/0 = 0
+3:53/0 = 0
+3:53/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:53/0 = 0
+4:53/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+14:53/0 = 0
+15:53/0 = 0
+16:53/0 = 0
+17:53/0 = 0
+18:53/0 = 0
+19:53/0 = 0
+26:53/0 = 0
+27:53/0 = 0
+27:53/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+34:53/0 = 0
+35:53/0 = 0
+36:53/0 = 0
+39:53/0 = 0
+40:53/0 = 0
+52:53/0 = 0
+52:53/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+53:53/0 = 0
+53:53/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+54:53/0 = 0
+54:53/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -5.625, 5.875, -8, 8)
+3:54/0 = 0
+3:54/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:54/0 = 0
+4:54/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+14:54/0 = 0
+15:54/0 = 0
+16:54/0 = 0
+17:54/0 = 0
+18:54/0 = 0
+19:54/0 = 0
+26:54/0 = 0
+27:54/0 = 0
+34:54/0 = 0
+35:54/0 = 0
+36:54/0 = 0
+39:54/0 = 0
+40:54/0 = 0
+52:54/0 = 0
+52:54/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+53:54/0 = 0
+53:54/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+54:54/0 = 0
+54:54/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 1.625, -5.625, 1.75, -1.5, 2.75, 1, -3.125, 4.5, -8, 8)
+3:55/0 = 0
+3:55/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:55/0 = 0
+4:55/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+26:55/0 = 0
+27:55/0 = 0
+3:56/0 = 0
+3:56/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:56/0 = 0
+4:56/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+26:56/0 = 0
+26:56/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+27:56/0 = 0
+3:57/0 = 0
+3:57/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:57/0 = 0
+4:57/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:57/0 = 0
+6:57/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:57/0 = 0
+7:57/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:57/0 = 0
+9:57/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+11:57/0 = 0
+11:57/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+13:57/0 = 0
+13:57/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+14:57/0 = 0
+14:57/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+16:57/0 = 0
+16:57/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+17:57/0 = 0
+17:57/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+19:57/0 = 0
+19:57/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+21:57/0 = 0
+21:57/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+23:57/0 = 0
+23:57/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+24:57/0 = 0
+24:57/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+26:57/0 = 0
+27:57/0 = 0
+27:57/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:58/0 = 0
+3:58/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:58/0 = 0
+4:58/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:58/0 = 0
+6:58/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:58/0 = 0
+7:58/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:58/0 = 0
+9:58/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+11:58/0 = 0
+11:58/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+13:58/0 = 0
+13:58/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+14:58/0 = 0
+14:58/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+16:58/0 = 0
+16:58/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+17:58/0 = 0
+17:58/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+19:58/0 = 0
+19:58/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+21:58/0 = 0
+21:58/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+23:58/0 = 0
+23:58/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+24:58/0 = 0
+24:58/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+26:58/0 = 0
+27:58/0 = 0
+27:58/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:59/0 = 0
+3:59/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:59/0 = 0
+4:59/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:59/0 = 0
+6:59/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:59/0 = 0
+7:59/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:59/0 = 0
+9:59/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+11:59/0 = 0
+11:59/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+13:59/0 = 0
+13:59/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+14:59/0 = 0
+14:59/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+16:59/0 = 0
+16:59/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+17:59/0 = 0
+17:59/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+19:59/0 = 0
+19:59/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+21:59/0 = 0
+21:59/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+23:59/0 = 0
+23:59/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+24:59/0 = 0
+24:59/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+26:59/0 = 0
+27:59/0 = 0
+3:60/0 = 0
+3:60/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:60/0 = 0
+4:60/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -0.375, -8, -3.75, -4, -8, 0.625)
+26:60/0 = 0
+27:60/0 = 0
+1:61/0 = 0
+3:61/0 = 0
+3:61/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 0.5, -1, -8, 8)
+4:61/0 = 0
+26:61/0 = 0
+27:61/0 = 0
+29:61/0 = 0
+1:62/0 = 0
+29:62/0 = 0
+1:63/0 = 0
+29:63/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_npc41"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_ubapy")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k2e4c"]
 texture = ExtResource("9_ou6is")
@@ -832,7 +2801,6 @@ scale = Vector2(1, 0.993091)
 texture = ExtResource("2_ouso4")
 
 [node name="PlayerIKAnimator" type="Node2D" parent="." node_paths=PackedStringArray("player", "animationPlayer")]
-visible = false
 position = Vector2(-4, -5)
 script = ExtResource("3_th5th")
 player = NodePath("../Player")
@@ -840,40 +2808,141 @@ animationPlayer = NodePath("../Player/targetPositions/Animation")
 maxFootDistanceFromTarget = 5
 FlipRules = Array[ExtResource("4_raeie")]([SubResource("Resource_hxu8e"), SubResource("Resource_raeie"), SubResource("Resource_7smn1"), SubResource("Resource_nvumn"), SubResource("Resource_ou6is"), SubResource("Resource_necax"), SubResource("Resource_r4lks"), SubResource("Resource_pg34l"), SubResource("Resource_m4h2d"), SubResource("Resource_p8abn")])
 ArmRestOffset = Vector2(0.235, 6.05)
-FArmRest = Vector2(0.2, 0)
 BArmRest = Vector2(-4.805, 0.62)
+lastState = 0
 
 [node name="BFTarget" type="Marker2D" parent="PlayerIKAnimator"]
+visible = false
+position = Vector2(2, 1.335)
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerIKAnimator/BFTarget"]
 texture = SubResource("PlaceholderTexture2D_th5th")
 
 [node name="FFTarget" type="Marker2D" parent="PlayerIKAnimator"]
+visible = false
 z_index = 500
-position = Vector2(9, -5)
+position = Vector2(5, 2.665)
 
 [node name="Sprite2D2" type="Sprite2D" parent="PlayerIKAnimator/FFTarget"]
 texture = SubResource("PlaceholderTexture2D_th5th")
 
 [node name="BHTarget" type="Marker2D" parent="PlayerIKAnimator"]
-position = Vector2(68, -3)
+visible = false
+position = Vector2(4, -23)
 
 [node name="Sprite2D2" type="Sprite2D" parent="PlayerIKAnimator/BHTarget"]
 texture = SubResource("PlaceholderTexture2D_blune")
 
 [node name="FHTarget" type="Marker2D" parent="PlayerIKAnimator"]
-position = Vector2(0, -31)
+visible = false
+position = Vector2(4, -29)
 
 [node name="Sprite2D2" type="Sprite2D" parent="PlayerIKAnimator/FHTarget"]
 texture = SubResource("PlaceholderTexture2D_blune")
 
-[node name="Player" parent="." node_paths=PackedStringArray("health_bar", "mana_bar", "IkAnimator") instance=ExtResource("3_blune")]
-position = Vector2(-4, -36)
+[node name="HipTarget" type="Marker2D" parent="PlayerIKAnimator"]
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerIKAnimator/HipTarget"]
+visible = false
+texture = SubResource("PlaceholderTexture2D_blune")
+
+[node name="Synchroniser" type="Node2D" parent="PlayerIKAnimator/HipTarget" node_paths=PackedStringArray("node")]
+visible = false
+script = ExtResource("4_7smn1")
+node = NodePath("../../../Player/Skeleton/hip")
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="Player" parent="." node_paths=PackedStringArray("health_bar", "mana_bar", "animPlayer", "IkAnimator") instance=ExtResource("3_blune")]
+position = Vector2(0, -34)
 dash_dist = 120
 health_bar = NodePath("../Interface/Interface2/VBoxContainer/HealthBar/HealthBar")
 mana_bar = NodePath("../Interface/Interface2/VBoxContainer/ManaBar/ManaBar")
+animPlayer = NodePath("targetPositions/Animation")
 ik_overrides = Array[ExtResource("4_ouso4")]([SubResource("Resource_j3ovn"), SubResource("Resource_afbqv"), SubResource("Resource_gx6sm"), SubResource("Resource_yqrof"), SubResource("Resource_th5th")])
 IkAnimator = NodePath("../PlayerIKAnimator")
+
+[node name="Skeleton" parent="Player" index="4"]
+modification_stack = SubResource("SkeletonModificationStack2D_r4lks")
+
+[node name="hip" parent="Player/Skeleton" index="0"]
+position = Vector2(0, 0)
+scale = Vector2(0.999844, 0.999844)
+
+[node name="head" parent="Player/Skeleton/hip/torso/collar/offset" index="0"]
+rotation = -0.00580459
+scale = Vector2(0.999852, 0.999852)
+
+[node name="shoulder_r" parent="Player/Skeleton/hip/torso/collar/offset" index="1"]
+rotation = 1.93946
+scale = Vector2(0.999991, 0.999991)
+
+[node name="forearm_r" parent="Player/Skeleton/hip/torso/collar/offset/shoulder_r" index="1"]
+rotation = -0.833527
+
+[node name="shoulder_f" parent="Player/Skeleton/hip/torso/collar/offset" index="2"]
+rotation = 1.4022
+
+[node name="thigh_r" parent="Player/Skeleton/hip" index="1"]
+rotation = 0.0658351
+
+[node name="calf_r" parent="Player/Skeleton/hip/thigh_r" index="1"]
+rotation = 0.0
+
+[node name="thigh_f" parent="Player/Skeleton/hip" index="2"]
+rotation = -0.0473331
+scale = Vector2(0.99984, 0.99984)
+
+[node name="Forearm_R" parent="Player/sprites" index="0"]
+position = Vector2(-2.91474, -0.926949)
+rotation = -0.464864
+
+[node name="Shoulder_R" parent="Player/sprites" index="1"]
+position = Vector2(-3.80115, -9.83456)
+rotation = 0.368661
+
+[node name="Calf_B" parent="Player/sprites" index="2"]
+position = Vector2(-0.454932, 14.4992)
+rotation = 0.0658351
+
+[node name="Thigh_B" parent="Player/sprites" index="3"]
+position = Vector2(-0.394664, 5.98607)
+rotation = 0.0658351
+
+[node name="Calf_F" parent="Player/sprites" index="4"]
+position = Vector2(0.685217, 14.4555)
+rotation = -0.0473331
+
+[node name="Thigh_F" parent="Player/sprites" index="5"]
+position = Vector2(-0.216119, 5.99138)
+rotation = -0.0473331
+
+[node name="BHair" parent="Player/sprites" index="6"]
+position = Vector2(-5.2769, -28.0557)
+
+[node name="Head" parent="Player/sprites" index="7"]
+position = Vector2(-1.54036, -20.4958)
+rotation = -0.00580464
+
+[node name="FrontHair" parent="Player/sprites" index="8"]
+position = Vector2(-6.51007, -26.1904)
+
+[node name="Torso" parent="Player/sprites" index="9"]
+position = Vector2(0, -7.99875)
+
+[node name="FlipHandler" parent="Player/sprites" index="11"]
+position = Vector2(-1.347, -2.63909)
+rotation = -0.875947
+
+[node name="Forearm_F" parent="Player/sprites" index="12"]
+position = Vector2(-5.43984, -5.18504)
+rotation = -0.875947
+
+[node name="Shoulder_F" parent="Player/sprites" index="13"]
+position = Vector2(-5.79975, -11.2497)
+rotation = 0.86357
+
+[node name="root" parent="Player/accessories" index="0"]
+position = Vector2(0, 0)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 material = SubResource("ShaderMaterial_qtmoe")
@@ -887,38 +2956,42 @@ script = ExtResource("5_7smn1")
 suppressPixelAlignment = true
 
 [node name="targetPositions" type="Node2D" parent="Player"]
-visible = false
 
 [node name="FFTarget_pos" type="Marker2D" parent="Player/targetPositions"]
-position = Vector2(9, 26)
+position = Vector2(1, 32)
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/targetPositions/FFTarget_pos"]
+visible = false
 z_index = 40
 texture = SubResource("PlaceholderTexture2D_th5th")
 
 [node name="Synchroniser" type="Node2D" parent="Player/targetPositions/FFTarget_pos" node_paths=PackedStringArray("node")]
+visible = false
 script = ExtResource("4_7smn1")
 node = NodePath("../../../../PlayerIKAnimator/FFTarget")
 Smoothing = 0.5
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="BFTarget_pos" type="Marker2D" parent="Player/targetPositions"]
-position = Vector2(-16, 22)
+position = Vector2(-2, 34)
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/targetPositions/BFTarget_pos"]
+visible = false
 z_index = 60
 texture = SubResource("PlaceholderTexture2D_th5th")
 
 [node name="Synchroniser" type="Node2D" parent="Player/targetPositions/BFTarget_pos" node_paths=PackedStringArray("node")]
+visible = false
 script = ExtResource("4_7smn1")
 node = NodePath("../../../../PlayerIKAnimator/BFTarget")
 Smoothing = 0.5
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="BHTarget_pos" type="Marker2D" parent="Player/targetPositions"]
-position = Vector2(68, 28)
+position = Vector2(0, 6)
 
 [node name="Synchroniser" type="Node2D" parent="Player/targetPositions/BHTarget_pos" node_paths=PackedStringArray("node")]
+visible = false
 script = ExtResource("4_7smn1")
 node = NodePath("../../../../PlayerIKAnimator/BHTarget")
 Position = true
@@ -928,10 +3001,30 @@ metadata/_custom_type_script = "uid://eji52ig0w3g5"
 [node name="FHTarget_pos" type="Marker2D" parent="Player/targetPositions"]
 
 [node name="Synchroniser" type="Node2D" parent="Player/targetPositions/FHTarget_pos" node_paths=PackedStringArray("node")]
+visible = false
 script = ExtResource("4_7smn1")
 node = NodePath("../../../../PlayerIKAnimator/FHTarget")
 Position = true
 Smoothing = 0.5
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="LookAt" type="Marker2D" parent="Player/targetPositions"]
+position = Vector2(85, -14)
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/targetPositions/LookAt"]
+visible = false
+texture = SubResource("PlaceholderTexture2D_blune")
+
+[node name="HipTarget" type="Marker2D" parent="Player/targetPositions"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/targetPositions/HipTarget"]
+visible = false
+texture = SubResource("PlaceholderTexture2D_blune")
+
+[node name="Synchroniser" type="Node2D" parent="Player/targetPositions/HipTarget" node_paths=PackedStringArray("node")]
+visible = false
+script = ExtResource("4_7smn1")
+node = NodePath("../../../Skeleton/hip")
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="Animation" type="AnimationPlayer" parent="Player/targetPositions"]
@@ -939,17 +3032,16 @@ libraries = {
 &"": SubResource("AnimationLibrary_gx6sm")
 }
 
-[node name="LookAt" type="Marker2D" parent="Player/targetPositions"]
-position = Vector2(85, -14)
-
-[node name="Sprite2D" type="Sprite2D" parent="Player/targetPositions/LookAt"]
-texture = SubResource("PlaceholderTexture2D_blune")
-
 [node name="Interface" parent="." instance=ExtResource("6_raeie")]
-visible = false
+
+[node name="Texture" parent="Interface/WeaponSelector/Margin/Attacks/MeleeAttacks/InfoElements" index="0"]
+texture = null
+
+[node name="Texture" parent="Interface/WeaponSelector/Margin/Attacks/RangedAttacks/InfoElements" index="0"]
+texture = null
 
 [node name="TargetDummy" parent="." instance=ExtResource("7_hxu8e")]
-position = Vector2(-33, -5)
+position = Vector2(-33, -21)
 maxInvincibilityFrames = 30
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -972,7 +3064,7 @@ tile_set = SubResource("TileSet_ev07y")
 collision_enabled = false
 
 [node name="Killzone2" parent="." instance=ExtResource("10_necax")]
-position = Vector2(0, 282.305)
+position = Vector2(0, 283)
 collision_layer = 7
 collision_mask = 7
 
@@ -988,6 +3080,11 @@ z_index = -1
 tile_map_data = PackedByteArray("AAD5//v/AAAAAAEAAAD4//z/AAACAAEAAAD6//z/AAADAAEAAAD5//z/AAABAAEAAAD9//v/AAABAAAAAAAEAPv/AAAAAAEAAAAPAPv/AAAAAAEAAAAZAPr/AAAAAAEAAAAaAPr/AAAAAAEAAAA4AP3/AAADAAAAAAA=")
 tile_set = SubResource("TileSet_hxu8e")
 
+[node name="RestArea" parent="." instance=ExtResource("15_raeie")]
+visible = false
+position = Vector2(80, 0)
+
+[editable path="Player"]
 [editable path="Interface"]
 [editable path="Interface/Interface2/VBoxContainer/HealthBar"]
 [editable path="Interface/Interface2/VBoxContainer/ManaBar"]
