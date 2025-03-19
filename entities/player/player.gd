@@ -19,6 +19,12 @@ extends CharacterBody2D
 @export var base_damage = 5
 @export var attack_cooldown: float = 0.1
 
+@export var inhibitUserInput: bool = false;
+@export var animPlayer: AnimationPlayer;
+
+#var projectile = preload("res://weapons/projectile/projectile.tscn")
+
+var targetX: float = 0;
 # Various Properties
 # @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -37,6 +43,7 @@ enum dash {
 var currentDirection = 1;
 var facing = 1;
 var hitWall = false;
+var in_safe_area = false;
 
 #@export var headTarget: IKTargetResource
 #@export var headTarget: Node2D
@@ -54,28 +61,32 @@ var hitWall = false;
 #@export var arm_backTargetResourceName: String
 
 # Variables
-var current_hp: int = max_hp:
+var current_hp: float = max_hp:
 	get:
 		return current_hp
 	set(value):
 		if value < 0:
 			print("The player has died")
 			current_hp = 0
-		else:
+		elif value <= max_hp:
 			current_hp = value
+		else:
+			current_hp = max_hp
 		
 		health_bar.value = current_hp
 		
-var current_mana: int = max_mana:
+var current_mana: float = max_mana:
 	get:
 		return current_mana
 	set(value):
 		if value < 0:
 			print("The player has run out of Mana")
 			current_mana = 0
-		else:
+		elif value <= max_mana:
 			current_mana = value
-		
+		else:
+			current_mana = max_mana
+			
 		mana_bar.value = current_mana
 		
 var damage: int = base_damage:
@@ -103,7 +114,8 @@ func _setupIK() -> void:
 				#print(" - Old node: " + get_node(modification.target_nodepath).name)
 				#print(" - New path: " + str(target.name)
 				modification.target_nodepath = target.get_path()
-				Log.info("Found and applied override for " + override.targetModificationName)
+				#Log.info("Found and applied override for " + override.targetModificationName)
+				print("Found and applied override for " + override.targetModificationName)
 		pass
 	pass
 
@@ -121,6 +133,41 @@ func _ready() -> void:
 	_setupIK()
 	print("player hp: ", current_hp, " player mana: ", current_mana, " player damage: ", damage)
 
+func _getPlayerMovement() -> float:
+	if !inhibitUserInput:
+		return Input.get_axis("player_move_left", "player_move_right")
+	else:
+		return 0;
+	pass
+
+func _isPlayerJumping() -> bool:
+	if !inhibitUserInput:
+		return Input.is_action_just_pressed("player_jump")
+	else:
+		return false;
+	pass
+
+func _isPlayerDashing() -> bool:
+	if !inhibitUserInput:
+		return Input.is_action_just_pressed("player_dash")
+	else:
+		return false;
+	pass
+
+func _isPlayerJustAttackingMelee() -> bool:
+	if !inhibitUserInput:
+		return Input.is_action_just_pressed("player_attack_melee")
+	else:
+		return false;
+	pass
+	
+func _isPlayerJustAttackingRanged() -> bool:
+	if !inhibitUserInput:
+		return Input.is_action_just_pressed("player_attack_ranged")
+	else:
+		return false;
+	pass
+
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
@@ -131,7 +178,7 @@ func _physics_process(delta: float) -> void:
 		print("Current hp: ", current_hp, "; Current mana: ", current_mana)
 		
 	# Get the input direction and handle the movement/deceleration.
-	var direction := Input.get_axis("player_move_left", "player_move_right")
+	var direction := _getPlayerMovement()
 	
 	match dash_state:
 		dash.KEY_PRESSED:
@@ -175,7 +222,7 @@ func _physics_process(delta: float) -> void:
 			# Extra checks to prevent dashing while standing still
 			# basically you have to click 'd' and have one of the directions pressed
 			if dash_state != dash.ON_COOLDOWN:
-				if Input.is_action_just_pressed("player_dash") and (direction or !is_on_floor()):
+				if _isPlayerDashing() and (direction or !is_on_floor()):
 					dash_state = dash.KEY_PRESSED
 			else:
 				$DashCooldownBar.set_value_no_signal($DashCooldown.time_left)
@@ -189,7 +236,7 @@ func _physics_process(delta: float) -> void:
 			if is_on_floor() and jumpCount != 0:
 				jumpCount = 0
 			# Jumping
-			if Input.is_action_just_pressed("player_jump") and jumpCount < jump_count:
+			if _isPlayerJumping() and jumpCount < jump_count:
 				velocity.y = -jump_speed
 				jumpCount += 1
 				
@@ -200,32 +247,21 @@ func _physics_process(delta: float) -> void:
 				velocity.x = move_toward(velocity.x, 0, move_speed)
 	
 	move_and_slide()
-		
-#	Player animations
-	#if is_on_floor():
-		#if direction:
-			#player_sprite.play("run")
-		#else:
-			#player_sprite.play("idle")
-	#else:
-		#player_sprite.play("jump")
 	
 	currentDirection = direction
-	#if direction < 0:
-		#player_sprite.flip_h = true
-		#$FlipHandler.scale.x = -1
-	#elif direction > 0:
-		#player_sprite.flip_h = false
-		#$FlipHandler.scale.x = 1
-		
 	hitWall = is_on_wall()
+	
+	if not in_safe_area:
+		if _isPlayerJustAttackingMelee() and canAttack:
+			if IkAnimator.Attack_Melee():
+				canAttack = false
+				$AttackCooldown.start()
 		
-	if Input.is_action_just_pressed("player_attack") and canAttack:
-		#$FlipHandler/Weapon/AnimationPlayer.play("player_attack")
-		IkAnimator.Attack_Melee()
-		canAttack = false
-		$AttackCooldown.start()
-
+		if _isPlayerJustAttackingRanged() and canAttack and current_mana >= 10:
+			if IkAnimator.Attack_Ranged():
+				current_mana -= 10;
+				canAttack = false
+				$AttackCooldown.start()
 
 func _on_entity_hit(body: Node2D) -> void:
 	var body_parent = body.get_parent()

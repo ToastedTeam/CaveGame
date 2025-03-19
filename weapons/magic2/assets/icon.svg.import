@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://po3v55vtvos6"
-path="res://.godot/imported/sword2.png-6bec4065139b3200d8005cccd4b8e365.ctex"
+uid="uid://bbpe4x1brv47e"
+path="res://.godot/imported/icon.svg-20b6324d83e2fc52cadffac73b0ba14e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/weapon/assets/sword2.png"
-dest_files=["res://.godot/imported/sword2.png-6bec4065139b3200d8005cccd4b8e365.ctex"]
+source_file="res://weapons/magic2/assets/icon.svg"
+dest_files=["res://.godot/imported/icon.svg-20b6324d83e2fc52cadffac73b0ba14e.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false
