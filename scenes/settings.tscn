@@ -1,0 +1,172 @@
+[gd_scene load_steps=7 format=3 uid="uid://bxnqjli45gx2e"]
+
+[ext_resource type="Script" uid="uid://dmf1mpipau60a" path="res://scenes/settings.gd" id="1_5p8wc"]
+[ext_resource type="Shader" uid="uid://bus8qxo8npi86" path="res://shaders/blur.gdshader" id="2_r6d6q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6wm04"]
+shader = ExtResource("2_r6d6q")
+shader_parameter/lod = 0.0
+
+[sub_resource type="Animation" id="Animation_7l7mv"]
+resource_name = "Blur"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.821]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.012, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_v4r4p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1s2dm"]
+_data = {
+&"Blur": SubResource("Animation_7l7mv"),
+&"RESET": SubResource("Animation_v4r4p")
+}
+
+[node name="Settings" type="Control"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5p8wc")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_6wm04")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Volume2" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Adjust Volume"
+
+[node name="Volume" type="HSlider" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Volume3" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "
+Mute sound"
+
+[node name="Mute sound" type="CheckBox" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Volume4" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "
+Adjust resolution"
+
+[node name="Resolutions" type="OptionButton" parent="PanelContainer/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+selected = 2
+item_count = 3
+popup/item_0/text = "1920x1080"
+popup/item_0/id = 0
+popup/item_1/text = "1600x900"
+popup/item_1/id = 1
+popup/item_2/text = "1280x720"
+popup/item_2/id = 3
+
+[node name="exit settings" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Exit Settings"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1s2dm")
+}
+
+[connection signal="value_changed" from="PanelContainer/VBoxContainer/Volume" to="." method="_on_volume_value_changed"]
+[connection signal="toggled" from="PanelContainer/VBoxContainer/Mute sound" to="." method="_on_mute_sound_toggled"]
+[connection signal="item_selected" from="PanelContainer/VBoxContainer/Resolutions" to="." method="_on_resolutions_item_selected"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/exit settings" to="." method="_on_exit_settings_pressed"]
