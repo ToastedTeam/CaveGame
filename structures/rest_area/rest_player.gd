@@ -19,10 +19,18 @@ func makePlayerRest(player: PlayerCharacter):
 			# Unsafe, may break
 			child.free()
 			pass
-		var inst = attacks.Table.GetData(attacks.Table.MeleeWeapons[attacks.currentMeleeWeapon].name).asset.instantiate()
-		inst.name = "Weapon"
-		fliphandler.call_deferred("add_child", inst, true)
 		
+		call_deferred("ApplyWeapons", attacks, fliphandler)
+		 
 		weapons.hide()
 		return
+	pass
+	
+func ApplyWeapons(attacks: AttackSelectionController, fliphandler: Node) -> void:
+	var ranged_instance = attacks.Table.GetData(attacks.Table.RangedWeapons[attacks.currentRangedWeapon].name).asset.instantiate()
+	ranged_instance.name = "Ranged"
+	fliphandler.add_child(ranged_instance, true)
+	var melee_instance = attacks.Table.GetData(attacks.Table.MeleeWeapons[attacks.currentMeleeWeapon].name).asset.instantiate()
+	melee_instance.name = "Weapon"
+	fliphandler.add_child(melee_instance, true)
 	pass

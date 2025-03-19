@@ -22,6 +22,8 @@ extends CharacterBody2D
 @export var inhibitUserInput: bool = false;
 @export var animPlayer: AnimationPlayer;
 
+#var projectile = preload("res://weapons/projectile/projectile.tscn")
+
 var targetX: float = 0;
 # Various Properties
 # @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -41,6 +43,7 @@ enum dash {
 var currentDirection = 1;
 var facing = 1;
 var hitWall = false;
+var in_safe_area = false;
 
 #@export var headTarget: IKTargetResource
 #@export var headTarget: Node2D
@@ -151,9 +154,16 @@ func _isPlayerDashing() -> bool:
 		return false;
 	pass
 
-func _isPlayerJustAttacking() -> bool:
+func _isPlayerJustAttackingMelee() -> bool:
 	if !inhibitUserInput:
-		return Input.is_action_just_pressed("player_attack")
+		return Input.is_action_just_pressed("player_attack_melee")
+	else:
+		return false;
+	pass
+	
+func _isPlayerJustAttackingRanged() -> bool:
+	if !inhibitUserInput:
+		return Input.is_action_just_pressed("player_attack_ranged")
 	else:
 		return false;
 	pass
@@ -237,32 +247,21 @@ func _physics_process(delta: float) -> void:
 				velocity.x = move_toward(velocity.x, 0, move_speed)
 	
 	move_and_slide()
-		
-#	Player animations
-	#if is_on_floor():
-		#if direction:
-			#player_sprite.play("run")
-		#else:
-			#player_sprite.play("idle")
-	#else:
-		#player_sprite.play("jump")
 	
 	currentDirection = direction
-	#if direction < 0:
-		#player_sprite.flip_h = true
-		#$FlipHandler.scale.x = -1
-	#elif direction > 0:
-		#player_sprite.flip_h = false
-		#$FlipHandler.scale.x = 1
-		
 	hitWall = is_on_wall()
+	
+	if not in_safe_area:
+		if _isPlayerJustAttackingMelee() and canAttack:
+			if IkAnimator.Attack_Melee():
+				canAttack = false
+				$AttackCooldown.start()
 		
-	if _isPlayerJustAttacking() and canAttack:
-		#$FlipHandler/Weapon/AnimationPlayer.play("player_attack")
-		IkAnimator.Attack_Melee()
-		canAttack = false
-		$AttackCooldown.start()
-		pass
+		if _isPlayerJustAttackingRanged() and canAttack and current_mana >= 10:
+			if IkAnimator.Attack_Ranged():
+				current_mana -= 10;
+				canAttack = false
+				$AttackCooldown.start()
 
 func _on_entity_hit(body: Node2D) -> void:
 	var body_parent = body.get_parent()

@@ -63,15 +63,22 @@ func setAnimState(newState: AnimState):
 	lastState = state;
 	state = newState;
 
-func Attack_Melee() -> void:
+# Attacks return true if player has a weapon, otherwise false
+func Attack_Melee() -> bool:
+	if not hand.node.has_node("Weapon"):
+		return false
 	# We're doing a rough assumption that what the hands have is only a weapon
 	var weapon = hand.node.get_node("Weapon") as Weapon
 	animationPlayer.play(weapon.AnimName)
-	pass
+	return true
 
-func Attack_Magic() -> void:
-	Log.info("Perform magic attack, play some animation or something...")
-	pass
+func Attack_Ranged() -> bool:
+	if not hand.node.has_node("Ranged"):
+		return false
+	#Log.info("Perform magic attack, play some animation or something...")
+	var weapon = hand.node.get_node("Ranged") as RangedWeapon
+	weapon._attack()
+	return true
 
 func Start_Dash() -> void:
 	setAnimState(AnimState.Dashing)
