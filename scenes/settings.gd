@@ -7,13 +7,16 @@ func pause():
 	$AnimationPlayer.play("Blur")
 	
 func _ready():
+	$PanelContainer/VBoxContainer/Volume.value = AudioServer.get_bus_volume_linear(0)*100
+	$"PanelContainer/VBoxContainer/Mute sound".button_pressed = AudioServer.is_bus_mute(0)
 	pause()
 
 func _on_volume_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(0,value)
+	AudioServer.set_bus_volume_linear(0,value/100)
 
 func _on_mute_sound_toggled(toggled_on: bool) -> void:
-	AudioServer.set_bus_volume_db(0,toggled_on)
+	AudioServer.set_bus_mute(0, toggled_on)
+	#AudioServer.set_bus_volume_db(0,toggled_on)
 	
 func _on_resolutions_item_selected(index: int) -> void:
 	match index:
