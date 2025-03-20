@@ -1,5 +1,7 @@
 extends Control
 
+const resolutions = [ Vector2i(1920,1080), Vector2i(1600,900), Vector2i(1280,720) ]
+
 func resume():
 	$AnimationPlayer.play_backwards("Blur")
 
@@ -9,6 +11,14 @@ func pause():
 func _ready():
 	$PanelContainer/VBoxContainer/Volume.value = AudioServer.get_bus_volume_linear(0)*100
 	$"PanelContainer/VBoxContainer/Mute sound".button_pressed = AudioServer.is_bus_mute(0)
+	
+	for resolution in resolutions:
+		$PanelContainer/VBoxContainer/Resolutions.add_item(str(resolution.x)+"x"+str(resolution.y))
+	var size = DisplayServer.window_get_size(0)
+	var idx = resolutions.find(size)
+	if idx > -1:
+		$PanelContainer/VBoxContainer/Resolutions.selected = idx;
+
 	pause()
 
 func _on_volume_value_changed(value: float) -> void:
