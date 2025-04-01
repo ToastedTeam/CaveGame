@@ -1702,7 +1702,8 @@ scale = Vector2(1, 0.993091)
 texture = ExtResource("2_ouso4")
 
 [node name="PlayerIKAnimator" type="Node2D" parent="." node_paths=PackedStringArray("player", "animationPlayer")]
-position = Vector2(-4, -5)
+visible = false
+position = Vector2(-156, 18)
 script = ExtResource("3_th5th")
 player = NodePath("../Player")
 animationPlayer = NodePath("../Player/targetPositions/Animation")
@@ -1713,14 +1714,12 @@ BArmRest = Vector2(-4.805, 0.62)
 lastState = 0
 
 [node name="BFTarget" type="Marker2D" parent="PlayerIKAnimator"]
-visible = false
 position = Vector2(2, 1.335)
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerIKAnimator/BFTarget"]
 texture = SubResource("PlaceholderTexture2D_th5th")
 
 [node name="FFTarget" type="Marker2D" parent="PlayerIKAnimator"]
-visible = false
 z_index = 500
 position = Vector2(5, 2.665)
 
@@ -1729,14 +1728,14 @@ texture = SubResource("PlaceholderTexture2D_th5th")
 
 [node name="BHTarget" type="Marker2D" parent="PlayerIKAnimator"]
 visible = false
-position = Vector2(-150, -9)
+position = Vector2(2, -32)
 
 [node name="Sprite2D2" type="Sprite2D" parent="PlayerIKAnimator/BHTarget"]
 texture = SubResource("PlaceholderTexture2D_blune")
 
 [node name="FHTarget" type="Marker2D" parent="PlayerIKAnimator"]
 visible = false
-position = Vector2(-150, -15)
+position = Vector2(2, -38)
 
 [node name="Sprite2D2" type="Sprite2D" parent="PlayerIKAnimator/FHTarget"]
 texture = SubResource("PlaceholderTexture2D_blune")
@@ -1771,7 +1770,7 @@ scale = Vector2(0.999844, 0.999844)
 
 [node name="head" parent="Player/Skeleton/hip/torso/collar/offset" index="0"]
 rotation = -0.00580466
-scale = Vector2(0.999852, 0.999852)
+scale = Vector2(0.999853, 0.999853)
 
 [node name="shoulder_r" parent="Player/Skeleton/hip/torso/collar/offset" index="1"]
 rotation = 1.93946
@@ -1787,14 +1786,13 @@ rotation = 2.43437
 rotation = -1.73952
 
 [node name="thigh_r" parent="Player/Skeleton/hip" index="1"]
-rotation = -1.46374
-scale = Vector2(1, 1)
+rotation = 0.0
 
 [node name="calf_r" parent="Player/Skeleton/hip/thigh_r" index="1"]
 rotation = 0.0
 
 [node name="thigh_f" parent="Player/Skeleton/hip" index="2"]
-rotation = -1.45768
+rotation = -0.0858557
 scale = Vector2(0.99984, 0.99984)
 
 [node name="Forearm_R" parent="Player/sprites" index="0"]
@@ -1806,20 +1804,20 @@ position = Vector2(-3.80116, -9.83456)
 rotation = 0.368662
 
 [node name="Calf_B" parent="Player/sprites" index="2"]
-position = Vector2(14.4682, 1.05205)
-rotation = -1.46374
+position = Vector2(0.499924, 14.4977)
+rotation = 0.0
 
 [node name="Thigh_B" parent="Player/sprites" index="3"]
-position = Vector2(5.96472, 0.64101)
-rotation = -1.46374
+position = Vector2(0, 5.99906)
+rotation = 0.0
 
 [node name="Calf_F" parent="Player/sprites" index="4"]
-position = Vector2(13.9593, 1.13953)
-rotation = -1.45768
+position = Vector2(1.24106, 14.3992)
+rotation = -0.0858557
 
 [node name="Thigh_F" parent="Player/sprites" index="5"]
-position = Vector2(5.45985, 0.677038)
-rotation = -1.45768
+position = Vector2(0.0144196, 5.97601)
+rotation = -0.0858557
 
 [node name="BHair" parent="Player/sprites" index="6"]
 position = Vector2(-5.2769, -28.0557)
@@ -1863,10 +1861,10 @@ suppressPixelAlignment = true
 [node name="targetPositions" type="Node2D" parent="Player"]
 
 [node name="FFTarget_pos" type="Marker2D" parent="Player/targetPositions"]
+modulate = Color(0, 0, 1, 1)
 position = Vector2(1, 32)
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/targetPositions/FFTarget_pos"]
-visible = false
 z_index = 40
 texture = SubResource("PlaceholderTexture2D_th5th")
 
@@ -1881,7 +1879,6 @@ metadata/_custom_type_script = "uid://eji52ig0w3g5"
 position = Vector2(-2, 34)
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/targetPositions/BFTarget_pos"]
-visible = false
 z_index = 60
 texture = SubResource("PlaceholderTexture2D_th5th")
 
@@ -1893,6 +1890,7 @@ Smoothing = 0.5
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="BHTarget_pos" type="Marker2D" parent="Player/targetPositions"]
+visible = false
 position = Vector2(0, 6)
 
 [node name="Synchroniser" type="Node2D" parent="Player/targetPositions/BHTarget_pos" node_paths=PackedStringArray("node")]
@@ -1904,6 +1902,7 @@ Smoothing = 0.5
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="FHTarget_pos" type="Marker2D" parent="Player/targetPositions"]
+visible = false
 
 [node name="Synchroniser" type="Node2D" parent="Player/targetPositions/FHTarget_pos" node_paths=PackedStringArray("node")]
 visible = false
@@ -1914,16 +1913,16 @@ Smoothing = 0.5
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="LookAt" type="Marker2D" parent="Player/targetPositions"]
+visible = false
 position = Vector2(85, -14)
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/targetPositions/LookAt"]
-visible = false
 texture = SubResource("PlaceholderTexture2D_blune")
 
 [node name="HipTarget" type="Marker2D" parent="Player/targetPositions"]
+visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/targetPositions/HipTarget"]
-visible = false
 texture = SubResource("PlaceholderTexture2D_blune")
 
 [node name="Synchroniser" type="Node2D" parent="Player/targetPositions/HipTarget" node_paths=PackedStringArray("node")]
@@ -1938,12 +1937,6 @@ libraries = {
 }
 
 [node name="Interface" parent="." instance=ExtResource("6_raeie")]
-
-[node name="Texture" parent="Interface/WeaponSelector/Margin/Attacks/MeleeAttacks/InfoElements" index="0"]
-texture = null
-
-[node name="Texture" parent="Interface/WeaponSelector/Margin/Attacks/RangedAttacks/InfoElements" index="0"]
-texture = null
 
 [node name="TargetDummy" parent="." instance=ExtResource("7_hxu8e")]
 position = Vector2(8, -16)
