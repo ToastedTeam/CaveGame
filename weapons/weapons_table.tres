@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="WeaponTable" load_steps=7 format=3 uid="uid://c2qj0falsfk2y"]
 
-[ext_resource type="Script" path="res://weapons/weapons_table.gd" id="1_eqy1g"]
-[ext_resource type="Script" path="res://weapons/weaponEntry.gd" id="1_yj7ab"]
+[ext_resource type="Script" uid="uid://dgrvk082jbica" path="res://weapons/weapons_table.gd" id="1_eqy1g"]
+[ext_resource type="Script" uid="uid://cv8dg51cnw5y" path="res://weapons/weaponEntry.gd" id="1_yj7ab"]
 
 [sub_resource type="Resource" id="Resource_yj7ab"]
 script = ExtResource("1_yj7ab")
