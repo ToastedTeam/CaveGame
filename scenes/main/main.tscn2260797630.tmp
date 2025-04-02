@@ -1798,7 +1798,7 @@ rotation = -0.0858557
 scale = Vector2(0.99984, 0.99984)
 
 [node name="Forearm_R" parent="Player/sprites" index="0"]
-position = Vector2(-2.91472, -0.926943)
+position = Vector2(-2.91472, -0.926947)
 rotation = -0.464866
 
 [node name="Shoulder_R" parent="Player/sprites" index="1"]
