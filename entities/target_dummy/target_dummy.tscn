@@ -67,6 +67,7 @@ font_size = 200
 [node name="TargetDummy" type="Node2D"]
 script = ExtResource("1_0jncy")
 maxHealth = 1e+06
+maxInvincibilityFrames = 16
 
 [node name="Hurt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_r6gaj")
