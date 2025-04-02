@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bnrfrkdsmnw48"]
+[gd_scene load_steps=12 format=3 uid="uid://bnrfrkdsmnw48"]
 
 [ext_resource type="Script" uid="uid://bnoebxhe6p0o1" path="res://entities/goblin/damageHandler.gd" id="1_fthgw"]
 [ext_resource type="Script" uid="uid://207uwl76xuo2" path="res://entities/goblin/goblin.gd" id="1_w1pob"]
@@ -51,11 +51,23 @@ animations = [{
 radius = 4.0
 height = 32.0
 
-[node name="Goblin" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fthgw"]
+size = Vector2(8, 8)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fthgw"]
+size = Vector2(8, 8)
+
+[node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("directionFlip", "groundDetection", "groundDetection_Deep", "jumpBlockDetection")]
 script = ExtResource("1_w1pob")
+directionFlip = NodePath("directionFlip")
+groundDetection = NodePath("directionFlip/GroundDetector")
+groundDetection_Deep = NodePath("directionFlip/GroundDetector_Deep")
+jumpBlockDetection = NodePath("directionFlip/JumpBlockDetector")
 
 [node name="DamageHandler" type="Node2D" parent="."]
 script = ExtResource("1_fthgw")
+maxHealth = 20.0
+maxInvincibilityFrames = 16
 
 [node name="StaticBody2D" type="StaticBody2D" parent="DamageHandler"]
 collision_layer = 4
@@ -74,4 +86,40 @@ shape = SubResource("CapsuleShape2D_1lev3")
 [node name="DirectionTimer" type="Timer" parent="."]
 autostart = true
 
+[node name="directionFlip" type="Node2D" parent="."]
+
+[node name="GroundDetector" type="Area2D" parent="directionFlip"]
+position = Vector2(-4, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="directionFlip/GroundDetector"]
+position = Vector2(-9, 20)
+shape = SubResource("RectangleShape2D_fthgw")
+
+[node name="collisionDetection_tmp" type="Sprite2D" parent="directionFlip/GroundDetector/CollisionShape2D"]
+z_index = 2
+texture = SubResource("PlaceholderTexture2D_fthgw")
+
+[node name="JumpBlockDetector" type="Area2D" parent="directionFlip"]
+position = Vector2(-4, -64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="directionFlip/JumpBlockDetector"]
+position = Vector2(-9, 20)
+shape = SubResource("RectangleShape2D_fthgw")
+
+[node name="collisionDetection_tmp" type="Sprite2D" parent="directionFlip/JumpBlockDetector/CollisionShape2D"]
+z_index = 2
+texture = SubResource("PlaceholderTexture2D_fthgw")
+
+[node name="GroundDetector_Deep" type="Area2D" parent="directionFlip"]
+position = Vector2(-4, 46)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="directionFlip/GroundDetector_Deep"]
+position = Vector2(-9, 20)
+shape = SubResource("RectangleShape2D_fthgw")
+
+[node name="collisionDetection_tmp" type="Sprite2D" parent="directionFlip/GroundDetector_Deep/CollisionShape2D"]
+z_index = 2
+texture = SubResource("PlaceholderTexture2D_fthgw")
+
+[connection signal="goblin_died" from="DamageHandler" to="." method="_on_damage_handler_goblin_died"]
 [connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]

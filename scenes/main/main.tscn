@@ -1733,14 +1733,14 @@ texture = SubResource("PlaceholderTexture2D_th5th")
 
 [node name="BHTarget" type="Marker2D" parent="GameObjects/PlayerIKAnimator"]
 visible = false
-position = Vector2(2, -32)
+position = Vector2(-10, -46)
 
 [node name="Sprite2D2" type="Sprite2D" parent="GameObjects/PlayerIKAnimator/BHTarget"]
 texture = SubResource("PlaceholderTexture2D_blune")
 
 [node name="FHTarget" type="Marker2D" parent="GameObjects/PlayerIKAnimator"]
 visible = false
-position = Vector2(2, -38)
+position = Vector2(-10, -52)
 
 [node name="Sprite2D2" type="Sprite2D" parent="GameObjects/PlayerIKAnimator/FHTarget"]
 texture = SubResource("PlaceholderTexture2D_blune")
@@ -1758,7 +1758,7 @@ node = NodePath("../../../Player/Skeleton/hip")
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="Player" parent="GameObjects" node_paths=PackedStringArray("health_bar", "mana_bar", "animPlayer", "IkAnimator") instance=ExtResource("3_blune")]
-position = Vector2(-154, -20)
+position = Vector2(-166, -34)
 dash_dist = 120
 health_bar = NodePath("../../Interface/Interface2/VBoxContainer/HealthBar/HealthBar")
 mana_bar = NodePath("../../Interface/Interface2/VBoxContainer/ManaBar/ManaBar")
@@ -1774,8 +1774,8 @@ position = Vector2(0, 0)
 scale = Vector2(0.999844, 0.999844)
 
 [node name="head" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="0"]
-rotation = -0.00580464
-scale = Vector2(0.999854, 0.999854)
+rotation = -0.00580468
+scale = Vector2(0.999856, 0.999856)
 
 [node name="shoulder_r" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="1"]
 rotation = 1.93946
@@ -1783,71 +1783,75 @@ scale = Vector2(0.999991, 0.999991)
 
 [node name="forearm_r" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset/shoulder_r" index="1"]
 rotation = -0.833525
+scale = Vector2(0.999999, 0.999999)
 
 [node name="shoulder_f" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="2"]
 rotation = 2.43437
+scale = Vector2(0.999985, 0.999985)
 
 [node name="forearm_f" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset/shoulder_f" index="1"]
 rotation = -1.73952
+scale = Vector2(0.999989, 0.999989)
 
 [node name="thigh_r" parent="GameObjects/Player/Skeleton/hip" index="1"]
-rotation = 0.0
+rotation = -0.221308
+scale = Vector2(0.999998, 0.999998)
 
 [node name="calf_r" parent="GameObjects/Player/Skeleton/hip/thigh_r" index="1"]
 rotation = 0.0
 
 [node name="thigh_f" parent="GameObjects/Player/Skeleton/hip" index="2"]
-rotation = -0.0858557
+rotation = -0.276292
 scale = Vector2(0.99984, 0.99984)
 
 [node name="Forearm_R" parent="GameObjects/Player/sprites" index="0"]
-position = Vector2(-2.91475, -0.926947)
+position = Vector2(-2.91475, -0.926949)
 rotation = -0.464864
 
 [node name="Shoulder_R" parent="GameObjects/Player/sprites" index="1"]
-position = Vector2(-3.80115, -9.83456)
+position = Vector2(-3.80116, -9.83456)
 rotation = 0.368661
 
 [node name="Calf_B" parent="GameObjects/Player/sprites" index="2"]
-position = Vector2(0.499924, 14.4977)
-rotation = 0.0
+position = Vector2(3.67006, 14.0344)
+rotation = -0.221308
 
 [node name="Thigh_B" parent="GameObjects/Player/sprites" index="3"]
-position = Vector2(0, 5.99906)
-rotation = 0.0
+position = Vector2(1.31682, 5.85274)
+rotation = -0.221308
 
 [node name="Calf_F" parent="GameObjects/Player/sprites" index="4"]
-position = Vector2(1.24106, 14.3992)
-rotation = -0.0858557
+position = Vector2(3.93517, 13.8093)
+rotation = -0.276292
 
 [node name="Thigh_F" parent="GameObjects/Player/sprites" index="5"]
-position = Vector2(0.0144196, 5.97601)
-rotation = -0.0858557
+position = Vector2(1.13629, 5.77062)
+rotation = -0.276292
 
 [node name="BHair" parent="GameObjects/Player/sprites" index="6"]
 position = Vector2(-5.2769, -28.0554)
 
 [node name="Head" parent="GameObjects/Player/sprites" index="7"]
 position = Vector2(-1.54036, -20.4955)
-rotation = -0.00580463
+rotation = -0.00580462
 
 [node name="FrontHair" parent="GameObjects/Player/sprites" index="8"]
-position = Vector2(-6.51007, -26.1901)
+position = Vector2(-6.51007, -26.1902)
 
 [node name="Torso" parent="GameObjects/Player/sprites" index="9"]
 position = Vector2(0, -7.99875)
 
 [node name="FlipHandler" parent="GameObjects/Player/sprites" index="11"]
-position = Vector2(-1.34702, -2.63909)
+position = Vector2(-1.347, -2.63908)
 rotation = -0.875947
 
 [node name="Forearm_F" parent="GameObjects/Player/sprites" index="12"]
-position = Vector2(-5.43985, -5.18505)
+position = Vector2(-5.43983, -5.18504)
 rotation = -0.875947
 
 [node name="Shoulder_F" parent="GameObjects/Player/sprites" index="13"]
 position = Vector2(-5.79974, -11.2497)
-rotation = 0.863571
+rotation = 0.86357
 
 [node name="root" parent="GameObjects/Player/accessories" index="0"]
 position = Vector2(0, 0)
@@ -1864,6 +1868,7 @@ script = ExtResource("5_7smn1")
 suppressPixelAlignment = true
 
 [node name="targetPositions" type="Node2D" parent="GameObjects/Player"]
+visible = false
 
 [node name="FFTarget_pos" type="Marker2D" parent="GameObjects/Player/targetPositions"]
 modulate = Color(0, 0, 1, 1)
@@ -1950,7 +1955,7 @@ collision_mask = 7
 shape = SubResource("WorldBoundaryShape2D_kfodh")
 
 [node name="Goblin" parent="GameObjects" instance=ExtResource("11_raeie")]
-position = Vector2(211, -12)
+position = Vector2(1276, -7)
 
 [node name="Map" type="Node" parent="."]
 
