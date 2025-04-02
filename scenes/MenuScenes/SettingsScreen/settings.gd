@@ -60,7 +60,7 @@ func _on_exit_settings_pressed() -> void:
 		resume()
 		#queue_free()  # Removes this settings menu from the scene
 func _create_action_list():
-	InputMap.load_from_project_settings()
+	#InputMap.load_from_project_settings()
 	for item in action_list.get_children():
 		item.queue_free()
 	for action in input_actions:
