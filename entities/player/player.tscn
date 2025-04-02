@@ -470,6 +470,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_yncnl")
 show_percentage = false
 
 [node name="DashParticles" type="GPUParticles2D" parent="."]
+position = Vector2(0, 25)
 emitting = false
 amount = 120
 lifetime = 0.4
@@ -832,9 +833,11 @@ position = Vector2(-2, 5)
 texture = ExtResource("34_13wue")
 
 [node name="PointLight2D" type="PointLight2D" parent="sprites/Star"]
-energy = 0.5
+color = Color(0.882353, 1, 1, 1)
+energy = 1.2
 texture = ExtResource("32_8q4fm")
-height = 5.0
+texture_scale = 2.5
+height = 275.0
 
 [node name="FlipHandler" type="Node2D" parent="sprites"]
 position = Vector2(1.90201, 4.92025)
