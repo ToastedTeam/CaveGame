@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://qtfciyfj33pt"]
+[gd_scene load_steps=55 format=4 uid="uid://qtfciyfj33pt"]
 
 [ext_resource type="PackedScene" uid="uid://c11ldn4yd0i8w" path="res://entities/player/player.tscn" id="3_blune"]
 [ext_resource type="Script" uid="uid://bhda60gy1q5tc" path="res://entities/player/player_ik_animator.gd" id="3_th5th"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dywdkewy1ti6p" path="res://entities/target_dummy/target_dummy.tscn" id="7_hxu8e"]
 [ext_resource type="Texture2D" uid="uid://bb0m10tlay88m" path="res://scenes/main/assets/world_tileset.png" id="9_ou6is"]
 [ext_resource type="PackedScene" uid="uid://dn52wlkh2g1wy" path="res://scenes/killzone/killzone.tscn" id="10_necax"]
+[ext_resource type="PackedScene" uid="uid://bnrfrkdsmnw48" path="res://entities/goblin/goblin.tscn" id="11_raeie"]
 [ext_resource type="Texture2D" uid="uid://d0ts487dm2mfs" path="res://scenes/main/assets/tileset_00.png" id="15_raeie"]
 [ext_resource type="Texture2D" uid="uid://butysgvh5vrtj" path="res://scenes/main/assets/key_icons.png" id="16_hxu8e"]
 [ext_resource type="PackedScene" uid="uid://babgoqd6p8s7d" path="res://structures/rest_area/rest_area.tscn" id="16_nvumn"]
@@ -1774,15 +1775,14 @@ scale = Vector2(0.999844, 0.999844)
 
 [node name="head" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="0"]
 rotation = -0.00580464
-scale = Vector2(0.999853, 0.999853)
+scale = Vector2(0.999854, 0.999854)
 
 [node name="shoulder_r" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="1"]
 rotation = 1.93946
 scale = Vector2(0.999991, 0.999991)
 
 [node name="forearm_r" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset/shoulder_r" index="1"]
-rotation = -0.833527
-scale = Vector2(0.999999, 0.999999)
+rotation = -0.833525
 
 [node name="shoulder_f" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="2"]
 rotation = 2.43437
@@ -1802,8 +1802,8 @@ rotation = -0.0858557
 scale = Vector2(0.99984, 0.99984)
 
 [node name="Forearm_R" parent="GameObjects/Player/sprites" index="0"]
-position = Vector2(-2.91473, -0.926947)
-rotation = -0.464865
+position = Vector2(-2.91475, -0.926947)
+rotation = -0.464864
 
 [node name="Shoulder_R" parent="GameObjects/Player/sprites" index="1"]
 position = Vector2(-3.80115, -9.83456)
@@ -1826,14 +1826,14 @@ position = Vector2(0.0144196, 5.97601)
 rotation = -0.0858557
 
 [node name="BHair" parent="GameObjects/Player/sprites" index="6"]
-position = Vector2(-5.2769, -28.0557)
+position = Vector2(-5.2769, -28.0554)
 
 [node name="Head" parent="GameObjects/Player/sprites" index="7"]
-position = Vector2(-1.54036, -20.4958)
-rotation = -0.0058046
+position = Vector2(-1.54036, -20.4955)
+rotation = -0.00580463
 
 [node name="FrontHair" parent="GameObjects/Player/sprites" index="8"]
-position = Vector2(-6.51007, -26.1904)
+position = Vector2(-6.51007, -26.1901)
 
 [node name="Torso" parent="GameObjects/Player/sprites" index="9"]
 position = Vector2(0, -7.99875)
@@ -1949,6 +1949,9 @@ collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameObjects/Killzone2"]
 shape = SubResource("WorldBoundaryShape2D_kfodh")
+
+[node name="Goblin" parent="GameObjects" instance=ExtResource("11_raeie")]
+position = Vector2(211, -12)
 
 [node name="Map" type="Node" parent="."]
 

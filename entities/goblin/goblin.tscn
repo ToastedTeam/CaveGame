@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://bnrfrkdsmnw48"]
+
+[ext_resource type="Script" uid="uid://bnoebxhe6p0o1" path="res://entities/goblin/damageHandler.gd" id="1_fthgw"]
+[ext_resource type="Script" uid="uid://207uwl76xuo2" path="res://entities/goblin/goblin.gd" id="1_w1pob"]
+[ext_resource type="Texture2D" uid="uid://b7xfbdeay65bn" path="res://entities/goblin/goblin_profiles.png" id="2_fthgw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5svo4"]
+atlas = ExtResource("2_fthgw")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jj2aj"]
+atlas = ExtResource("2_fthgw")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8x0tl"]
+atlas = ExtResource("2_fthgw")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vh3y7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5svo4")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jj2aj")
+}],
+"loop": true,
+"name": &"normal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8x0tl")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1lev3"]
+radius = 4.0
+height = 32.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jj2aj"]
+radius = 5.0
+height = 32.0
+
+[node name="Goblin" type="CharacterBody2D"]
+script = ExtResource("1_w1pob")
+
+[node name="DamageHandler" type="Node2D" parent="."]
+script = ExtResource("1_fthgw")
+
+[node name="goblinSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vh3y7")
+animation = &"left"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_1lev3")
+
+[node name="DirectionTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CapsuleShape2D_jj2aj")
+
+[connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]
