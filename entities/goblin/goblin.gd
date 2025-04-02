@@ -37,7 +37,8 @@ func _physics_process(delta: float) -> void:
 		handle_jump()
 	
 	move_and_slide()
-	
+
+# Main movement logic
 func move(delta):
 	if !dead:
 		# The goblin is wandering around
@@ -77,17 +78,19 @@ func move(delta):
 				dir.x = abs(velocity.x) / velocity.x
 			else:
 				velocity.x = 0
-		#elif taking_damage:
-			#var kb_dir = position.direction_to(player.position) * -20
-			#velocity.x = kb_dir.x
+				
+		# Should later be expanded to include various other behaviours.
+		
 		is_roaming = true
 	elif dead:
 		velocity.x = 0
 
+# Basic jump function
 func handle_jump():
 	velocity.y = -jump_speed
 	is_jumping = false
 
+# Changes the sprite based on the direction of the goblin
 func handle_sprite():
 	var sprite = $goblinSprite
 	#if !dead and !taking_damage and !is_dealing_damage:
@@ -105,10 +108,11 @@ func _on_direction_timer_timeout() -> void:
 	$DirectionTimer.wait_time = chose([1.5, 2.0, 2.5])
 	
 	if !is_goblin_chase:
+		# Left, Right and stand still basically
 		dir = chose([Vector2.LEFT, Vector2.UP, Vector2.RIGHT])
-		dir = Vector2.LEFT	#DEBUGGING
 		velocity.x = 0
-	
+
+# Chose a random element of the array
 func chose(array: Array):
 	array.shuffle()
 	return array.front()

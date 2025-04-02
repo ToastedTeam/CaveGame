@@ -96,6 +96,7 @@ position = Vector2(-9, 20)
 shape = SubResource("RectangleShape2D_fthgw")
 
 [node name="collisionDetection_tmp" type="Sprite2D" parent="directionFlip/GroundDetector/CollisionShape2D"]
+visible = false
 z_index = 2
 texture = SubResource("PlaceholderTexture2D_fthgw")
 
@@ -107,6 +108,7 @@ position = Vector2(-9, 20)
 shape = SubResource("RectangleShape2D_fthgw")
 
 [node name="collisionDetection_tmp" type="Sprite2D" parent="directionFlip/JumpBlockDetector/CollisionShape2D"]
+visible = false
 z_index = 2
 texture = SubResource("PlaceholderTexture2D_fthgw")
 
@@ -118,6 +120,7 @@ position = Vector2(-9, 20)
 shape = SubResource("RectangleShape2D_fthgw")
 
 [node name="collisionDetection_tmp" type="Sprite2D" parent="directionFlip/GroundDetector_Deep/CollisionShape2D"]
+visible = false
 z_index = 2
 texture = SubResource("PlaceholderTexture2D_fthgw")
 
