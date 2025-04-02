@@ -19,7 +19,7 @@ func _on_resume_pressed() -> void:
 func _on_main_menu_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/MenuScenes/main_menu.tscn")
 
-@onready var settings_scene = preload("res://scenes/settings.tscn")  # Preload settings scene
+@onready var settings_scene = preload("uid://bxnqjli45gx2e")  # Preload settings scene
 func _on_settings_pressed() -> void:
 	if not get_node_or_null("settings"):  # Prevent multiple instances
 		var settings_instance = settings_scene.instantiate()

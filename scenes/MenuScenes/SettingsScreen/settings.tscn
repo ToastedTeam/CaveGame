@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://bxnqjli45gx2e"]
 
-[ext_resource type="Script" uid="uid://dmf1mpipau60a" path="res://scenes/settings.gd" id="1_5p8wc"]
+[ext_resource type="Script" uid="uid://dmf1mpipau60a" path="res://scenes/MenuScenes/SettingsScreen/settings.gd" id="1_5p8wc"]
 [ext_resource type="Shader" uid="uid://bus8qxo8npi86" path="res://shaders/blur.gdshader" id="2_r6d6q"]
-[ext_resource type="PackedScene" uid="uid://bthc5hdvcfj20" path="res://scenes/input_button.tscn" id="3_6wm04"]
+[ext_resource type="PackedScene" uid="uid://bthc5hdvcfj20" path="res://scenes/MenuScenes/SettingsScreen/input_button.tscn" id="3_6wm04"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6wm04"]
 shader = ExtResource("2_r6d6q")

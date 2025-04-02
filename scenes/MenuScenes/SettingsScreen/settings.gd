@@ -2,7 +2,7 @@ extends Control
 
 const resolutions = [ Vector2i(1920,1080), Vector2i(1600,900), Vector2i(1280,720) ]
 
-@onready var input_button_scene = preload("res://scenes/input_button.tscn")
+@onready var input_button_scene = preload("uid://bthc5hdvcfj20")
 @onready var action_list = $PanelContainer/VBoxContainer/ScrollContainer/ActionList
 
 var is_remaping = false
@@ -13,7 +13,7 @@ var input_actions = {
 	"player_move_left" : "Move left",
 	"player_move_right" : "Move right",
 	"player_attack" : "Attack",
-	"player_dash" : "Dasssh dash dash!"
+	"player_dash" : "Dash"
 }
 func resume():
 	$AnimationPlayer.play_backwards("Blur")

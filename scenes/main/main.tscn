@@ -1781,6 +1781,7 @@ rotation = -0.833526
 
 [node name="shoulder_f" parent="Player/Skeleton/hip/torso/collar/offset" index="2"]
 rotation = 2.43437
+scale = Vector2(0.999985, 0.999985)
 
 [node name="forearm_f" parent="Player/Skeleton/hip/torso/collar/offset/shoulder_f" index="1"]
 rotation = -1.73952
@@ -1796,12 +1797,12 @@ rotation = -0.0858557
 scale = Vector2(0.99984, 0.99984)
 
 [node name="Forearm_R" parent="Player/sprites" index="0"]
-position = Vector2(-2.91476, -0.926949)
+position = Vector2(-2.91473, -0.926941)
 rotation = -0.464865
 
 [node name="Shoulder_R" parent="Player/sprites" index="1"]
-position = Vector2(-3.80116, -9.83456)
-rotation = 0.368662
+position = Vector2(-3.80115, -9.83455)
+rotation = 0.368659
 
 [node name="Calf_B" parent="Player/sprites" index="2"]
 position = Vector2(0.499924, 14.4977)
@@ -1824,7 +1825,7 @@ position = Vector2(-5.2769, -28.0557)
 
 [node name="Head" parent="Player/sprites" index="7"]
 position = Vector2(-1.54036, -20.4958)
-rotation = -0.00580463
+rotation = -0.00580462
 
 [node name="FrontHair" parent="Player/sprites" index="8"]
 position = Vector2(-6.51007, -26.1904)
@@ -1833,12 +1834,12 @@ position = Vector2(-6.51007, -26.1904)
 position = Vector2(0, -7.99875)
 
 [node name="FlipHandler" parent="Player/sprites" index="11"]
-position = Vector2(-1.34702, -2.63908)
-rotation = -0.875946
+position = Vector2(-1.34702, -2.63909)
+rotation = -0.875947
 
 [node name="Forearm_F" parent="Player/sprites" index="12"]
-position = Vector2(-5.43985, -5.18504)
-rotation = -0.875946
+position = Vector2(-5.43985, -5.18505)
+rotation = -0.875947
 
 [node name="Shoulder_F" parent="Player/sprites" index="13"]
 position = Vector2(-5.79974, -11.2497)
