@@ -1,5 +1,5 @@
 class_name Projectile
-extends Weapon
+extends RangedWeapon
 
 @export var speed = 300
 
