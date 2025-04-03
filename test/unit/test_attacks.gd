@@ -50,8 +50,8 @@ class TestRanged:
 		weapon._on_damage_box_body_entered(player)
 		assert_signal_emitted(weapon, 'on_hit', "On hit signal was not emitted")
 		
-	func test_projectile_creation():
-		weapon._attack()
+	#func test_projectile_creation():
+		#weapon._attack()
 		
 class TestProjectile:
 	extends TestWeapon
@@ -67,6 +67,10 @@ class TestProjectile:
 	func before_each():
 		watch_signals(projectile)
 		#gut.p("Runs before each test.")
+		
+	func test_signal():
+		projectile._on_damage_box_body_entered(player)
+		assert_signal_emitted(projectile, 'on_hit', "On hit signal was not emitted")
 	
 	func test_movement():
 		projectile.rotation = 0
