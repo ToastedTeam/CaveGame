@@ -8,7 +8,7 @@ class TestMelee:
 	extends TestWeapon
 	
 	var weapon_script = load('res://weapons/weapon.gd') as Script
-	var weapon = null
+	var weapon: Weapon = null
 
 	func before_all():
 		weapon = weapon_script.new()
@@ -36,7 +36,7 @@ class TestRanged:
 	extends TestWeapon
 	
 	var weapon_script = load('res://weapons/ranged.gd')
-	var weapon = null
+	var weapon: RangedWeapon = null
 	
 	#var weapon_scene = load('res://weapons/')
 	
@@ -56,14 +56,11 @@ class TestRanged:
 		weapon._on_damage_box_body_entered(player)
 		assert_signal_emitted(weapon, 'on_hit', "On hit signal was not emitted")
 		
-	#func test_projectile_creation():
-		#weapon._attack()
-		
 class TestProjectile:
 	extends TestWeapon
 	
 	var projectile_script = load('res://weapons/projectile.gd')
-	var projectile = null
+	var projectile: Projectile = null
 	
 	func before_all():
 		projectile = projectile_script.new()
@@ -91,4 +88,10 @@ class TestProjectile:
 		projectile.rotation = 0
 		simulate(projectile, 10, 0.1)
 		assert_almost_eq(projectile.position, Vector2(300, 0), Vector2(0.01, 0.01), "Not moved")
+		
+	func test_when_off_screen():
+		projectile._on_screen_exited()
+		await wait_frames(2)
+		assert_null(projectile, "Projectile was not destroyed")
+		
 		
