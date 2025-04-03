@@ -24,6 +24,9 @@ class TestMelee:
 
 	#func after_all():
 		#gut.p("Runs once after all tests")
+		
+	func test_attack_exists():
+		assert_has_method(weapon, "_attack", 'No _attack method found')
 
 	func test_signal():
 		weapon._on_damage_box_body_entered(player)
@@ -41,11 +44,14 @@ class TestRanged:
 		weapon = weapon_script.new()
 		player = player_scene.instantiate()
 		#gut.p("Runs once before all tests")
-
+		
 	func before_each():
 		watch_signals(weapon)
 		#gut.p("Runs before each test.")
 	
+	func test_attack_exists():
+		assert_has_method(weapon, "_attack", 'No _attack method found')
+		
 	func test_signal():
 		weapon._on_damage_box_body_entered(player)
 		assert_signal_emitted(weapon, 'on_hit', "On hit signal was not emitted")
@@ -66,15 +72,23 @@ class TestProjectile:
 
 	func before_each():
 		watch_signals(projectile)
+		projectile.position = Vector2.ZERO
 		#gut.p("Runs before each test.")
+	
+	func test_attack_exists():
+		assert_has_method(projectile, "_attack", 'No _attack method found')
 		
 	func test_signal():
 		projectile._on_damage_box_body_entered(player)
 		assert_signal_emitted(projectile, 'on_hit', "On hit signal was not emitted")
 	
-	func test_movement():
+	func test_movement_left():
+		projectile.rotation = PI
+		simulate(projectile, 10, 0.1)
+		assert_almost_eq(projectile.position, Vector2(-300, 0), Vector2(0.01, 0.01), "Not moved")
+	
+	func test_movement_right():
 		projectile.rotation = 0
 		simulate(projectile, 10, 0.1)
-		print(projectile.position)
-		assert_eq(projectile.position, Vector2(300, 0), "Not moved")
+		assert_almost_eq(projectile.position, Vector2(300, 0), Vector2(0.01, 0.01), "Not moved")
 		
