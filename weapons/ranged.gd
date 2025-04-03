@@ -10,4 +10,6 @@ func _attack() -> void:
 	proj_instance.rotation = 0 if player.facing_right else PI
 	proj_instance.global_position = $ProjectileMarker.global_position
 	
-	get_tree().root.get_child(0).add_child(proj_instance)
+	self.add_child(proj_instance)
+	
+	#get_tree().root.get_child(0).add_child(proj_instance)
