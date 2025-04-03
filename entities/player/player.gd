@@ -121,6 +121,8 @@ func _setupIK() -> void:
 
 # Setting current 
 func _ready() -> void:	
+	Global.playerBody = self
+	
 	if Engine.is_editor_hint():
 		return
 	health_bar.max_value = max_hp

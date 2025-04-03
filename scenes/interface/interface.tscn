@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://du07qhtteauuh" path="res://scenes/interface/hp_bar.tscn" id="1_wpx7d"]
 [ext_resource type="PackedScene" uid="uid://mkc0o25ok023" path="res://scenes/interface/mana_bar.tscn" id="2_juv2u"]
 [ext_resource type="Script" uid="uid://cqswot2ewonva" path="res://scenes/debug_console/debug_console.gd" id="3_0x6lf"]
-[ext_resource type="Script" uid="uid://ceqabomyba6px" path="res://scenes/interface/WeaponSelectionScreen.gd" id="3_7i0gs"]
+[ext_resource type="Script" path="res://scenes/interface/WeaponSelectionScreen.gd" id="3_7i0gs"]
 [ext_resource type="PackedScene" uid="uid://dn8amu36njlul" path="res://scenes/MenuScenes/PauseMenu/pause_menu.tscn" id="3_qqekr"]
 [ext_resource type="Script" uid="uid://e2eyy28mds0i" path="res://scenes/debug_console/command_box.gd" id="4_6ncm3"]
 [ext_resource type="Resource" uid="uid://c2qj0falsfk2y" path="res://weapons/weapons_table.tres" id="4_tf5yn"]
