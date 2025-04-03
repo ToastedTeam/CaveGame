@@ -1774,15 +1774,16 @@ position = Vector2(0, 0)
 scale = Vector2(0.999844, 0.999844)
 
 [node name="head" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="0"]
-rotation = -0.00580462
-scale = Vector2(0.999858, 0.999858)
+rotation = -0.00580464
+scale = Vector2(0.999859, 0.999859)
 
 [node name="shoulder_r" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="1"]
 rotation = 1.93946
 scale = Vector2(0.999991, 0.999991)
 
 [node name="forearm_r" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset/shoulder_r" index="1"]
-rotation = -0.833525
+rotation = -0.833526
+scale = Vector2(0.999999, 0.999999)
 
 [node name="shoulder_f" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="2"]
 rotation = 2.43437
@@ -1803,8 +1804,8 @@ rotation = -0.276292
 scale = Vector2(0.99984, 0.99984)
 
 [node name="Forearm_R" parent="GameObjects/Player/sprites" index="0"]
-position = Vector2(-2.91475, -0.926949)
-rotation = -0.464864
+position = Vector2(-2.91473, -0.926945)
+rotation = -0.464865
 
 [node name="Shoulder_R" parent="GameObjects/Player/sprites" index="1"]
 position = Vector2(-3.80115, -9.83456)
@@ -1831,7 +1832,7 @@ position = Vector2(-5.2769, -28.0557)
 
 [node name="Head" parent="GameObjects/Player/sprites" index="7"]
 position = Vector2(-1.54036, -20.4958)
-rotation = -0.00580461
+rotation = -0.00580463
 
 [node name="FrontHair" parent="GameObjects/Player/sprites" index="8"]
 position = Vector2(-6.51007, -26.1904)
