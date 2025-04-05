@@ -9,6 +9,7 @@ func _on_play_pressed() -> void:
 func _on_options_pressed() -> void:
 	if not get_node_or_null("settings"):  # Prevent multiple instances
 		var settings_instance = settings_scene.instantiate()
+		settings_instance.shouldBlur = false;
 		add_child(settings_instance)  # Adds it as a child
 	
 

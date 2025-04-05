@@ -22,6 +22,18 @@ var is_roaming: bool = true
 var player: CharacterBody2D
 var player_in_area: bool = false
 
+var rng: RandomNumberGenerator;
+var receivedGoblinInstruction = false
+enum GoblinInstruction {
+	None, Switch
+}
+var goblinInstruction: GoblinInstruction = GoblinInstruction.None
+
+
+func _ready() -> void:
+	rng = RandomNumberGenerator.new()
+	
+
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -43,6 +55,10 @@ func move(delta):
 	if !dead:
 		# The goblin is wandering around
 		if !is_goblin_chase:
+			if player_in_area:
+				velocity.x = 0
+				return
+			
 			# If the ground detector has detected floor in front of us, we can move
 			if (groundDetection.has_overlapping_bodies() or groundDetection_Deep.has_overlapping_bodies()):
 				# If the goblin touches a wall, he should try to jump
@@ -117,6 +133,41 @@ func chose(array: Array):
 	array.shuffle()
 	return array.front()
 
+func receive_goblin_instruction(instruction: GoblinInstruction, sender: Node2D):
+	Log.info(name + " received instruction. " + str(GoblinInstruction.keys()[instruction]) + " from " + sender.name)
+	receivedGoblinInstruction = true;
+	match instruction:
+		GoblinInstruction.Switch:
+			dir.x *= -1;
+	pass
+
 func _on_damage_handler_goblin_died() -> void:
 	Log.info(name + " died")
 	self.queue_free()
+
+
+func _on_entity_reached(body: Node2D) -> void:
+	if body == self:
+		return
+	if body is PlayerCharacter:
+		Log.info("Player approached")
+		player_in_area = true
+	elif body is Goblin_Enemy:
+		dir.x *= -1;
+		#if !receivedGoblinInstruction:
+			#var instr: GoblinInstruction = GoblinInstruction.Switch #rng.randi_range(1,2)
+			#body.receive_goblin_instruction(instr, self)
+			#match instr:
+				#GoblinInstruction.JumpOver:
+					#return;
+		pass
+	pass # Replace with function body.
+
+
+func _on_entity_left(body: Node2D) -> void:
+	if body is PlayerCharacter:
+		Log.info("Player left")
+		player_in_area = false
+	elif body is Goblin_Enemy:
+		pass
+	pass # Replace with function body.
