@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxnqjli45gx2e"]
+[gd_scene load_steps=10 format=3 uid="uid://bxnqjli45gx2e"]
 
 [ext_resource type="Script" uid="uid://dmf1mpipau60a" path="res://scenes/MenuScenes/SettingsScreen/settings.gd" id="1_5p8wc"]
 [ext_resource type="Shader" uid="uid://bus8qxo8npi86" path="res://shaders/blur.gdshader" id="2_r6d6q"]
@@ -7,6 +7,9 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6wm04"]
 shader = ExtResource("2_r6d6q")
 shader_parameter/lod = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1hw7a"]
+bg_color = Color(0.169245, 0.169245, 0.169245, 1)
 
 [sub_resource type="Animation" id="Animation_7l7mv"]
 resource_name = "Blur"
@@ -26,7 +29,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PanelContainer:modulate")
+tracks/1/path = NodePath("MarginContainer/PanelContainer:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -47,6 +50,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [false, true, true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MarginContainer/PanelContainer:theme_override_styles/panel:bg_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.17, 0.17, 0.17, 0.498039), Color(0.17, 0.17, 0.17, 0.498039)]
+}
 
 [sub_resource type="Animation" id="Animation_v4r4p"]
 length = 0.001
@@ -65,7 +80,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PanelContainer:modulate")
+tracks/1/path = NodePath("MarginContainer/PanelContainer:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -86,10 +101,75 @@ tracks/2/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MarginContainer/PanelContainer:theme_override_styles/panel:bg_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.169245, 0.169245, 0.169245, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_uh7bu"]
+resource_name = "NoBlur"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer/PanelContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.012, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MarginContainer/PanelContainer:theme_override_styles/panel:bg_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.17, 0.17, 0.17, 1), Color(0.17, 0.17, 0.17, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1s2dm"]
 _data = {
 &"Blur": SubResource("Animation_7l7mv"),
+&"NoBlur": SubResource("Animation_uh7bu"),
 &"RESET": SubResource("Animation_v4r4p")
 }
 
@@ -113,81 +193,100 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-modulate = Color(1, 1, 1, 0)
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1hw7a")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
-[node name="Volume2" type="Label" parent="PanelContainer/VBoxContainer"]
+[node name="Volume2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Adjust Volume"
 
-[node name="Volume" type="HSlider" parent="PanelContainer/VBoxContainer"]
+[node name="Volume" type="HSlider" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Volume3" type="Label" parent="PanelContainer/VBoxContainer"]
+[node name="Volume3" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "
 Mute sound"
 
-[node name="Mute sound" type="CheckBox" parent="PanelContainer/VBoxContainer"]
+[node name="Mute sound" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Volume4" type="Label" parent="PanelContainer/VBoxContainer"]
+[node name="Volume4" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "
 Adjust resolution"
 
-[node name="Resolutions" type="OptionButton" parent="PanelContainer/VBoxContainer"]
+[node name="Resolutions" type="OptionButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 process_mode = 3
 layout_mode = 2
 
-[node name="exit settings" type="Button" parent="PanelContainer/VBoxContainer"]
+[node name="exit settings" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Exit Settings"
 
-[node name="Reset" type="Button" parent="PanelContainer/VBoxContainer"]
+[node name="Reset" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 25
 text = "Reset"
 
-[node name="Spacer" type="Label" parent="PanelContainer/VBoxContainer"]
+[node name="Spacer" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ActionList" type="VBoxContainer" parent="PanelContainer/VBoxContainer/ScrollContainer"]
+[node name="ActionList" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="InputButton" parent="PanelContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("3_6wm04")]
+[node name="InputButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("3_6wm04")]
 layout_mode = 2
 
-[node name="InputButton2" parent="PanelContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("3_6wm04")]
+[node name="InputButton2" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("3_6wm04")]
 layout_mode = 2
 
-[node name="InputButton3" parent="PanelContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("3_6wm04")]
+[node name="InputButton3" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("3_6wm04")]
 layout_mode = 2
 
-[node name="InputButton4" parent="PanelContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("3_6wm04")]
+[node name="InputButton4" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("3_6wm04")]
 layout_mode = 2
 
-[node name="InputButton5" parent="PanelContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("3_6wm04")]
+[node name="InputButton5" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("3_6wm04")]
 layout_mode = 2
 
-[node name="InputButton6" parent="PanelContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("3_6wm04")]
+[node name="InputButton6" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("3_6wm04")]
 layout_mode = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -195,8 +294,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_1s2dm")
 }
 
-[connection signal="value_changed" from="PanelContainer/VBoxContainer/Volume" to="." method="_on_volume_value_changed"]
-[connection signal="toggled" from="PanelContainer/VBoxContainer/Mute sound" to="." method="_on_mute_sound_toggled"]
-[connection signal="item_selected" from="PanelContainer/VBoxContainer/Resolutions" to="." method="_on_resolutions_item_selected"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/exit settings" to="." method="_on_exit_settings_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Reset" to="." method="_on_reset_pressed"]
+[connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Volume" to="." method="_on_volume_value_changed"]
+[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Mute sound" to="." method="_on_mute_sound_toggled"]
+[connection signal="item_selected" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Resolutions" to="." method="_on_resolutions_item_selected"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/exit settings" to="." method="_on_exit_settings_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Reset" to="." method="_on_reset_pressed"]

@@ -3,36 +3,44 @@ extends Control
 const resolutions = [ Vector2i(1920,1080), Vector2i(1600,900), Vector2i(1280,720) ]
 
 @onready var input_button_scene = preload("uid://bthc5hdvcfj20")
-@onready var action_list = $PanelContainer/VBoxContainer/ScrollContainer/ActionList
+@onready var action_list = %ActionList
 
 var is_remaping = false
 var action_to_remap = null
 var remapping_button = null
+var shouldBlur = true
+
 var input_actions = {
 	"player_jump" : "Jump",
 	"player_move_left" : "Move left",
 	"player_move_right" : "Move right",
-	"player_attack" : "Attack",
+	"player_attack_melee" : "Melee Attack",
+	"player_attack_ranged" : "Ranged Attack",
+	"player_interact" : "Interact",
 	"player_dash" : "Dash"
 }
+
 func resume():
 	$AnimationPlayer.play_backwards("Blur")
 
 func pause():
-	$AnimationPlayer.play("Blur")
+	if shouldBlur:
+		$AnimationPlayer.play("Blur")
+	else:
+		$AnimationPlayer.play("NoBlur")
 	
 func _ready():
-	$PanelContainer/VBoxContainer/Volume.value = AudioServer.get_bus_volume_linear(0)*100
-	$"PanelContainer/VBoxContainer/Mute sound".button_pressed = AudioServer.is_bus_mute(0)
+	%Volume.value = AudioServer.get_bus_volume_linear(0)*100
+	%"Mute sound".button_pressed = AudioServer.is_bus_mute(0)
 	
 	_create_action_list()
 	
 	for resolution in resolutions:
-		$PanelContainer/VBoxContainer/Resolutions.add_item(str(resolution.x)+"x"+str(resolution.y))
+		%Resolutions.add_item(str(resolution.x)+"x"+str(resolution.y))
 	var size = DisplayServer.window_get_size(0)
 	var idx = resolutions.find(size)
 	if idx > -1:
-		$PanelContainer/VBoxContainer/Resolutions.selected = idx;
+		%Resolutions.selected = idx;
 
 	pause()
 
@@ -86,7 +94,7 @@ func _on_input_button_pressed(button, action):
 		action_to_remap = action
 		remapping_button = button
 		button.find_child("LabelInput").text = "Press key to bind..."
-				
+
 func _input(event):
 	if is_remaping:
 		if(
