@@ -58,9 +58,10 @@ size = Vector2(8, 8)
 size = Vector2(8, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5svo4"]
-size = Vector2(10, 30)
+size = Vector2(3, 30)
 
 [node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("directionFlip", "groundDetection", "groundDetection_Deep", "jumpBlockDetection")]
+collision_layer = 4
 script = ExtResource("1_w1pob")
 directionFlip = NodePath("directionFlip")
 groundDetection = NodePath("directionFlip/GroundDetector")
@@ -127,15 +128,16 @@ visible = false
 z_index = 2
 texture = SubResource("PlaceholderTexture2D_fthgw")
 
-[node name="PlayerDetector" type="Area2D" parent="directionFlip"]
-position = Vector2(-11, 0)
+[node name="EntityDetector" type="Area2D" parent="directionFlip"]
+position = Vector2(-11, -1)
 collision_layer = 0
-collision_mask = 2
+collision_mask = 6
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="directionFlip/PlayerDetector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="directionFlip/EntityDetector"]
+position = Vector2(-2, 1)
 shape = SubResource("RectangleShape2D_5svo4")
 
 [connection signal="goblin_died" from="DamageHandler" to="." method="_on_damage_handler_goblin_died"]
 [connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]
-[connection signal="body_entered" from="directionFlip/PlayerDetector" to="." method="_on_player_reached"]
-[connection signal="body_exited" from="directionFlip/PlayerDetector" to="." method="_on_player_left"]
+[connection signal="body_entered" from="directionFlip/EntityDetector" to="." method="_on_entity_reached"]
+[connection signal="body_exited" from="directionFlip/EntityDetector" to="." method="_on_entity_left"]
