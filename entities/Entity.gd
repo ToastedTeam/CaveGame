@@ -3,19 +3,22 @@ class_name Entity
 extends Node2D
 
 @export var maxHealth: float = 1
-@export var maxInvincibilityFrames: int = 10;
-# Replace with a property later, when implementing target dummies
-var health: float:
+@export var minHealth: float = 0
+
+@onready var health: float = maxHealth:
 	get:
 		return health;
 	set(value):
-		if value < minHealth:
-			health = minHealth;
-			return;
 		health = value;
+		if value < minHealth:
+			handleDeath()
+			return;
 
-var minHealth: float = 0
+@export var maxInvincibilityFrames: int = 10;
 var invincibilityFrames: int = 0;
+
+func _init() -> void:
+	health = maxHealth
 
 # OVERRIDE THIS IN CLASSES THAT INHERIT THIS CLASS FOR PROPER FUNCTIONALITY
 func Damage(damage: float, source: Node2D):
