@@ -10,7 +10,7 @@ extends Node2D
 		return health;
 	set(value):
 		health = value;
-		if value < minHealth:
+		if value <= minHealth:
 			handleDeath()
 			return;
 
@@ -34,7 +34,6 @@ func Damage(damage: float, source: Node2D):
 
 # OVERRIDE THIS IN CLASSES WHICH MIGHT DIE IN MORE UNIQUE WAYS
 func handleDeath():
-	health = minHealth
 	Log.info(name + " died")
 	self.queue_free()	# Remove the current object from the game
 	
