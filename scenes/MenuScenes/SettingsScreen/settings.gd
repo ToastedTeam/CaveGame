@@ -106,4 +106,5 @@ func _update_action_list(button, event):
 
 
 func _on_reset_pressed() -> void:
+	InputMap.load_from_project_settings()
 	_create_action_list()
