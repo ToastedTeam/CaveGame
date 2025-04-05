@@ -44,6 +44,4 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if invincibilityFrames > 0:
 		invincibilityFrames -= 1;
-	if health <= minHealth:
-		handleDeath()
 	pass
