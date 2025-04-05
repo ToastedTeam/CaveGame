@@ -5,7 +5,15 @@ extends Node2D
 @export var maxHealth: float = 1
 @export var maxInvincibilityFrames: int = 10;
 # Replace with a property later, when implementing target dummies
-var health: float
+var health: float:
+	get:
+		return health;
+	set(value):
+		if value < minHealth:
+			health = minHealth;
+			return;
+		health = value;
+
 var minHealth: float = 0
 var invincibilityFrames: int = 0;
 
