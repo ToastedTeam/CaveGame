@@ -43,6 +43,10 @@ func move(delta):
 	if !dead:
 		# The goblin is wandering around
 		if !is_goblin_chase:
+			if player_in_area:
+				velocity.x = 0
+				return
+			
 			# If the ground detector has detected floor in front of us, we can move
 			if (groundDetection.has_overlapping_bodies() or groundDetection_Deep.has_overlapping_bodies()):
 				# If the goblin touches a wall, he should try to jump
@@ -120,3 +124,15 @@ func chose(array: Array):
 func _on_damage_handler_goblin_died() -> void:
 	Log.info(name + " died")
 	self.queue_free()
+
+
+func _on_player_reached(body: Node2D) -> void:
+	Log.info("Player approached")
+	player_in_area = true
+	pass # Replace with function body.
+
+
+func _on_player_left(body: Node2D) -> void:
+	Log.info("Player left")
+	player_in_area = false
+	pass # Replace with function body.
