@@ -3,11 +3,22 @@ class_name Entity
 extends Node2D
 
 @export var maxHealth: float = 1
+@export var minHealth: float = 0
+
+@onready var health: float = maxHealth:
+	get:
+		return health;
+	set(value):
+		health = value;
+		if value <= minHealth:
+			handleDeath()
+			return;
+
 @export var maxInvincibilityFrames: int = 10;
-# Replace with a property later, when implementing target dummies
-var health: float
-var minHealth: float = 0
 var invincibilityFrames: int = 0;
+
+func _init() -> void:
+	health = maxHealth
 
 # OVERRIDE THIS IN CLASSES THAT INHERIT THIS CLASS FOR PROPER FUNCTIONALITY
 func Damage(damage: float, source: Node2D):
@@ -23,7 +34,6 @@ func Damage(damage: float, source: Node2D):
 
 # OVERRIDE THIS IN CLASSES WHICH MIGHT DIE IN MORE UNIQUE WAYS
 func handleDeath():
-	health = minHealth
 	Log.info(name + " died")
 	self.queue_free()	# Remove the current object from the game
 	
@@ -36,6 +46,4 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if invincibilityFrames > 0:
 		invincibilityFrames -= 1;
-	if health <= minHealth:
-		handleDeath()
 	pass
