@@ -518,7 +518,6 @@ auto_calculate_length_and_angle = false
 length = 12.44
 bone_angle = -7.00297e-07
 editor_settings/show_bone_gizmo = false
-metadata/_local_pose_override_enabled_ = true
 
 [node name="flipHandler" type="Node2D" parent="Skeleton/hip/torso/collar/offset/head"]
 
@@ -733,7 +732,7 @@ texture = SubResource("CanvasTexture_r633c")
 
 [node name="Thigh_B" type="Sprite2D" parent="sprites"]
 modulate = Color(0.787759, 0.787759, 0.787759, 1)
-position = Vector2(0.863827, 5.93747)
+position = Vector2(0.863826, 5.93747)
 rotation = -0.144474
 texture = SubResource("CanvasTexture_pacje")
 
@@ -746,12 +745,12 @@ position = Vector2(0, 8.85)
 texture = SubResource("CanvasTexture_2h0qb")
 
 [node name="Thigh_F" type="Sprite2D" parent="sprites"]
-position = Vector2(-0.00180995, 5.97828)
+position = Vector2(-0.00180998, 5.97828)
 rotation = -0.0831412
 texture = SubResource("CanvasTexture_mmk7k")
 
 [node name="BHair" type="Node2D" parent="sprites" groups=["noFlip"]]
-position = Vector2(-5.19258, -28.0802)
+position = Vector2(-5.19256, -28.0802)
 script = ExtResource("21_221hk")
 pointCount = 11
 gravity = Vector2(0, 9)
@@ -764,7 +763,7 @@ material = SubResource("ShaderMaterial_221hk")
 mesh = SubResource("QuadMesh_mtric")
 
 [node name="Head" type="Sprite2D" parent="sprites"]
-position = Vector2(-1.49998, -20.4987)
+position = Vector2(-1.49997, -20.4987)
 texture = SubResource("CanvasTexture_g3pa7")
 
 [node name="Eyes" type="Sprite2D" parent="sprites/Head"]
@@ -794,7 +793,7 @@ Position = true
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="FrontHair" type="Node2D" parent="sprites" groups=["noFlip"]]
-position = Vector2(-6.43655, -26.2221)
+position = Vector2(-6.43654, -26.2221)
 script = ExtResource("21_221hk")
 pointCount = 11
 gravity = Vector2(0, 9)
