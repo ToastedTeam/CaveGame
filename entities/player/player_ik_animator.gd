@@ -129,10 +129,10 @@ func _ready() -> void:
 		return
 	_Get_Player_Params()
 	var animParent = animationPlayer.get_parent()
-	FFTargetPos = animParent.find_child("FFTarget_pos")
-	BFTargetPos = animParent.find_child("BFTarget_pos")
-	FHTargetPos = animParent.find_child("FHTarget_pos")
-	BHTargetPos = animParent.find_child("BHTarget_pos")
+	FFTargetPos = animParent.find_child("FFTarget_pos", true, false)
+	BFTargetPos = animParent.find_child("BFTarget_pos", true, false)
+	FHTargetPos = animParent.find_child("FHTarget_pos", true, false)
+	BHTargetPos = animParent.find_child("BHTarget_pos", true, false)
 	hip = player.get_node("Skeleton/hip")
 	collarBone = hip.find_child("collar", true, false);
 	collarOffsetBone = collarBone.find_child("offset", true, false);

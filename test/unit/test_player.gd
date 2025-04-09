@@ -199,10 +199,22 @@ class TestPlayerInverseKinematics:
 	
 	func createIkAnimator():
 		var ikAnimator = IKPlayerAnimator.new()
-		ikAnimator.add_child(createNamedNode("FFTarget_pos", Node2D), true)
-		ikAnimator.add_child(createNamedNode("BFTarget_pos", Node2D), true)
-		ikAnimator.add_child(createNamedNode("FHTarget_pos", Node2D), true)
-		ikAnimator.add_child(createNamedNode("BHTarget_pos", Node2D), true)
+		var fft = createNamedNode("FFTarget_pos", Node2D)
+		var bft = createNamedNode("BFTarget_pos", Node2D)
+		var fht = createNamedNode("FHTarget_pos", Node2D)
+		var bht = createNamedNode("BHTarget_pos", Node2D)
+		ikAnimator.add_child(fft, true)
+		ikAnimator.add_child(bft, true)
+		ikAnimator.add_child(fht, true)
+		ikAnimator.add_child(bht, true)
+		fft.add_child(createNamedNode("Synchroniser", RemoteTransform2DExtended))
+		bft.add_child(createNamedNode("Synchroniser", RemoteTransform2DExtended))
+		fht.add_child(createNamedNode("Synchroniser", RemoteTransform2DExtended))
+		bht.add_child(createNamedNode("Synchroniser", RemoteTransform2DExtended))
+		ikAnimator.FFTargetPos = fft
+		ikAnimator.BFTargetPos = bft
+		ikAnimator.FHTargetPos = fht
+		ikAnimator.BHTargetPos = bht
 		return ikAnimator
 	
 	func generateModifications():
@@ -350,3 +362,31 @@ class TestPlayerInverseKinematics:
 		animator.hand.node.add_child(wpn)
 		wpn.player = _player
 		assert_true(animator.Attack_Ranged())
+
+	func test_playerIkAnimator_StartDash_setsAnimStateAndRetainsAfterOneFrame():
+		var animator = generateFullAnimator()
+		
+		add_child_autoqfree(_player, true)
+		add_child_autoqfree(animator, true)
+		animator._ready()
+		
+		animator.Start_Dash()
+		assert_eq(animator.state, IKPlayerAnimator.AnimState.Dashing)
+		assert_eq(animator.lastState, IKPlayerAnimator.AnimState.Idle)
+		simulate(animator, 1, 1/60)
+		assert_eq(animator.state, IKPlayerAnimator.AnimState.Dashing)
+		
+	func test_playerIkAnimator_StartDash_animatorDoesntStopDash():
+		var animator = generateFullAnimator()
+		
+		add_child_autoqfree(_player, true)
+		add_child_autoqfree(animator, true)
+		animator._ready()
+		
+		animator.Start_Dash()
+		assert_eq(animator.state, IKPlayerAnimator.AnimState.Dashing)
+		assert_eq(animator.lastState, IKPlayerAnimator.AnimState.Idle)
+		simulate(animator, 120, 1/60)
+		assert_eq(animator.state, IKPlayerAnimator.AnimState.Dashing)
+		assert_eq(animator.lastState, IKPlayerAnimator.AnimState.Dashing)
+		
