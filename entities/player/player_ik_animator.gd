@@ -123,7 +123,6 @@ func _Get_Player_Params() -> void:
 	hand = skeleton.find_child("Hand", true, false)
 	default_states["hand_rot"] = hand.rotation_degrees;
 	
-
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
