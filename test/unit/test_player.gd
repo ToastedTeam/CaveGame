@@ -207,6 +207,12 @@ class TestPlayerInverseKinematics:
 		ikAnimator.add_child(bft, true)
 		ikAnimator.add_child(fht, true)
 		ikAnimator.add_child(bht, true)
+		
+		ikAnimator.add_child(createNamedNode("FFTarget", Node2D), true)
+		ikAnimator.add_child(createNamedNode("BFTarget", Node2D), true)
+		ikAnimator.add_child(createNamedNode("FHTarget", Node2D), true)
+		ikAnimator.add_child(createNamedNode("BHTarget", Node2D), true)
+		
 		fft.add_child(createNamedNode("Synchroniser", RemoteTransform2DExtended))
 		bft.add_child(createNamedNode("Synchroniser", RemoteTransform2DExtended))
 		fht.add_child(createNamedNode("Synchroniser", RemoteTransform2DExtended))
