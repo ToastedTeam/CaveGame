@@ -18,6 +18,11 @@ class TestGoblinBase:
 		watch_signals(goblin)
 
 
+	# The created goblins should be cleared out and we should have less sad orphants
+	func after_each():
+		if goblin:
+			goblin.free()
+
 
 	# Test if the goblin class contains all required methods
 	func test_move_exists():
@@ -54,6 +59,10 @@ class TestGoblinBase:
 		damage_handler.emit_signal("goblin_died")
 		await wait_frames(2)
 		assert_freed(goblin, "Goblin should free itself after receiving goblin_died signal.")
+		
+		# Removing potential orphan nodes
+		if damage_handler:
+			damage_handler.free()
 
 
 
@@ -67,6 +76,10 @@ class TestGoblinBase:
 		goblin.dir = Vector2.RIGHT
 		goblin.handle_sprite()
 		assert_almost_eq(goblin.directionFlip.scale.x, -1.0, 0.001, "Should flip when going right")
+		
+		# Removing potential orphan nodes
+		if sprite:
+			sprite.free()
 
 
 
@@ -80,6 +93,10 @@ class TestGoblinBase:
 		goblin.dir = Vector2.LEFT
 		goblin.handle_sprite()
 		assert_almost_eq(goblin.directionFlip.scale.x, 1.0, 0.001, "Should flip when going left")
+		
+		# Removing potential orphan nodes
+		if sprite:
+			sprite.free()
 
 
 
@@ -93,6 +110,10 @@ class TestGoblinBase:
 		goblin.dir = Vector2.ZERO
 		goblin.handle_sprite()
 		assert_almost_eq(goblin.directionFlip.scale.x, 0.0, 0.001, "Should face front when idle")
+		
+		# Removing potential orphan nodes
+		if sprite:
+			sprite.free()
 
 
 	# Test the chose method, it should only pick from the numbers given to it, not random numbers
@@ -100,6 +121,9 @@ class TestGoblinBase:
 		var options = [1, 2, 3]
 		var result = goblin.chose(options.duplicate()) # Duplicate so shuffle doesn't mutate test source
 		assert_true(result in options, "Chose() should return an item from the given array.")
+		
+		# Removing potential orphan nodes
+		options.clear()
 
 
 
@@ -116,6 +140,12 @@ class TestGoblinMovement:
 		goblin = goblin_scene.instantiate()
 		# Listen to signals for each test
 		watch_signals(goblin)
+
+
+	# The created goblins should be cleared out and we should have less sad orphants
+	func after_each():
+		if goblin:
+			goblin.free()
 
 
 
@@ -147,6 +177,10 @@ class TestGoblinMovement:
 		
 		goblin.move(0.016)
 		assert_eq(goblin.velocity.x, -60, "Goblin should move left when has_ground is true and not on wall.")
+		
+		# Removing potential orphan nodes
+		if goblin:
+			goblin.free()
 
 
 
@@ -158,6 +192,10 @@ class TestGoblinMovement:
 
 		goblin.move(0.016)
 		assert_eq(goblin.velocity.x, 0, "Goblin should not move if dead.")
+		
+		# Removing potential orphan nodes
+		if goblin:
+			goblin.free()
 
 
 	# Testing of the goblin correctly switches his direction if there is no ground in front of him
@@ -180,6 +218,10 @@ class TestGoblinMovement:
 		goblin.move(0.016)
 
 		assert_eq(goblin.dir.x, 1, "Goblin should flip direction when no ground is detected.")
+		
+		# Removing potential orphan nodes
+		if goblin:
+			goblin.free()
 
 
 
@@ -203,6 +245,10 @@ class TestGoblinMovement:
 
 		goblin.move(0.016)
 		assert_true(goblin.is_jumping, "Goblin should jump when on wall and not blocked.")
+		
+		# Removing potential orphan nodes
+		if goblin:
+			goblin.free()
 
 
 
@@ -226,6 +272,10 @@ class TestGoblinMovement:
 
 		goblin.move(0.016)
 		assert_false(goblin.is_jumping, "Goblin should not jump if jump is blocked.")
+		
+		# Removing potential orphan nodes
+		if goblin:
+			goblin.free()
 
 
 
@@ -242,6 +292,12 @@ class TestGoblinDmgHandler:
 		
 		# Listen for any signals
 		watch_signals(dmg_handler)
+
+
+	# The created handlers should be cleared out and we should have less sad orphants
+	func after_each():
+		if dmg_handler:
+			dmg_handler.free()
 
 
 
