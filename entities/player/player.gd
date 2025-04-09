@@ -140,26 +140,7 @@ func _ready() -> void:
 	_setupIK()
 	print("player hp: ", current_hp, " player mana: ", current_mana, " player damage: ", damage)
 
-#var is_move_left_pressed: bool = false
-#var is_move_right_pressed: bool = false
-var is_jump_pressed: bool = false
-var is_dash_pressed: bool = false
-var is_attack_melee_pressed: bool = false
-var is_attack_ranged_pressed: bool = false
-
 func _getPlayerMovement() -> float:
-	#var direction = 0;
-	#
-	#if is_move_left_pressed:
-		#is_move_left_pressed = false
-		#direction += -1
-	#
-	#if is_move_right_pressed:
-		#is_move_right_pressed = false
-		#direction += 1
-	#
-	#return direction
-	
 	if !inhibitUserInput:
 		return Input.get_axis("player_move_left", "player_move_right")
 	else:
@@ -167,61 +148,33 @@ func _getPlayerMovement() -> float:
 	pass
 
 func _isPlayerJumping() -> bool:
-	var pressed: bool = is_jump_pressed
-	is_jump_pressed = false
-	return pressed
-	
-	#print(Input.is_action_just_pressed("player_jump"))
-	#if !inhibitUserInput:
-		#return Input.is_action_just_pressed("player_jump")
-	#else:
-		#return false;
-	#pass
+	if !inhibitUserInput:
+		return Input.is_action_just_pressed("player_jump")
+	else:
+		return false;
+	pass
 
 func _isPlayerDashing() -> bool:
-	var pressed: bool = is_dash_pressed
-	is_dash_pressed = false
-	return pressed
-	
-	#if !inhibitUserInput:
-		#return Input.is_action_just_pressed("player_dash")
-	#else:
-		#return false;
-	#pass
+	if !inhibitUserInput:
+		return Input.is_action_just_pressed("player_dash")
+	else:
+		return false;
+	pass
 
 func _isPlayerJustAttackingMelee() -> bool:
-	var pressed: bool = is_attack_melee_pressed
-	is_attack_melee_pressed = false
-	return pressed
-	
-	#if !inhibitUserInput:
-		#return Input.is_action_just_pressed("player_attack_melee")
-	#else:
-		#return false;
-	#pass
+	if !inhibitUserInput:
+		return Input.is_action_just_pressed("player_attack_melee")
+	else:
+		return false;
+	pass
 	
 func _isPlayerJustAttackingRanged() -> bool:
-	var pressed: bool = is_attack_ranged_pressed
-	is_attack_ranged_pressed = false
-	return pressed
-	
-	#if !inhibitUserInput:
-		#return Input.is_action_just_pressed("player_attack_ranged")
-	#else:
-		#return false;
-	#pass
-	
-func _input(event: InputEvent) -> void:
-	if inhibitUserInput:
-		return 
-		
-	#is_move_left_pressed = Input.is_action_pressed("player_move_left")
-	#is_move_right_pressed  = Input.is_action_pressed("player_move_right")
-	is_jump_pressed  = Input.is_action_pressed("player_jump")
-	is_dash_pressed  = Input.is_action_pressed("player_dash")
-	is_attack_melee_pressed  = Input.is_action_pressed("player_attack_melee")
-	is_attack_ranged_pressed  = Input.is_action_pressed("player_attack_ranged")
-	
+	if !inhibitUserInput:
+		return Input.is_action_just_pressed("player_attack_ranged")
+	else:
+		return false;
+	pass
+
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
