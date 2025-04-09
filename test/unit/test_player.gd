@@ -389,4 +389,63 @@ class TestPlayerInverseKinematics:
 		simulate(animator, 120, 1/60)
 		assert_eq(animator.state, IKPlayerAnimator.AnimState.Dashing)
 		assert_eq(animator.lastState, IKPlayerAnimator.AnimState.Dashing)
+
+	func test_playerIkAnimator_IKStateMachine_transitionFromAirToGroundPlacesCorrectTargets():
+		var animator = generateFullAnimator()
 		
+		add_child_autoqfree(_player, true)
+		add_child_autoqfree(animator, true)
+		animator._ready()
+		
+		animator.IKStateMachine(0.1, false, true)
+		assert_eq(animator.state, IKPlayerAnimator.AnimState.Idle)
+		assert_eq(animator.FFTargetPos.global_position, animator.hip.global_position + Vector2(0, 20))
+		assert_eq(animator.BFTargetPos.global_position, animator.hip.global_position + Vector2(0, 20))
+		
+	func test_playerIkAnimator_IKStateMachine_WalkingStartsWithFrontFoot():
+		var animator = generateFullAnimator()
+		
+		add_child_autoqfree(_player, true)
+		add_child_autoqfree(animator, true)
+		animator._ready()
+		
+		animator.setAnimState(IKPlayerAnimator.AnimState.Walking)
+		animator.IKStateMachine(0.1, true, false)
+		assert_eq(animator.currentWalk, IKPlayerAnimator.WalkState.FrontFoot)
+		
+	func test_playerIkAnimator_IKStateMachine_dashingPutsFeetTargetsAtCorrectPositions():
+		var animator = generateFullAnimator()
+		
+		add_child_autoqfree(_player, true)
+		add_child_autoqfree(animator, true)
+		animator._ready()
+		
+		animator.setAnimState(IKPlayerAnimator.AnimState.Dashing)
+		animator.IKStateMachine(0.1, true, false)
+		assert_eq(animator.FFTargetPos.global_position, animator.hip.global_position + Vector2(-20, 20))
+		assert_eq(animator.BFTargetPos.global_position, animator.hip.global_position + Vector2(10, 20))
+
+	func test_playerIkAnimator_IKStateMachine_InhibitorsShouldPreventFootTargetsFromMoving():
+		var animator = generateFullAnimator()
+		
+		add_child_autoqfree(_player, true)
+		add_child_autoqfree(animator, true)
+		animator._ready()
+		
+		animator.inhibitBF = true
+		animator.inhibitFF = true
+		var originalFFPos = animator.FFTargetPos.global_position
+		var originalBFPos = animator.BFTargetPos.global_position
+		animator.IKStateMachine(0.1, true, false)
+		assert_eq(animator.FFTargetPos.global_position, originalFFPos)
+		assert_eq(animator.BFTargetPos.global_position, originalBFPos)
+
+		animator.setAnimState(IKPlayerAnimator.AnimState.Dashing)
+		animator.IKStateMachine(0.1, true, false)
+		assert_eq(animator.FFTargetPos.global_position, originalFFPos)
+		assert_eq(animator.BFTargetPos.global_position, originalBFPos)
+		
+		animator.setAnimState(IKPlayerAnimator.AnimState.Walking)
+		animator.IKStateMachine(0.1, true, false)
+		assert_eq(animator.FFTargetPos.global_position, originalFFPos)
+		assert_eq(animator.BFTargetPos.global_position, originalBFPos)
