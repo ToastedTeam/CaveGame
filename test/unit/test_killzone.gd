@@ -17,6 +17,9 @@ func before_all():
 	watch_signals(timer)
 	#gut.p("Runs once before all tests")
 
+func after_all():
+	Engine.time_scale = 1.0
+
 #func before_each():
 	#gut.p("Runs before each test.")
 

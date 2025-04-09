@@ -186,7 +186,6 @@ func _physics_process(delta: float) -> void:
 		
 	# Get the input direction and handle the movement/deceleration.
 	var direction := _getPlayerMovement()
-	
 	match dash_state:
 		dash.KEY_PRESSED:
 			dash_state = dash.IS_DASHING
