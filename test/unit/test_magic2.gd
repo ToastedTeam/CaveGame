@@ -1,10 +1,11 @@
 extends GutTest
 
-var weapon_scene = load('res://weapons/magic1/weapon.tscn') as PackedScene
+
+var weapon_scene = load('res://weapons/magic2/weapon.tscn') as PackedScene
 var weapon: RangedWeapon = null
 
-#const projectile_path = 'res://weapons/magic1/projectile.tscn'
-var projectile_scene = load('res://weapons/magic1/projectile.tscn') as PackedScene
+#const projectile_path = 'res://weapons/magic2/projectile.tscn'
+var projectile_scene = load('res://weapons/magic2/projectile.tscn') as PackedScene
 #var projectile = null
 
 var player_scene = load('res://entities/player/player.tscn') as PackedScene
@@ -15,7 +16,7 @@ func before_all():
 	weapon.projectile = projectile_scene
 	
 	player = player_scene.instantiate()
-	
+		
 	weapon.player = player
 
 #func before_each():

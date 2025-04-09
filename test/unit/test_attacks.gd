@@ -92,6 +92,6 @@ class TestProjectile:
 	func test_when_off_screen():
 		projectile._on_screen_exited()
 		await wait_frames(2)
-		assert_null(projectile, "Projectile was not destroyed")
+		assert_freed(projectile, "Projectile was not destroyed")
 		
 		
