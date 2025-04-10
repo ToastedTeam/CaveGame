@@ -41,23 +41,32 @@ class TestGoblinBase:
 
 	# Test goblin death
 	func test_goblin_death():
+		# The goblin receives a signal, calling for his death
 		goblin._on_damage_handler_goblin_died()
-		#await get_tree().process_frame
+		# We wait a few frames to allow the engine to process everything
 		await wait_frames(2)
+		# The goblin should be freed from memory
 		assert_freed(goblin)
 
 
 
 	# Test goblin death, if dmg handler emits its signal (Integration test)
 	func test_goblin_dies_when_damage_handler_emits_signal():
+		# Create a new handler object
 		var damage_handler = preload("res://entities/goblin/damageHandler.gd").new()
+		# Add it to the goblin object
 		goblin.add_child(damage_handler)
+		# Connect the signal
 		damage_handler.connect("goblin_died", Callable(goblin, "_on_damage_handler_goblin_died"))
 		
+		# Watch for any signals that the goblin sees
 		watch_signals(goblin)
 		
+		# The damage handler emits a signal
 		damage_handler.emit_signal("goblin_died")
+		# We wait a few frames to allow for processing
 		await wait_frames(2)
+		# If the goblin is freed, we know the signal was received
 		assert_freed(goblin, "Goblin should free itself after receiving goblin_died signal.")
 		
 		# Removing potential orphan nodes
