@@ -1,51 +1,56 @@
-[gd_scene load_steps=13 format=3 uid="uid://bnrfrkdsmnw48"]
+[gd_scene load_steps=22 format=3 uid="uid://bnrfrkdsmnw48"]
 
 [ext_resource type="Script" uid="uid://bnoebxhe6p0o1" path="res://entities/goblin/damageHandler.gd" id="1_fthgw"]
 [ext_resource type="Script" uid="uid://207uwl76xuo2" path="res://entities/goblin/goblin.gd" id="1_w1pob"]
-[ext_resource type="Texture2D" uid="uid://b7xfbdeay65bn" path="res://entities/goblin/goblin_profiles.png" id="2_fthgw"]
+[ext_resource type="Script" uid="uid://dfl57bvdn0c7l" path="res://entities/player/resources/FlipRule.gd" id="2_vh3y7"]
+[ext_resource type="Script" uid="uid://eji52ig0w3g5" path="res://addons/remotetransform2dextended/remoteTransform.gd" id="3_8x0tl"]
+[ext_resource type="Texture2D" uid="uid://ypunxgw81tjq" path="res://entities/goblin/arm.png" id="4_vh3y7"]
+[ext_resource type="Texture2D" uid="uid://b33jfbsl271km" path="res://entities/goblin/leg.png" id="5_1lev3"]
+[ext_resource type="Texture2D" uid="uid://b3ljmykfvdr06" path="res://entities/goblin/body.png" id="6_7avui"]
+
+[sub_resource type="Resource" id="Resource_1lev3"]
+script = ExtResource("2_vh3y7")
+NodeToFlip = "bArmHolder"
+OriginalPosition = 0
+FlippedPosition = -1
+changeModulation = false
+normalModulation = Color(0.913725, 0.913725, 0.913725, 1)
+flippedModulation = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://dfl57bvdn0c7l"
+
+[sub_resource type="Resource" id="Resource_7avui"]
+script = ExtResource("2_vh3y7")
+NodeToFlip = "bLegHolder"
+OriginalPosition = 1
+FlippedPosition = -2
+changeModulation = false
+normalModulation = Color(0.913725, 0.913725, 0.913725, 1)
+flippedModulation = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://dfl57bvdn0c7l"
+
+[sub_resource type="Resource" id="Resource_uk0sn"]
+script = ExtResource("2_vh3y7")
+NodeToFlip = "fLegHolder"
+OriginalPosition = -2
+FlippedPosition = 0
+changeModulation = false
+normalModulation = Color(1, 1, 1, 1)
+flippedModulation = Color(0.913725, 0.913725, 0.913725, 1)
+metadata/_custom_type_script = "uid://dfl57bvdn0c7l"
+
+[sub_resource type="Resource" id="Resource_lraa0"]
+script = ExtResource("2_vh3y7")
+NodeToFlip = "fArmHolder"
+OriginalPosition = -1
+FlippedPosition = 1
+changeModulation = false
+normalModulation = Color(1, 1, 1, 1)
+flippedModulation = Color(0.913725, 0.913725, 0.913725, 1)
+metadata/_custom_type_script = "uid://dfl57bvdn0c7l"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jj2aj"]
 radius = 5.0
 height = 32.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5svo4"]
-atlas = ExtResource("2_fthgw")
-region = Rect2(0, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jj2aj"]
-atlas = ExtResource("2_fthgw")
-region = Rect2(16, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8x0tl"]
-atlas = ExtResource("2_fthgw")
-region = Rect2(32, 0, 16, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_vh3y7"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5svo4")
-}],
-"loop": true,
-"name": &"left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jj2aj")
-}],
-"loop": true,
-"name": &"normal",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8x0tl")
-}],
-"loop": true,
-"name": &"right",
-"speed": 5.0
-}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1lev3"]
 radius = 4.0
@@ -60,6 +65,34 @@ size = Vector2(8, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5svo4"]
 size = Vector2(3, 30)
 
+[sub_resource type="SkeletonModification2DLookAt" id="SkeletonModification2DLookAt_uk0sn"]
+bone_index = 1
+bone2d_node = NodePath("Bone2D/fLeg")
+target_nodepath = NodePath("../targets/fLeg")
+
+[sub_resource type="SkeletonModification2DLookAt" id="SkeletonModification2DLookAt_lraa0"]
+bone_index = 2
+bone2d_node = NodePath("Bone2D/bLeg")
+target_nodepath = NodePath("../targets/bLeg")
+
+[sub_resource type="SkeletonModification2DLookAt" id="SkeletonModification2DLookAt_f6yvn"]
+bone_index = 3
+bone2d_node = NodePath("Bone2D/fArm")
+target_nodepath = NodePath("../targets/fArm")
+
+[sub_resource type="SkeletonModification2DLookAt" id="SkeletonModification2DLookAt_bvfte"]
+bone_index = 4
+bone2d_node = NodePath("Bone2D/bArm")
+target_nodepath = NodePath("../targets/bArm")
+
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_x6tef"]
+enabled = true
+modification_count = 4
+modifications/0 = SubResource("SkeletonModification2DLookAt_uk0sn")
+modifications/1 = SubResource("SkeletonModification2DLookAt_lraa0")
+modifications/2 = SubResource("SkeletonModification2DLookAt_f6yvn")
+modifications/3 = SubResource("SkeletonModification2DLookAt_bvfte")
+
 [node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("directionFlip", "groundDetection", "groundDetection_Deep", "jumpBlockDetection")]
 collision_layer = 4
 script = ExtResource("1_w1pob")
@@ -67,6 +100,7 @@ directionFlip = NodePath("directionFlip")
 groundDetection = NodePath("directionFlip/GroundDetector")
 groundDetection_Deep = NodePath("directionFlip/GroundDetector_Deep")
 jumpBlockDetection = NodePath("directionFlip/JumpBlockDetector")
+FlipRules = Array[ExtResource("2_vh3y7")]([SubResource("Resource_1lev3"), SubResource("Resource_7avui"), SubResource("Resource_uk0sn"), SubResource("Resource_lraa0")])
 
 [node name="DamageHandler" type="Node2D" parent="."]
 script = ExtResource("1_fthgw")
@@ -79,10 +113,6 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageHandler/StaticBody2D"]
 shape = SubResource("CapsuleShape2D_jj2aj")
-
-[node name="goblinSprite" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_vh3y7")
-animation = &"left"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_1lev3")
@@ -136,6 +166,132 @@ collision_mask = 6
 [node name="CollisionShape2D" type="CollisionShape2D" parent="directionFlip/EntityDetector"]
 position = Vector2(-2, 1)
 shape = SubResource("RectangleShape2D_5svo4")
+
+[node name="Skeleton2D" type="Skeleton2D" parent="."]
+visible = false
+modification_stack = SubResource("SkeletonModificationStack2D_x6tef")
+
+[node name="Bone2D" type="Bone2D" parent="Skeleton2D"]
+editor_settings/show_bone_gizmo = false
+
+[node name="fLeg" type="Bone2D" parent="Skeleton2D/Bone2D"]
+visible = false
+position = Vector2(0, 8)
+auto_calculate_length_and_angle = false
+length = 8.0
+bone_angle = 90.0
+editor_settings/show_bone_gizmo = false
+metadata/_local_pose_override_enabled_ = true
+
+[node name="RemoteTransform2DExtended" type="Node2D" parent="Skeleton2D/Bone2D/fLeg" node_paths=PackedStringArray("node")]
+position = Vector2(0, 4)
+script = ExtResource("3_8x0tl")
+node = NodePath("../../../../sprites/fLegHolder")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="bLeg" type="Bone2D" parent="Skeleton2D/Bone2D"]
+visible = false
+position = Vector2(0, 8)
+auto_calculate_length_and_angle = false
+length = 8.0
+bone_angle = 90.0
+editor_settings/show_bone_gizmo = false
+metadata/_local_pose_override_enabled_ = true
+
+[node name="RemoteTransform2DExtended" type="Node2D" parent="Skeleton2D/Bone2D/bLeg" node_paths=PackedStringArray("node")]
+position = Vector2(0, 4)
+script = ExtResource("3_8x0tl")
+node = NodePath("../../../../sprites/bLegHolder")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="fArm" type="Bone2D" parent="Skeleton2D/Bone2D"]
+position = Vector2(-0.5, -1)
+auto_calculate_length_and_angle = false
+length = 7.0
+bone_angle = 90.0
+metadata/_local_pose_override_enabled_ = true
+
+[node name="RemoteTransform2DExtended" type="Node2D" parent="Skeleton2D/Bone2D/fArm" node_paths=PackedStringArray("node")]
+position = Vector2(0, 3)
+script = ExtResource("3_8x0tl")
+node = NodePath("../../../../sprites/fArmHolder")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="bArm" type="Bone2D" parent="Skeleton2D/Bone2D"]
+position = Vector2(-0.5, -1)
+auto_calculate_length_and_angle = false
+length = 7.0
+bone_angle = 90.0
+metadata/_local_pose_override_enabled_ = true
+
+[node name="RemoteTransform2DExtended" type="Node2D" parent="Skeleton2D/Bone2D/bArm" node_paths=PackedStringArray("node")]
+position = Vector2(0, 3)
+script = ExtResource("3_8x0tl")
+node = NodePath("../../../../sprites/bArmHolder")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="RemoteTransform2DExtended" type="Node2D" parent="Skeleton2D/Bone2D" node_paths=PackedStringArray("node")]
+position = Vector2(-0.5, -4)
+script = ExtResource("3_8x0tl")
+node = NodePath("../../../sprites/Body")
+Position = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
+[node name="sprites" type="Node2D" parent="."]
+
+[node name="bArmHolder" type="Node2D" parent="sprites"]
+modulate = Color(0.913725, 0.913725, 0.913725, 1)
+position = Vector2(-3.26491, 0.164171)
+rotation = 1.17227
+
+[node name="bArm" type="Sprite2D" parent="sprites/bArmHolder"]
+texture = ExtResource("4_vh3y7")
+
+[node name="bLegHolder" type="Node2D" parent="sprites"]
+modulate = Color(0.913725, 0.913725, 0.913725, 1)
+position = Vector2(2.32495, 11.2549)
+rotation = -0.62025
+
+[node name="bLeg" type="Sprite2D" parent="sprites/bLegHolder"]
+texture = ExtResource("5_1lev3")
+
+[node name="Body" type="Sprite2D" parent="sprites"]
+position = Vector2(-0.5, -4)
+texture = ExtResource("6_7avui")
+
+[node name="fLegHolder" type="Node2D" parent="sprites"]
+position = Vector2(4.76836e-07, 12)
+
+[node name="fLeg" type="Sprite2D" parent="sprites/fLegHolder"]
+texture = ExtResource("5_1lev3")
+
+[node name="fArmHolder" type="Node2D" parent="sprites"]
+position = Vector2(-0.5, 1.99999)
+
+[node name="fArm" type="Sprite2D" parent="sprites/fArmHolder"]
+texture = ExtResource("4_vh3y7")
+
+[node name="targets" type="Node2D" parent="."]
+
+[node name="fArm" type="Marker2D" parent="targets"]
+position = Vector2(-0.5, 6)
+
+[node name="bArm" type="Marker2D" parent="targets"]
+position = Vector2(-10, 3)
+
+[node name="fLeg" type="Marker2D" parent="targets"]
+position = Vector2(0, 15)
+
+[node name="bLeg" type="Marker2D" parent="targets"]
+position = Vector2(5, 15)
 
 [connection signal="goblin_died" from="DamageHandler" to="." method="_on_damage_handler_goblin_died"]
 [connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]
