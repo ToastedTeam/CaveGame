@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://j8q2uvh3comw" path="res://scenes/main/camera.gd" id="5_7smn1"]
 [ext_resource type="PackedScene" uid="uid://jxyevycakmnv" path="res://scenes/interface/interface.tscn" id="6_raeie"]
 [ext_resource type="PackedScene" uid="uid://dywdkewy1ti6p" path="res://entities/target_dummy/target_dummy.tscn" id="7_hxu8e"]
+[ext_resource type="PackedScene" uid="uid://tuca5j0sn5nn" path="res://weapons/bow/bow.tscn" id="8_hxu8e"]
 [ext_resource type="Texture2D" uid="uid://bb0m10tlay88m" path="res://scenes/main/assets/world_tileset.png" id="9_ou6is"]
 [ext_resource type="PackedScene" uid="uid://dn52wlkh2g1wy" path="res://scenes/killzone/killzone.tscn" id="10_necax"]
 [ext_resource type="PackedScene" uid="uid://bnrfrkdsmnw48" path="res://entities/goblin/goblin.tscn" id="11_raeie"]
@@ -1691,12 +1692,16 @@ texture = ExtResource("9_ou6is")
 [sub_resource type="TileSet" id="TileSet_ev07y"]
 sources/1 = SubResource("TileSetAtlasSource_y2fb3")
 
+[sub_resource type="GDScript" id="GDScript_raeie"]
+script/source = "extends HBoxContainer
+"
+
 [node name="Main" type="Node2D"]
 
 [node name="GameObjects" type="Node" parent="."]
 
 [node name="TargetDummy" parent="GameObjects" instance=ExtResource("7_hxu8e")]
-position = Vector2(8, -16)
+position = Vector2(12, 2)
 maxInvincibilityFrames = 30
 
 [node name="RestArea" parent="GameObjects" instance=ExtResource("16_nvumn")]
@@ -1784,10 +1789,11 @@ rotation = 1.93946
 scale = Vector2(0.999991, 0.999991)
 
 [node name="forearm_r" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset/shoulder_r" index="1"]
-rotation = -0.833528
+rotation = -0.833526
 
 [node name="shoulder_f" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="2"]
 rotation = 2.43437
+scale = Vector2(0.999985, 0.999985)
 
 [node name="forearm_f" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset/shoulder_f" index="1"]
 rotation = -1.73952
@@ -2000,6 +2006,9 @@ tile_set = SubResource("TileSet_ev07y")
 collision_enabled = false
 
 [node name="Interface" parent="." instance=ExtResource("6_raeie")]
+
+[node name="ArrowCounter" parent="Interface/Interface2/VBoxContainer" index="2"]
+script = SubResource("GDScript_raeie")
 
 [node name="PauseMenu" parent="Interface" index="2"]
 offset_top = 0.0

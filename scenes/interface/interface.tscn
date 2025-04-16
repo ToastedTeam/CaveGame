@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://mkc0o25ok023" path="res://scenes/interface/mana_bar.tscn" id="2_juv2u"]
 [ext_resource type="Script" path="res://scenes/interface/WeaponSelectionScreen.gd" id="3_7i0gs"]
 [ext_resource type="PackedScene" uid="uid://dn8amu36njlul" path="res://scenes/MenuScenes/PauseMenu/pause_menu.tscn" id="3_qqekr"]
+[ext_resource type="Texture2D" uid="uid://bilyenhvipd38" path="res://weapons/bow/assets/icon.png" id="3_tf5yn"]
 [ext_resource type="Resource" uid="uid://c2qj0falsfk2y" path="res://weapons/weapons_table.tres" id="4_tf5yn"]
 [ext_resource type="PackedScene" uid="uid://dkhq71js8m0ax" path="res://scenes/debug_console/debug_console.tscn" id="6_7i0gs"]
 [ext_resource type="PackedScene" uid="uid://fcs7kmldpqud" path="res://scenes/inventory/inv_ui.tscn" id="7_tf5yn"]
@@ -31,6 +32,20 @@ layout_mode = 2
 
 [node name="ManaBar" parent="Interface2/VBoxContainer" instance=ExtResource("2_juv2u")]
 layout_mode = 2
+
+[node name="ArrowCounter" type="HBoxContainer" parent="Interface2/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Interface2/VBoxContainer/ArrowCounter"]
+layout_mode = 2
+texture = ExtResource("3_tf5yn")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Interface2/VBoxContainer/ArrowCounter"]
+layout_mode = 2
+text = "∞"
+fit_content = true
+autowrap_mode = 0
 
 [node name="WeaponSelector" type="PanelContainer" parent="."]
 visible = false
