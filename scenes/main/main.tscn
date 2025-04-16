@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=4 uid="uid://qtfciyfj33pt"]
+[gd_scene load_steps=56 format=4 uid="uid://qtfciyfj33pt"]
 
 [ext_resource type="PackedScene" uid="uid://c11ldn4yd0i8w" path="res://entities/player/player.tscn" id="3_blune"]
 [ext_resource type="Script" uid="uid://bhda60gy1q5tc" path="res://entities/player/player_ik_animator.gd" id="3_th5th"]
@@ -1689,6 +1689,10 @@ texture = ExtResource("9_ou6is")
 [sub_resource type="TileSet" id="TileSet_ev07y"]
 sources/1 = SubResource("TileSetAtlasSource_y2fb3")
 
+[sub_resource type="GDScript" id="GDScript_raeie"]
+script/source = "extends HBoxContainer
+"
+
 [node name="Main" type="Node2D"]
 
 [node name="GameObjects" type="Node" parent="."]
@@ -1782,10 +1786,11 @@ rotation = 1.93946
 scale = Vector2(0.999991, 0.999991)
 
 [node name="forearm_r" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset/shoulder_r" index="1"]
-rotation = -0.833528
+rotation = -0.833526
 
 [node name="shoulder_f" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="2"]
 rotation = 2.43437
+scale = Vector2(0.999985, 0.999985)
 
 [node name="forearm_f" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset/shoulder_f" index="1"]
 rotation = -1.73952
@@ -1802,12 +1807,12 @@ rotation = -0.276292
 scale = Vector2(0.99984, 0.99984)
 
 [node name="Forearm_R" parent="GameObjects/Player/sprites" index="0"]
-position = Vector2(-2.91472, -0.926937)
+position = Vector2(-2.91475, -0.926952)
 rotation = -0.464865
 
 [node name="Shoulder_R" parent="GameObjects/Player/sprites" index="1"]
-position = Vector2(-3.80115, -9.83455)
-rotation = 0.368658
+position = Vector2(-3.80116, -9.83456)
+rotation = 0.368662
 
 [node name="Calf_B" parent="GameObjects/Player/sprites" index="2"]
 position = Vector2(3.67006, 14.0344)
@@ -1830,7 +1835,7 @@ position = Vector2(-5.2769, -28.0557)
 
 [node name="Head" parent="GameObjects/Player/sprites" index="7"]
 position = Vector2(-1.54036, -20.4958)
-rotation = -0.00580464
+rotation = -0.00580466
 
 [node name="FrontHair" parent="GameObjects/Player/sprites" index="8"]
 position = Vector2(-6.51007, -26.1904)
@@ -1988,6 +1993,9 @@ tile_set = SubResource("TileSet_ev07y")
 collision_enabled = false
 
 [node name="Interface" parent="." instance=ExtResource("6_raeie")]
+
+[node name="ArrowCounter" parent="Interface/Interface2/VBoxContainer" index="2"]
+script = SubResource("GDScript_raeie")
 
 [node name="PauseMenu" parent="Interface" index="2"]
 offset_top = 0.0

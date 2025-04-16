@@ -6,11 +6,12 @@ extends RangedWeapon
 var arrow_speed_mult = 1
 var arrow_down_pull = 20
 
+
 func _on_attack_key_press() -> void:
 	super._on_attack_key_press()
 	
-	Global.playerBody.move_speed *= 0.5
-	
+	Global.playerBody.move_speed *= 0.25
+		
 	sprite.hide()
 	animation.show()
 
@@ -47,7 +48,7 @@ func _on_attack_key_release() -> void:
 	
 	_projectile_start()
 	
-	Global.playerBody.move_speed *= 2
+	Global.playerBody.move_speed *= 4
 	
 	animation.hide()
 	sprite.show()
