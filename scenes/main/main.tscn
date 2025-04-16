@@ -1694,7 +1694,7 @@ sources/1 = SubResource("TileSetAtlasSource_y2fb3")
 [node name="GameObjects" type="Node" parent="."]
 
 [node name="TargetDummy" parent="GameObjects" instance=ExtResource("7_hxu8e")]
-position = Vector2(8, -16)
+position = Vector2(12, 2)
 maxInvincibilityFrames = 30
 
 [node name="RestArea" parent="GameObjects" instance=ExtResource("16_nvumn")]
@@ -1774,12 +1774,11 @@ position = Vector2(0, 0)
 scale = Vector2(0.999844, 0.999844)
 
 [node name="head" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="0"]
-rotation = -0.0058046
-scale = Vector2(0.999859, 0.999859)
+rotation = -0.00580461
+scale = Vector2(0.9999, 0.9999)
 
 [node name="shoulder_r" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="1"]
 rotation = 1.93946
-scale = Vector2(0.999991, 0.999991)
 
 [node name="forearm_r" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset/shoulder_r" index="1"]
 rotation = -0.833528
@@ -1804,12 +1803,12 @@ rotation = -0.276292
 scale = Vector2(0.99984, 0.99984)
 
 [node name="Forearm_R" parent="GameObjects/Player/sprites" index="0"]
-position = Vector2(-2.91475, -0.926949)
-rotation = -0.464864
+position = Vector2(-2.91472, -0.926937)
+rotation = -0.464865
 
 [node name="Shoulder_R" parent="GameObjects/Player/sprites" index="1"]
-position = Vector2(-3.80115, -9.83456)
-rotation = 0.368661
+position = Vector2(-3.80115, -9.83455)
+rotation = 0.368658
 
 [node name="Calf_B" parent="GameObjects/Player/sprites" index="2"]
 position = Vector2(3.67006, 14.0344)
@@ -1832,7 +1831,7 @@ position = Vector2(-5.2769, -28.0557)
 
 [node name="Head" parent="GameObjects/Player/sprites" index="7"]
 position = Vector2(-1.54036, -20.4958)
-rotation = -0.00580461
+rotation = -0.00580464
 
 [node name="FrontHair" parent="GameObjects/Player/sprites" index="8"]
 position = Vector2(-6.51007, -26.1904)
