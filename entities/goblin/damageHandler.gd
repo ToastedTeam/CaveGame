@@ -9,19 +9,20 @@ func _ready() -> void:
 	Log.info(health)
 
 func Damage(damage: float, source: Node2D):
+	if source == null:
+		Log.info(name + " took damage form a null source")
+		return
 	if invincibilityFrames > 0:
-		return;
+		return
 	health -= damage;
+	
 	var tween = get_tree().create_tween()
 	tween.tween_property(parent, "modulate", Color.RED, 0.05);
 	tween.tween_property(parent, "modulate", Color.WHITE, 0.05);
 	invincibilityFrames = maxInvincibilityFrames;
 	Log.info(name + " took " + str(damage) + " damage, health left: " + str(health))
-	pass
 
 func handleDeath():
 	#health = minHealth
 	
 	goblin_died.emit()
-	
-	

@@ -6,6 +6,8 @@ class_name Goblin_Enemy
 @export var groundDetection_Deep: Area2D
 @export var jumpBlockDetection: Area2D
 
+@export var FlipRules: Array[FlipRule];
+
 const speed = 60
 const jump_speed = 128
 var is_goblin_chase: bool = false # Set to true if u want the goblin to chase the player
@@ -17,6 +19,7 @@ var base_damage = 3
 var is_dealing_damage: bool = false
 
 var dir: Vector2
+var lastDir: Vector2
 var is_roaming: bool = true
 
 var player: CharacterBody2D
@@ -29,10 +32,33 @@ enum GoblinInstruction {
 }
 var goblinInstruction: GoblinInstruction = GoblinInstruction.None
 
+#IK values
+@onready var fArm = $targets/fArm
+@onready var bArm = $targets/bArm
+@onready var fLeg = $targets/fLeg
+@onready var bLeg = $targets/bLeg
+var legRestPos = Vector2(0, 15)
+var legIkScale = 5
+var armRestPos = Vector2(-0.5, 6)
+var armIkScale = 5
+var ikDelta = 0
 
 func _ready() -> void:
 	rng = RandomNumberGenerator.new()
 	
+
+
+# Custom methods to test weather the goblin is on a wall, has ground or is blocked for jumping
+func is_on_wall_custom() -> bool:
+	return is_on_wall()
+
+func has_ground() -> bool:
+	return groundDetection.has_overlapping_bodies() or groundDetection_Deep.has_overlapping_bodies()
+
+func is_jump_blocked() -> bool:
+	return jumpBlockDetection.has_overlapping_bodies()
+
+
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -44,11 +70,12 @@ func _physics_process(delta: float) -> void:
 	
 	move(delta)
 	handle_sprite()
-	
+	_ik_process(delta*5)
 	if is_jumping:
 		handle_jump()
 	
 	move_and_slide()
+	lastDir = dir
 
 # Main movement logic
 func move(delta):
@@ -57,14 +84,15 @@ func move(delta):
 		if !is_goblin_chase:
 			if player_in_area:
 				velocity.x = 0
+				dir.x = 0
 				return
 			
 			# If the ground detector has detected floor in front of us, we can move
-			if (groundDetection.has_overlapping_bodies() or groundDetection_Deep.has_overlapping_bodies()):
+			if (has_ground()):
 				# If the goblin touches a wall, he should try to jump
-				if is_on_wall():
+				if is_on_wall_custom():
 					# If the goblin can jump over this wall, he should try it
-					if(!jumpBlockDetection.has_overlapping_bodies()):
+					if(!is_jump_blocked()):
 						is_jumping = true
 				velocity.x = dir.x * speed
 			# Otherwise, try the other direction
@@ -76,7 +104,7 @@ func move(delta):
 		elif is_goblin_chase:
 			# If the ground detector has detected floor in front of us, we can chase
 			# Otherwise it might be wise to wait on the ledge, maybe they will come back!
-			if (groundDetection.has_overlapping_bodies() or groundDetection_Deep.has_overlapping_bodies()):
+			if (has_ground()):
 				var dir_to_player = position.direction_to(player.position)
 				
 				if(dir_to_player.x > 0):
@@ -86,9 +114,9 @@ func move(delta):
 					velocity.x = -speed
 					
 				# If the goblin touches a wall, he should try to jump
-				if is_on_wall():
+				if is_on_wall_custom():
 					# If the goblin can jump over this wall, he should try it
-					if(!jumpBlockDetection.has_overlapping_bodies()):
+					if(!is_jump_blocked()):
 						is_jumping = true
 				
 				dir.x = abs(velocity.x) / velocity.x
@@ -101,24 +129,69 @@ func move(delta):
 	elif dead:
 		velocity.x = 0
 
+#IK processing
+func _ik_process(delta: float):
+	if dir.x == 0:
+		fLeg.position = (fLeg.position as Vector2).lerp(legRestPos, delta)
+		bLeg.position = (bLeg.position as Vector2).lerp(legRestPos, delta)
+		fArm.position = (fArm.position as Vector2).lerp(armRestPos, delta)
+		bArm.position = (bArm.position as Vector2).lerp(armRestPos, delta)
+		ikDelta = 0;
+	else:
+		ikDelta += delta;
+		var offset = Vector2(sin(ikDelta), 0)
+		fLeg.position = (fLeg.position as Vector2).lerp(legRestPos + offset*legIkScale, delta)
+		bLeg.position = (bLeg.position as Vector2).lerp(legRestPos - offset*legIkScale, delta)
+		fArm.position = (fArm.position as Vector2).lerp(armRestPos - offset*armIkScale, delta)
+		bArm.position = (bArm.position as Vector2).lerp(armRestPos + offset*armIkScale, delta)
+	pass
+
 # Basic jump function
 func handle_jump():
 	velocity.y = -jump_speed
 	is_jumping = false
 
+func _Flip_All_Sprites(flipped: bool, base: Node2D = get_node("sprites")) -> void:
+	for sprite: Node2D in base.get_children(true):
+		if sprite == null or sprite.is_in_group("noFlip"):
+			continue;
+		sprite.scale.x = -1 if flipped else 1;
+	pass
+
+func _Apply_FlipRules(flipped: bool):
+	var sprites = $sprites
+	for rule in FlipRules:
+		var targetNode: Node2D = sprites.get_node(rule.NodeToFlip)
+		sprites.move_child(targetNode, rule.FlippedPosition if flipped else rule.OriginalPosition)
+		if rule.changeModulation:
+			targetNode.modulate = rule.flippedModulation if flipped else rule.normalModulation
+
 # Changes the sprite based on the direction of the goblin
 func handle_sprite():
-	var sprite = $goblinSprite
-	#if !dead and !taking_damage and !is_dealing_damage:
 	if dir.x == -1:
-		sprite.play("left")
+		$targets.scale.x = 1
 		directionFlip.scale.x = 1
 	elif dir.x == 1:
-		sprite.play("right")
+		$targets.scale.x = -1
 		directionFlip.scale.x = -1
-	elif dir.x == 0:
-		sprite.play("normal")
-		directionFlip.scale.x = 0
+	
+	if lastDir != dir:
+		var isFlipped = false if dir.x == -1 else true
+		_Flip_All_Sprites(isFlipped);
+		_Apply_FlipRules(isFlipped);
+	
+	pass
+	#var sprite = $goblinSprite
+	#if !dead and !taking_damage and !is_dealing_damage:
+	#if dir.x == -1:
+		#sprite.play("left")
+		#directionFlip.scale.x = 1
+	#elif dir.x == 1:
+		#sprite.play("right")
+		#directionFlip.scale.x = -1
+	#elif dir.x == 0:
+		#sprite.play("normal")
+		#directionFlip.scale.x = 0
 
 func _on_direction_timer_timeout() -> void:
 	$DirectionTimer.wait_time = chose([1.5, 2.0, 2.5])

@@ -1774,8 +1774,8 @@ position = Vector2(0, 0)
 scale = Vector2(0.999844, 0.999844)
 
 [node name="head" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="0"]
-rotation = -0.00580464
-scale = Vector2(0.999857, 0.999857)
+rotation = -0.0058046
+scale = Vector2(0.999859, 0.999859)
 
 [node name="shoulder_r" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="1"]
 rotation = 1.93946
@@ -1828,14 +1828,14 @@ position = Vector2(1.13631, 5.77062)
 rotation = -0.276292
 
 [node name="BHair" parent="GameObjects/Player/sprites" index="6"]
-position = Vector2(-5.2769, -28.0554)
+position = Vector2(-5.2769, -28.0557)
 
 [node name="Head" parent="GameObjects/Player/sprites" index="7"]
-position = Vector2(-1.54036, -20.4955)
-rotation = -0.00580462
+position = Vector2(-1.54036, -20.4958)
+rotation = -0.00580461
 
 [node name="FrontHair" parent="GameObjects/Player/sprites" index="8"]
-position = Vector2(-6.51007, -26.1902)
+position = Vector2(-6.51007, -26.1904)
 
 [node name="Torso" parent="GameObjects/Player/sprites" index="9"]
 position = Vector2(0, -7.99875)
@@ -1955,6 +1955,9 @@ shape = SubResource("WorldBoundaryShape2D_kfodh")
 
 [node name="Goblin" parent="GameObjects" instance=ExtResource("11_raeie")]
 position = Vector2(3274, -187)
+
+[node name="Goblin2" parent="GameObjects" instance=ExtResource("11_raeie")]
+position = Vector2(-43, -28)
 
 [node name="Map" type="Node" parent="."]
 

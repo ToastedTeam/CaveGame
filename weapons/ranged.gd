@@ -20,7 +20,7 @@ func _projectile_init() -> void:
 	proj_instance.global_position = $ProjectileMarker.global_position
 
 func _projectile_start() -> void:
-	get_tree().root.get_child(0).add_child(proj_instance)
+	self.add_child(proj_instance)
 
 func _on_attack_key_release() -> void:
 	super._on_attack_key_release()
