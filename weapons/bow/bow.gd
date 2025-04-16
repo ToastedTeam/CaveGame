@@ -9,6 +9,8 @@ var arrow_down_pull = 20
 func _on_attack_key_press() -> void:
 	super._on_attack_key_press()
 	
+	Global.playerBody.move_speed *= 0.5
+	
 	sprite.hide()
 	animation.show()
 
@@ -44,6 +46,8 @@ func _on_attack_key_release() -> void:
 	proj_instance.down_pull_factor = arrow_down_pull
 	
 	_projectile_start()
+	
+	Global.playerBody.move_speed *= 2
 	
 	animation.hide()
 	sprite.show()
