@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5ylosh1li3o3"
-path="res://.godot/imported/Tankard.png-d892c53680b58423d29eb9c64c1f0d4e.ctex"
+uid="uid://74iebj20stmb"
+path="res://.godot/imported/potions2.png-448f9f388d8840d3e6f3678a9e8e8f99.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/RestArea/Tankard.png"
-dest_files=["res://.godot/imported/Tankard.png-d892c53680b58423d29eb9c64c1f0d4e.ctex"]
+source_file="res://scenes/RestArea/x32/potions2.png"
+dest_files=["res://.godot/imported/potions2.png-448f9f388d8840d3e6f3678a9e8e8f99.ctex"]
 
 [params]
 

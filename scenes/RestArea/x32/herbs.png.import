@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cu83xsmat3jfu"
-path="res://.godot/imported/Wooden_Crate.png-474043748abf76b1657a0bbf0673627a.ctex"
+uid="uid://pw1llcd7l1m3"
+path="res://.godot/imported/herbs.png-2c8955e9d0fc18a3cdef7eed63301660.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/RestArea/Wooden_Crate.png"
-dest_files=["res://.godot/imported/Wooden_Crate.png-474043748abf76b1657a0bbf0673627a.ctex"]
+source_file="res://scenes/RestArea/x32/herbs.png"
+dest_files=["res://.godot/imported/herbs.png-2c8955e9d0fc18a3cdef7eed63301660.ctex"]
 
 [params]
 

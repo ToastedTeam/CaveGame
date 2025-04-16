@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dofpuwmu4fgp8"
-path="res://.godot/imported/Decor_Helment.png-ff2346d9e33f81ad54f82f59d0773287.ctex"
+uid="uid://bg0sqcutpkxqj"
+path="res://.godot/imported/tankard.png-a168f54d942ccca816cedc63406b8a38.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/RestArea/Decor_Helment.png"
-dest_files=["res://.godot/imported/Decor_Helment.png-ff2346d9e33f81ad54f82f59d0773287.ctex"]
+source_file="res://scenes/RestArea/x32/tankard.png"
+dest_files=["res://.godot/imported/tankard.png-a168f54d942ccca816cedc63406b8a38.ctex"]
 
 [params]
 

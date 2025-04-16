@@ -2,19 +2,19 @@
 
 [ext_resource type="PackedScene" uid="uid://babgoqd6p8s7d" path="res://structures/rest_area/rest_area.tscn" id="1_1kgiq"]
 [ext_resource type="Texture2D" uid="uid://bac2omylr5jft" path="res://scenes/RestArea/log.png" id="2_2wqhg"]
-[ext_resource type="Texture2D" uid="uid://b66u4ajugyuvx" path="res://scenes/RestArea/Wooden_Barrel.png" id="3_l8qxs"]
-[ext_resource type="Texture2D" uid="uid://djsby2jk67iar" path="res://scenes/RestArea/Bottle.png" id="4_j0kqi"]
-[ext_resource type="Texture2D" uid="uid://cnv7fua58dk3k" path="res://scenes/RestArea/Herbs.png" id="4_qfkcy"]
-[ext_resource type="Texture2D" uid="uid://mon787o34rgg" path="res://scenes/RestArea/Street_Lantern.png" id="5_wfsel"]
-[ext_resource type="Texture2D" uid="uid://cw70cixcgavf1" path="res://scenes/RestArea/Table_01.png" id="6_7u8at"]
-[ext_resource type="Texture2D" uid="uid://byy8k1i5eqpse" path="res://scenes/RestArea/Chair.png" id="7_2ic41"]
-[ext_resource type="Texture2D" uid="uid://dl0poxgsng36g" path="res://scenes/RestArea/Decor_Bread.png" id="8_6qc0l"]
-[ext_resource type="Texture2D" uid="uid://cre8xsmd38tb4" path="res://scenes/RestArea/Decor_Chest.png" id="10_255nb"]
-[ext_resource type="Texture2D" uid="uid://dofpuwmu4fgp8" path="res://scenes/RestArea/Decor_Helment.png" id="11_s8184"]
-[ext_resource type="Texture2D" uid="uid://5ylosh1li3o3" path="res://scenes/RestArea/Tankard.png" id="12_g458n"]
-[ext_resource type="Texture2D" uid="uid://cu83xsmat3jfu" path="res://scenes/RestArea/Wooden_Crate.png" id="13_g458n"]
-[ext_resource type="Texture2D" uid="uid://dht24xcsso5pf" path="res://scenes/RestArea/Decor_Potions_02.png" id="14_0sdec"]
-[ext_resource type="Texture2D" uid="uid://b5y6x05cfy45y" path="res://scenes/RestArea/Decor_Potions_01.png" id="15_j3ix8"]
+[ext_resource type="Texture2D" uid="uid://d352dl6nl63gw" path="res://scenes/RestArea/x32/barrel.png" id="9_0sdec"]
+[ext_resource type="Texture2D" uid="uid://74iebj20stmb" path="res://scenes/RestArea/x32/potions2.png" id="10_j3ix8"]
+[ext_resource type="Texture2D" uid="uid://bniubg140dk6b" path="res://scenes/RestArea/x32/lantern.png" id="11_ybi6v"]
+[ext_resource type="Texture2D" uid="uid://pw1llcd7l1m3" path="res://scenes/RestArea/x32/herbs.png" id="12_mgiv6"]
+[ext_resource type="Texture2D" uid="uid://bqm24kmgj3ku7" path="res://scenes/RestArea/x32/bottle.png" id="13_0sdec"]
+[ext_resource type="Texture2D" uid="uid://dwjdsxgrh5wbt" path="res://scenes/RestArea/x32/helmet.png" id="13_mr661"]
+[ext_resource type="Texture2D" uid="uid://bg0sqcutpkxqj" path="res://scenes/RestArea/x32/tankard.png" id="14_j3ix8"]
+[ext_resource type="Texture2D" uid="uid://cj00i6t8i1c7b" path="res://scenes/RestArea/x32/chest.png" id="14_nqqli"]
+[ext_resource type="Texture2D" uid="uid://bdx56os3d25rl" path="res://scenes/RestArea/x32/ze bred.png" id="15_g458n"]
+[ext_resource type="Texture2D" uid="uid://c5hjfj5bu2rjc" path="res://scenes/RestArea/x32/box.png" id="15_pshy2"]
+[ext_resource type="Texture2D" uid="uid://b0t5kgtbn8ham" path="res://scenes/RestArea/x32/table.png" id="15_ybi6v"]
+[ext_resource type="Texture2D" uid="uid://d15ottfx15q6" path="res://scenes/RestArea/x32/potions1.png" id="16_172vv"]
+[ext_resource type="Texture2D" uid="uid://bmvgg3jp6uc8p" path="res://scenes/RestArea/x32/chair.png" id="16_mgiv6"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -24,103 +24,107 @@ position = Vector2(624, 720)
 [node name="WoodenBarrel" type="Sprite2D" parent="RestArea"]
 position = Vector2(569, 711)
 scale = Vector2(0.136719, 0.140626)
-texture = ExtResource("3_l8qxs")
 
 [node name="Log" type="Sprite2D" parent="."]
 position = Vector2(654, 717)
 rotation = -0.591017
 texture = ExtResource("2_2wqhg")
 
-[node name="Herbs" type="Sprite2D" parent="."]
-position = Vector2(713, 715)
-scale = Vector2(0.0644532, 0.0468751)
-texture = ExtResource("4_qfkcy")
+[node name="ZeBred" type="Sprite2D" parent="."]
+position = Vector2(559, 702)
+scale = Vector2(0.328125, 0.281253)
+texture = ExtResource("15_g458n")
 
-[node name="WoodenBarrel" type="Sprite2D" parent="."]
-position = Vector2(509, 711)
-scale = Vector2(0.136719, 0.140626)
-texture = ExtResource("3_l8qxs")
+[node name="Bottle3" type="Sprite2D" parent="."]
+position = Vector2(567, 702)
+scale = Vector2(0.218751, 0.273439)
+texture = ExtResource("13_0sdec")
 
-[node name="WoodenBarrel2" type="Sprite2D" parent="."]
-position = Vector2(524, 711)
-scale = Vector2(0.136719, 0.140626)
-texture = ExtResource("3_l8qxs")
-
-[node name="WoodenBarrel3" type="Sprite2D" parent="."]
-position = Vector2(516, 695)
-scale = Vector2(0.136719, 0.140626)
-texture = ExtResource("3_l8qxs")
-
-[node name="Bottle" type="Sprite2D" parent="."]
-position = Vector2(526, 700)
-scale = Vector2(0.0468749, 0.0585938)
-texture = ExtResource("4_j0kqi")
-
-[node name="StreetLantern" type="Sprite2D" parent="."]
-position = Vector2(498, 692.25)
-scale = Vector2(0.101042, 0.115625)
-texture = ExtResource("5_wfsel")
-flip_h = true
-
-[node name="Table01" type="Sprite2D" parent="."]
-position = Vector2(551, 712)
-scale = Vector2(0.191406, 0.128906)
-texture = ExtResource("6_7u8at")
-
-[node name="Table02" type="Sprite2D" parent="."]
-position = Vector2(574, 712)
-scale = Vector2(0.191406, 0.128906)
-texture = ExtResource("6_7u8at")
-flip_h = true
-
-[node name="Chair" type="Sprite2D" parent="."]
-position = Vector2(591.5, 712)
-scale = Vector2(0.117187, 0.125)
-texture = ExtResource("7_2ic41")
-
-[node name="DecorBread" type="Sprite2D" parent="."]
-position = Vector2(560, 702.25)
-scale = Vector2(0.078125, 0.0664066)
-texture = ExtResource("8_6qc0l")
-
-[node name="Bottle2" type="Sprite2D" parent="."]
-position = Vector2(567.5, 701.375)
-scale = Vector2(0.0546875, 0.0683593)
-texture = ExtResource("4_j0kqi")
-
-[node name="DecorChest" type="Sprite2D" parent="."]
-position = Vector2(695, 707.25)
-scale = Vector2(0.09375, 0.0996092)
-texture = ExtResource("10_255nb")
-
-[node name="DecorHelment" type="Sprite2D" parent="."]
-position = Vector2(698, 706)
-rotation = -3.86796
-scale = Vector2(0.0856319, 0.0874167)
-texture = ExtResource("11_s8184")
-
-[node name="Tankard" type="Sprite2D" parent="."]
+[node name="Tankard2" type="Sprite2D" parent="."]
 position = Vector2(575, 703)
-scale = Vector2(0.0507809, 0.046875)
-texture = ExtResource("12_g458n")
+scale = Vector2(0.203124, 0.203127)
+texture = ExtResource("14_j3ix8")
 
-[node name="StreetLantern2" type="Sprite2D" parent="."]
-position = Vector2(740, 692.25)
-scale = Vector2(0.101042, 0.115625)
-texture = ExtResource("5_wfsel")
+[node name="Table" type="Sprite2D" parent="."]
+position = Vector2(551, 712)
+scale = Vector2(0.6875, 0.500001)
+texture = ExtResource("15_ybi6v")
+
+[node name="Table2" type="Sprite2D" parent="."]
+position = Vector2(573, 712)
+scale = Vector2(0.6875, 0.500001)
+texture = ExtResource("15_ybi6v")
 flip_h = true
 
-[node name="WoodenCrate" type="Sprite2D" parent="."]
-position = Vector2(739.5, 712.25)
-scale = Vector2(0.117188, 0.128906)
-texture = ExtResource("13_g458n")
+[node name="Chair2" type="Sprite2D" parent="."]
+position = Vector2(591, 712)
+scale = Vector2(0.468751, 0.5)
+texture = ExtResource("16_mgiv6")
 
-[node name="DecorPotions02" type="Sprite2D" parent="."]
-position = Vector2(737, 702)
-scale = Vector2(0.0585935, 0.0537109)
-texture = ExtResource("14_0sdec")
+[node name="Barrel" type="Sprite2D" parent="."]
+position = Vector2(524, 711)
+scale = Vector2(0.5625, 0.546875)
+texture = ExtResource("9_0sdec")
 
-[node name="DecorPotions01" type="Sprite2D" parent="."]
+[node name="Barrel2" type="Sprite2D" parent="."]
+position = Vector2(509, 711)
+scale = Vector2(0.5625, 0.546875)
+texture = ExtResource("9_0sdec")
+
+[node name="Barrel3" type="Sprite2D" parent="."]
+position = Vector2(516, 695)
+scale = Vector2(0.5625, 0.546875)
+texture = ExtResource("9_0sdec")
+
+[node name="Bottle4" type="Sprite2D" parent="."]
+position = Vector2(526, 700)
+scale = Vector2(0.171874, 0.230468)
+texture = ExtResource("13_0sdec")
+
+[node name="Bottle5" type="Sprite2D" parent="."]
+position = Vector2(526, 700)
+scale = Vector2(0.171874, 0.230468)
+texture = ExtResource("13_0sdec")
+
+[node name="Potions2" type="Sprite2D" parent="."]
 position = Vector2(516, 684)
-scale = Vector2(0.0625, 0.0625)
-texture = ExtResource("15_j3ix8")
+scale = Vector2(0.265626, 0.242188)
+texture = ExtResource("10_j3ix8")
+
+[node name="Lantern" type="Sprite2D" parent="."]
+position = Vector2(498, 692)
+scale = Vector2(1.40625, 1.75)
+texture = ExtResource("11_ybi6v")
+flip_h = true
+
+[node name="Lantern2" type="Sprite2D" parent="."]
+position = Vector2(740, 692)
+scale = Vector2(1.46094, 1.75)
+texture = ExtResource("11_ybi6v")
+flip_h = true
+
+[node name="Herbs2" type="Sprite2D" parent="."]
+position = Vector2(714, 715)
+scale = Vector2(0.492185, 0.390625)
+texture = ExtResource("12_mgiv6")
+
+[node name="Helmet" type="Sprite2D" parent="."]
+position = Vector2(697, 706)
+rotation = 2.39302
+scale = Vector2(0.344644, 0.347258)
+texture = ExtResource("13_mr661")
+
+[node name="Chest" type="Sprite2D" parent="."]
+position = Vector2(695, 707)
+scale = Vector2(0.8125, 0.812502)
+texture = ExtResource("14_nqqli")
+
+[node name="Box" type="Sprite2D" parent="."]
+position = Vector2(738, 712)
+scale = Vector2(0.484373, 0.492191)
+texture = ExtResource("15_pshy2")
+
+[node name="Potions1" type="Sprite2D" parent="."]
+position = Vector2(737, 702)
+scale = Vector2(0.249996, 0.218751)
+texture = ExtResource("16_172vv")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5y6x05cfy45y"
-path="res://.godot/imported/Decor_Potions_01.png-40505b284c6d82bd684be22795323e40.ctex"
+uid="uid://c5hjfj5bu2rjc"
+path="res://.godot/imported/box.png-1fa244b7371a5c48f1f90b6d5c82c162.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/RestArea/Decor_Potions_01.png"
-dest_files=["res://.godot/imported/Decor_Potions_01.png-40505b284c6d82bd684be22795323e40.ctex"]
+source_file="res://scenes/RestArea/x32/box.png"
+dest_files=["res://.godot/imported/box.png-1fa244b7371a5c48f1f90b6d5c82c162.ctex"]
 
 [params]
 
