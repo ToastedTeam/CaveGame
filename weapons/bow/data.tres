@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WeaponStats" load_steps=4 format=3 uid="uid://b2csxfcts2wbc"]
+
+[ext_resource type="PackedScene" uid="uid://tuca5j0sn5nn" path="res://weapons/bow/bow.tscn" id="1_re43g"]
+[ext_resource type="Texture2D" uid="uid://bilyenhvipd38" path="res://weapons/bow/assets/icon.png" id="2_re43g"]
+[ext_resource type="Script" uid="uid://cj8s2t4hnc74m" path="res://weapons/weapon_stats.gd" id="3_yioxv"]
+
+[resource]
+script = ExtResource("3_yioxv")
+description = "Bow"
+icon = ExtResource("2_re43g")
+asset = ExtResource("1_re43g")
