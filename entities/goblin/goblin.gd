@@ -47,6 +47,19 @@ func _ready() -> void:
 	rng = RandomNumberGenerator.new()
 	
 
+
+# Custom methods to test weather the goblin is on a wall, has ground or is blocked for jumping
+func is_on_wall_custom() -> bool:
+	return is_on_wall()
+
+func has_ground() -> bool:
+	return groundDetection.has_overlapping_bodies() or groundDetection_Deep.has_overlapping_bodies()
+
+func is_jump_blocked() -> bool:
+	return jumpBlockDetection.has_overlapping_bodies()
+
+
+
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -75,11 +88,11 @@ func move(delta):
 				return
 			
 			# If the ground detector has detected floor in front of us, we can move
-			if (groundDetection.has_overlapping_bodies() or groundDetection_Deep.has_overlapping_bodies()):
+			if (has_ground()):
 				# If the goblin touches a wall, he should try to jump
-				if is_on_wall():
+				if is_on_wall_custom():
 					# If the goblin can jump over this wall, he should try it
-					if(!jumpBlockDetection.has_overlapping_bodies()):
+					if(!is_jump_blocked()):
 						is_jumping = true
 				velocity.x = dir.x * speed
 			# Otherwise, try the other direction
@@ -91,7 +104,7 @@ func move(delta):
 		elif is_goblin_chase:
 			# If the ground detector has detected floor in front of us, we can chase
 			# Otherwise it might be wise to wait on the ledge, maybe they will come back!
-			if (groundDetection.has_overlapping_bodies() or groundDetection_Deep.has_overlapping_bodies()):
+			if (has_ground()):
 				var dir_to_player = position.direction_to(player.position)
 				
 				if(dir_to_player.x > 0):
@@ -101,9 +114,9 @@ func move(delta):
 					velocity.x = -speed
 					
 				# If the goblin touches a wall, he should try to jump
-				if is_on_wall():
+				if is_on_wall_custom():
 					# If the goblin can jump over this wall, he should try it
-					if(!jumpBlockDetection.has_overlapping_bodies()):
+					if(!is_jump_blocked()):
 						is_jumping = true
 				
 				dir.x = abs(velocity.x) / velocity.x

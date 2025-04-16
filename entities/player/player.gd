@@ -105,17 +105,19 @@ var pre_dash_x: float = 0
 var canAttack: bool = true;
 
 func _setupIK() -> void:
+	if !$Skeleton:
+		return
 	var modificationStack: SkeletonModificationStack2D = $Skeleton.get_modification_stack()
 	for override in ik_overrides:
 		for idx in modificationStack.modification_count:
 			var modification = modificationStack.get_modification(idx)
 			if override.targetModificationName == modification.resource_name:
 				var target = get_node(override.targetNodePath)
-				#print(" - Old node: " + get_node(modification.target_nodepath).name)
-				#print(" - New path: " + str(target.name)
-				modification.target_nodepath = target.get_path()
-				#Log.info("Found and applied override for " + override.targetModificationName)
-				print("Found and applied override for " + override.targetModificationName)
+				if target:
+					modification.target_nodepath = target.get_path()
+					print("Found and applied override for " + override.targetModificationName)
+				else:
+					print("Couldn't find target node for override " + override.targetModificationName)
 		pass
 	pass
 
@@ -125,13 +127,16 @@ func _ready() -> void:
 	
 	if Engine.is_editor_hint():
 		return
-	health_bar.max_value = max_hp
-	mana_bar.max_value = max_mana
-	$DashCooldownBar.max_value = $DashCooldown.wait_time
+	if health_bar:
+		health_bar.max_value = max_hp
+		health_bar.value = current_hp
+	if mana_bar:
+		mana_bar.max_value = max_mana
+		mana_bar.value = current_mana
+	if $DashCooldownBar:
+		$DashCooldownBar.max_value = $DashCooldown.wait_time
 	# Min value setters removed, unnecessary, are set via the nodes
 	
-	health_bar.value = current_hp
-	mana_bar.value = current_mana
 	_setupIK()
 	print("player hp: ", current_hp, " player mana: ", current_mana, " player damage: ", damage)
 
@@ -181,7 +186,6 @@ func _physics_process(delta: float) -> void:
 		
 	# Get the input direction and handle the movement/deceleration.
 	var direction := _getPlayerMovement()
-	
 	match dash_state:
 		dash.KEY_PRESSED:
 			dash_state = dash.IS_DASHING

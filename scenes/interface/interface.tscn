@@ -1,18 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://jxyevycakmnv"]
+[gd_scene load_steps=7 format=3 uid="uid://jxyevycakmnv"]
 
 [ext_resource type="PackedScene" uid="uid://du07qhtteauuh" path="res://scenes/interface/hp_bar.tscn" id="1_wpx7d"]
 [ext_resource type="PackedScene" uid="uid://mkc0o25ok023" path="res://scenes/interface/mana_bar.tscn" id="2_juv2u"]
 [ext_resource type="Script" uid="uid://cqswot2ewonva" path="res://scenes/debug_console/debug_console.gd" id="3_0x6lf"]
 [ext_resource type="Script" uid="uid://ceqabomyba6px" path="res://scenes/interface/WeaponSelectionScreen.gd" id="3_7i0gs"]
 [ext_resource type="PackedScene" uid="uid://dn8amu36njlul" path="res://scenes/MenuScenes/PauseMenu/pause_menu.tscn" id="3_qqekr"]
-[ext_resource type="Script" uid="uid://e2eyy28mds0i" path="res://scenes/debug_console/command_box.gd" id="4_6ncm3"]
 [ext_resource type="Resource" uid="uid://c2qj0falsfk2y" path="res://weapons/weapons_table.tres" id="4_tf5yn"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvi75"]
-bg_color = Color(1, 0.247466, 0.652583, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4iq1j"]
-bg_color = Color(0, 0, 0, 1)
+[ext_resource type="PackedScene" uid="uid://dkhq71js8m0ax" path="res://scenes/debug_console/debug_console.tscn" id="6_7i0gs"]
 
 [node name="CanvasLayer" type="CanvasLayer" groups=["UI"]]
 
@@ -121,39 +115,7 @@ text = ">"
 offset_top = 24.0
 offset_bottom = 24.0
 
-[node name="DebugConsole" type="VBoxContainer" parent="." node_paths=PackedStringArray("LogOutput")]
-process_mode = 3
-visible = false
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -696.0
-grow_horizontal = 2
-grow_vertical = 0
-alignment = 2
-script = ExtResource("3_0x6lf")
-LogOutput = NodePath("Background/Log")
-
-[node name="Background" type="ColorRect" parent="DebugConsole"]
-layout_mode = 2
-color = Color(0, 0, 0, 0.498039)
-
-[node name="Log" type="RichTextLabel" parent="DebugConsole/Background"]
-layout_mode = 2
-offset_right = 1280.0
-offset_bottom = 230.0
-theme_override_styles/fill = SubResource("StyleBoxFlat_kvi75")
-theme_override_styles/background = SubResource("StyleBoxFlat_4iq1j")
-bbcode_enabled = true
-fit_content = true
-shortcut_keys_enabled = false
-
-[node name="Command" type="TextEdit" parent="DebugConsole"]
-layout_mode = 2
-placeholder_text = "Write GDScript here"
-scroll_fit_content_height = true
-script = ExtResource("4_6ncm3")
+[node name="DebugConsole" parent="." instance=ExtResource("6_7i0gs")]
 
 [connection signal="button_down" from="WeaponSelector/Margin/Attacks/MeleeAttacks/Previous" to="WeaponSelector/Margin/Attacks" method="_on_previous_melee"]
 [connection signal="button_down" from="WeaponSelector/Margin/Attacks/MeleeAttacks/Next" to="WeaponSelector/Margin/Attacks" method="_on_next_melee"]
