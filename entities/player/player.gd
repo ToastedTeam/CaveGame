@@ -268,7 +268,7 @@ func _physics_process(delta: float) -> void:
 		
 		if _isPlayerJustAttackingRanged() and canAttack and current_mana >= 10:
 			if IkAnimator.Attack_Ranged():
-				current_mana -= 10;
+				#current_mana -= 10; # Temporary fix for the mana drain, not sure how the current weapon is checked
 				canAttack = false
 				$AttackCooldown.start()
 
