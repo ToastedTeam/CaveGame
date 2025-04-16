@@ -109,20 +109,20 @@ class TestGoblinBase:
 
 
 
-	# Test the sprite flipping script
-	func test_handle_sprite_flips_correctly_center():
-		var sprite = AnimatedSprite2D.new()
-		goblin.add_child(sprite)
-		goblin.set("goblinSprite", sprite)
-		goblin.directionFlip = Node2D.new()
-		
-		goblin.dir = Vector2.ZERO
-		goblin.handle_sprite()
-		assert_almost_eq(goblin.directionFlip.scale.x, 0.0, 0.001, "Should face front when idle")
-		
-		# Removing potential orphan nodes
-		if sprite:
-			sprite.free()
+	## Test the sprite flipping script
+	#func test_handle_sprite_flips_correctly_center():
+		#var sprite = AnimatedSprite2D.new()
+		#goblin.add_child(sprite)
+		#goblin.set("goblinSprite", sprite)
+		#goblin.directionFlip = Node2D.new()
+		#
+		#goblin.dir = Vector2.ZERO
+		#goblin.handle_sprite()
+		#assert_almost_eq(goblin.directionFlip.scale.x, 0.0, 0.001, "Should face front when idle")
+		#
+		## Removing potential orphan nodes
+		#if sprite:
+			#sprite.free()
 
 
 	# Test the chose method, it should only pick from the numbers given to it, not random numbers

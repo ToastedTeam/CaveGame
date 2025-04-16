@@ -268,13 +268,13 @@ position = Vector2(-0.5, -4)
 texture = ExtResource("6_7avui")
 
 [node name="fLegHolder" type="Node2D" parent="sprites"]
-position = Vector2(4.76836e-07, 12)
+position = Vector2(0, 12)
 
 [node name="fLeg" type="Sprite2D" parent="sprites/fLegHolder"]
 texture = ExtResource("5_1lev3")
 
 [node name="fArmHolder" type="Node2D" parent="sprites"]
-position = Vector2(-0.5, 1.99999)
+position = Vector2(-0.5, 2)
 
 [node name="fArm" type="Sprite2D" parent="sprites/fArmHolder"]
 texture = ExtResource("4_vh3y7")

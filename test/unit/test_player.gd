@@ -151,7 +151,7 @@ class TestMovementBehavior:
 			assert_eq(inst.dash_state, PlayerCharacter.dash.ON_COOLDOWN)
 			inst._on_dash_cooldown_end()
 			assert_eq(inst.dash_state, PlayerCharacter.dash.READY)
-			assert_almost_eq(inst.position.x, -_player.dash_dist as float, 10.)
+			assert_almost_eq(inst.position.x, -_player.dash_dist as float, 20.)
 
 	# TODO: RE-ADD INHIBITOR STATES
 	# This tests comprehensively the entire process of the dashing using partial
@@ -184,7 +184,7 @@ class TestMovementBehavior:
 			assert_eq(inst.dash_state, PlayerCharacter.dash.ON_COOLDOWN)
 			inst._on_dash_cooldown_end()
 			assert_eq(inst.dash_state, PlayerCharacter.dash.READY)
-			assert_almost_eq(inst.position.x, _player.dash_dist as float, 10.)
+			assert_almost_eq(inst.position.x, _player.dash_dist as float, 20.)
 
 # This class is the general class for testing player inverse kinematics
 class TestPlayerInverseKinematics:

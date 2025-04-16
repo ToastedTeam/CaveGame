@@ -27,7 +27,7 @@ func test_mute_button_toggles_mute():
 	var settings = SettingsScreen.instantiate()
 	add_child(settings)
 	
-	var mute_button = settings.get_node("PanelContainer/VBoxContainer/Mute sound")
+	var mute_button = settings.get_node("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Mute sound")
 	mute_button.button_pressed = true
 	settings._on_mute_sound_toggled(true)
 	
