@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdx56os3d25rl"
-path="res://.godot/imported/ze bred.png-b12dfef2d16ed6820db9c99d891c9c1a.ctex"
+uid="uid://d15ottfx15q6"
+path="res://.godot/imported/potions1.png-a6f2b441ee89363d077341b1828edca0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/RestArea/x32/ze bred.png"
-dest_files=["res://.godot/imported/ze bred.png-b12dfef2d16ed6820db9c99d891c9c1a.ctex"]
+source_file="res://structures/RestArea/x32/potions1.png"
+dest_files=["res://.godot/imported/potions1.png-a6f2b441ee89363d077341b1828edca0.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cj00i6t8i1c7b"
-path="res://.godot/imported/chest.png-c47fd4ec1f23653268745c2c4f817528.ctex"
+uid="uid://pw1llcd7l1m3"
+path="res://.godot/imported/herbs.png-7b522472a036adbcc28731ecff724f8f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/RestArea/x32/chest.png"
-dest_files=["res://.godot/imported/chest.png-c47fd4ec1f23653268745c2c4f817528.ctex"]
+source_file="res://structures/RestArea/x32/herbs.png"
+dest_files=["res://.godot/imported/herbs.png-7b522472a036adbcc28731ecff724f8f.ctex"]
 
 [params]
 

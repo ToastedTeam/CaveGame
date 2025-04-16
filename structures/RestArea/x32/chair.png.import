@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqm24kmgj3ku7"
-path="res://.godot/imported/bottle.png-e1d52edf835bb0ece67f5aa41a65312e.ctex"
+uid="uid://bmvgg3jp6uc8p"
+path="res://.godot/imported/chair.png-fce7be4ffcfdf4b819a217051c3307fd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/RestArea/x32/bottle.png"
-dest_files=["res://.godot/imported/bottle.png-e1d52edf835bb0ece67f5aa41a65312e.ctex"]
+source_file="res://structures/RestArea/x32/chair.png"
+dest_files=["res://.godot/imported/chair.png-fce7be4ffcfdf4b819a217051c3307fd.ctex"]
 
 [params]
 

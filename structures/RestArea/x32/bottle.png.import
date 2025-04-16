@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d352dl6nl63gw"
-path="res://.godot/imported/barrel.png-40cf8f94fb8f85f573ba72f85b7b206f.ctex"
+uid="uid://bqm24kmgj3ku7"
+path="res://.godot/imported/bottle.png-42b607f03ed021fe44f8ff32306207be.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/RestArea/x32/barrel.png"
-dest_files=["res://.godot/imported/barrel.png-40cf8f94fb8f85f573ba72f85b7b206f.ctex"]
+source_file="res://structures/RestArea/x32/bottle.png"
+dest_files=["res://.godot/imported/bottle.png-42b607f03ed021fe44f8ff32306207be.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mon787o34rgg"
-path="res://.godot/imported/Street_Lantern.png-ddf64247bb98aed247104bd6099f5881.ctex"
+uid="uid://c5hjfj5bu2rjc"
+path="res://.godot/imported/box.png-98fdaa6697d1430ef26cc0467638c0ae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/RestArea/Street_Lantern.png"
-dest_files=["res://.godot/imported/Street_Lantern.png-ddf64247bb98aed247104bd6099f5881.ctex"]
+source_file="res://structures/RestArea/x32/box.png"
+dest_files=["res://.godot/imported/box.png-98fdaa6697d1430ef26cc0467638c0ae.ctex"]
 
 [params]
 
