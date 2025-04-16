@@ -6,11 +6,14 @@ extends RangedWeapon
 var arrow_speed_mult = 1
 var arrow_down_pull = 20
 
+# Mult by witch player movement gets slowed down
+const PLAYER_SLOWDOWN = 2
 
 func _on_attack_key_press() -> void:
 	super._on_attack_key_press()
 	
-	Global.playerBody.move_speed *= 0.5
+	Global.playerBody.move_speed /= PLAYER_SLOWDOWN
+	Global.playerBody.IkAnimator.walkDuration *= PLAYER_SLOWDOWN
 	
 	sprite.hide()
 	animation.show()
@@ -48,7 +51,8 @@ func _on_attack_key_release() -> void:
 	
 	_projectile_start()
 	
-	Global.playerBody.move_speed *= 2
+	Global.playerBody.move_speed *= PLAYER_SLOWDOWN
+	Global.playerBody.IkAnimator.walkDuration /= PLAYER_SLOWDOWN
 	
 	animation.hide()
 	sprite.show()
