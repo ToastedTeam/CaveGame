@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://daivbmiuu24ke"]
+
+[ext_resource type="Script" uid="uid://kjx80721oxet" path="res://scenes/inventory/inv_ui_slot.gd" id="1_8m4wh"]
+[ext_resource type="Texture2D" uid="uid://bsci7j0ci588" path="res://assets/sprites/inv_entry.png" id="1_h4pg5"]
+
+[node name="inv_UI_slot" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(16, 16)
+offset_right = 16.0
+offset_bottom = 16.0
+script = ExtResource("1_8m4wh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_h4pg5")
+centered = false
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="ItemDisplay" type="Sprite2D" parent="CenterContainer/Panel"]
+
+[node name="Label" type="Label" parent="CenterContainer/Panel"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 17.0
+offset_bottom = 21.0
+scale = Vector2(0.5, 0.5)
+text = "2"
+horizontal_alignment = 2
+
+[connection signal="mouse_entered" from="CenterContainer" to="." method="_on_center_container_mouse_entered"]
+[connection signal="mouse_exited" from="CenterContainer" to="." method="_on_center_container_mouse_exited"]

@@ -1,12 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://jxyevycakmnv"]
+[gd_scene load_steps=8 format=3 uid="uid://jxyevycakmnv"]
 
 [ext_resource type="PackedScene" uid="uid://du07qhtteauuh" path="res://scenes/interface/hp_bar.tscn" id="1_wpx7d"]
 [ext_resource type="PackedScene" uid="uid://mkc0o25ok023" path="res://scenes/interface/mana_bar.tscn" id="2_juv2u"]
-[ext_resource type="Script" uid="uid://cqswot2ewonva" path="res://scenes/debug_console/debug_console.gd" id="3_0x6lf"]
-[ext_resource type="Script" uid="uid://ceqabomyba6px" path="res://scenes/interface/WeaponSelectionScreen.gd" id="3_7i0gs"]
+[ext_resource type="Script" path="res://scenes/interface/WeaponSelectionScreen.gd" id="3_7i0gs"]
 [ext_resource type="PackedScene" uid="uid://dn8amu36njlul" path="res://scenes/MenuScenes/PauseMenu/pause_menu.tscn" id="3_qqekr"]
 [ext_resource type="Resource" uid="uid://c2qj0falsfk2y" path="res://weapons/weapons_table.tres" id="4_tf5yn"]
 [ext_resource type="PackedScene" uid="uid://dkhq71js8m0ax" path="res://scenes/debug_console/debug_console.tscn" id="6_7i0gs"]
+[ext_resource type="PackedScene" uid="uid://fcs7kmldpqud" path="res://scenes/inventory/inv_ui.tscn" id="7_tf5yn"]
 
 [node name="CanvasLayer" type="CanvasLayer" groups=["UI"]]
 
@@ -116,6 +116,21 @@ offset_top = 24.0
 offset_bottom = 24.0
 
 [node name="DebugConsole" parent="." instance=ExtResource("6_7i0gs")]
+
+[node name="Inv_UI" parent="." instance=ExtResource("7_tf5yn")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -186.0
+offset_top = -165.0
+offset_right = -102.0
+offset_bottom = -101.0
+grow_vertical = 0
+scale = Vector2(3, 3)
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [connection signal="button_down" from="WeaponSelector/Margin/Attacks/MeleeAttacks/Previous" to="WeaponSelector/Margin/Attacks" method="_on_previous_melee"]
 [connection signal="button_down" from="WeaponSelector/Margin/Attacks/MeleeAttacks/Next" to="WeaponSelector/Margin/Attacks" method="_on_next_melee"]

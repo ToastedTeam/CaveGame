@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://kq2irx7uloq7"]
+
+[ext_resource type="Texture2D" uid="uid://bvikdlxoywqgj" path="res://assets/sprites/tt_bg.png" id="1_0r0f4"]
+[ext_resource type="Script" uid="uid://bxot5ol4r5t1t" path="res://scenes/inventory/tool_tip.gd" id="1_x7alf"]
+
+[node name="ToolTip" type="Popup"]
+size = Vector2i(160, 50)
+visible = true
+min_size = Vector2i(160, 50)
+script = ExtResource("1_x7alf")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_0r0f4")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="CenterContainer" type="CenterContainer" parent="NinePatchRect/MarginContainer"]
+layout_mode = 2
+
+[node name="ItemName" type="Label" parent="NinePatchRect/MarginContainer/CenterContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "<ItemName>"
+horizontal_alignment = 1

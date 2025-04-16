@@ -22,6 +22,9 @@ extends CharacterBody2D
 @export var inhibitUserInput: bool = false;
 @export var animPlayer: AnimationPlayer;
 
+@export var inventory: Inventory;
+var gemCount: int = 0
+
 #var projectile = preload("res://weapons/projectile/projectile.tscn")
 
 var targetX: float = 0;
@@ -282,3 +285,6 @@ func _on_attack_cooldown_end() -> void:
 func _on_dash_cooldown_end() -> void:
 	$DashCooldownBar.hide()
 	dash_state = dash.READY
+
+func collect(item):
+	inventory.insert(item)
