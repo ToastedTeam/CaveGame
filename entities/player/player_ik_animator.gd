@@ -78,7 +78,7 @@ func Attack_Ranged() -> bool:
 		return false
 	#Log.info("Perform magic attack, play some animation or something...")
 	var weapon = hand.node.get_node("Ranged") as RangedWeapon
-	weapon._attack()
+	weapon._on_attack_key_press()
 	return true
 
 func Start_Dash() -> void:

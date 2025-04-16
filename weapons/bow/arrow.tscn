@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxxsgu6gklaqr"]
+
+[ext_resource type="Script" uid="uid://cxg5lqydrlwt" path="res://weapons/bow/arrow.gd" id="1_eec6a"]
+[ext_resource type="Texture2D" uid="uid://sxa01t3avman" path="res://weapons/bow/assets/arrow.png" id="2_eec6a"]
+
+[node name="Arrow" type="Node2D"]
+script = ExtResource("1_eec6a")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_eec6a")
