@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://8o061kwxhcge"]
+
+[ext_resource type="Script" uid="uid://cw6q8dsftuvec" path="res://scenes/collectables_scenes/blue_gem_collectable.gd" id="1_l00o1"]
+[ext_resource type="Resource" uid="uid://bo6ron6s50ll0" path="res://scenes/inventory/items/blue_gem.tres" id="2_0ddam"]
+[ext_resource type="Texture2D" uid="uid://lwbmn3veakgf" path="res://assets/sprites/blue_gem.png" id="2_l00o1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_42pyl"]
+radius = 7.0
+height = 14.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fbgcr"]
+radius = 4.0
+height = 14.0
+
+[node name="blue_gem_collectable" type="StaticBody2D"]
+script = ExtResource("1_l00o1")
+item = ExtResource("2_0ddam")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_l00o1")
+
+[node name="pick_up_area" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pick_up_area"]
+shape = SubResource("CapsuleShape2D_42pyl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_fbgcr")
+disabled = true
+
+[connection signal="body_entered" from="pick_up_area" to="." method="_on_pick_up_area_body_entered"]

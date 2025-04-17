@@ -23,22 +23,22 @@ func _on_attack_key_hold() -> void:
 	
 	if key_pressed_duration < 0.5:
 		animation.frame = 0
-		arrow_speed_mult = 0.15
-		arrow_down_pull = 500
+		arrow_speed_mult = 0.35
+		arrow_down_pull = 400
 		
 	elif key_pressed_duration < 1:
 		animation.frame = 1
-		arrow_speed_mult = 1
-		arrow_down_pull = 50
+		arrow_speed_mult = 0.85
+		arrow_down_pull = 200
 		
 	elif key_pressed_duration < 1.5:
 		animation.frame = 2
-		arrow_speed_mult = 1.2
-		arrow_down_pull = 50
+		arrow_speed_mult = 1.25
+		arrow_down_pull = 100
 		
 	else:
 		animation.frame = 3
-		arrow_speed_mult = 1.4
+		arrow_speed_mult = 1.5
 		arrow_down_pull = 50
 
 func _on_attack_key_release() -> void:

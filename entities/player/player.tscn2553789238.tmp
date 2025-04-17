@@ -1,7 +1,6 @@
 [gd_scene load_steps=70 format=3 uid="uid://c11ldn4yd0i8w"]
 
 [ext_resource type="Script" uid="uid://7dppspqb023v" path="res://entities/player/player.gd" id="1_plpc0"]
-[ext_resource type="Resource" uid="uid://bwttxa78idcwr" path="res://scenes/inventory/player_inv.tres" id="2_0eo6o"]
 [ext_resource type="PackedScene" uid="uid://dv1lodecs50bs" path="res://weapons/sword1/weapon.tscn" id="4_5ek75"]
 [ext_resource type="Script" uid="uid://eji52ig0w3g5" path="res://addons/remotetransform2dextended/remoteTransform.gd" id="7_j3ovn"]
 [ext_resource type="Texture2D" uid="uid://bqlsw70spd7yu" path="res://entities/player/assets/miku/arm/forearm.png" id="7_mtric"]
@@ -36,6 +35,7 @@
 [ext_resource type="Script" uid="uid://dk2yrqykdjtoy" path="res://entities/target_dummy/rotation_target.gd" id="33_2soq1"]
 [ext_resource type="Texture2D" uid="uid://cmrdtpty5fhk2" path="res://entities/player/assets/miku/lantern/puffy_thing.png" id="33_ttr27"]
 [ext_resource type="Texture2D" uid="uid://bxbcwehybwg8e" path="res://entities/player/assets/miku/lantern/puffy_thing_second_part.png" id="34_13wue"]
+[ext_resource type="PackedScene" uid="uid://fcs7kmldpqud" path="res://scripts/inventory/inv_ui.tscn" id="36_0eo6o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nn8mg"]
 bg_color = Color(0.321728, 0.321728, 0.321728, 1)
@@ -414,7 +414,6 @@ _data = {
 collision_layer = 2
 script = ExtResource("1_plpc0")
 dash_speed = 720.0
-inventory = ExtResource("2_0eo6o")
 
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 0.1
@@ -703,7 +702,7 @@ texture = SubResource("CanvasTexture_r633c")
 
 [node name="Thigh_B" type="Sprite2D" parent="sprites"]
 modulate = Color(0.787759, 0.787759, 0.787759, 1)
-position = Vector2(0.863827, 5.93747)
+position = Vector2(0.863826, 5.93747)
 rotation = -0.144474
 texture = SubResource("CanvasTexture_pacje")
 
@@ -929,6 +928,8 @@ vertical_alignment = 1
 libraries = {
 &"": SubResource("AnimationLibrary_wy7bt")
 }
+
+[node name="Inv_UI" parent="." instance=ExtResource("36_0eo6o")]
 
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_end"]
 [connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_end"]

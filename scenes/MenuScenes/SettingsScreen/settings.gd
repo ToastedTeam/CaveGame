@@ -17,7 +17,8 @@ var input_actions = {
 	"player_attack_melee" : "Melee Attack",
 	"player_attack_ranged" : "Ranged Attack",
 	"player_interact" : "Interact",
-	"player_dash" : "Dash"
+	"player_dash" : "Dash",
+	"player_inventory_toggle" : "Inventory",
 }
 
 func resume():

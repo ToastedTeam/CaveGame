@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bilyenhvipd38" path="res://weapons/bow/assets/icon.png" id="3_tf5yn"]
 [ext_resource type="Resource" uid="uid://c2qj0falsfk2y" path="res://weapons/weapons_table.tres" id="4_tf5yn"]
 [ext_resource type="PackedScene" uid="uid://dkhq71js8m0ax" path="res://scenes/debug_console/debug_console.tscn" id="6_7i0gs"]
+[ext_resource type="PackedScene" uid="uid://fcs7kmldpqud" path="res://scenes/inventory/inv_ui.tscn" id="7_tf5yn"]
 
 [node name="CanvasLayer" type="CanvasLayer" groups=["UI"]]
 
@@ -130,6 +131,21 @@ offset_top = 24.0
 offset_bottom = 24.0
 
 [node name="DebugConsole" parent="." instance=ExtResource("6_7i0gs")]
+
+[node name="Inv_UI" parent="." instance=ExtResource("7_tf5yn")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -186.0
+offset_top = -165.0
+offset_right = -102.0
+offset_bottom = -101.0
+grow_vertical = 0
+scale = Vector2(3, 3)
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [connection signal="button_down" from="WeaponSelector/Margin/Attacks/MeleeAttacks/Previous" to="WeaponSelector/Margin/Attacks" method="_on_previous_melee"]
 [connection signal="button_down" from="WeaponSelector/Margin/Attacks/MeleeAttacks/Next" to="WeaponSelector/Margin/Attacks" method="_on_next_melee"]
