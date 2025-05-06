@@ -1837,7 +1837,7 @@ position = Vector2(-5.2769, -28.0557)
 
 [node name="Head" parent="GameObjects/Player/sprites" index="7"]
 position = Vector2(-1.54036, -20.4958)
-rotation = -0.00580464
+rotation = -0.00580461
 
 [node name="FrontHair" parent="GameObjects/Player/sprites" index="8"]
 position = Vector2(-6.51007, -26.1904)

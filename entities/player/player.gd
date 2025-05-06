@@ -263,14 +263,16 @@ func _physics_process(delta: float) -> void:
 	if not in_safe_area:
 		if _isPlayerJustAttackingMelee() and canAttack:
 			if IkAnimator.Attack_Melee():
-				canAttack = false
-				$AttackCooldown.start()
+				pass
+				#canAttack = false
+				#$AttackCooldown.start()
 		
 		if _isPlayerJustAttackingRanged() and canAttack and current_mana >= 10:
 			if IkAnimator.Attack_Ranged():
+				pass
 				#current_mana -= 10; # Temporary fix for the mana drain, not sure how the current weapon is checked
-				canAttack = false
-				$AttackCooldown.start()
+				#canAttack = false
+				#$AttackCooldown.start()
 
 func _on_entity_hit(body: Node2D) -> void:
 	var body_parent = body.get_parent()
@@ -278,6 +280,9 @@ func _on_entity_hit(body: Node2D) -> void:
 		#Log.info("Hit entity, perform damage, don't forget invincibility frames, remove this later")
 		body_parent.Damage(damage, self)
 	pass # Replace with function body.
+
+func _on_attack_end() -> void:
+	$AttackCooldown.start()
 
 func _on_attack_cooldown_end() -> void:
 	canAttack = true
