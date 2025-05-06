@@ -1790,6 +1790,7 @@ scale = Vector2(0.999991, 0.999991)
 
 [node name="forearm_r" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset/shoulder_r" index="1"]
 rotation = -0.833526
+scale = Vector2(0.999999, 0.999999)
 
 [node name="shoulder_f" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="2"]
 rotation = 2.43437
@@ -1986,6 +1987,7 @@ tile_map_data = PackedByteArray("AAD5//v/AAAAAAEAAAD4//z/AAACAAEAAAD6//z/AAADAAE
 tile_set = SubResource("TileSet_hxu8e")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Map"]
+visible = false
 scroll_ignore_camera_zoom = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Map/ParallaxBackground"]
