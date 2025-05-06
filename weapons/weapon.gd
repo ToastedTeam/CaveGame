@@ -24,6 +24,7 @@ func _physics_process(delta: float) -> void:
 			_on_attack_key_hold()
 
 func _on_attack_key_press() -> void:
+	Global.playerBody.canAttack = false
 	key_pressed_duration = 0
 	pass
 
@@ -31,6 +32,7 @@ func _on_attack_key_hold() -> void:
 	pass
 
 func _on_attack_key_release() -> void:
+	Global.playerBody._on_attack_end()
 	key_pressed_duration = -1
 	pass
 
