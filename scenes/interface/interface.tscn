@@ -2,9 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://du07qhtteauuh" path="res://scenes/interface/hp_bar.tscn" id="1_wpx7d"]
 [ext_resource type="PackedScene" uid="uid://mkc0o25ok023" path="res://scenes/interface/mana_bar.tscn" id="2_juv2u"]
-[ext_resource type="Script" path="res://scenes/interface/WeaponSelectionScreen.gd" id="3_7i0gs"]
+[ext_resource type="Script" uid="uid://ceqabomyba6px" path="res://scenes/interface/WeaponSelectionScreen.gd" id="3_7i0gs"]
 [ext_resource type="PackedScene" uid="uid://dn8amu36njlul" path="res://scenes/MenuScenes/PauseMenu/pause_menu.tscn" id="3_qqekr"]
 [ext_resource type="Texture2D" uid="uid://bilyenhvipd38" path="res://weapons/bow/assets/icon.png" id="3_tf5yn"]
+[ext_resource type="Theme" uid="uid://x2nw25qlb7aj" path="res://assets/ui/ui_theme.tres" id="4_rpds0"]
 [ext_resource type="Resource" uid="uid://c2qj0falsfk2y" path="res://weapons/weapons_table.tres" id="4_tf5yn"]
 [ext_resource type="PackedScene" uid="uid://dkhq71js8m0ax" path="res://scenes/debug_console/debug_console.tscn" id="6_7i0gs"]
 [ext_resource type="PackedScene" uid="uid://fcs7kmldpqud" path="res://scenes/inventory/inv_ui.tscn" id="7_tf5yn"]
@@ -56,6 +57,7 @@ offset_left = -180.0
 offset_right = 180.0
 offset_bottom = 69.0
 grow_horizontal = 2
+theme = ExtResource("4_rpds0")
 
 [node name="Margin" type="MarginContainer" parent="WeaponSelector"]
 layout_mode = 2
@@ -77,7 +79,7 @@ size_flags_horizontal = 3
 
 [node name="Previous" type="Button" parent="WeaponSelector/Margin/Attacks/MeleeAttacks"]
 layout_mode = 2
-text = "<"
+text = " < "
 
 [node name="InfoElements" type="VBoxContainer" parent="WeaponSelector/Margin/Attacks/MeleeAttacks"]
 layout_mode = 2
@@ -96,7 +98,7 @@ autowrap_mode = 3
 
 [node name="Next" type="Button" parent="WeaponSelector/Margin/Attacks/MeleeAttacks"]
 layout_mode = 2
-text = ">"
+text = " > "
 
 [node name="RangedAttacks" type="HBoxContainer" parent="WeaponSelector/Margin/Attacks"]
 custom_minimum_size = Vector2(250, 0)
@@ -105,7 +107,7 @@ size_flags_horizontal = 3
 
 [node name="Previous" type="Button" parent="WeaponSelector/Margin/Attacks/RangedAttacks"]
 layout_mode = 2
-text = "<"
+text = " < "
 
 [node name="InfoElements" type="VBoxContainer" parent="WeaponSelector/Margin/Attacks/RangedAttacks"]
 layout_mode = 2
@@ -124,7 +126,7 @@ autowrap_mode = 3
 
 [node name="Next" type="Button" parent="WeaponSelector/Margin/Attacks/RangedAttacks"]
 layout_mode = 2
-text = ">"
+text = " > "
 
 [node name="PauseMenu" parent="." instance=ExtResource("3_qqekr")]
 offset_top = 24.0
@@ -133,6 +135,7 @@ offset_bottom = 24.0
 [node name="DebugConsole" parent="." instance=ExtResource("6_7i0gs")]
 
 [node name="Inv_UI" parent="." instance=ExtResource("7_tf5yn")]
+visible = false
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
