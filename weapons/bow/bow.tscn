@@ -6,19 +6,19 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b3b20"]
 atlas = ExtResource("2_d4ecq")
-region = Rect2(0, 0, 16, 16)
+region = Rect2(0, 0, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q5rdn"]
 atlas = ExtResource("2_d4ecq")
-region = Rect2(16, 0, 16, 16)
+region = Rect2(16, 0, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ma7di"]
 atlas = ExtResource("2_d4ecq")
-region = Rect2(32, 0, 16, 16)
+region = Rect2(32, 0, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2xvf"]
 atlas = ExtResource("2_d4ecq")
-region = Rect2(48, 0, 16, 16)
+region = Rect2(48, 0, 16, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_b3neb"]
 animations = [{
@@ -50,7 +50,6 @@ projectile_path = "uid://dxxsgu6gklaqr"
 visible = false
 sprite_frames = SubResource("SpriteFrames_b3neb")
 animation = &"stretch"
-frame_progress = 0.852429
 
 [node name="BowSprite" type="Sprite2D" parent="."]
 texture = ExtResource("3_b3b20")

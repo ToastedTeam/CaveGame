@@ -417,7 +417,6 @@ dash_speed = 720.0
 inventory = ExtResource("2_0eo6o")
 
 [node name="AttackCooldown" type="Timer" parent="."]
-wait_time = 0.1
 one_shot = true
 
 [node name="DashCooldown" type="Timer" parent="."]
@@ -716,7 +715,7 @@ position = Vector2(0, 8.85)
 texture = SubResource("CanvasTexture_2h0qb")
 
 [node name="Thigh_F" type="Sprite2D" parent="sprites"]
-position = Vector2(-0.00180998, 5.97828)
+position = Vector2(-0.00180995, 5.97828)
 rotation = -0.0831412
 texture = SubResource("CanvasTexture_mmk7k")
 
