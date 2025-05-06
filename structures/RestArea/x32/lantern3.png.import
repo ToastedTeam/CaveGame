@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blrahjw88vbm5"
-path="res://.godot/imported/herbs.png-7b522472a036adbcc28731ecff724f8f.ctex"
+uid="uid://8ymrict6p1l0"
+path="res://.godot/imported/lantern3.png-80924ed21f880a408c27ad41d34ffe4f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://structures/RestArea/x32/herbs.png"
-dest_files=["res://.godot/imported/herbs.png-7b522472a036adbcc28731ecff724f8f.ctex"]
+source_file="res://structures/RestArea/x32/lantern3.png"
+dest_files=["res://.godot/imported/lantern3.png-80924ed21f880a408c27ad41d34ffe4f.ctex"]
 
 [params]
 
