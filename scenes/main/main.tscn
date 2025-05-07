@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://qtfciyfj33pt"]
+[gd_scene load_steps=51 format=4 uid="uid://qtfciyfj33pt"]
 
 [ext_resource type="PackedScene" uid="uid://c11ldn4yd0i8w" path="res://entities/player/player.tscn" id="3_blune"]
 [ext_resource type="Script" uid="uid://bhda60gy1q5tc" path="res://entities/player/player_ik_animator.gd" id="3_th5th"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bb0m10tlay88m" path="res://scenes/main/assets/world_tileset.png" id="9_ou6is"]
 [ext_resource type="PackedScene" uid="uid://c0rjmt5gjqalg" path="res://structures/RestArea/RestArea.tscn" id="10_7smn1"]
 [ext_resource type="PackedScene" uid="uid://dn52wlkh2g1wy" path="res://scenes/killzone/killzone.tscn" id="10_necax"]
+[ext_resource type="PackedScene" uid="uid://u7cofmnwref0" path="res://structures/EndDoor/end_door.tscn" id="13_7smn1"]
 [ext_resource type="PackedScene" uid="uid://bxpy7oymfnp6o" path="res://structures/OpenCave/structure.tscn" id="16_necax"]
 
 [sub_resource type="Resource" id="Resource_hxu8e"]
@@ -1648,11 +1649,9 @@ scale = Vector2(0.999991, 0.999991)
 
 [node name="forearm_r" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset/shoulder_r" index="1"]
 rotation = -0.833526
-scale = Vector2(0.999999, 0.999999)
 
 [node name="shoulder_f" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="2"]
 rotation = 2.43437
-scale = Vector2(0.999985, 0.999985)
 
 [node name="forearm_f" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset/shoulder_f" index="1"]
 rotation = -1.73952
@@ -1669,15 +1668,15 @@ rotation = -0.276292
 scale = Vector2(0.99984, 0.99984)
 
 [node name="Forearm_R" parent="GameObjects/Player/sprites" index="0"]
-position = Vector2(-2.91473, -0.926945)
+position = Vector2(-2.91475, -0.926952)
 rotation = -0.464865
 
 [node name="Shoulder_R" parent="GameObjects/Player/sprites" index="1"]
-position = Vector2(-3.80115, -9.83456)
-rotation = 0.368661
+position = Vector2(-3.80116, -9.83456)
+rotation = 0.368662
 
 [node name="FlipHandler2" parent="GameObjects/Player/sprites" index="2"]
-position = Vector2(-0.180206, 3.04247)
+position = Vector2(-0.180206, 3.04246)
 rotation = -0.464865
 
 [node name="Calf_B" parent="GameObjects/Player/sprites" index="3"]
@@ -1701,7 +1700,7 @@ position = Vector2(-5.2769, -28.0557)
 
 [node name="Head" parent="GameObjects/Player/sprites" index="8"]
 position = Vector2(-1.54036, -20.4958)
-rotation = -0.00580461
+rotation = -0.00580466
 
 [node name="FrontHair" parent="GameObjects/Player/sprites" index="9"]
 position = Vector2(-6.51007, -26.1904)
@@ -1710,12 +1709,12 @@ position = Vector2(-6.51007, -26.1904)
 position = Vector2(0, -7.99875)
 
 [node name="FlipHandler" parent="GameObjects/Player/sprites" index="12"]
-position = Vector2(-1.34702, -2.6391)
-rotation = -0.875947
+position = Vector2(-1.34702, -2.63909)
+rotation = -0.875946
 
 [node name="Forearm_F" parent="GameObjects/Player/sprites" index="13"]
 position = Vector2(-5.43985, -5.18505)
-rotation = -0.875947
+rotation = -0.875946
 
 [node name="Shoulder_F" parent="GameObjects/Player/sprites" index="14"]
 position = Vector2(-5.79976, -11.2497)
@@ -1850,6 +1849,10 @@ tile_set = SubResource("TileSet_ev07y")
 collision_enabled = false
 
 [node name="OpenCave" parent="Map" instance=ExtResource("16_necax")]
+
+[node name="EndDoor" parent="Map" instance=ExtResource("13_7smn1")]
+z_index = -1
+position = Vector2(885, -16)
 
 [node name="Interface" parent="." instance=ExtResource("6_raeie")]
 

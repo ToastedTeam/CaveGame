@@ -1,0 +1,103 @@
+[gd_scene load_steps=9 format=3 uid="uid://u7cofmnwref0"]
+
+[ext_resource type="Script" uid="uid://csae4eqex5yg6" path="res://structures/EndDoor/end_door.gd" id="1_g83xt"]
+[ext_resource type="Texture2D" uid="uid://uksle2m10kvb" path="res://structures/EndDoor/door.png" id="2_4ek1p"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g83xt"]
+radius = 45.0
+height = 150.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_g83xt"]
+font_size = 26
+font_color = Color(0.827451, 0.827451, 0.827451, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.231373)
+
+[sub_resource type="Animation" id="Animation_qnvur"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_g83xt"]
+resource_name = "fade_in_label"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4ek1p"]
+resource_name = "fade_out_label"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dw3lu"]
+_data = {
+&"RESET": SubResource("Animation_qnvur"),
+&"fade_in_label": SubResource("Animation_g83xt"),
+&"fade_out_label": SubResource("Animation_4ek1p")
+}
+
+[node name="EndDoor" type="Node2D"]
+script = ExtResource("1_g83xt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -64)
+texture = ExtResource("2_4ek1p")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, -50)
+shape = SubResource("CapsuleShape2D_g83xt")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+z_index = 3
+offset_left = -19.0
+offset_top = -160.0
+offset_right = 21.0
+offset_bottom = -118.0
+text = "E"
+label_settings = SubResource("LabelSettings_g83xt")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_dw3lu")
+}

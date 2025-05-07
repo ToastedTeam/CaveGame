@@ -701,7 +701,7 @@ rotation = -1.25555
 texture = SubResource("CanvasTexture_qwspa")
 
 [node name="FlipHandler2" type="Node2D" parent="sprites"]
-position = Vector2(17.3137, -12.2514)
+position = Vector2(17.3137, -12.2515)
 rotation = -1.53883
 
 [node name="Ranged" parent="sprites/FlipHandler2" instance=ExtResource("35_ttr27")]
@@ -719,7 +719,7 @@ texture = SubResource("CanvasTexture_r633c")
 
 [node name="Thigh_B" type="Sprite2D" parent="sprites"]
 modulate = Color(0.787759, 0.787759, 0.787759, 1)
-position = Vector2(0.863825, 5.93747)
+position = Vector2(0.863826, 5.93747)
 rotation = -0.144474
 texture = SubResource("CanvasTexture_pacje")
 
