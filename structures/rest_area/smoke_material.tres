@@ -23,4 +23,4 @@ damping_max = 5.0
 scale_min = 2.2
 scale_max = 5.5
 scale_curve = SubResource("CurveTexture_86xse")
-color = Color(0.29219, 0.29219, 0.29219, 0.509804)
+color = Color(0.427493, 0.427493, 0.427493, 0.509804)
