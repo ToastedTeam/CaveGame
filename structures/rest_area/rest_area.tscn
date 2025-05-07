@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://babgoqd6p8s7d"]
+[gd_scene load_steps=16 format=3 uid="uid://babgoqd6p8s7d"]
 
 [ext_resource type="Script" uid="uid://lmpf2d2cdvkk" path="res://structures/rest_area/regen_area.gd" id="1_y2hkx"]
 [ext_resource type="Script" uid="uid://cgidgcbi2lrix" path="res://structures/rest_area/rest_player.gd" id="6_86xse"]
@@ -378,8 +378,6 @@ void process() {
 		ACTIVE = false;
 	}
 }
-
-
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jjql1"]
@@ -388,12 +386,12 @@ shader_parameter/direction = Vector3(0, -1, 0)
 shader_parameter/spread = 45.0
 shader_parameter/flatness = 0.0
 shader_parameter/inherit_emitter_velocity_ratio = 0.0
-shader_parameter/initial_linear_velocity_min = 11.55
-shader_parameter/initial_linear_velocity_max = 20.7
+shader_parameter/initial_linear_velocity_min = 8.0
+shader_parameter/initial_linear_velocity_max = 20.0
 shader_parameter/directional_velocity_min = 1.0
 shader_parameter/directional_velocity_max = 1.0
-shader_parameter/angular_velocity_min = -18.05
-shader_parameter/angular_velocity_max = 14.9
+shader_parameter/angular_velocity_min = 0.0
+shader_parameter/angular_velocity_max = 0.0
 shader_parameter/orbit_velocity_min = 0.0
 shader_parameter/orbit_velocity_max = 0.0
 shader_parameter/radial_velocity_min = 0.0
@@ -404,14 +402,14 @@ shader_parameter/radial_accel_min = 0.0
 shader_parameter/radial_accel_max = 0.0
 shader_parameter/tangent_accel_min = 0.0
 shader_parameter/tangent_accel_max = 0.0
-shader_parameter/damping_min = 12.605
-shader_parameter/damping_max = 12.605
-shader_parameter/initial_angle_min = -46.5
-shader_parameter/initial_angle_max = 57.0
-shader_parameter/scale_min = 5.75
-shader_parameter/scale_max = 6.6
-shader_parameter/hue_variation_min = -0.02
-shader_parameter/hue_variation_max = 0.02
+shader_parameter/damping_min = 10.0
+shader_parameter/damping_max = 15.0
+shader_parameter/initial_angle_min = 0.0
+shader_parameter/initial_angle_max = 0.0
+shader_parameter/scale_min = 0.5
+shader_parameter/scale_max = 2.5
+shader_parameter/hue_variation_min = -0.15
+shader_parameter/hue_variation_max = 0.15
 shader_parameter/anim_speed_min = 0.0
 shader_parameter/anim_speed_max = 0.0
 shader_parameter/anim_offset_min = 0.0
@@ -420,9 +418,22 @@ shader_parameter/lifetime_randomness = 0.0
 shader_parameter/emission_shape_offset = Vector3(0, 0, 0)
 shader_parameter/emission_shape_scale = Vector3(1, 1, 1)
 shader_parameter/velocity_pivot = Vector3(0, 0, 0)
-shader_parameter/emission_sphere_radius = 5.7
+shader_parameter/emission_sphere_radius = 6.0
 shader_parameter/color_value = Color(0.717331, 0.676126, 0, 1)
 shader_parameter/gravity = Vector3(0, -9.8, 0)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y2hkx"]
+lifetime_randomness = 0.2
+particle_flag_disable_z = true
+particle_flag_damping_as_friction = true
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 15.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
+damping_max = 0.5
+hue_variation_min = -0.02
+hue_variation_max = 0.04
+turbulence_noise_strength = 0.2
 
 [sub_resource type="Environment" id="Environment_367mj"]
 background_mode = 1
@@ -434,6 +445,7 @@ size = Vector2(115.145, 20)
 [node name="RestArea" type="Node2D"]
 
 [node name="RegenArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_y2hkx")
@@ -458,14 +470,21 @@ texture = SubResource("CanvasTexture_korw2")
 
 [node name="smoke" type="GPUParticles2D" parent="Campfire"]
 position = Vector2(-3, 6)
-amount = 6
-lifetime = 3.0
+amount = 128
+lifetime = 5.8
+trail_lifetime = 1.0
 process_material = ExtResource("8_367mj")
 
 [node name="fire" type="GPUParticles2D" parent="Campfire"]
 position = Vector2(-3, 8)
-amount = 12
+amount = 96
 process_material = SubResource("ShaderMaterial_jjql1")
+
+[node name="fire-high flying" type="GPUParticles2D" parent="Campfire"]
+position = Vector2(-2, 8)
+amount = 6
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_y2hkx")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_367mj")
@@ -473,7 +492,7 @@ environment = SubResource("Environment_367mj")
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(-2, -10)
 color = Color(1, 0.557333, 0.17, 1)
-energy = 1.1
+energy = 1.2
 texture = ExtResource("8_jjql1")
 height = 97.0
 
@@ -488,6 +507,7 @@ height = 97.0
 color = Color(0, 0, 0, 1)
 
 [node name="InteractionHint" parent="." instance=ExtResource("10_jjql1")]
+visible = false
 position = Vector2(0, -10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionHint"]

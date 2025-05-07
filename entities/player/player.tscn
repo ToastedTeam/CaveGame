@@ -702,7 +702,7 @@ texture = SubResource("CanvasTexture_r633c")
 
 [node name="Thigh_B" type="Sprite2D" parent="sprites"]
 modulate = Color(0.787759, 0.787759, 0.787759, 1)
-position = Vector2(0.863827, 5.93747)
+position = Vector2(0.863826, 5.93747)
 rotation = -0.144474
 texture = SubResource("CanvasTexture_pacje")
 
@@ -715,7 +715,7 @@ position = Vector2(0, 8.85)
 texture = SubResource("CanvasTexture_2h0qb")
 
 [node name="Thigh_F" type="Sprite2D" parent="sprites"]
-position = Vector2(-0.00180995, 5.97828)
+position = Vector2(-0.00180998, 5.97828)
 rotation = -0.0831412
 texture = SubResource("CanvasTexture_mmk7k")
 
@@ -802,8 +802,8 @@ position = Vector2(-2, 5)
 texture = ExtResource("34_13wue")
 
 [node name="PointLight2D" type="PointLight2D" parent="sprites/Star"]
-color = Color(0.882353, 1, 1, 1)
-energy = 1.2
+color = Color(1, 0.980392, 0.843137, 1)
+energy = 1.1
 texture = ExtResource("32_8q4fm")
 texture_scale = 2.5
 height = 275.0
