@@ -1642,15 +1642,16 @@ position = Vector2(0, 0)
 scale = Vector2(0.999844, 0.999844)
 
 [node name="head" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="0"]
-rotation = -0.00580465
+rotation = -0.00580462
 scale = Vector2(0.999864, 0.999864)
 
 [node name="shoulder_r" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="1"]
-rotation = 1.93945
+rotation = 1.93946
 scale = Vector2(0.999991, 0.999991)
 
 [node name="forearm_r" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset/shoulder_r" index="1"]
-rotation = -0.833513
+rotation = -0.833519
+scale = Vector2(0.999999, 0.999999)
 
 [node name="shoulder_f" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="2"]
 rotation = 2.43437
@@ -1671,16 +1672,16 @@ rotation = -1.54075
 scale = Vector2(0.99984, 0.99984)
 
 [node name="Forearm_R" parent="GameObjects/Player/sprites" index="0"]
-position = Vector2(-2.91479, -0.926929)
-rotation = -0.464861
+position = Vector2(-2.91479, -0.926949)
+rotation = -0.464864
 
 [node name="Shoulder_R" parent="GameObjects/Player/sprites" index="1"]
-position = Vector2(-3.80115, -9.83455)
-rotation = 0.368658
+position = Vector2(-3.80115, -9.83456)
+rotation = 0.368661
 
 [node name="FlipHandler2" parent="GameObjects/Player/sprites" index="2"]
-position = Vector2(-0.180298, 3.04249)
-rotation = -0.464861
+position = Vector2(-0.180176, 3.04247)
+rotation = -0.464864
 
 [node name="Calf_B" parent="GameObjects/Player/sprites" index="3"]
 position = Vector2(14.5061, -0.0791111)
@@ -1699,11 +1700,11 @@ position = Vector2(5.49548, 0.180215)
 rotation = -1.54075
 
 [node name="BHair" parent="GameObjects/Player/sprites" index="7"]
-position = Vector2(-5.27698, -28.0557)
+position = Vector2(-5.27698, -28.0556)
 
 [node name="Head" parent="GameObjects/Player/sprites" index="8"]
 position = Vector2(-1.54041, -20.4958)
-rotation = -0.0058046
+rotation = -0.00580462
 
 [node name="FrontHair" parent="GameObjects/Player/sprites" index="9"]
 position = Vector2(-6.51013, -26.1904)
@@ -1825,7 +1826,6 @@ collision_mask = 7
 shape = SubResource("WorldBoundaryShape2D_kfodh")
 
 [node name="Node2D" parent="GameObjects" instance=ExtResource("10_7smn1")]
-visible = false
 z_index = -1
 position = Vector2(625, -31)
 
