@@ -20,114 +20,108 @@
 [ext_resource type="Texture2D" uid="uid://c6bdyb1jxigak" path="res://structures/RestArea/x32/lantern 4.png" id="16_xtcg7"]
 
 [node name="Node2D" type="Node2D"]
-position = Vector2(0, -360)
 
 [node name="RestArea" parent="." instance=ExtResource("1_1kgiq")]
-position = Vector2(624, 720)
-
-[node name="WoodenBarrel" type="Sprite2D" parent="RestArea"]
-position = Vector2(569, 711)
-scale = Vector2(0.136719, 0.140626)
 
 [node name="Log" type="Sprite2D" parent="."]
-position = Vector2(658, 717)
+position = Vector2(34, -3)
 rotation = -0.591017
 texture = ExtResource("2_2wqhg")
 
 [node name="Helmet" type="Sprite2D" parent="."]
-position = Vector2(697, 707)
+position = Vector2(73, -13)
 rotation = 2.39302
 texture = ExtResource("13_mr661")
 
 [node name="Barrel4" type="Sprite2D" parent="."]
-position = Vector2(452, 705)
+position = Vector2(-172, -15)
 texture = ExtResource("9_0sdec")
 
 [node name="Barrel5" type="Sprite2D" parent="."]
-position = Vector2(479, 705)
+position = Vector2(-145, -15)
 texture = ExtResource("9_0sdec")
 
 [node name="Barrel6" type="Sprite2D" parent="."]
-position = Vector2(465, 677)
+position = Vector2(-159, -43)
 texture = ExtResource("9_0sdec")
 
 [node name="Potions3" type="Sprite2D" parent="."]
-position = Vector2(466, 647)
+position = Vector2(-158, -73)
 texture = ExtResource("10_j3ix8")
 
 [node name="Bottle" type="Sprite2D" parent="."]
-position = Vector2(483, 675)
+position = Vector2(-141, -45)
 texture = ExtResource("13_0sdec")
 
 [node name="Table3" type="Sprite2D" parent="."]
-position = Vector2(522, 704)
+position = Vector2(-102, -16)
 texture = ExtResource("15_ybi6v")
 
 [node name="Table4" type="Sprite2D" parent="."]
-position = Vector2(554, 704)
+position = Vector2(-70, -16)
 texture = ExtResource("15_ybi6v")
 flip_h = true
 
 [node name="Chair" type="Sprite2D" parent="."]
-position = Vector2(584, 705)
+position = Vector2(-40, -15)
 texture = ExtResource("16_mgiv6")
 
 [node name="Bottle2" type="Sprite2D" parent="."]
-position = Vector2(540, 683)
+position = Vector2(-84, -37)
 texture = ExtResource("13_0sdec")
 
 [node name="Tankard" type="Sprite2D" parent="."]
-position = Vector2(559, 683)
+position = Vector2(-65, -37)
 texture = ExtResource("14_j3ix8")
 
 [node name="ZeBred2" type="Sprite2D" parent="."]
-position = Vector2(523, 683)
+position = Vector2(-101, -37)
 texture = ExtResource("15_g458n")
 
 [node name="Chest" type="Sprite2D" parent="."]
-position = Vector2(690, 705)
+position = Vector2(66, -15)
 texture = ExtResource("14_nqqli")
 
 [node name="Herbs" type="Sprite2D" parent="."]
-position = Vector2(713, 704)
+position = Vector2(89, -16)
 texture = ExtResource("12_mgiv6")
 
 [node name="Lantern1" type="Sprite2D" parent="."]
-position = Vector2(728, 705)
+position = Vector2(104, -15)
 texture = ExtResource("13_lglpu")
 
 [node name="Lantern2" type="Sprite2D" parent="."]
-position = Vector2(728, 673)
+position = Vector2(104, -47)
 texture = ExtResource("14_kq4t6")
 
 [node name="Lantern3" type="Sprite2D" parent="."]
-position = Vector2(730, 642)
+position = Vector2(106, -78)
 texture = ExtResource("15_4w148")
 
 [node name="Lantern4" type="Sprite2D" parent="."]
-position = Vector2(752, 640)
+position = Vector2(128, -80)
 texture = ExtResource("16_xtcg7")
 
 [node name="Box" type="Sprite2D" parent="."]
-position = Vector2(747, 705)
+position = Vector2(123, -15)
 texture = ExtResource("15_pshy2")
 
 [node name="Potions1" type="Sprite2D" parent="."]
-position = Vector2(746, 681)
+position = Vector2(122, -39)
 texture = ExtResource("16_172vv")
 
 [node name="Lantern5" type="Sprite2D" parent="."]
-position = Vector2(425, 705)
+position = Vector2(-199, -15)
 texture = ExtResource("13_lglpu")
 
 [node name="Lantern6" type="Sprite2D" parent="."]
-position = Vector2(425, 673)
+position = Vector2(-199, -47)
 texture = ExtResource("14_kq4t6")
 
 [node name="Lantern7" type="Sprite2D" parent="."]
-position = Vector2(427, 642)
+position = Vector2(-197, -78)
 texture = ExtResource("15_4w148")
 
 [node name="Lantern8" type="Sprite2D" parent="."]
-position = Vector2(449, 640)
+position = Vector2(-175, -80)
 texture = ExtResource("16_xtcg7")
