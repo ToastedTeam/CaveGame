@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://sxa01t3avman" path="res://weapons/bow/assets/arrow.png" id="2_eec6a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eec6a"]
-size = Vector2(9, 1)
+size = Vector2(14, 1)
 
 [node name="Arrow" type="Node2D"]
 script = ExtResource("1_eec6a")
@@ -17,11 +17,10 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageBox"]
-position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_eec6a")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-position = Vector2(0, 0.5)
+position = Vector2(0, 2.98023e-08)
 scale = Vector2(0.1, 0.05)
 
 [connection signal="body_entered" from="DamageBox" to="." method="_on_damage_box_body_entered"]

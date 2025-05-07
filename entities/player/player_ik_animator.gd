@@ -23,7 +23,8 @@ extends Node2D
 var last_grounded = true;
 
 var hip: Bone2D;
-var hand: RemoteTransform2DExtended;
+var hand1: RemoteTransform2DExtended;
+var hand2: RemoteTransform2DExtended;
 var lastDirection = 1;
 
 var FFTargetPos: Node2D;
@@ -48,9 +49,16 @@ enum WalkState {
 	None
 }
 
+enum AttackingState {
+	None, Melee, Ranged
+}
+var attackState: AttackingState = AttackingState.None;
+
 
 @export var state: AnimState = AnimState.Idle
 @export var lastState: AnimState = AnimState.Idle
+
+var lastFacingDir = 1;
 
 var currentWalk: WalkState = WalkState.None;
 var currentWalkChanged = false;
@@ -66,19 +74,20 @@ func setAnimState(newState: AnimState):
 
 # Attacks return true if player has a weapon, otherwise false
 func Attack_Melee() -> bool:
-	if not hand.node.has_node("Weapon"):
+	if not hand1.node.has_node("Weapon"):
 		return false
 	# We're doing a rough assumption that what the hands have is only a weapon
-	var weapon = hand.node.get_node("Weapon") as Weapon
+	var weapon = hand1.node.get_node("Weapon") as Weapon
 	animationPlayer.play(weapon.AnimName)
 	return true
 
 func Attack_Ranged() -> bool:
-	if not hand.node.has_node("Ranged"):
+	if not hand2.node.has_node("Ranged"):
 		return false
 	#Log.info("Perform magic attack, play some animation or something...")
-	var weapon = hand.node.get_node("Ranged") as RangedWeapon
+	var weapon = hand2.node.get_node("Ranged") as RangedWeapon
 	weapon._on_attack_key_press()
+	attackState = AttackingState.Ranged;
 	return true
 
 func Start_Dash() -> void:
@@ -98,7 +107,7 @@ func _IK_Bones_Set_Flipped(flipped: bool) -> void:
 				flip.scale = Vector2.ONE * -1 if flipped else Vector2.ONE
 				#pass
 		_Flip_All_Sprites(flipped)
-		hand.rotation_degrees = default_states["hand_rot"] + (-1 if flipped else 1)
+		hand1.rotation_degrees = default_states["hand1_rot"] + (-1 if flipped else 1)
 		collarBone.rotation = PI if flipped else 0
 		collarOffsetBone.rotation = PI if flipped else 0
 		# WHAT THE HELL IS GOING ON
@@ -111,6 +120,10 @@ func _IK_Bones_Set_Flipped(flipped: bool) -> void:
 			if rule.changeModulation:
 				targetNode.modulate = rule.flippedModulation if flipped else rule.normalModulation
 		(player.get_node("targetPositions/HipTarget/Synchroniser") as RemoteTransform2DExtended).rotationOffset = PI if flipped else 0
+	if flipped:
+		lastFacingDir = -1
+	else:
+		lastFacingDir = 1
 	pass
 
 func _Get_Player_Params() -> void:
@@ -120,8 +133,10 @@ func _Get_Player_Params() -> void:
 		var modification = modificationStack.get_modification(idx)
 		if modification is SkeletonModification2DTwoBoneIK:
 			default_states[idx] = modification.flip_bend_direction
-	hand = skeleton.find_child("Hand", true, false)
-	default_states["hand_rot"] = hand.rotation_degrees;
+	var hands = skeleton.find_children("Hand", "", true, false)
+	hand1 = hands[1] #skeleton.find_child("Hand", true, false)
+	hand2 = hands[0] # skeleton.find_child("Hand", true, false)
+	default_states["hand1_rot"] = hand1.rotation_degrees;
 	
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -283,12 +298,18 @@ func _physics_process(delta: float) -> void:
 		var just_grounded = grounded and !last_grounded;
 		IKStateMachine(delta, grounded, just_grounded)
 		
-		# Arm rest inhibition
-		if !inhibitFH:
-			FHTargetPos.global_position = hip.global_position + ArmRestOffset + FArmRest
-		if !inhibitBH:
-			BHTargetPos.global_position = hip.global_position + BArmRest + ArmRestOffset
 		
+		match attackState:
+			AttackingState.None:
+				# Arm rest inhibition
+				if !inhibitFH:
+					FHTargetPos.global_position = hip.global_position + ArmRestOffset + FArmRest
+				if !inhibitBH:
+					BHTargetPos.global_position = hip.global_position + BArmRest + ArmRestOffset
+			AttackingState.Ranged:
+				var weapon = hand2.node.get_node("Ranged") as RangedWeapon
+				weapon.animateAttack(self, lastFacingDir)
+				pass
 		if lastDirection != player.currentDirection:
 			if player.currentDirection < 0:
 				_IK_Bones_Set_Flipped(true)

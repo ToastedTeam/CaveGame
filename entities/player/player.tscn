@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://c11ldn4yd0i8w"]
+[gd_scene load_steps=71 format=3 uid="uid://c11ldn4yd0i8w"]
 
 [ext_resource type="Script" uid="uid://7dppspqb023v" path="res://entities/player/player.gd" id="1_plpc0"]
 [ext_resource type="Resource" uid="uid://bwttxa78idcwr" path="res://scenes/inventory/player_inv.tres" id="2_0eo6o"]
@@ -36,6 +36,7 @@
 [ext_resource type="Script" uid="uid://dk2yrqykdjtoy" path="res://entities/target_dummy/rotation_target.gd" id="33_2soq1"]
 [ext_resource type="Texture2D" uid="uid://cmrdtpty5fhk2" path="res://entities/player/assets/miku/lantern/puffy_thing.png" id="33_ttr27"]
 [ext_resource type="Texture2D" uid="uid://bxbcwehybwg8e" path="res://entities/player/assets/miku/lantern/puffy_thing_second_part.png" id="34_13wue"]
+[ext_resource type="PackedScene" uid="uid://tuca5j0sn5nn" path="res://weapons/bow/bow.tscn" id="35_ttr27"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nn8mg"]
 bg_color = Color(0.321728, 0.321728, 0.321728, 1)
@@ -501,7 +502,7 @@ metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="shoulder_r" type="Bone2D" parent="Skeleton/hip/torso/collar/offset"]
 position = Vector2(-0.5, -1)
-rotation = 1.42099
+rotation = 0.315249
 scale = Vector2(0.999991, 0.999991)
 rest = Transform2D(-0.905374, 0.424593, -0.424593, -0.905374, -0.5, -1)
 editor_settings/show_bone_gizmo = false
@@ -518,6 +519,7 @@ metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="forearm_r" type="Bone2D" parent="Skeleton/hip/torso/collar/offset/shoulder_r"]
 position = Vector2(10, -9.53677e-07)
+rotation = -0.283281
 scale = Vector2(0.999999, 0.999999)
 rest = Transform2D(0.999999, 0, 0, 0.999999, 10, -9.53677e-07)
 auto_calculate_length_and_angle = false
@@ -535,9 +537,18 @@ Position = true
 Rotation = true
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
+[node name="Hand" type="Node2D" parent="Skeleton/hip/torso/collar/offset/shoulder_r/forearm_r" node_paths=PackedStringArray("node")]
+position = Vector2(9.775, -1.165)
+rotation = -1.5708
+script = ExtResource("7_j3ovn")
+node = NodePath("../../../../../../../../sprites/FlipHandler2")
+Position = true
+Rotation = true
+metadata/_custom_type_script = "uid://eji52ig0w3g5"
+
 [node name="shoulder_f" type="Bone2D" parent="Skeleton/hip/torso/collar/offset"]
 position = Vector2(-0.5, -1)
-rotation = 1.43136
+rotation = 2.69053
 scale = Vector2(0.999985, 0.999985)
 rest = Transform2D(0.991575, 0.12942, -0.12942, 0.991575, -0.5, -1)
 editor_settings/show_bone_gizmo = false
@@ -670,26 +681,32 @@ visible = false
 position = Vector2(32, -13.5)
 
 [node name="BHTarget_pos" type="Marker2D" parent="Skeleton"]
-visible = false
-position = Vector2(2, 12)
+position = Vector2(20, -11)
 
 [node name="FHTarget_pos" type="Marker2D" parent="Skeleton"]
-visible = false
-position = Vector2(2, 14)
+position = Vector2(-34, 1)
 
 [node name="sprites" type="Node2D" parent="."]
 
 [node name="Forearm_R" type="Sprite2D" parent="sprites"]
 modulate = Color(0.788235, 0.788235, 0.788235, 1)
-position = Vector2(0.733112, 0.256867)
-rotation = -0.149815
+position = Vector2(12.5201, -11.7394)
+rotation = -1.53883
 texture = SubResource("CanvasTexture_geky7")
 
 [node name="Shoulder_R" type="Sprite2D" parent="sprites"]
 modulate = Color(0.788235, 0.788235, 0.788235, 1)
-position = Vector2(-1.25373, -9.55612)
-rotation = -0.149815
+position = Vector2(2.75346, -12.9497)
+rotation = -1.25555
 texture = SubResource("CanvasTexture_qwspa")
+
+[node name="FlipHandler2" type="Node2D" parent="sprites"]
+position = Vector2(17.3137, -12.2514)
+rotation = -1.53883
+
+[node name="Ranged" parent="sprites/FlipHandler2" instance=ExtResource("35_ttr27")]
+position = Vector2(0, -6)
+rotation = 1.5708
 
 [node name="Calf_B" type="Node2D" parent="sprites"]
 modulate = Color(0.788235, 0.788235, 0.788235, 1)
@@ -702,7 +719,7 @@ texture = SubResource("CanvasTexture_r633c")
 
 [node name="Thigh_B" type="Sprite2D" parent="sprites"]
 modulate = Color(0.787759, 0.787759, 0.787759, 1)
-position = Vector2(0.863826, 5.93747)
+position = Vector2(0.863825, 5.93747)
 rotation = -0.144474
 texture = SubResource("CanvasTexture_pacje")
 
@@ -809,19 +826,19 @@ texture_scale = 2.5
 height = 275.0
 
 [node name="FlipHandler" type="Node2D" parent="sprites"]
-position = Vector2(1.90201, 4.92025)
-rotation = -0.139442
+position = Vector2(-19.2884, -4.83149)
+rotation = 1.11973
 
 [node name="Weapon" parent="sprites/FlipHandler" instance=ExtResource("4_5ek75")]
 
 [node name="Forearm_F" type="Sprite2D" parent="sprites"]
-position = Vector2(0.579876, 0.284278)
-rotation = -0.139442
+position = Vector2(-15.2811, -7.51138)
+rotation = 1.11973
 texture = SubResource("CanvasTexture_geky7")
 
 [node name="Shoulder_F" type="Sprite2D" parent="sprites"]
-position = Vector2(-1.30505, -9.54868)
-rotation = -0.139442
+position = Vector2(-6.49967, -12.3204)
+rotation = 1.11973
 texture = SubResource("CanvasTexture_qwspa")
 
 [node name="accessories" type="Node2D" parent="."]
