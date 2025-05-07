@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://eyn8vv5v6064"]
+
+[ext_resource type="Theme" uid="uid://x2nw25qlb7aj" path="res://assets/ui/ui_theme.tres" id="1_qqq5y"]
+[ext_resource type="Script" uid="uid://inncyp8i8707" path="res://scenes/interface/end_game.gd" id="1_sdp4y"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_s2ohv"]
+font_size = 96
+
+[sub_resource type="LabelSettings" id="LabelSettings_sdp4y"]
+font_size = 32
+
+[node name="EndGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qqq5y")
+script = ExtResource("1_sdp4y")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.75)
+
+[node name="CC" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBC" type="VBoxContainer" parent="CC"]
+layout_mode = 2
+
+[node name="GameOverLbl" type="Label" parent="CC/VBC"]
+layout_mode = 2
+text = "Game Over!"
+label_settings = SubResource("LabelSettings_s2ohv")
+horizontal_alignment = 1
+
+[node name="BTN" type="Button" parent="CC/VBC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "
+
+
+"
+
+[node name="CC" type="CenterContainer" parent="CC/VBC/BTN"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMenuLbl" type="Label" parent="CC/VBC/BTN/CC"]
+layout_mode = 2
+text = "Return to Main Menu"
+label_settings = SubResource("LabelSettings_sdp4y")
+
+[connection signal="pressed" from="CC/VBC/BTN" to="." method="_on_btn_pressed"]

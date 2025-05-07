@@ -26,4 +26,4 @@ func _on_body_exited(body):
 func _process(delta):
 	if player_in_area and Input.is_action_just_pressed("player_interact"):
 		print("Player interacted with the EndDoor.")
-		get_tree().change_scene_to_file("res://scenes/GameEndScreen.tscn")
+		get_tree().change_scene_to_file("res://scenes/interface/end_game.tscn")
