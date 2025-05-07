@@ -1,0 +1,127 @@
+[gd_scene load_steps=19 format=3 uid="uid://c0rjmt5gjqalg"]
+
+[ext_resource type="PackedScene" uid="uid://babgoqd6p8s7d" path="res://structures/rest_area/rest_area.tscn" id="1_1kgiq"]
+[ext_resource type="Texture2D" uid="uid://bac2omylr5jft" path="res://structures/RestArea/log.png" id="2_2wqhg"]
+[ext_resource type="Texture2D" uid="uid://cqw1nywt6uay7" path="res://structures/RestArea/x32/barrel.png" id="9_0sdec"]
+[ext_resource type="Texture2D" uid="uid://cxujkgynmvhkf" path="res://structures/RestArea/x32/potions2.png" id="10_j3ix8"]
+[ext_resource type="Texture2D" uid="uid://blrahjw88vbm5" path="res://structures/RestArea/x32/herbs.png" id="12_mgiv6"]
+[ext_resource type="Texture2D" uid="uid://e7gkb4nmvydv" path="res://structures/RestArea/x32/bottle.png" id="13_0sdec"]
+[ext_resource type="Texture2D" uid="uid://dguiglpyekg60" path="res://structures/RestArea/x32/lantern1.png" id="13_lglpu"]
+[ext_resource type="Texture2D" uid="uid://dcjw4ow2ebyxs" path="res://structures/RestArea/x32/helmet.png" id="13_mr661"]
+[ext_resource type="Texture2D" uid="uid://b53rt72inp2dl" path="res://structures/RestArea/x32/tankard.png" id="14_j3ix8"]
+[ext_resource type="Texture2D" uid="uid://b2vnpwbmusmdj" path="res://structures/RestArea/x32/lantern2.png" id="14_kq4t6"]
+[ext_resource type="Texture2D" uid="uid://crlljo7tod362" path="res://structures/RestArea/x32/chest.png" id="14_nqqli"]
+[ext_resource type="Texture2D" uid="uid://8ymrict6p1l0" path="res://structures/RestArea/x32/lantern3.png" id="15_4w148"]
+[ext_resource type="Texture2D" uid="uid://dc36guw6hyn05" path="res://structures/RestArea/x32/ze bred.png" id="15_g458n"]
+[ext_resource type="Texture2D" uid="uid://dtf4ooapck4nu" path="res://structures/RestArea/x32/box.png" id="15_pshy2"]
+[ext_resource type="Texture2D" uid="uid://dsggfuwlv3b15" path="res://structures/RestArea/x32/table.png" id="15_ybi6v"]
+[ext_resource type="Texture2D" uid="uid://c71qqx01hmkle" path="res://structures/RestArea/x32/potions1.png" id="16_172vv"]
+[ext_resource type="Texture2D" uid="uid://bdfkjljflkgmg" path="res://structures/RestArea/x32/chair.png" id="16_mgiv6"]
+[ext_resource type="Texture2D" uid="uid://c6bdyb1jxigak" path="res://structures/RestArea/x32/lantern 4.png" id="16_xtcg7"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="RestArea" parent="." instance=ExtResource("1_1kgiq")]
+
+[node name="Log" type="Sprite2D" parent="."]
+position = Vector2(34, -3)
+rotation = -0.591017
+texture = ExtResource("2_2wqhg")
+
+[node name="Helmet" type="Sprite2D" parent="."]
+position = Vector2(73, -13)
+rotation = 2.39302
+texture = ExtResource("13_mr661")
+
+[node name="Barrel4" type="Sprite2D" parent="."]
+position = Vector2(-172, -15)
+texture = ExtResource("9_0sdec")
+
+[node name="Barrel5" type="Sprite2D" parent="."]
+position = Vector2(-145, -15)
+texture = ExtResource("9_0sdec")
+
+[node name="Barrel6" type="Sprite2D" parent="."]
+position = Vector2(-159, -43)
+texture = ExtResource("9_0sdec")
+
+[node name="Potions3" type="Sprite2D" parent="."]
+position = Vector2(-158, -73)
+texture = ExtResource("10_j3ix8")
+
+[node name="Bottle" type="Sprite2D" parent="."]
+position = Vector2(-141, -45)
+texture = ExtResource("13_0sdec")
+
+[node name="Table3" type="Sprite2D" parent="."]
+position = Vector2(-102, -16)
+texture = ExtResource("15_ybi6v")
+
+[node name="Table4" type="Sprite2D" parent="."]
+position = Vector2(-70, -16)
+texture = ExtResource("15_ybi6v")
+flip_h = true
+
+[node name="Chair" type="Sprite2D" parent="."]
+position = Vector2(-40, -15)
+texture = ExtResource("16_mgiv6")
+
+[node name="Bottle2" type="Sprite2D" parent="."]
+position = Vector2(-84, -37)
+texture = ExtResource("13_0sdec")
+
+[node name="Tankard" type="Sprite2D" parent="."]
+position = Vector2(-65, -37)
+texture = ExtResource("14_j3ix8")
+
+[node name="ZeBred2" type="Sprite2D" parent="."]
+position = Vector2(-101, -37)
+texture = ExtResource("15_g458n")
+
+[node name="Chest" type="Sprite2D" parent="."]
+position = Vector2(66, -15)
+texture = ExtResource("14_nqqli")
+
+[node name="Herbs" type="Sprite2D" parent="."]
+position = Vector2(89, -16)
+texture = ExtResource("12_mgiv6")
+
+[node name="Lantern1" type="Sprite2D" parent="."]
+position = Vector2(104, -15)
+texture = ExtResource("13_lglpu")
+
+[node name="Lantern2" type="Sprite2D" parent="."]
+position = Vector2(104, -47)
+texture = ExtResource("14_kq4t6")
+
+[node name="Lantern3" type="Sprite2D" parent="."]
+position = Vector2(106, -78)
+texture = ExtResource("15_4w148")
+
+[node name="Lantern4" type="Sprite2D" parent="."]
+position = Vector2(128, -80)
+texture = ExtResource("16_xtcg7")
+
+[node name="Box" type="Sprite2D" parent="."]
+position = Vector2(123, -15)
+texture = ExtResource("15_pshy2")
+
+[node name="Potions1" type="Sprite2D" parent="."]
+position = Vector2(122, -39)
+texture = ExtResource("16_172vv")
+
+[node name="Lantern5" type="Sprite2D" parent="."]
+position = Vector2(-199, -15)
+texture = ExtResource("13_lglpu")
+
+[node name="Lantern6" type="Sprite2D" parent="."]
+position = Vector2(-199, -47)
+texture = ExtResource("14_kq4t6")
+
+[node name="Lantern7" type="Sprite2D" parent="."]
+position = Vector2(-197, -78)
+texture = ExtResource("15_4w148")
+
+[node name="Lantern8" type="Sprite2D" parent="."]
+position = Vector2(-175, -80)
+texture = ExtResource("16_xtcg7")
