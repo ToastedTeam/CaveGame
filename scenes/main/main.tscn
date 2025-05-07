@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=4 uid="uid://qtfciyfj33pt"]
+[gd_scene load_steps=60 format=4 uid="uid://qtfciyfj33pt"]
 
 [ext_resource type="PackedScene" uid="uid://c11ldn4yd0i8w" path="res://entities/player/player.tscn" id="3_blune"]
 [ext_resource type="Script" uid="uid://bhda60gy1q5tc" path="res://entities/player/player_ik_animator.gd" id="3_th5th"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://babgoqd6p8s7d" path="res://structures/rest_area/rest_area.tscn" id="16_nvumn"]
 [ext_resource type="PackedScene" uid="uid://qvccttre7alv" path="res://scenes/collectables_scenes/red_gem_collectable.tscn" id="16_ou6is"]
 [ext_resource type="PackedScene" uid="uid://8o061kwxhcge" path="res://scenes/collectables_scenes/blue_gem_collectable.tscn" id="17_nvumn"]
+[ext_resource type="PackedScene" uid="uid://u7cofmnwref0" path="res://structures/EndDoor/end_door.tscn" id="18_ou6is"]
 
 [sub_resource type="Resource" id="Resource_hxu8e"]
 resource_name = "Forearm R"
@@ -1799,10 +1800,12 @@ rotation = 1.93946
 scale = Vector2(0.999991, 0.999991)
 
 [node name="forearm_r" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset/shoulder_r" index="1"]
-rotation = -0.833525
+rotation = -0.833526
+scale = Vector2(0.999999, 0.999999)
 
 [node name="shoulder_f" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="2"]
 rotation = 2.43437
+scale = Vector2(0.999985, 0.999985)
 
 [node name="forearm_f" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset/shoulder_f" index="1"]
 rotation = -1.73952
@@ -1819,15 +1822,15 @@ rotation = -0.276292
 scale = Vector2(0.99984, 0.99984)
 
 [node name="Forearm_R" parent="GameObjects/Player/sprites" index="0"]
-position = Vector2(-2.91475, -0.926952)
+position = Vector2(-2.91473, -0.926945)
 rotation = -0.464865
 
 [node name="Shoulder_R" parent="GameObjects/Player/sprites" index="1"]
-position = Vector2(-3.80116, -9.83456)
-rotation = 0.368662
+position = Vector2(-3.80115, -9.83456)
+rotation = 0.368661
 
 [node name="FlipHandler2" parent="GameObjects/Player/sprites" index="2"]
-position = Vector2(-0.180206, 3.04246)
+position = Vector2(-0.180206, 3.04247)
 rotation = -0.464865
 
 [node name="Calf_B" parent="GameObjects/Player/sprites" index="3"]
@@ -1847,25 +1850,25 @@ position = Vector2(1.13631, 5.77062)
 rotation = -0.276292
 
 [node name="BHair" parent="GameObjects/Player/sprites" index="7"]
-position = Vector2(-5.2769, -28.0557)
+position = Vector2(-5.2769, -28.0555)
 
 [node name="Head" parent="GameObjects/Player/sprites" index="8"]
-position = Vector2(-1.54036, -20.4958)
-rotation = -0.00580466
+position = Vector2(-1.54036, -20.4956)
+rotation = -0.00580461
 
 [node name="FrontHair" parent="GameObjects/Player/sprites" index="9"]
-position = Vector2(-6.51007, -26.1904)
+position = Vector2(-6.51007, -26.1902)
 
 [node name="Torso" parent="GameObjects/Player/sprites" index="10"]
 position = Vector2(0, -7.99875)
 
 [node name="FlipHandler" parent="GameObjects/Player/sprites" index="12"]
-position = Vector2(-1.34702, -2.63909)
-rotation = -0.875946
+position = Vector2(-1.34702, -2.6391)
+rotation = -0.875947
 
 [node name="Forearm_F" parent="GameObjects/Player/sprites" index="13"]
 position = Vector2(-5.43985, -5.18505)
-rotation = -0.875946
+rotation = -0.875947
 
 [node name="Shoulder_F" parent="GameObjects/Player/sprites" index="14"]
 position = Vector2(-5.79976, -11.2497)
@@ -2032,6 +2035,9 @@ position = Vector2(587, -25)
 
 [node name="blue_gem_collectable2" parent="." instance=ExtResource("17_nvumn")]
 position = Vector2(785, 4)
+
+[node name="EndDoor" parent="." instance=ExtResource("18_ou6is")]
+position = Vector2(370, 16)
 
 [editable path="GameObjects/Player"]
 [editable path="Interface"]
