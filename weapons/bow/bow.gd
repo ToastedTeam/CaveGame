@@ -14,6 +14,11 @@ func _on_attack_key_press() -> void:
 	
 	Global.playerBody.move_speed /= PLAYER_SLOWDOWN
 	Global.playerBody.IkAnimator.walkDuration *= PLAYER_SLOWDOWN
+	$BowAnimation.show()
+	$bowstring.show()
+	$Arrow.show()
+	player.IkAnimator.hand1.node.hide()
+	
 	
 	#sprite.hide()
 	#animation.show()
@@ -51,8 +56,10 @@ func _on_attack_key_hold() -> void:
 func animateAttack(animator: IKPlayerAnimator, facing: float) -> void:
 	animator.BHTargetPos.global_position = animator.collarOffsetBone.global_position + Vector2(21.5 * facing, 2.5);
 	var progress = max(-(key_pressed_duration / 1.5), -1)
-	animator.FHTargetPos.global_position = $bowstring.global_position + Vector2(10 * progress * facing, 0)
-	$bowstring.points[1] = Vector2(1.5, 0) + Vector2(10 * progress, 0)
+	var maxDraw = 7
+	animator.FHTargetPos.global_position = $bowstring.global_position + Vector2(maxDraw * progress * facing, 0)
+	$bowstring.points[1] = Vector2(1.5, 0) + Vector2(maxDraw * progress, 0)
+	$Arrow.position = Vector2(6, 0) + Vector2(maxDraw * progress, 0)
 	print(facing)
 	pass
 
@@ -65,9 +72,11 @@ func _on_attack_key_release() -> void:
 	proj_instance.down_pull_factor = arrow_down_pull
 	$bowstring.points[1] = Vector2(1.5, 0)
 	
-	
 	_projectile_start()
-	
+	$BowAnimation.hide()
+	$bowstring.hide()
+	$Arrow.hide()
+	player.IkAnimator.hand1.node.show()
 	Global.playerBody.move_speed *= PLAYER_SLOWDOWN
 	Global.playerBody.IkAnimator.walkDuration /= PLAYER_SLOWDOWN
 	

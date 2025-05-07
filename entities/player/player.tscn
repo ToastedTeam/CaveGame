@@ -593,7 +593,6 @@ metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="thigh_r" type="Bone2D" parent="Skeleton/hip"]
 rotation = -0.144474
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 auto_calculate_length_and_angle = false
 length = 12.0
@@ -704,7 +703,6 @@ texture = SubResource("CanvasTexture_qwspa")
 [node name="FlipHandler2" type="Node2D" parent="sprites"]
 position = Vector2(17.3137, -12.2514)
 rotation = -1.53883
-scale = Vector2(1, 1)
 
 [node name="Ranged" parent="sprites/FlipHandler2" instance=ExtResource("35_ttr27")]
 position = Vector2(0, -6)
