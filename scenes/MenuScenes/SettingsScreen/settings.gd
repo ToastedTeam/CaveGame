@@ -47,7 +47,9 @@ func _ready():
 
 func _on_volume_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_linear(0,value/100)
-
+	var label = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Label
+	label.text = "%d %%" % round(value)
+	
 func _on_mute_sound_toggled(toggled_on: bool) -> void:
 	AudioServer.set_bus_mute(0, toggled_on)
 	#AudioServer.set_bus_volume_db(0,toggled_on)
