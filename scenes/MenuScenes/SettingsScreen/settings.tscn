@@ -228,6 +228,9 @@ text = "Adjust Volume"
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
 [node name="Volume3" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "
