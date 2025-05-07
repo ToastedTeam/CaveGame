@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dn8amu36njlul"]
+[gd_scene load_steps=8 format=3 uid="uid://dn8amu36njlul"]
 
+[ext_resource type="Theme" uid="uid://x2nw25qlb7aj" path="res://assets/ui/ui_theme.tres" id="1_84bcf"]
 [ext_resource type="Script" uid="uid://chc4mk64xl8n1" path="res://scenes/MenuScenes/PauseMenu/pause_menu.gd" id="1_obruh"]
 [ext_resource type="Shader" uid="uid://bus8qxo8npi86" path="res://shaders/blur.gdshader" id="2_62wk8"]
 
@@ -101,6 +102,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_84bcf")
 script = ExtResource("1_obruh")
 
 [node name="ColorRect" type="ColorRect" parent="."]

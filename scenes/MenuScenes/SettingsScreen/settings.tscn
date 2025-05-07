@@ -1,15 +1,13 @@
 [gd_scene load_steps=10 format=3 uid="uid://bxnqjli45gx2e"]
 
 [ext_resource type="Script" uid="uid://dmf1mpipau60a" path="res://scenes/MenuScenes/SettingsScreen/settings.gd" id="1_5p8wc"]
+[ext_resource type="Theme" uid="uid://x2nw25qlb7aj" path="res://assets/ui/ui_theme.tres" id="1_uh7bu"]
 [ext_resource type="Shader" uid="uid://bus8qxo8npi86" path="res://shaders/blur.gdshader" id="2_r6d6q"]
 [ext_resource type="PackedScene" uid="uid://bthc5hdvcfj20" path="res://scenes/MenuScenes/SettingsScreen/input_button.tscn" id="3_6wm04"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6wm04"]
 shader = ExtResource("2_r6d6q")
 shader_parameter/lod = 0.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1hw7a"]
-bg_color = Color(0.169245, 0.169245, 0.169245, 1)
 
 [sub_resource type="Animation" id="Animation_7l7mv"]
 resource_name = "Blur"
@@ -182,6 +180,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_uh7bu")
 script = ExtResource("1_5p8wc")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -200,6 +199,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_uh7bu")
 theme_override_constants/margin_left = 64
 theme_override_constants/margin_top = 64
 theme_override_constants/margin_right = 64
@@ -208,7 +208,6 @@ theme_override_constants/margin_bottom = 64
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_1hw7a")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
 layout_mode = 2
