@@ -59,7 +59,7 @@ func animateAttack(animator: IKPlayerAnimator, facing: float) -> void:
 	var maxDraw = 7
 	animator.FHTargetPos.global_position = $bowstring.global_position + Vector2(maxDraw * progress * facing, 0)
 	$bowstring.points[1] = Vector2(1.5, 0) + Vector2(maxDraw * progress, 0)
-	$Arrow.position = Vector2(6, 0) + Vector2(maxDraw * progress, 0)
+	$Arrow.position = Vector2(9, 0) + Vector2(maxDraw * progress, 0)
 	print(facing)
 	pass
 

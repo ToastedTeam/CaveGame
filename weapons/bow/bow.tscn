@@ -65,6 +65,5 @@ width = 1.0
 position = Vector2(-3, 4)
 
 [node name="Arrow" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(7.24, -0.5)
 texture = ExtResource("4_q5rdn")

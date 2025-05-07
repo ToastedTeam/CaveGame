@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://du07qhtteauuh" path="res://scenes/interface/hp_bar.tscn" id="1_wpx7d"]
 [ext_resource type="PackedScene" uid="uid://mkc0o25ok023" path="res://scenes/interface/mana_bar.tscn" id="2_juv2u"]
-[ext_resource type="Script" uid="uid://ceqabomyba6px" path="res://scenes/interface/WeaponSelectionScreen.gd" id="3_7i0gs"]
+[ext_resource type="Script" path="res://scenes/interface/WeaponSelectionScreen.gd" id="3_7i0gs"]
 [ext_resource type="PackedScene" uid="uid://dn8amu36njlul" path="res://scenes/MenuScenes/PauseMenu/pause_menu.tscn" id="3_qqekr"]
 [ext_resource type="Texture2D" uid="uid://bilyenhvipd38" path="res://weapons/bow/assets/icon.png" id="3_tf5yn"]
 [ext_resource type="Theme" uid="uid://x2nw25qlb7aj" path="res://assets/ui/ui_theme.tres" id="4_rpds0"]
