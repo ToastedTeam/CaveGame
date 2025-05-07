@@ -282,6 +282,7 @@ func _on_entity_hit(body: Node2D) -> void:
 	pass # Replace with function body.
 
 func _on_attack_end() -> void:
+	IkAnimator.attackState = IKPlayerAnimator.AttackingState.None
 	$AttackCooldown.start()
 
 func _on_attack_cooldown_end() -> void:

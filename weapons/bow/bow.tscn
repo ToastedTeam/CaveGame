@@ -47,9 +47,16 @@ projectile_path = "uid://dxxsgu6gklaqr"
 [node name="ProjectileMarker" type="Marker2D" parent="."]
 
 [node name="BowAnimation" type="AnimatedSprite2D" parent="."]
-visible = false
 sprite_frames = SubResource("SpriteFrames_b3neb")
 animation = &"stretch"
 
 [node name="BowSprite" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("3_b3b20")
+
+[node name="bowstring" type="Line2D" parent="."]
+points = PackedVector2Array(1.5, -14, 1.5, 0, 1.5, 14)
+width = 1.0
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-3, 4)

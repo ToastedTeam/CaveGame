@@ -24,3 +24,6 @@ func _projectile_start() -> void:
 
 func _on_attack_key_release() -> void:
 	super._on_attack_key_release()
+	
+func animateAttack(animator: IKPlayerAnimator, direction: float) -> void:
+	pass
