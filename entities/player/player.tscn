@@ -803,8 +803,8 @@ position = Vector2(-2, 5)
 texture = ExtResource("34_13wue")
 
 [node name="PointLight2D" type="PointLight2D" parent="sprites/Star"]
-color = Color(0.882353, 1, 1, 1)
-energy = 1.2
+color = Color(1, 0.980392, 0.843137, 1)
+energy = 1.1
 texture = ExtResource("32_8q4fm")
 texture_scale = 2.5
 height = 275.0

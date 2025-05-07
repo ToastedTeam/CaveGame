@@ -1,14 +1,14 @@
 [gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://cxkuqrvxipgqi"]
 
 [sub_resource type="Curve" id="Curve_10si5"]
-_data = [Vector2(0, 0.247191), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.146068), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_86xse"]
 curve = SubResource("Curve_10si5")
 
 [resource]
-lifetime_randomness = 0.3
+lifetime_randomness = 0.15
 particle_flag_disable_z = true
 angle_min = 1.07288e-05
 angle_max = 1.07288e-05
@@ -20,7 +20,7 @@ angular_velocity_min = -1.60933e-05
 angular_velocity_max = -1.60933e-05
 damping_min = 5.0
 damping_max = 5.0
-scale_min = 2.0
-scale_max = 5.0
+scale_min = 2.2
+scale_max = 5.5
 scale_curve = SubResource("CurveTexture_86xse")
 color = Color(0.29219, 0.29219, 0.29219, 0.509804)

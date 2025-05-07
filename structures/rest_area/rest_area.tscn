@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://babgoqd6p8s7d"]
+[gd_scene load_steps=16 format=3 uid="uid://babgoqd6p8s7d"]
 
 [ext_resource type="Script" uid="uid://lmpf2d2cdvkk" path="res://structures/rest_area/regen_area.gd" id="1_y2hkx"]
 [ext_resource type="Script" uid="uid://cgidgcbi2lrix" path="res://structures/rest_area/rest_player.gd" id="6_86xse"]
@@ -422,6 +422,19 @@ shader_parameter/emission_sphere_radius = 6.0
 shader_parameter/color_value = Color(0.717331, 0.676126, 0, 1)
 shader_parameter/gravity = Vector3(0, -9.8, 0)
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y2hkx"]
+lifetime_randomness = 0.2
+particle_flag_disable_z = true
+particle_flag_damping_as_friction = true
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 15.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
+damping_max = 0.5
+hue_variation_min = -0.02
+hue_variation_max = 0.04
+turbulence_noise_strength = 0.2
+
 [sub_resource type="Environment" id="Environment_367mj"]
 background_mode = 1
 glow_enabled = true
@@ -457,8 +470,8 @@ texture = SubResource("CanvasTexture_korw2")
 
 [node name="smoke" type="GPUParticles2D" parent="Campfire"]
 position = Vector2(-3, 6)
-amount = 248
-lifetime = 5.5
+amount = 128
+lifetime = 5.8
 trail_lifetime = 1.0
 process_material = ExtResource("8_367mj")
 
@@ -467,13 +480,19 @@ position = Vector2(-3, 8)
 amount = 96
 process_material = SubResource("ShaderMaterial_jjql1")
 
+[node name="fire-high flying" type="GPUParticles2D" parent="Campfire"]
+position = Vector2(-2, 8)
+amount = 6
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_y2hkx")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_367mj")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(-2, -10)
 color = Color(1, 0.557333, 0.17, 1)
-energy = 1.1
+energy = 1.2
 texture = ExtResource("8_jjql1")
 height = 97.0
 
