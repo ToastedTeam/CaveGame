@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://qtfciyfj33pt"]
+[gd_scene load_steps=50 format=4 uid="uid://qtfciyfj33pt"]
 
 [ext_resource type="PackedScene" uid="uid://c11ldn4yd0i8w" path="res://entities/player/player.tscn" id="3_blune"]
 [ext_resource type="Script" uid="uid://bhda60gy1q5tc" path="res://entities/player/player_ik_animator.gd" id="3_th5th"]
@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://c0rjmt5gjqalg" path="res://structures/RestArea/RestArea.tscn" id="10_7smn1"]
 [ext_resource type="PackedScene" uid="uid://dn52wlkh2g1wy" path="res://scenes/killzone/killzone.tscn" id="10_necax"]
 [ext_resource type="PackedScene" uid="uid://bxpy7oymfnp6o" path="res://structures/OpenCave/structure.tscn" id="16_necax"]
-[ext_resource type="PackedScene" uid="uid://8o061kwxhcge" path="res://scenes/collectables_scenes/blue_gem_collectable.tscn" id="17_nvumn"]
 
 [sub_resource type="Resource" id="Resource_hxu8e"]
 resource_name = "Forearm R"
@@ -1640,7 +1639,7 @@ position = Vector2(0, 0)
 scale = Vector2(0.999844, 0.999844)
 
 [node name="head" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="0"]
-rotation = -0.00580464
+rotation = -0.0058046
 scale = Vector2(0.999864, 0.999864)
 
 [node name="shoulder_r" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="1"]
@@ -1860,12 +1859,6 @@ script = SubResource("GDScript_raeie")
 [node name="PauseMenu" parent="Interface" index="2"]
 offset_top = 0.0
 offset_bottom = 0.0
-
-[node name="blue_gem_collectable" parent="." instance=ExtResource("17_nvumn")]
-position = Vector2(587, -25)
-
-[node name="blue_gem_collectable2" parent="." instance=ExtResource("17_nvumn")]
-position = Vector2(785, 4)
 
 [editable path="GameObjects/Player"]
 [editable path="Interface"]
