@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c0rjmt5gjqalg"]
+[gd_scene load_steps=20 format=3 uid="uid://c0rjmt5gjqalg"]
 
 [ext_resource type="PackedScene" uid="uid://babgoqd6p8s7d" path="res://structures/rest_area/rest_area.tscn" id="1_1kgiq"]
 [ext_resource type="Texture2D" uid="uid://bac2omylr5jft" path="res://structures/RestArea/log.png" id="2_2wqhg"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://c71qqx01hmkle" path="res://structures/RestArea/x32/potions1.png" id="16_172vv"]
 [ext_resource type="Texture2D" uid="uid://bdfkjljflkgmg" path="res://structures/RestArea/x32/chair.png" id="16_mgiv6"]
 [ext_resource type="Texture2D" uid="uid://c6bdyb1jxigak" path="res://structures/RestArea/x32/lantern 4.png" id="16_xtcg7"]
+[ext_resource type="Texture2D" uid="uid://ct4p4rmtan1ow" path="res://entities/target_dummy/assets/2d_lights_and_shadows_neutral_point_light.webp" id="19_kq4t6"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -125,3 +126,15 @@ texture = ExtResource("15_4w148")
 [node name="Lantern8" type="Sprite2D" parent="."]
 position = Vector2(-175, -80)
 texture = ExtResource("16_xtcg7")
+
+[node name="PointLight2D3" type="PointLight2D" parent="."]
+position = Vector2(-170, -76)
+scale = Vector2(0.28125, 0.849853)
+energy = 1.2
+texture = ExtResource("19_kq4t6")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(134, -75)
+scale = Vector2(0.289063, 0.921875)
+energy = 1.2
+texture = ExtResource("19_kq4t6")

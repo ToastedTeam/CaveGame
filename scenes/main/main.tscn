@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=4 uid="uid://qtfciyfj33pt"]
+[gd_scene load_steps=51 format=4 uid="uid://qtfciyfj33pt"]
 
 [ext_resource type="PackedScene" uid="uid://c11ldn4yd0i8w" path="res://entities/player/player.tscn" id="3_blune"]
 [ext_resource type="Script" uid="uid://bhda60gy1q5tc" path="res://entities/player/player_ik_animator.gd" id="3_th5th"]
@@ -10,11 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://jxyevycakmnv" path="res://scenes/interface/interface.tscn" id="6_raeie"]
 [ext_resource type="PackedScene" uid="uid://dywdkewy1ti6p" path="res://entities/target_dummy/target_dummy.tscn" id="7_hxu8e"]
 [ext_resource type="Texture2D" uid="uid://bb0m10tlay88m" path="res://scenes/main/assets/world_tileset.png" id="9_ou6is"]
+[ext_resource type="PackedScene" uid="uid://c0rjmt5gjqalg" path="res://structures/RestArea/RestArea.tscn" id="10_7smn1"]
 [ext_resource type="PackedScene" uid="uid://dn52wlkh2g1wy" path="res://scenes/killzone/killzone.tscn" id="10_necax"]
-[ext_resource type="PackedScene" uid="uid://bnrfrkdsmnw48" path="res://entities/goblin/goblin.tscn" id="11_raeie"]
 [ext_resource type="PackedScene" uid="uid://bxpy7oymfnp6o" path="res://structures/OpenCave/structure.tscn" id="16_necax"]
-[ext_resource type="PackedScene" uid="uid://babgoqd6p8s7d" path="res://structures/rest_area/rest_area.tscn" id="16_nvumn"]
-[ext_resource type="PackedScene" uid="uid://qvccttre7alv" path="res://scenes/collectables_scenes/red_gem_collectable.tscn" id="16_ou6is"]
 [ext_resource type="PackedScene" uid="uid://8o061kwxhcge" path="res://scenes/collectables_scenes/blue_gem_collectable.tscn" id="17_nvumn"]
 
 [sub_resource type="Resource" id="Resource_hxu8e"]
@@ -1571,17 +1569,8 @@ script/source = "extends HBoxContainer
 [node name="GameObjects" type="Node" parent="."]
 
 [node name="TargetDummy" parent="GameObjects" instance=ExtResource("7_hxu8e")]
-position = Vector2(12, 2)
+position = Vector2(-25, 15)
 maxInvincibilityFrames = 30
-
-[node name="RestArea" parent="GameObjects" instance=ExtResource("16_nvumn")]
-position = Vector2(-116, 16)
-
-[node name="TargetDummy2" parent="GameObjects" instance=ExtResource("7_hxu8e")]
-position = Vector2(1330, -16)
-
-[node name="RestArea2" parent="GameObjects" instance=ExtResource("16_nvumn")]
-position = Vector2(2084, 16)
 
 [node name="PlayerIKAnimator" type="Node2D" parent="GameObjects" node_paths=PackedStringArray("player", "animationPlayer")]
 visible = false
@@ -1651,15 +1640,16 @@ position = Vector2(0, 0)
 scale = Vector2(0.999844, 0.999844)
 
 [node name="head" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="0"]
-rotation = -0.0058046
-scale = Vector2(0.999863, 0.999863)
+rotation = -0.00580464
+scale = Vector2(0.999864, 0.999864)
 
 [node name="shoulder_r" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="1"]
 rotation = 1.93946
 scale = Vector2(0.999991, 0.999991)
 
 [node name="forearm_r" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset/shoulder_r" index="1"]
-rotation = -0.833525
+rotation = -0.833526
+scale = Vector2(0.999999, 0.999999)
 
 [node name="shoulder_f" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="2"]
 rotation = 2.43437
@@ -1685,10 +1675,10 @@ rotation = -0.464865
 
 [node name="Shoulder_R" parent="GameObjects/Player/sprites" index="1"]
 position = Vector2(-3.80115, -9.83456)
-rotation = 0.36866
+rotation = 0.368661
 
 [node name="FlipHandler2" parent="GameObjects/Player/sprites" index="2"]
-position = Vector2(-0.180191, 3.04247)
+position = Vector2(-0.180206, 3.04247)
 rotation = -0.464865
 
 [node name="Calf_B" parent="GameObjects/Player/sprites" index="3"]
@@ -1712,7 +1702,7 @@ position = Vector2(-5.2769, -28.0557)
 
 [node name="Head" parent="GameObjects/Player/sprites" index="8"]
 position = Vector2(-1.54036, -20.4958)
-rotation = -0.00580466
+rotation = -0.00580461
 
 [node name="FrontHair" parent="GameObjects/Player/sprites" index="9"]
 position = Vector2(-6.51007, -26.1904)
@@ -1833,17 +1823,9 @@ collision_mask = 7
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameObjects/Killzone2"]
 shape = SubResource("WorldBoundaryShape2D_kfodh")
 
-[node name="Goblin" parent="GameObjects" instance=ExtResource("11_raeie")]
-position = Vector2(3274, -187)
-
-[node name="red_gem_collectable" parent="GameObjects" instance=ExtResource("16_ou6is")]
-position = Vector2(119, -40)
-
-[node name="red_gem_collectable2" parent="GameObjects" instance=ExtResource("16_ou6is")]
-position = Vector2(279, -40)
-
-[node name="red_gem_collectable3" parent="GameObjects" instance=ExtResource("16_ou6is")]
-position = Vector2(457, -56)
+[node name="Node2D" parent="GameObjects" instance=ExtResource("10_7smn1")]
+z_index = -1
+position = Vector2(625, -31)
 
 [node name="Map" type="Node" parent="."]
 
