@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://qtfciyfj33pt"]
+[gd_scene load_steps=52 format=4 uid="uid://qtfciyfj33pt"]
 
 [ext_resource type="PackedScene" uid="uid://c11ldn4yd0i8w" path="res://entities/player/player.tscn" id="3_blune"]
 [ext_resource type="Script" uid="uid://bhda60gy1q5tc" path="res://entities/player/player_ik_animator.gd" id="3_th5th"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://c0rjmt5gjqalg" path="res://structures/RestArea/RestArea.tscn" id="10_7smn1"]
 [ext_resource type="PackedScene" uid="uid://dn52wlkh2g1wy" path="res://scenes/killzone/killzone.tscn" id="10_necax"]
 [ext_resource type="PackedScene" uid="uid://u7cofmnwref0" path="res://structures/EndDoor/end_door.tscn" id="13_7smn1"]
+[ext_resource type="PackedScene" uid="uid://c7i0lcfy8hk71" path="res://structures/Caverns/structure.tscn" id="14_raeie"]
 [ext_resource type="PackedScene" uid="uid://bxpy7oymfnp6o" path="res://structures/OpenCave/structure.tscn" id="16_necax"]
 
 [sub_resource type="Resource" id="Resource_hxu8e"]
@@ -1599,14 +1600,14 @@ texture = SubResource("PlaceholderTexture2D_th5th")
 
 [node name="BHTarget" type="Marker2D" parent="GameObjects/PlayerIKAnimator"]
 visible = false
-position = Vector2(-10, -46)
+position = Vector2(-1181, -27)
 
 [node name="Sprite2D2" type="Sprite2D" parent="GameObjects/PlayerIKAnimator/BHTarget"]
 texture = SubResource("PlaceholderTexture2D_blune")
 
 [node name="FHTarget" type="Marker2D" parent="GameObjects/PlayerIKAnimator"]
 visible = false
-position = Vector2(-10, -52)
+position = Vector2(-1181, -33)
 
 [node name="Sprite2D2" type="Sprite2D" parent="GameObjects/PlayerIKAnimator/FHTarget"]
 texture = SubResource("PlaceholderTexture2D_blune")
@@ -1624,7 +1625,7 @@ node = NodePath("../../../Player/Skeleton/hip")
 metadata/_custom_type_script = "uid://eji52ig0w3g5"
 
 [node name="Player" parent="GameObjects" node_paths=PackedStringArray("health_bar", "mana_bar", "animPlayer", "IkAnimator") instance=ExtResource("3_blune")]
-position = Vector2(-166, -34)
+position = Vector2(-1337, -15)
 dash_dist = 120
 health_bar = NodePath("../../Interface/Interface2/VBoxContainer/HealthBar/HealthBar")
 mana_bar = NodePath("../../Interface/Interface2/VBoxContainer/ManaBar/ManaBar")
@@ -1648,76 +1649,78 @@ rotation = 1.93946
 scale = Vector2(0.999991, 0.999991)
 
 [node name="forearm_r" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset/shoulder_r" index="1"]
-rotation = -0.833526
+rotation = -0.833528
+scale = Vector2(0.999999, 0.999999)
 
 [node name="shoulder_f" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="2"]
 rotation = 2.43437
+scale = Vector2(0.999985, 0.999985)
 
 [node name="forearm_f" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset/shoulder_f" index="1"]
 rotation = -1.73952
 
 [node name="thigh_r" parent="GameObjects/Player/Skeleton/hip" index="1"]
-rotation = -0.221308
+rotation = -1.54178
 scale = Vector2(0.999998, 0.999998)
 
 [node name="calf_r" parent="GameObjects/Player/Skeleton/hip/thigh_r" index="1"]
-rotation = -2.98045e-08
+rotation = 0.0
 
 [node name="thigh_f" parent="GameObjects/Player/Skeleton/hip" index="2"]
-rotation = -0.276292
+rotation = -1.54075
 scale = Vector2(0.99984, 0.99984)
 
 [node name="Forearm_R" parent="GameObjects/Player/sprites" index="0"]
-position = Vector2(-2.91475, -0.926952)
-rotation = -0.464865
+position = Vector2(-2.91467, -0.926884)
+rotation = -0.464861
 
 [node name="Shoulder_R" parent="GameObjects/Player/sprites" index="1"]
-position = Vector2(-3.80116, -9.83456)
-rotation = 0.368662
+position = Vector2(-3.80103, -9.83453)
+rotation = 0.368647
 
 [node name="FlipHandler2" parent="GameObjects/Player/sprites" index="2"]
-position = Vector2(-0.180206, 3.04246)
-rotation = -0.464865
+position = Vector2(-0.180176, 3.04254)
+rotation = -0.464861
 
 [node name="Calf_B" parent="GameObjects/Player/sprites" index="3"]
-position = Vector2(3.67006, 14.0344)
-rotation = -0.221308
+position = Vector2(14.5061, -0.0791111)
+rotation = -1.54178
 
 [node name="Thigh_B" parent="GameObjects/Player/sprites" index="4"]
-position = Vector2(1.31682, 5.85274)
-rotation = -0.221308
+position = Vector2(5.99658, 0.174041)
+rotation = -1.54178
 
 [node name="Calf_F" parent="GameObjects/Player/sprites" index="5"]
-position = Vector2(3.93517, 13.8093)
-rotation = -0.276292
+position = Vector2(14.004, -0.0640965)
+rotation = -1.54075
 
 [node name="Thigh_F" parent="GameObjects/Player/sprites" index="6"]
-position = Vector2(1.13631, 5.77062)
-rotation = -0.276292
+position = Vector2(5.49548, 0.180215)
+rotation = -1.54075
 
 [node name="BHair" parent="GameObjects/Player/sprites" index="7"]
-position = Vector2(-5.2769, -28.0557)
+position = Vector2(-5.27698, -28.0557)
 
 [node name="Head" parent="GameObjects/Player/sprites" index="8"]
-position = Vector2(-1.54036, -20.4958)
-rotation = -0.00580466
+position = Vector2(-1.54041, -20.4958)
+rotation = -0.00580465
 
 [node name="FrontHair" parent="GameObjects/Player/sprites" index="9"]
-position = Vector2(-6.51007, -26.1904)
+position = Vector2(-6.51013, -26.1904)
 
 [node name="Torso" parent="GameObjects/Player/sprites" index="10"]
 position = Vector2(0, -7.99875)
 
 [node name="FlipHandler" parent="GameObjects/Player/sprites" index="12"]
-position = Vector2(-1.34702, -2.63909)
+position = Vector2(-1.34705, -2.63909)
 rotation = -0.875946
 
 [node name="Forearm_F" parent="GameObjects/Player/sprites" index="13"]
-position = Vector2(-5.43985, -5.18505)
+position = Vector2(-5.43982, -5.18505)
 rotation = -0.875946
 
 [node name="Shoulder_F" parent="GameObjects/Player/sprites" index="14"]
-position = Vector2(-5.79976, -11.2497)
+position = Vector2(-5.79968, -11.2497)
 rotation = 0.863572
 
 [node name="root" parent="GameObjects/Player/accessories" index="0"]
@@ -1853,6 +1856,9 @@ collision_enabled = false
 [node name="EndDoor" parent="Map" instance=ExtResource("13_7smn1")]
 z_index = -1
 position = Vector2(885, -16)
+
+[node name="OpenCave2" parent="Map" instance=ExtResource("14_raeie")]
+position = Vector2(-1807, -144)
 
 [node name="Interface" parent="." instance=ExtResource("6_raeie")]
 
