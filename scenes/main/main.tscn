@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://qtfciyfj33pt"]
+[gd_scene load_steps=53 format=4 uid="uid://qtfciyfj33pt"]
 
 [ext_resource type="PackedScene" uid="uid://c11ldn4yd0i8w" path="res://entities/player/player.tscn" id="3_blune"]
 [ext_resource type="Script" uid="uid://bhda60gy1q5tc" path="res://entities/player/player_ik_animator.gd" id="3_th5th"]
@@ -13,8 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://c0rjmt5gjqalg" path="res://structures/RestArea/RestArea.tscn" id="10_7smn1"]
 [ext_resource type="PackedScene" uid="uid://dn52wlkh2g1wy" path="res://scenes/killzone/killzone.tscn" id="10_necax"]
 [ext_resource type="PackedScene" uid="uid://u7cofmnwref0" path="res://structures/EndDoor/end_door.tscn" id="13_7smn1"]
-[ext_resource type="PackedScene" uid="uid://crdosk3lptgfn" path="res://structures/CrystalCavern/crystal_cavern.tscn" id="15_raeie"]
 [ext_resource type="PackedScene" uid="uid://c7i0lcfy8hk71" path="res://structures/Caverns/caverns.tscn" id="14_raeie"]
+[ext_resource type="PackedScene" uid="uid://crdosk3lptgfn" path="res://structures/CrystalCavern/crystal_cavern.tscn" id="15_raeie"]
 [ext_resource type="PackedScene" uid="uid://bxpy7oymfnp6o" path="res://structures/OpenCave/structure.tscn" id="16_necax"]
 
 [sub_resource type="Resource" id="Resource_hxu8e"]
@@ -1642,16 +1642,15 @@ position = Vector2(0, 0)
 scale = Vector2(0.999844, 0.999844)
 
 [node name="head" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="0"]
-rotation = -0.00580469
+rotation = -0.00580465
 scale = Vector2(0.999864, 0.999864)
 
 [node name="shoulder_r" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="1"]
-rotation = 1.93946
+rotation = 1.93945
 scale = Vector2(0.999991, 0.999991)
 
 [node name="forearm_r" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset/shoulder_r" index="1"]
-rotation = -0.833526
-scale = Vector2(0.999999, 0.999999)
+rotation = -0.833513
 
 [node name="shoulder_f" parent="GameObjects/Player/Skeleton/hip/torso/collar/offset" index="2"]
 rotation = 2.43437
@@ -1672,16 +1671,16 @@ rotation = -1.54075
 scale = Vector2(0.99984, 0.99984)
 
 [node name="Forearm_R" parent="GameObjects/Player/sprites" index="0"]
-position = Vector2(-2.91473, -0.926945)
-rotation = -0.464865
+position = Vector2(-2.91479, -0.926929)
+rotation = -0.464861
 
 [node name="Shoulder_R" parent="GameObjects/Player/sprites" index="1"]
-position = Vector2(-3.80115, -9.83456)
-rotation = 0.368661
+position = Vector2(-3.80115, -9.83455)
+rotation = 0.368658
 
 [node name="FlipHandler2" parent="GameObjects/Player/sprites" index="2"]
-position = Vector2(-0.180206, 3.04247)
-rotation = -0.464865
+position = Vector2(-0.180298, 3.04249)
+rotation = -0.464861
 
 [node name="Calf_B" parent="GameObjects/Player/sprites" index="3"]
 position = Vector2(14.5061, -0.0791111)
@@ -1703,8 +1702,8 @@ rotation = -1.54075
 position = Vector2(-5.27698, -28.0557)
 
 [node name="Head" parent="GameObjects/Player/sprites" index="8"]
-position = Vector2(-1.54036, -20.4958)
-rotation = -0.00580463
+position = Vector2(-1.54041, -20.4958)
+rotation = -0.0058046
 
 [node name="FrontHair" parent="GameObjects/Player/sprites" index="9"]
 position = Vector2(-6.51013, -26.1904)
@@ -1713,12 +1712,12 @@ position = Vector2(-6.51013, -26.1904)
 position = Vector2(0, -7.99875)
 
 [node name="FlipHandler" parent="GameObjects/Player/sprites" index="12"]
-position = Vector2(-1.34702, -2.6391)
-rotation = -0.875947
+position = Vector2(-1.34705, -2.63909)
+rotation = -0.875946
 
 [node name="Forearm_F" parent="GameObjects/Player/sprites" index="13"]
-position = Vector2(-5.43985, -5.18505)
-rotation = -0.875947
+position = Vector2(-5.43982, -5.18505)
+rotation = -0.875946
 
 [node name="Shoulder_F" parent="GameObjects/Player/sprites" index="14"]
 position = Vector2(-5.79968, -11.2497)
@@ -1826,6 +1825,7 @@ collision_mask = 7
 shape = SubResource("WorldBoundaryShape2D_kfodh")
 
 [node name="Node2D" parent="GameObjects" instance=ExtResource("10_7smn1")]
+visible = false
 z_index = -1
 position = Vector2(625, -31)
 
@@ -1856,10 +1856,13 @@ collision_enabled = false
 
 [node name="EndDoor" parent="Map" instance=ExtResource("13_7smn1")]
 z_index = -1
-position = Vector2(885, -16)
+position = Vector2(3654, 0)
 
-[node name="OpenCave2" parent="Map" instance=ExtResource("14_raeie")]
+[node name="Caverns" parent="Map" instance=ExtResource("14_raeie")]
 position = Vector2(-1807, -144)
+
+[node name="CrystalCave" parent="Map" instance=ExtResource("15_raeie")]
+position = Vector2(2586, 48)
 
 [node name="Interface" parent="." instance=ExtResource("6_raeie")]
 
@@ -1869,9 +1872,6 @@ script = SubResource("GDScript_raeie")
 [node name="PauseMenu" parent="Interface" index="2"]
 offset_top = 0.0
 offset_bottom = 0.0
-
-[node name="OpenCave" parent="." instance=ExtResource("15_raeie")]
-position = Vector2(2586, 48)
 
 [editable path="GameObjects/Player"]
 [editable path="Interface"]

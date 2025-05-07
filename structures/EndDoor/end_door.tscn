@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://u7cofmnwref0"]
+[gd_scene load_steps=10 format=3 uid="uid://u7cofmnwref0"]
 
 [ext_resource type="Script" uid="uid://csae4eqex5yg6" path="res://structures/EndDoor/end_door.gd" id="1_g83xt"]
 [ext_resource type="Texture2D" uid="uid://uksle2m10kvb" path="res://structures/EndDoor/door.png" id="2_4ek1p"]
+[ext_resource type="Texture2D" uid="uid://ct4p4rmtan1ow" path="res://entities/target_dummy/assets/2d_lights_and_shadows_neutral_point_light.webp" id="3_4ek1p"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g83xt"]
 radius = 45.0
@@ -101,3 +102,52 @@ uppercase = true
 libraries = {
 &"": SubResource("AnimationLibrary_dw3lu")
 }
+
+[node name="PointLight2D3" type="PointLight2D" parent="."]
+position = Vector2(-29.4976, -107.498)
+scale = Vector2(0.0507628, 0.0507628)
+color = Color(4.42, 1, 3.867, 1)
+energy = 0.4
+texture = ExtResource("3_4ek1p")
+
+[node name="PointLight2D4" type="PointLight2D" parent="."]
+position = Vector2(-21, -111)
+scale = Vector2(0.0507628, 0.0507628)
+color = Color(4.42, 1, 3.867, 1)
+energy = 0.4
+texture = ExtResource("3_4ek1p")
+
+[node name="PointLight2D5" type="PointLight2D" parent="."]
+position = Vector2(-11, -113)
+scale = Vector2(0.0507628, 0.0507628)
+color = Color(4.42, 1, 3.867, 1)
+energy = 0.4
+texture = ExtResource("3_4ek1p")
+
+[node name="PointLight2D6" type="PointLight2D" parent="."]
+position = Vector2(-9.53674e-07, -113)
+scale = Vector2(0.0507628, 0.0507628)
+color = Color(4.42, 1, 3.867, 1)
+energy = 0.4
+texture = ExtResource("3_4ek1p")
+
+[node name="PointLight2D7" type="PointLight2D" parent="."]
+position = Vector2(13, -112)
+scale = Vector2(0.0507628, 0.0507628)
+color = Color(4.42, 1, 3.867, 1)
+energy = 0.4
+texture = ExtResource("3_4ek1p")
+
+[node name="PointLight2D8" type="PointLight2D" parent="."]
+position = Vector2(22, -110)
+scale = Vector2(0.0507628, 0.0507628)
+color = Color(4.42, 1, 3.867, 1)
+energy = 0.4
+texture = ExtResource("3_4ek1p")
+
+[node name="PointLight2D9" type="PointLight2D" parent="."]
+position = Vector2(30, -108)
+scale = Vector2(0.0507628, 0.0507628)
+color = Color(4.42, 1, 3.867, 1)
+energy = 0.4
+texture = ExtResource("3_4ek1p")
