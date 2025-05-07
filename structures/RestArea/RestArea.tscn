@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://c6bdyb1jxigak" path="res://structures/RestArea/x32/lantern 4.png" id="16_xtcg7"]
 
 [node name="Node2D" type="Node2D"]
+position = Vector2(0, -360)
 
 [node name="RestArea" parent="." instance=ExtResource("1_1kgiq")]
 position = Vector2(624, 720)
