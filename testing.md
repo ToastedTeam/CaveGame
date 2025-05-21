@@ -45,7 +45,7 @@ Rezultatai:
 Problemos buvo fiksuojamos naudojant Jira ir išspręstos kito sprinto metu.
 
 ## Statinė kodo analizė
-Siekdami palaikyti kodo kokybę ir sumažinti klaidų skaičių, naudojome integruotą *Godot* **gdtoolkit** ir periodiškai peržiūrėjome kodą, atsižvelgdami į:
+Siekdami palaikyti kodo kokybę ir sumažinti klaidų skaičių, naudojome *gdtoolkit* ir periodiškai peržiūrėjome kodą, atsižvelgdami į:
 - Nepasiekiamus kintamuosius
 - Nenaudojamą kodą
 - Stiliaus nuoseklumą
