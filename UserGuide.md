@@ -78,7 +78,7 @@ Suradus laužą, galima prie jo pailsėti paspaudus `E` mygtuką:
 
 Esant netoli ir ilsintis prie laužo, negalima atakuoti, tačiau kai žaidėjas ilsisi galima pakeisti šiuo metu naudojamus ginklus su sąsaja viršuje. *(Pastaba: šiuo metu ginklai skiriasi tik išvaizda ir yra tik vienas lankas)*
 
-Žaidžiant žaidimą, galima taip pat atidaryti inventorių su `I` klavišų pagal numatytuosius nustatymus. Jis atrodo šitaip:
+Žaidžiant žaidimą, galima taip pat atidaryti inventorių su `I` klavišu pagal numatytuosius nustatymus. Jis atrodo šitaip:
 
 ![](images/inventory.png)
 
