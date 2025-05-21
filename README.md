@@ -9,7 +9,7 @@
 
 ## Techninė užduotis
 
-Sukurti žaidimą naudojantis [Godot](https://godotengine.org/) žaidimų variklį, atlikti vienetų testavimą įvairioms žaidime naudojamiems objektams, klasėms, bei atlikti statinę ir našumo analizę. **_FINISH THIS_**
+Sukurti žaidimą naudojantis [Godot](https://godotengine.org/) žaidimų variklį, atlikti vienetų testavimą įvairioms žaidime naudojamiems objektams, klasėms, bei atlikti statinę ir našumo analizę.
 
 ## Architektūra
 
