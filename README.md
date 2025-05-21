@@ -33,7 +33,7 @@ Tekstūros buvo pieštos naudojant [Aseprite](https://www.aseprite.org/) program
 
 ## Testavimas, jo rezultatai
 
-Text goes here
+Testavimo dokumentaciją galite pasiekti [čia](testing.md)
 
 ## Naudotojo dokumentacija
 
